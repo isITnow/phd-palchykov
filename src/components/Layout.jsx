@@ -82,8 +82,9 @@ const Layout = () => {
           </nav>
         </div>
       </header>
-
-      <Outlet />
+      <main className="container">
+        <Outlet />
+      </main>
       <footer className="fixed-bottom py-4 bg-dark text-white">
         <div className="container">
           <p>2023</p>
