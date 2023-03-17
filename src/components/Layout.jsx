@@ -4,7 +4,10 @@ import { Link, Outlet } from "react-router-dom";
 const Layout = () => {
   return (
     <>
-      <header style={{ backgroundColor: "#e3f2fd" }}>
+      <header
+        className="bg-body-secondary"
+        // style={{ backgroundColor: "#e3f2fd" }}
+      >
         <div className="container">
           <nav className="navbar navbar-expand-lg">
             <div className="container-fluid">
@@ -87,7 +90,7 @@ const Layout = () => {
       </main>
       <footer className="fixed-bottom py-4 bg-dark text-white">
         <div className="container">
-          <p>2023</p>
+          <p>developed by goddamn uber developer. 2023</p>
         </div>
       </footer>
     </>
