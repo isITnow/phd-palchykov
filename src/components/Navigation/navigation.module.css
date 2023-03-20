@@ -1,0 +1,9 @@
+.nav_item {
+  color: #292b2c !important;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  ;
+}
+
+.nav_item:hover {
+  color: #0275d8 !important;
+}

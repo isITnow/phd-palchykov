@@ -1,8 +1,11 @@
 import { NavLink, Link } from "react-router-dom";
+import s from "./navigation.module.css";
 import publicationsArray from "../../assets/data/publications";
 
 const setActive = ({ isActive }) =>
-  isActive ? "nav-link text-primary fw-bold" : "nav-link fw-bold";
+  isActive
+    ? `${s.nav_item} nav-link text-primary fw-bold`
+    : `${s.nav_item} nav-link fw-bold`;
 
 const Navigation = () => {
   return (
@@ -41,7 +44,7 @@ const Navigation = () => {
 
             <li className="nav-item dropdown">
               <NavLink
-                className="nav-link dropdown-toggle fw-bold"
+                className={`${s.nav_item} nav-link dropdown-toggle fw-bold`}
                 href="/#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -56,7 +59,7 @@ const Navigation = () => {
                       className="dropdown-item"
                       to={`publications/${item.period}`}
                     >
-                      {item.period}
+                      {`period ${item.period}`}
                     </Link>
                   </li>
                 ))}
