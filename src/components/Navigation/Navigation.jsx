@@ -42,7 +42,7 @@ const Navigation = () => {
             <li className="nav-item dropdown">
               <NavLink
                 className="nav-link dropdown-toggle fw-bold"
-                to={"publications"}
+                href="/#"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
