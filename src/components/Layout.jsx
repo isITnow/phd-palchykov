@@ -5,14 +5,14 @@ const Layout = () => {
   return (
     <>
       <header
-        className="bg-body-secondary"
+        className="shadow-sm"
         // style={{ backgroundColor: "#e3f2fd" }}
       >
         <div className="container">
           <nav className="navbar navbar-expand-lg">
             <div className="container-fluid">
-              <Link className="navbar-brand" to={"/"}>
-                PhD Palchycov
+              <Link className="navbar-brand fw-bold" to={"/"}>
+                Ph.D. Palchycov
               </Link>
               <button
                 className="navbar-toggler"
