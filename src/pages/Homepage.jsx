@@ -1,31 +1,11 @@
-import React from "react";
+import Carousel from "../components/Carousel/Carousel";
 
-const Homepage = () => {
+const HomePage = () => {
   return (
-    <>
-      <h2>Homepage</h2>
-      <div className="row">
-        <div className="col-4">
-          Lorem ipsum dolor sit,tore quia, illum magnam. Lorem ipsum dolor sit,
-          amet consectetur adipisicing elit. Veniam nemo, impedit sed cum quam
-          facere eaque dolorem dignissimos magni modi rem, commodi minima eum
-          nulla!
-        </div>
-        <div className="col-8">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam nemo,
-          impedit sed cum quam facere eaque dolorem dignissimos magni modi rem,
-          commodi minima eum nulla! Lorem ipsum dolor sit, amet consectetur
-          adipisicing elit. Veniam nemo, impedit sed cum quam facere eaque
-          dolorem dignissimos magni modi rem, commodi minima eum nulla!Lorem
-          ipsum dolor sit, amet consectetur adipisicing elit. Veniam nemo,
-          impedit sed cum quam facere eaque dolorem dignissimos magni modi rem,
-          commodi minima eum nulla!Lorem ipsum dolor sit, amet consectetur
-          adipisicing elit. Veniam nemo, impedit sed cum quam facere eaque
-          dolorem dignissimos magni modi rem, commodi minima eum nulla!
-        </div>
-      </div>
-    </>
+    <section className="py-4">
+      <Carousel />
+    </section>
   );
 };
 
-export default Homepage;
+export default HomePage;

@@ -1,4 +1,4 @@
-const Research = () => {
+const ResearchPage = () => {
   return (
     <>
       <h2>Research</h2>
@@ -6,4 +6,4 @@ const Research = () => {
   );
 };
 
-export default Research;
+export default ResearchPage;
