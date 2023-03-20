@@ -63,6 +63,11 @@ const Navigation = () => {
               </ul>
             </li>
             <li className="nav-item">
+              <NavLink className={setActive} to={"gallery"}>
+                Gallery
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className={setActive} to={"contacts"}>
                 Contacts
               </NavLink>
