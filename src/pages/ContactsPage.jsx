@@ -2,8 +2,8 @@ import SocialMedia from "../components/SocialMedia/SocialMedia";
 
 const ContactsPage = () => {
   return (
-    <>
-      <h2>ContactsPage</h2>
+    <section className="py-4">
+      <h2>Contacts</h2>
       <address>
         <h5>Ph.D. Vitalii Palchykov</h5>
         <p>
@@ -32,9 +32,9 @@ const ContactsPage = () => {
           </li>
         </ul>
       </address>
-      <p>Social media</p>
+      <p>Find me in Social</p>
       <SocialMedia />
-    </>
+    </section>
   );
 };
 
