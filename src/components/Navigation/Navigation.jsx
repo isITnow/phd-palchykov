@@ -12,8 +12,8 @@ const Navigation = () => {
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
         <Link className="navbar-brand fw-bold" to={"/"}>
-          <span>Ph.D. </span>
-          <span className="text-primary">Palchykov</span>
+          <span>Prof. Dr. </span>
+          <span className="text-primary">Vitalii Palchykov</span>
         </Link>
         <button
           className="navbar-toggler"

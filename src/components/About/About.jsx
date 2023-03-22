@@ -38,8 +38,8 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            2021 - present Full Professor (part time), Department of Physical,
-            Organic and Inorganic Chemistry, DNU
+            2021 - present Full Professor (<em>part time</em>), Department of
+            Physical, Organic and Inorganic Chemistry, DNU
           </p>
         </li>
         <li>
@@ -63,8 +63,8 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            2017 - 2019 Assistant Professor (part time), Department of Organic
-            Chemistry, DNU
+            2017 - 2019 Assistant Professor (<em>part time</em>), Department of
+            Organic Chemistry, DNU
           </p>
         </li>
         <li>
@@ -87,8 +87,8 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            2008 - 2011 Assistant Professor (part time), Department of Organic
-            Chemistry, DNU
+            2008 - 2011 Assistant Professor (<em>part time</em>), Department of
+            Organic Chemistry, DNU
           </p>
         </li>
         <li>

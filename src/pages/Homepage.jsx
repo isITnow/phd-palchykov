@@ -12,7 +12,7 @@ const HomePage = () => {
             src={require("../assets/images/photo.jpg")}
             alt="Vitalii"
           />
-          <h3 className="my-3 text-center">Dr. Vitalii Palchykov</h3>
+          <h4 className="my-3 text-center">Prof. Dr. Vitalii Palchykov</h4>
           <SocialMedia />
         </div>
         <div className="col-12 col-md-8">
