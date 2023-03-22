@@ -1,12 +1,24 @@
 .icon {
-  color: #292b2c;
+  color: #434546;
   scale: 1;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   transition: color, scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
   ;
 }
 
 .icon:hover {
   color: #0275d8;
+  scale: 1.1
+}
+
+.svg_icon {
+  fill: #434546;
+  scale: 1;
+  transition: fill, scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  ;
+}
+
+.svg_icon:hover {
+  fill: #0275d8;
   scale: 1.1
 }
