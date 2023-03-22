@@ -9,7 +9,7 @@ import s from "./socialMedia.module.css";
 
 const SocialMedia = () => {
   return (
-    <ul className="d-flex justify-content-center">
+    <ul className="d-flex">
       <li className="me-3">
         <a
           href="https://www.facebook.com/profile.php?id=100011011327376"
