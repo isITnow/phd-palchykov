@@ -4,11 +4,11 @@ const About = () => {
   return (
     <>
       <h1 className="mb-4 text-center">Prof. Dr. Vitalii Palchykov</h1>
-      <h4>Education</h4>
+      <h4 className="ms-3">Education</h4>
       <ul>
         <li>
           <p className="mb-2">
-            <strong>2019</strong> D.Sc.(doctor habil.), V.N. Karazin Kharkiv
+            <strong>2019</strong> - D.Sc.(doctor habil.), V.N. Karazin Kharkiv
             National University. Supervisor: Prof., Dr. Valentyn Chebanov,
             thesis: Oxazaheterocycles and opened heteroatomic compounds from
             epoxy derivatives
@@ -16,7 +16,7 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            <strong>2008</strong> Ph.D, Ukrainian State University of Chemical
+            <strong>2008</strong> - Ph.D, Ukrainian State University of Chemical
             Technology. Supervisor: Prof., Dr. Liliya Kasyan, thesis: Oxygen-
             and nitrogen containing derivatives of
             bicyclo[2.2.1]hept-5-ene-endo,endo-2,3-dicarboxylic acid anhydride.
@@ -25,16 +25,16 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            <strong>2004</strong> M.Sc, Dnipropetrovsk National University
+            <strong>2004</strong> - M.Sc, Dnipropetrovsk National University
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2003</strong> B.Sc, Dnipropetrovsk National University
+            <strong>2003</strong> - B.Sc, Dnipropetrovsk National University
           </p>
         </li>
       </ul>
-      <h4>Research and Teaching Experience</h4>
+      <h4 className="ms-3">Research and Teaching Experience</h4>
       <ul>
         <li>
           <p className="mb-2">
@@ -50,45 +50,46 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            <strong>2020 - 2021</strong> Research Associate in Prof. Gevorgyan
+            <strong>2020 - 2021</strong> - Research Associate in Prof. Gevorgyan
             group, University of Texas at Dallas, United States{" "}
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2019</strong> Visiting Researcher in Prof. Šebesta
+            <strong>2019</strong> - Visiting Researcher in Prof. Šebesta
             laboratory of asymmetric catalysis and green chemistry, Comenius
             University in Bratislava, Slovak Republic
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2016 - 2019</strong> Head of the Research Laboratory of
+            <strong>2016 - 2019</strong> - Head of the Research Laboratory of
             theoretical and applied problems of chemistry, Department of Organic
             Chemistry, DNU
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2017 - 2019</strong> Assistant Professor (<em>part time</em>
+            <strong>2017 - 2019</strong> - Assistant Professor (
+            <em>part time</em>
             ), Department of Organic Chemistry, DNU
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2008 - 2016</strong> Senior Research Fellow, Department of
+            <strong>2008 - 2016</strong> - Senior Research Fellow, Department of
             Organic Chemistry, DNU
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2012 - 2013</strong> Visiting Researcher in Prof. Robertson
-            group, University of Oxford, UK
+            <strong>2012 - 2013</strong> - Visiting Researcher in Prof.
+            Robertson group, University of Oxford, UK
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2007 - 2008</strong> Junior Research Fellow, Department of
+            <strong>2007 - 2008</strong> - Junior Research Fellow, Department of
             Organic Chemistry, DNU
           </p>
         </li>
@@ -100,98 +101,98 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            <strong>2004 - 2007</strong> PhD student, Department of Organic
+            <strong>2004 - 2007</strong> - PhD student, Department of Organic
             Chemistry, DNU
           </p>
         </li>
       </ul>
-      <h4>Awards and Achievements</h4>
+      <h4 className="ms-3">Awards and Achievements</h4>
       <ul>
         <li>
           <p className="mb-2">
-            <strong>2022</strong> Full Professor's Certificate (Ministry of
+            <strong>2022</strong> - Full Professor's Certificate (Ministry of
             Education and Science of Ukraine){" "}
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2022</strong> Simons Foundation Scholarship (USA)
+            <strong>2022</strong> - Simons Foundation Scholarship (USA)
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2022</strong> Prize of the Verkhovna Rada (Parliament) of
+            <strong>2022</strong> - Prize of the Verkhovna Rada (Parliament) of
             Ukraine for young scientists
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2021</strong> Grant for young scientists of Dnipropetrovsk
+            <strong>2021</strong> - Grant for young scientists of Dnipropetrovsk
             region. Project title: Genipin - a natural product for the discovery
             of new practically useful materials
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2021</strong> Scholarship of the Verkhovna Rada (Parliament)
-            of Ukraine for young scientists - Doctor of Sciences
+            <strong>2021</strong> - Scholarship of the Verkhovna Rada
+            (Parliament) of Ukraine for young scientists - Doctor of Sciences
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2020</strong> Matsumae Research Fellowship (Kyoto
+            <strong>2020</strong> - Matsumae Research Fellowship (Kyoto
             University, Japan)
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2019</strong> Travel grant for the 6th Prague-Weizmann
+            <strong>2019</strong> - Travel grant for the 6th Prague-Weizmann
             Summer School “Advances in Drug Discovery” (Prague, Czech Republic)
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2019</strong> Grant for the staff training within the
+            <strong>2019</strong> - Grant for the staff training within the
             framework of Erasmus+ KA107 project at the Karamanoğlu Mehmetbey
             University (Karaman, Turkey)
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2018</strong> Research Scholarship of the National
+            <strong>2018</strong> - Research Scholarship of the National
             Scholarship Programme of the Slovak Republic. Supervisor: Prof.
             Radovan Šebesta (Comenius University in Bratislava)
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2015</strong> Prize of the President of Ukraine for young
+            <strong>2015</strong> - Prize of the President of Ukraine for young
             scientists for a series of scientific papers (the most prestigious
             award in Ukraine for scientists under 35){" "}
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2015</strong> Grant for young scientists of Dnipropetrovsk
+            <strong>2015</strong> - Grant for young scientists of Dnipropetrovsk
             region. Project title: The synthesis of natural antithrombotic agent
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2014</strong> Scholarship of the Cabinet of Ministers of
+            <strong>2014</strong> - Scholarship of the Cabinet of Ministers of
             Ukraine for young scientists
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2013</strong> Grant for young scientists of Dnipropetrovsk
+            <strong>2013</strong> - Grant for young scientists of Dnipropetrovsk
             region. Project title: Directed synthesis of biologically important
             heterocyclic structures based on industrially available dienes
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2013</strong> Grant of the President of Ukraine for young
+            <strong>2013</strong> - Grant of the President of Ukraine for young
             scientists. Project title: New heterocyclic compounds, annulated or
             substituted of polycyclic cage fragments. Synthesis and in vivo
             activity
@@ -199,7 +200,7 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            <strong>2012</strong> Grant of Ukrainian Ministry of Education and
+            <strong>2012</strong> - Grant of Ukrainian Ministry of Education and
             Science on internship at the University of Oxford, UK. Supervisor:
             Prof. Jeremy Robertson
           </p>
@@ -207,18 +208,18 @@ const About = () => {
         <li>
           <p className="mb-2">
             <strong>2010</strong>, <strong>2013</strong>, <strong>2015</strong>{" "}
-            Best Young Scientist of Year in Dnipropetrovsk region
+            - Best Young Scientist of Year in Dnipropetrovsk region
           </p>
         </li>
         <li>
           <p className="mb-2">
-            <strong>2004</strong> President of Ukraine Scholarship for
+            <strong>2004</strong> - President of Ukraine Scholarship for
             outstanding students 1999 Winner of the 38th Regional Chemistry
             Olympiad, Dnipropetrovsk
           </p>
         </li>
       </ul>
-      <h4>Professional activity</h4>
+      <h4 className="ms-3">Professional activity</h4>
       <ul>
         <li>
           <p className="mb-2">
@@ -234,12 +235,12 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            <strong>2015 - 2017</strong> Chairman of the Young Scientists
+            <strong>2015 - 2017</strong> - Chairman of the Young Scientists
             Council of DNU
           </p>
         </li>
       </ul>
-      <h4>Research Interests</h4>
+      <h4 className="ms-3">Research Interests</h4>
       <p>
         chemistry of cage-like compounds and N,O,S-heterocycles, new synthetic
         methodologies based on organo- and photoredox catalysis, mechanisms and
