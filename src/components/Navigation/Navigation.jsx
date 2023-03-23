@@ -10,7 +10,7 @@ const setActive = ({ isActive }) =>
 const Navigation = () => {
   return (
     <nav className="navbar navbar-expand-lg">
-      <div className="container-fluid">
+      <div className="container-fluid px-0">
         <Link className="navbar-brand fw-bold" to={"/"}>
           <span>Prof. Dr. </span>
           <span className="text-primary fs-4">Vitalii Palchykov</span>
