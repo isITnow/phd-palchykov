@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <>
       <header
-        className="shadow-sm"
+        className="shadow-sm py-3"
         // style={{ backgroundColor: "#e3f2fd" }}
       >
         <div className="container">
