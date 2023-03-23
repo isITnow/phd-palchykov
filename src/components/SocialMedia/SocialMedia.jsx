@@ -10,8 +10,9 @@ import s from "./socialMedia.module.css";
 const SocialMedia = ({ position }) => {
   return (
     <ul className={`${s.list} d-flex flex-wrap ${position}`}>
-      <li className="me-3 mb-3 mb-xl-0">
+      <li className="me-2 mb-3 mb-xl-0">
         <a
+          className={s.item_link}
           href="https://www.facebook.com/profile.php?id=100011011327376"
           target="_blank"
           rel="noreferrer noopener"
@@ -19,8 +20,9 @@ const SocialMedia = ({ position }) => {
           <BsFacebook className={s.icon} />
         </a>
       </li>
-      <li className="me-3">
+      <li className="me-2">
         <a
+          className={s.item_link}
           href="https://www.linkedin.com/in/vitalii-palchykov-1350a116b/"
           target="_blank"
           rel="noreferrer noopener"
@@ -28,8 +30,9 @@ const SocialMedia = ({ position }) => {
           <BsLinkedin className={s.icon} />
         </a>
       </li>
-      <li className="me-3">
+      <li className="me-2">
         <a
+          className={s.item_link}
           href="http://t.me/Vitalii_Palchykov"
           target="_blank"
           rel="noreferrer noopener"
@@ -37,8 +40,9 @@ const SocialMedia = ({ position }) => {
           <BsTelegram className={s.icon} />
         </a>
       </li>
-      <li className="me-3 me-md-0 me-lg-3">
+      <li className="me-2 me-md-0 me-lg-2">
         <a
+          className={s.item_link}
           href="http://www.scopus.com/authid/detail.url?authorId=10139119000"
           target="_blank"
           rel="noreferrer noopener"
@@ -46,8 +50,9 @@ const SocialMedia = ({ position }) => {
           <SiScopus className={s.icon} />
         </a>
       </li>
-      <li className="me-3 ">
+      <li className="me-2 ">
         <a
+          className={s.item_link}
           href="http://orcid.org/0000-0003-3748-4566"
           target="_blank"
           rel="noreferrer noopener"
@@ -55,8 +60,9 @@ const SocialMedia = ({ position }) => {
           <SiOrcid className={s.icon} />
         </a>
       </li>
-      <li className="me-3 ">
+      <li className="me-2 ">
         <a
+          className={s.item_link}
           href="https://www.researchgate.net/profile/Vitalii_Palchykov"
           target="_blank"
           rel="noreferrer noopener"
@@ -64,8 +70,9 @@ const SocialMedia = ({ position }) => {
           <SiResearchgate className={s.icon} />
         </a>
       </li>
-      <li className="me-3">
+      <li className="me-2">
         <a
+          className={s.item_link}
           href=" https://scholar.google.com/citations?user=aZbFei8AAAAJ&hl=ru   "
           target="_blank"
           rel="noreferrer noopener"
@@ -75,14 +82,15 @@ const SocialMedia = ({ position }) => {
       </li>
       <li>
         <a
+          className={`${s.item_link} pt-2`}
           href="http://www.researcherid.com/rid/C-8035-2016"
           target="_blank"
           rel="noreferrer noopener"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={"1.8rem"}
-            height={"1.8rem"}
+            width={"1.9rem"}
+            height={"1.9rem"}
             className={s.svg_icon}
           >
             <path
