@@ -13,7 +13,7 @@ const Navigation = () => {
       <div className="container-fluid">
         <Link className="navbar-brand fw-bold" to={"/"}>
           <span>Prof. Dr. </span>
-          <span className="text-primary">Vitalii Palchykov</span>
+          <span className="text-primary fs-4">Vitalii Palchykov</span>
         </Link>
         <button
           className="navbar-toggler"
@@ -33,12 +33,12 @@ const Navigation = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className={setActive} aria-current="page" to={"/"}>
-                Home
+                <span className="fs-5">Home</span>
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className={setActive} to={"research"}>
-                Research
+                <span className="fs-5">Research</span>
               </NavLink>
             </li>
 
@@ -50,7 +50,7 @@ const Navigation = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Publications
+                <span className="fs-5">Publications</span>
               </NavLink>
               <ul className="dropdown-menu">
                 {publicationsArray.map((item, idx) => (
@@ -67,12 +67,12 @@ const Navigation = () => {
             </li>
             <li className="nav-item">
               <NavLink className={setActive} to={"gallery"}>
-                Gallery
+                <span className="fs-5">Gallery</span>
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className={setActive} to={"contacts"}>
-                Contacts
+                <span className="fs-5">Contacts</span>
               </NavLink>
             </li>
           </ul>
