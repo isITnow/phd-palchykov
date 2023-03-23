@@ -40,9 +40,9 @@ const ContactsPage = () => {
           </li>
         </ul>
       </address>
-      <div className="d-flex ">
-        <SocialMedia />
-      </div>
+      {/* <div className="d-flex"> */}
+      <SocialMedia position={"justify-content-start"} />
+      {/* </div> */}
     </section>
   );
 };
