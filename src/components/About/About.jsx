@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <>
+    <section>
       <h1 className="mb-4 text-center">Prof. Dr. Vitalii Palchykov</h1>
       <h4 className="ms-3">Education</h4>
       <ul>
@@ -247,7 +247,7 @@ const About = () => {
         stereochemistry of organic reactions, synthesis of biologically active
         and natural compounds
       </p>
-    </>
+    </section>
   );
 };
 
