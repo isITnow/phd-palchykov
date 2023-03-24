@@ -1,4 +1,4 @@
-.list {
+/* .list {
   width: 70%;
 }
 
@@ -24,7 +24,7 @@
   .list {
     width: 100%
   }
-}
+} */
 
 .item_link {
   display: inline-flex;
@@ -47,11 +47,6 @@
   color: #0275d8;
   scale: 1.1
 }
-
-/* .icon:hover {
-  color: #0275d8;
-  scale: 1.1
-} */
 
 .svg_icon {
   fill: #434546;
