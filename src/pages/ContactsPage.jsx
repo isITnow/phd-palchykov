@@ -41,7 +41,7 @@ const ContactsPage = () => {
         </ul>
       </address>
       {/* <div className="d-flex"> */}
-      <SocialMedia position={"justify-content-start"} />
+      <SocialMedia all position={"justify-content-start"} />
       {/* </div> */}
     </section>
   );

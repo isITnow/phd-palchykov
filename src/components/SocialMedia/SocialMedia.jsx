@@ -7,40 +7,45 @@ import {
 } from "react-icons/si";
 import s from "./socialMedia.module.css";
 
-const SocialMedia = ({ position }) => {
+const SocialMedia = ({ position, all }) => {
   return (
-    <ul className={`${s.list} d-flex flex-wrap ${position}`}>
-      <li className="me-2 mb-3 mb-xl-0">
-        <a
-          className={s.item_link}
-          href="https://www.facebook.com/profile.php?id=100011011327376"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <BsFacebook className={s.icon} />
-        </a>
-      </li>
+    <ul className={`${s.list} d-flex flex-wrap w-100 ${position}`}>
+      {all && (
+        <>
+          <li className="me-2">
+            <a
+              className={s.item_link}
+              href="https://www.facebook.com/profile.php?id=100011011327376"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <BsFacebook className={s.icon} />
+            </a>
+          </li>
+          <li className="me-2">
+            <a
+              className={s.item_link}
+              href="https://www.linkedin.com/in/vitalii-palchykov-1350a116b/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <BsLinkedin className={s.icon} />
+            </a>
+          </li>
+          <li className="me-2">
+            <a
+              className={s.item_link}
+              href="http://t.me/Vitalii_Palchykov"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <BsTelegram className={s.icon} />
+            </a>
+          </li>
+        </>
+      )}
+
       <li className="me-2">
-        <a
-          className={s.item_link}
-          href="https://www.linkedin.com/in/vitalii-palchykov-1350a116b/"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <BsLinkedin className={s.icon} />
-        </a>
-      </li>
-      <li className="me-2">
-        <a
-          className={s.item_link}
-          href="http://t.me/Vitalii_Palchykov"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <BsTelegram className={s.icon} />
-        </a>
-      </li>
-      <li className="me-2 me-md-0 me-lg-2">
         <a
           className={s.item_link}
           href="http://www.scopus.com/authid/detail.url?authorId=10139119000"
