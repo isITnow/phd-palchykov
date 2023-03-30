@@ -1,5 +1,13 @@
+import { useParams } from "react-router-dom";
+
 const GalleryPage = () => {
-  return <h2>GalleryPage</h2>;
+  const { theme } = useParams();
+  return (
+    <section className="py-4">
+      <h2>GalleryPage</h2>
+      <h4>{theme}</h4>
+    </section>
+  );
 };
 
 export default GalleryPage;
