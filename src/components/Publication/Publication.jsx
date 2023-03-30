@@ -23,7 +23,7 @@ const Publication = ({ publication }) => {
           <div className="col">
             <img src={cover_img} className={s.img} alt="..." />
           </div>
-          <div className="col">
+          <div className="col mt-1 mt-sm-0">
             <img src={abstract_img} className={s.img_formula} alt="..." />
           </div>
         </div>
