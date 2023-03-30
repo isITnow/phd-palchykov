@@ -9,7 +9,7 @@ import s from "./socialMedia.module.css";
 
 const SocialMedia = ({ position, all }) => {
   return (
-    <ul className={`${s.list} d-flex flex-wrap w-100 ${position}`}>
+    <ul className={`d-flex flex-wrap w-100 ${position}`}>
       {all && (
         <>
           <li className="me-2">
