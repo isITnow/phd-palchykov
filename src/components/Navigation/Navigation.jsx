@@ -52,23 +52,46 @@ const Navigation = () => {
               >
                 <span className="fs-5">Publications</span>
               </NavLink>
-              <ul className="dropdown-menu">
+              <ul className="dropdown-menu text-center">
                 {publicationsArray.map((item, idx) => (
                   <li key={idx + 1}>
                     <Link
                       className="dropdown-item"
                       to={`publications/${item.period}`}
                     >
-                      {`period ${item.period}`}
+                      {item.period}
                     </Link>
                   </li>
                 ))}
               </ul>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink className={setActive} to={"gallery"}>
                 <span className="fs-5">Gallery</span>
               </NavLink>
+            </li> */}
+            <li className="nav-item dropdown">
+              <NavLink
+                className={`${s.nav_item} nav-link dropdown-toggle fw-bold`}
+                href="/#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span className="fs-5">Gallery</span>
+              </NavLink>
+              <ul className="dropdown-menu text-center">
+                <li>
+                  <Link className="dropdown-item" to="gallery/theme-1">
+                    Theme 1
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="gallery/theme-2">
+                    Theme 2
+                  </Link>
+                </li>
+              </ul>
             </li>
             <li className="nav-item">
               <NavLink className={setActive} to={"contacts"}>
