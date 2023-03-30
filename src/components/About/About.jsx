@@ -244,14 +244,14 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            <strong>2015 - 2017</strong>Chairman of the Young Scientists Council
-            of DNU
+            <strong className="me-2">2015 - 2017</strong>Chairman of the Young
+            Scientists Council of DNU
           </p>
         </li>
       </ul>
       <h4 className="ms-3">Research Interests</h4>
       <p>
-        chemistry of cage-like compounds and N,O,S-heterocycles, new synthetic
+        Chemistry of cage-like compounds and N,O,S-heterocycles, new synthetic
         methodologies based on organo- and photoredox catalysis, mechanisms and
         stereochemistry of organic reactions, synthesis of biologically active
         and natural compounds
