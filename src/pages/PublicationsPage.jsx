@@ -6,7 +6,7 @@ const PublicationsPage = () => {
   return (
     <section className="py-4">
       <h2>Publications {period}</h2>
-      <PublicationsList />
+      <PublicationsList period={period} />
     </section>
   );
 };
