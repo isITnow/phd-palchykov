@@ -94,6 +94,11 @@ const Navigation = () => {
               </ul>
             </li>
             <li className="nav-item">
+              <NavLink className={setActive} aria-current="page" to={"/news"}>
+                <span className="fs-5">News</span>
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className={setActive} to={"contacts"}>
                 <span className="fs-5">Contacts</span>
               </NavLink>
