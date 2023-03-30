@@ -1,4 +1,4 @@
-import s from "./newsItem.module.css";
+// import s from "./newsItem.module.css";
 
 const NewsItem = () => {
   return (
