@@ -52,7 +52,7 @@ const Navigation = () => {
               >
                 <span>Publications</span>
               </NavLink>
-              <ul className="dropdown-menu text-center">
+              <ul className="dropdown-menu text-center overflow-hidden">
                 {publicationsArray.map((item, idx) => (
                   <li key={idx + 1}>
                     <Link
@@ -80,7 +80,7 @@ const Navigation = () => {
               >
                 <span>Gallery</span>
               </NavLink>
-              <ul className="dropdown-menu text-center">
+              <ul className="dropdown-menu text-center overflow-hidden">
                 <li>
                   <Link className="dropdown-item" to="gallery/theme-1">
                     Theme 1
