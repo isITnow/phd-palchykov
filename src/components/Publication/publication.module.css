@@ -1,13 +1,6 @@
 .img {
-  display: block;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-.img_formula {
-  display: block;
-  height: 100%;
+  display: inline-block;
+  height: auto;
   width: 100%;
   object-fit: contain;
 }

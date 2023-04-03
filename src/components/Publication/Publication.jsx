@@ -29,7 +29,7 @@ const Publication = ({ publication }) => {
           <div className="mt-2">
             <img
               src={require(`../../assets/images/covers/${abstract_img}`)}
-              className={s.img_formula}
+              className={s.img}
               alt="..."
             />
           </div>
