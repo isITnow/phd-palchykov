@@ -5,7 +5,7 @@ const Colleague = ({ colleague }) => {
       <div className="row g-0">
         <div className="col-4">
           <img
-            src={require(`../../assets/images/${photo}`)}
+            src={require(`../../assets/images/colleagues/${photo}`)}
             className="img-fluid"
             alt={name}
           />
