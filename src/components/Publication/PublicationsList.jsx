@@ -1,4 +1,4 @@
-import Publication from "../Publication/Publication";
+import Publication from "./Publication";
 import s from "./publicationsList.module.css";
 import publicationsArray from "../../assets/data/publications";
 import { useEffect, useState } from "react";
