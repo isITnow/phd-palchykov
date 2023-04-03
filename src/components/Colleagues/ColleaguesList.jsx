@@ -1,11 +1,15 @@
 import Colleague from "./Colleague";
+import colleaguesArray from "../../assets/data/collegues";
 
 const ColleaguesList = () => {
   return (
-    <>
-      <h5>Colleagues List</h5>
-      <Colleague />
-    </>
+    <ul className="row row-cols-1 row-cols-md-2 ">
+      {colleaguesArray.map((colleague) => (
+        <li className="col" key={colleague.id}>
+          <Colleague colleague={colleague} />
+        </li>
+      ))}
+    </ul>
   );
 };
 
