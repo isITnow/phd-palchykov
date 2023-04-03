@@ -1,9 +1,10 @@
 const newsArray = [
   {
-    title: "",
+    id: 1,
+    title: "A new specialty at the Oles Honchar Dnipro National University",
     description: "",
-    img: "",
-    date: "",
+    img: "news_cover-2023-04",
+    date: "April 1, 2023",
   },
   {},
 ];
