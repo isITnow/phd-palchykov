@@ -1,25 +1,25 @@
-// import s from "./newsItem.module.css";
+import s from "./newsItem.module.css";
 
-const NewsItem = () => {
+const NewsItem = ({ news }) => {
+  const { title, description, img, date } = news;
   return (
-    // <div>
-    //   <h5 className="card-title text-danger">News title</h5>
-    //   <p>
-    //     Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt,
-    //     minima!
-    //   </p>
-    // </div>
-
-    <div class="card text-center">
-      <div class="card-header">
-        <h5 class="card-title">Special title treatment</h5>
+    <div className="card text-center">
+      <div className="card-header">
+        <h5 className="card-title text-danger">{title}</h5>
       </div>
-      <div class="card-body">
-        <p class="card-text">
-          With supporting text below as a natural lead-in to additional content.
-        </p>
+      <div className="card-body">
+        {description && <p className="card-text">{description}</p>}
+        {img && (
+          <div className="">
+            <img
+              className={s.img}
+              src={require(`../../assets/images/news/${img}`)}
+              alt="..."
+            />
+          </div>
+        )}
       </div>
-      <div class="card-footer text-body-secondary">2 days ago</div>
+      <div className="card-footer text-body-secondary">{date}</div>
     </div>
   );
 };
