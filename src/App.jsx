@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import ColleaguesPage from "./pages/ColleaguesPage";
 import ContactsPage from "./pages/ContactsPage";
 import GalleryPage from "./pages/GalleryPage";
 import HomePage from "./pages/HomePage";
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="research" element={<ResearchPage />} />
         <Route path="gallery/:theme" element={<GalleryPage />} />
         <Route path="news" element={<NewsPage />} />
+        <Route path="colleagues" element={<ColleaguesPage />} />
         <Route path="contacts" element={<ContactsPage />} />
       </Route>
     </Routes>
