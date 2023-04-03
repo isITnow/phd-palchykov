@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import PublicationsList from "../components/Publication/PublicationsList";
+import PublicationsList from "../components/Publications/PublicationsList";
 
 const PublicationsPage = () => {
   const { period } = useParams();
