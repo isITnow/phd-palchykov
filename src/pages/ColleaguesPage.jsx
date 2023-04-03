@@ -1,5 +1,11 @@
+import ColleaguesList from "../components/Colleagues/ColleaguesList";
+
 const ColleaguesPage = () => {
-  return <div>Colleagues Page</div>;
+  return (
+    <section className="py-4">
+      <ColleaguesList />
+    </section>
+  );
 };
 
 export default ColleaguesPage;
