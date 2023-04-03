@@ -5,7 +5,7 @@ const PublicationsPage = () => {
   const { period } = useParams();
   return (
     <section className="py-4">
-      <h2>Publications {period}</h2>
+      <p className="mb-3 text-secondary text-end fw-bold">{period}</p>
       <PublicationsList period={period} />
     </section>
   );
