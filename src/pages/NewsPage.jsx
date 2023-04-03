@@ -1,13 +1,9 @@
-import NewsItem from "../components/NewsItem/NewsItem";
+import NewsList from "../components/News/NewsList";
 
 const NewsPage = () => {
   return (
     <section className="py-4">
-      <div className="raw">
-        <div className="col-12 text-center">
-          <NewsItem />
-        </div>
-      </div>
+      <NewsList />
     </section>
   );
 };
