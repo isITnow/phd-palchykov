@@ -5,7 +5,7 @@ const NewsItem = ({ news }) => {
   return (
     <div className="card text-center">
       <div className="card-header">
-        <h5 className="card-title text-danger">{title}</h5>
+        <h5 className="card-title text-danger mb-0">{title}</h5>
       </div>
       <div className="card-body">
         {description && <p className="card-text">{description}</p>}
