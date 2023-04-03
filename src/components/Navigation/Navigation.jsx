@@ -13,7 +13,7 @@ const Navigation = () => {
       <div className="container-fluid px-0">
         <Link className="navbar-brand fw-bold" to={"/"}>
           <span>Prof. Dr. </span>
-          <span className="text-primary fs-4">Vitalii Palchykov</span>
+          <span className="text-primary fs-5">Vitalii Palchykov</span>
         </Link>
         <button
           className="navbar-toggler"
@@ -33,12 +33,12 @@ const Navigation = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className={setActive} aria-current="page" to={"/"}>
-                <span className="fs-5">Home</span>
+                <span>Home</span>
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className={setActive} to={"research"}>
-                <span className="fs-5">Research</span>
+                <span>Research</span>
               </NavLink>
             </li>
 
@@ -50,7 +50,7 @@ const Navigation = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <span className="fs-5">Publications</span>
+                <span>Publications</span>
               </NavLink>
               <ul className="dropdown-menu text-center">
                 {publicationsArray.map((item, idx) => (
@@ -78,7 +78,7 @@ const Navigation = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <span className="fs-5">Gallery</span>
+                <span>Gallery</span>
               </NavLink>
               <ul className="dropdown-menu text-center">
                 <li>
@@ -95,12 +95,12 @@ const Navigation = () => {
             </li>
             <li className="nav-item">
               <NavLink className={setActive} aria-current="page" to={"/news"}>
-                <span className="fs-5">News</span>
+                <span>News</span>
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className={setActive} to={"contacts"}>
-                <span className="fs-5">Contacts</span>
+                <span>Contacts</span>
               </NavLink>
             </li>
           </ul>
