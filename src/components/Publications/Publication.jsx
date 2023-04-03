@@ -10,7 +10,7 @@ const Publication = ({ publication }) => {
           <span className="me-2 text-secondary fs-5 lh-sm">{id}.</span>
           <h5 className="card-title text-danger">{title}</h5>
         </div>
-        {cover_img ? (
+        {cover_img && abstract_img ? (
           <div className="row row-cols-2 mt-2">
             <div className="col">
               <img
@@ -34,15 +34,15 @@ const Publication = ({ publication }) => {
             </a>
           </div>
         )}
-        {abstract_img && (
-          <div className="mt-3">
-            <img
-              src={require(`../../assets/images/covers/${abstract_img}`)}
-              className={s.img}
-              alt="..."
-            />
-          </div>
-        )}
+        <div className="mt-3">
+          <img
+            src={require(`../../assets/images/covers/${
+              abstract_img || cover_img
+            }`)}
+            className={s.img}
+            alt="..."
+          />
+        </div>
       </div>
     </div>
   );
