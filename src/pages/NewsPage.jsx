@@ -3,8 +3,11 @@ import NewsItem from "../components/NewsItem/NewsItem";
 const NewsPage = () => {
   return (
     <section className="py-4">
-      <h2>News page</h2>
-      <NewsItem />
+      <div className="raw">
+        <div className="col-12 text-center">
+          <NewsItem />
+        </div>
+      </div>
     </section>
   );
 };
