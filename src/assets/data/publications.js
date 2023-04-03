@@ -153,6 +153,55 @@ const publicationsArray = [
       },
     ],
   },
+  {
+    period: "Books and book chapters",
+    publicationsList: [
+      {
+        id: 4,
+        title:
+          "Chapter 3. One-pot reactions of three-membered rings giving N,O,S-heterocycles",
+        authors: ["V.A. Palchykov", "O. Zhurakovskyi"],
+        source:
+          "Advances in Heterocyclic Chemistry (Ed.: Eric F.V. Scriven, Christopher A. Ramsden). Elsevier Inc., 2021, vol. 133, pp. 159-223",
+        url: "https://doi.org/10.1016/bs.aihch.2020.04.001",
+        cover_img: "AdvHetChem2021_cover.jpg",
+        abstract_img: "AdvHetChem2021_abstract.jpg",
+      },
+      {
+        id: 3,
+        title:
+          "Chapter 4. 1,3-Amino alcohols and their phenol analogs in heterocyclization reactions",
+        authors: ["V.A. Palchykov", "A.A. Gaponov"],
+        source:
+          "Advances in Heterocyclic Chemistry (Ed.: Eric F.V. Scriven, Christopher A. Ramsden). Elsevier Inc., 2020, vol. 131, pp. 285-350",
+        url: "http://dx.doi.org/10.1016/bs.aihch.2019.06.001",
+        cover_img: "AdvHetChem2020_cover.jpg",
+        abstract_img: "AdvHetChem2020_abstract.jpg",
+      },
+      {
+        id: 2,
+        title:
+          "Chapter 5. Synthesis of N,O,S-heterocycles by one-pot reactions of epoxides, aziridines and oxaziridines",
+        authors: ["V.A. Palchykov", "A.A. Gaponov"],
+        source:
+          "Advances in Organic Synthesis (Ed.: Prof. Atta-ur-Rahman FRS). Bentham Science Pub., 2018, vol. 9, рр. 147-248",
+        url: "http://dx.doi.org/10.2174/9781681086958118090007",
+        cover_img: "AdvOrgSynth2018_cover.jpg",
+        abstract_img: "AdvOrgSynth2018_abstract.jpg",
+      },
+      {
+        id: 1,
+        title:
+          "Oxazaheterocycles from aminoalcohols, epoxides and aziridines [In Russian]",
+        authors: ["L.I. Kasyan", "V.A. Palchykov", "A.V. Tokar"],
+        source:
+          "Dnipropetrovsk Univ. Press. - 2012. - 644 p. ISBN 978-966-551-388-9",
+        url: "http://dx.doi.org/10.13140/2.1.2727.1369",
+        cover_img: "DniproUnivPress2012_cover.jpg",
+        abstract_img: "",
+      },
+    ],
+  },
 ];
 
 export default publicationsArray;
