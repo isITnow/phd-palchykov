@@ -223,8 +223,13 @@ const About = () => {
         <li>
           <p className="mb-2">
             <strong className="me-2">2004</strong>President of Ukraine
-            Scholarship for outstanding students 1999 Winner of the 38th
-            Regional Chemistry Olympiad, Dnipropetrovsk
+            Scholarship for outstanding students
+          </p>
+        </li>
+        <li>
+          <p className="mb-2">
+            <strong className="me-2">1999</strong>Winner of the 38th Regional
+            Chemistry Olympiad, Dnipropetrovsk
           </p>
         </li>
       </ul>
