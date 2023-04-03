@@ -1,5 +1,6 @@
 .img {
   display: inline-block;
+  min-height: 80px;
   height: auto;
   width: 100%;
   object-fit: contain;
