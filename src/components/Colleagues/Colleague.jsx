@@ -1,12 +1,14 @@
+import s from "./colleague.module.css";
+
 const Colleague = ({ colleague }) => {
   const { name, position, photo, phone, email } = colleague;
   return (
-    <div className="card overflow-hidden" style={{ maxWidth: 540 }}>
-      <div className="row g-0">
+    <div className="card h-100 overflow-hidden">
+      <div className="row g-0 h-100">
         <div className="col-4">
           <img
             src={require(`../../assets/images/colleagues/${photo}`)}
-            className="img-fluid"
+            className={s.img}
             alt={name}
           />
         </div>
@@ -16,11 +18,11 @@ const Colleague = ({ colleague }) => {
             <p className="card-text">{position}</p>
             <ul>
               <li>
-                <span className="me-2">email:</span>
+                {/* <span className="me-2">email:</span> */}
                 <a href={`mailto:${email}`}>{email}</a>
               </li>
               <li>
-                <span className="me-2">phone:</span>
+                {/* <span className="me-2">phone:</span> */}
                 <a href={`tel:${phone}`}>{phone}</a>
               </li>
             </ul>
