@@ -1,5 +1,5 @@
 import Colleague from "./Colleague";
-import colleaguesArray from "../../assets/data/collegues";
+import colleaguesArray from "../../assets/data/colleagues";
 
 const ColleaguesList = () => {
   return (
