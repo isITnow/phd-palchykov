@@ -3,9 +3,9 @@ import colleaguesArray from "../../assets/data/collegues";
 
 const ColleaguesList = () => {
   return (
-    <ul className="row row-cols-1 row-cols-lg-2 ">
+    <ul className="row row-cols-1 row-cols-lg-2">
       {colleaguesArray.map((colleague) => (
-        <li className="col" key={colleague.id}>
+        <li className="col mb-3" key={colleague.id}>
           <Colleague colleague={colleague} />
         </li>
       ))}
