@@ -1,7 +1,7 @@
 const Colleague = ({ colleague }) => {
   const { name, position, photo, phone, email } = colleague;
   return (
-    <div className="card mb-3 overflow-hidden" style={{ maxWidth: 540 }}>
+    <div className="card overflow-hidden" style={{ maxWidth: 540 }}>
       <div className="row g-0">
         <div className="col-4">
           <img
