@@ -5,10 +5,7 @@ import Footer from "./Footer/Footer";
 const Layout = () => {
   return (
     <>
-      <header
-        className="shadow-sm py-3"
-        // style={{ backgroundColor: "#e3f2fd" }}
-      >
+      <header className="shadow-sm py-3">
         <div className="container">
           <Navigation />
         </div>

@@ -65,11 +65,6 @@ const Navigation = () => {
                 ))}
               </ul>
             </li>
-            {/* <li className="nav-item">
-              <NavLink className={setActive} to={"gallery"}>
-                <span className="fs-5">Gallery</span>
-              </NavLink>
-            </li> */}
             <li className="nav-item dropdown">
               <NavLink
                 className={`${s.nav_item} nav-link dropdown-toggle fw-bold`}

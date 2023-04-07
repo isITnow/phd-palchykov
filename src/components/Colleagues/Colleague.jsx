@@ -18,11 +18,9 @@ const Colleague = ({ colleague }) => {
             <p className="card-text">{position}</p>
             <ul>
               <li>
-                {/* <span className="me-2">email:</span> */}
                 <a href={`mailto:${email}`}>{email}</a>
               </li>
               <li>
-                {/* <span className="me-2">phone:</span> */}
                 <a href={`tel:${phone}`}>{phone}</a>
               </li>
             </ul>
