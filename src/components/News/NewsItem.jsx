@@ -1,5 +1,3 @@
-import s from "./newsItem.module.css";
-
 const NewsItem = ({ news }) => {
   const { title, description, img, date } = news;
   return (
@@ -12,7 +10,7 @@ const NewsItem = ({ news }) => {
         {img && (
           <div className="">
             <img
-              className={s.img}
+              className="img-fluid"
               src={require(`../../assets/images/news/${img}`)}
               alt="..."
             />
