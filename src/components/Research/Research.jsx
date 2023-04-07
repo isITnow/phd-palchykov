@@ -7,14 +7,14 @@ const Research = ({ research }) => {
         <h5 className="card-title text-danger">{title}</h5>
       </div>
       {illustrations.map(({ img, description }, idx) => (
-        <div key={idx} className="mb-4">
+        <div key={idx} className="mb-2">
           <p
-            className="mb-4"
+            className="mb-1"
             style={{ textIndent: "2rem", textAlign: "justify" }}
           >
             {description}
           </p>
-          <div className="w-75 mx-auto">
+          <div className="p-3">
             <img
               className="img-fluid"
               src={require(`../../assets/images/research/${img}`)}
@@ -25,7 +25,7 @@ const Research = ({ research }) => {
       ))}
       <div className="ms-4">
         <p className="mb-2">Our relevant works:</p>
-        <ul className="">
+        <ul style={{ fontSize: "0.75rem" }}>
           {sources.map(({ url, source }, idx) => (
             <li key={idx}>
               <a href={url} target="_blank" rel="noreferrer noopener">
