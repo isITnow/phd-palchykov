@@ -1,4 +1,4 @@
-const researchArray = [
+const researchesArray = [
   {
     id: 1,
     title:
@@ -167,4 +167,4 @@ const researchArray = [
   },
 ];
 
-export default researchArray;
+export default researchesArray;
