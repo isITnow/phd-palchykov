@@ -14,7 +14,7 @@ const Research = ({ research }) => {
           >
             {description}
           </p>
-          <div className="p-3">
+          <div className="p-3 text-center">
             <img
               className="img-fluid"
               src={require(`../../assets/images/research/${img}`)}
