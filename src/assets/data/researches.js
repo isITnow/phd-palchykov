@@ -165,6 +165,37 @@ const researchesArray = [
       },
     ],
   },
+  {
+    id: 3,
+    title:
+      "The development of new photoredox- and organocatalytic synthetic methods",
+    illustrations: [
+      {
+        img: "fig_3_1.jpg",
+        description:
+          "Synthetic organic chemistry a branch of science that deals with three major issues: structure, synthesis, and reactivity of organic compounds. The most unique aspect of it stems from its capacity to create molecules crucial to addressing problems ranging from fundamental science to healthcare. The harnessing of visible light sensitization as a powerful strategy for initiating organic reactions is attractive and becoming an important tool in synthesis due to its favorable features, including low cost, convenience and environmentally friendliness [J. Org. Chem. 2016, 81(16), 6898-6926]. We are fascinated by the unique ability of photoredox catalysis to expedite the development of completely new reaction mechanisms that enable the construction of challenging carbon-carbon and carbon-heteroatom bonds. “New” visible light-mediated methods have become very popular in XXI century and especially in the last years [Chem. Rev. 2022, 122(2), 1543-1625; Chem. Soc. Rev. 2017, 46(20), 6227-6240] and we also want to contribute to this new area.",
+      },
+      {
+        img: "fig_3_2.jpg",
+        description:
+          "In addition, we are also attracted by new organocatalytic methods. Asymmetric organocatalysis, the use of small chiral organic molecules as catalysts for stereoselective reactions, has been established as the third fundamental pillar in asymmetric catalysis (besides enzymes and metal-based catalysts) and found its place within the toolboxes of scientists working on purely academic as well as industrial scale projects. Asymmetric organocatalysis has developed spectacularly over the last decades, and its general importance was recently highlighted by the 2021 Nobel Prize in Chemistry [Chem. Soc. Rev. 2012, 41(6), 2406-2447; Eur. J. Org. Chem. 2023, 26(1), e202200950].",
+      },
+    ],
+    sources: [
+      {
+        source: "Nature Rev. Chem. 2022, 6, 544-561",
+        url: "https://doi.org/10.1038/s41570-022-00403-8",
+      },
+      {
+        source: "ACS Catal. 2021, 11(6), 3749-3754",
+        url: "https://doi.org/10.1021/acscatal.1c00267",
+      },
+      {
+        source: "Eur. J. Org. Chem. 2021, (11), 1693-1703",
+        url: "https://doi.org/10.1002/ejoc.202100022",
+      },
+    ],
+  },
 ];
 
 export default researchesArray;
