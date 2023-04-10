@@ -1,7 +1,7 @@
 const Research = ({ research }) => {
   const { id, title, illustrations, sources } = research;
   return (
-    <div className="">
+    <div id={id}>
       <div className="d-flex mb-2 justify-content-center">
         <span className="me-2 text-secondary fs-5 lh-sm">{id}.</span>
         <h5 className="card-title text-danger">{title}</h5>
