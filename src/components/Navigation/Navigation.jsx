@@ -65,31 +65,13 @@ const Navigation = () => {
                 ))}
               </ul>
             </li>
-            <li className="nav-item dropdown">
-              <NavLink
-                className={`${s.nav_item} nav-link dropdown-toggle fw-bold`}
-                href="/#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+            <li className="nav-item">
+              <NavLink className={setActive} to={"gallery"}>
                 <span>Gallery</span>
               </NavLink>
-              <ul className="dropdown-menu text-center overflow-hidden">
-                <li>
-                  <Link className="dropdown-item" to="gallery/theme-1">
-                    Theme 1
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="gallery/theme-2">
-                    Theme 2
-                  </Link>
-                </li>
-              </ul>
             </li>
             <li className="nav-item">
-              <NavLink className={setActive} aria-current="page" to={"/news"}>
+              <NavLink className={setActive} to={"/news"}>
                 <span>News</span>
               </NavLink>
             </li>
