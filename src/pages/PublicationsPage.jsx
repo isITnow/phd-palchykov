@@ -16,7 +16,10 @@ const PublicationsPage = () => {
       (publication) => publication.period === period
     ).publicationsList;
     setList(data);
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, [period]);
 
   return (
