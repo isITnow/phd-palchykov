@@ -1,4 +1,4 @@
-const photos = [
+const galleryThemes = [
   {
     theme: "theme_1",
     list: [],
@@ -17,4 +17,4 @@ const photos = [
   },
 ];
 
-export default photos;
+export default galleryThemes;
