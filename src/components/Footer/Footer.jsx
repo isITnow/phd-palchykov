@@ -5,7 +5,12 @@ const Footer = () => {
       style={{ backgroundColor: "lightgray", marginTop: "auto" }}
     >
       <span className="me-2">© 2023. Developed by</span>
-      <a className="text-reset fw-bold" href="https://github.com/isITnow">
+      <a
+        className="text-reset fw-bold"
+        href="https://github.com/isITnow"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
         Roman Serediuk
       </a>
     </div>
