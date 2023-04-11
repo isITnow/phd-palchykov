@@ -2,9 +2,9 @@ import GalleryByTheme from "../components/Gallery/GalleryByTheme";
 
 const GalleryByThemePage = () => {
   return (
-    <div>
+    <section className="py-4">
       <GalleryByTheme />
-    </div>
+    </section>
   );
 };
 
