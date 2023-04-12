@@ -8,6 +8,7 @@ const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const GalleryByThemePage = lazy(() => import("./pages/GalleryByThemePage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const NewsPage = lazy(() => import("./pages/NewsPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 const PublicationsPage = lazy(() => import("./pages/PublicationsPage"));
 const ResearchPage = lazy(() => import("./pages/ResearchPage"));
 
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="colleagues" element={<ColleaguesPage />} />
         <Route path="contacts" element={<ContactsPage />} />
       </Route>
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };
