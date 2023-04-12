@@ -44,9 +44,8 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            <strong className="me-2">2021 - present</strong>Full Professor (
-            <em>part time</em>), Department of Physical, Organic and Inorganic
-            Chemistry, DNU
+            <strong className="me-2">2021 - present</strong>Full Professor,
+            Department of Physical, Organic and Inorganic Chemistry, DNU
           </p>
         </li>
         <li>
@@ -71,9 +70,8 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            <strong className="me-2">2017 - 2019</strong>Assistant Professor (
-            <em>part time</em>
-            ), Department of Organic Chemistry, DNU
+            <strong className="me-2">2017 - 2019</strong>Assistant Professor,
+            Department of Organic Chemistry, DNU
           </p>
         </li>
         <li>
@@ -96,9 +94,8 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
-            <strong className="me-2">2008 - 2011</strong>Assistant Professor (
-            <em>part time</em>
-            ), Department of Organic Chemistry, DNU
+            <strong className="me-2">2008 - 2011</strong>Assistant Professor,
+            Department of Organic Chemistry, DNU
           </p>
         </li>
         <li>
