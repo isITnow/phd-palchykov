@@ -1117,7 +1117,7 @@ const galleryThemes = [
       {
         filename: "CUB_1.jpg",
         size: { hight: 2815, width: 3815 },
-        caption: "TEST CAPTION",
+        caption: "",
       },
       {
         filename: "CUB_2.jpg",
