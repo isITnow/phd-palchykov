@@ -24,7 +24,7 @@ const GalleryByTheme = () => {
         </Link>
       </div>
       <Gallery withCaption>
-        <div className="row row-cols-2 row-cols-lg-4 align-items-center mb-0">
+        <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 align-items-center mb-0">
           {list.map((item, indx) => {
             const {
               filename,

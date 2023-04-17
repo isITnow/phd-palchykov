@@ -4,7 +4,7 @@ import s from "./gallery.module.css";
 
 const Gallery = () => {
   return (
-    <ul className="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-center mb-0">
+    <ul className="row row-cols-2 row-cols-md-3 row-cols-lg-4 align-items-center mb-0">
       {galleryThemes.map(({ theme, list }, indx) => (
         <li key={indx} className="col mb-3">
           <Link to={theme}>
