@@ -10,9 +10,9 @@ const Gallery = () => {
           <Link to={theme}>
             <div className={`card ${s.hoverEffect}`}>
               <img
-                src={require(`../../assets/images/gallery/${theme}/${list[0]}`)}
+                src={require(`../../assets/images/gallery/${theme}/${list[0].filename}`)}
                 className="card-img-top"
-                alt={`${list[0]}`}
+                alt={`${list[0].filename}`}
                 style={{ minHeight: "10rem" }}
               />
               <div className="card-body">
