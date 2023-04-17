@@ -197,254 +197,9 @@ const galleryThemes = [
       },
     ],
   },
+
   {
     id: 2,
-    theme: "Karamanoğlu Mehmetbey University (2019, Karaman, Turkey)",
-    list: [
-      {
-        filename: "KMU_1.jpg",
-        size: {
-          hight: 1280,
-          width: 720,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_2.jpg",
-        size: {
-          hight: 1280,
-          width: 720,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_3.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_4.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_5.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_6.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_7.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_8.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_9.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_10.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_11.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_12.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_13.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_14.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_15.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_16.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_17.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_18.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_19.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_20.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_21.jpg",
-        size: {
-          hight: 1280,
-          width: 720,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_22.jpg",
-        size: {
-          hight: 1280,
-          width: 720,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_23.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_24.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_25.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_26.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_27.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_28.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_29.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-      {
-        filename: "KMU_30.jpg",
-        size: {
-          hight: 720,
-          width: 1280,
-        },
-        caption: "",
-      },
-    ],
-  },
-  {
-    id: 3,
     theme: "University of Oxford (2012-2013, UK)",
     list: [
       {
@@ -907,6 +662,252 @@ const galleryThemes = [
         filename: "UO_58.jpg",
         size: {
           hight: 853,
+          width: 1280,
+        },
+        caption: "",
+      },
+    ],
+  },
+  {
+    id: 3,
+    theme: "Karamanoğlu Mehmetbey University (2019, Karaman, Turkey)",
+    list: [
+      {
+        filename: "KMU_1.jpg",
+        size: {
+          hight: 1280,
+          width: 720,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_2.jpg",
+        size: {
+          hight: 1280,
+          width: 720,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_3.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_4.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_5.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_6.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_7.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_8.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_9.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_10.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_11.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_12.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_13.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_14.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_15.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_16.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_17.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_18.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_19.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_20.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_21.jpg",
+        size: {
+          hight: 1280,
+          width: 720,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_22.jpg",
+        size: {
+          hight: 1280,
+          width: 720,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_23.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_24.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_25.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_26.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_27.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_28.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_29.jpg",
+        size: {
+          hight: 720,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "KMU_30.jpg",
+        size: {
+          hight: 720,
           width: 1280,
         },
         caption: "",
