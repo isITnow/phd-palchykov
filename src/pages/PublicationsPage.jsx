@@ -4,7 +4,10 @@ import PagesNav from "../components/PagesNav/PagesNav";
 import PublicationsList from "../components/Publications/PublicationsList";
 import publicationsArray from "../assets/data/publications";
 
+import setPageTitle from "../assets/utils/setPageTitle";
+
 const PublicationsPage = () => {
+  setPageTitle("Publications");
   const { period } = useParams();
   const [list, setList] = useState([]);
   const periodsList = publicationsArray.map(

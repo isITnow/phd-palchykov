@@ -1,7 +1,10 @@
 import About from "../components/About/About";
 import Sidebar from "../components/Sidebar/Sidebar";
 
+import setPageTitle from "../assets/utils/setPageTitle";
+
 const HomePage = () => {
+  setPageTitle();
   return (
     <section className="py-4">
       <div className="row">
