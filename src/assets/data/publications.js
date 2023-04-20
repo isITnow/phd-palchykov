@@ -182,7 +182,7 @@ const publicationsArray = [
         id: 2,
         title:
           "Chapter 5. Synthesis of N,O,S-heterocycles by one-pot reactions of epoxides, aziridines and oxaziridines",
-        authors: ["V.A. Palchykov", "A.A. Gaponov"],
+        authors: ["O. Zhurakovskyi, V.A. Palchykov"],
         source:
           "Advances in Organic Synthesis (Ed.: Prof. Atta-ur-Rahman FRS). Bentham Science Pub., 2018, vol. 9, рр. 147-248",
         url: "http://dx.doi.org/10.2174/9781681086958118090007",
