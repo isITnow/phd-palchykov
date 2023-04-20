@@ -17,6 +17,7 @@ const GalleryByTheme = () => {
 
   return (
     <>
+      {/* TODO change flex to flex-column */}
       <div className="d-flex flex-wrap justify-content-end justify-content-lg-between align-items-center mb-4">
         <h4 className="text-end text-lg-center text-secondary fw-bold mb-0">
           {theme}

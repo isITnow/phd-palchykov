@@ -1630,12 +1630,12 @@ const galleryThemes = [
       },
       {
         filename: "UTD_38.jpg",
-        size: { hight: 1512, width: 2016 },
+        size: { hight: 2016, width: 1512 },
         caption: "",
       },
       {
         filename: "UTD_39.jpg",
-        size: { hight: 1512, width: 2016 },
+        size: { hight: 2016, width: 1512 },
         caption: "",
       },
       {
