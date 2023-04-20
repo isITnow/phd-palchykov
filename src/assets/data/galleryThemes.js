@@ -1620,7 +1620,7 @@ const galleryThemes = [
       },
       {
         filename: "UTD_36.jpg",
-        size: { hhight: 1280, width: 720 },
+        size: { hight: 1280, width: 720 },
         caption: "",
       },
       {
