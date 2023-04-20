@@ -1333,7 +1333,7 @@ const galleryThemes = [
       },
       {
         filename: "DNU_10.jpg",
-        size: { hight: 1280, width: 958 },
+        size: { hight: 958, width: 1280 },
         caption: "",
       },
       {
