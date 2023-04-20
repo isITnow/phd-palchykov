@@ -4,17 +4,18 @@ import s from "./gallery.module.css";
 
 const Gallery = () => {
   return (
-    <ul className="row row-cols-2 row-cols-md-3 row-cols-lg-4 align-items-center mb-0">
+    <ul className="row row-cols-2 row-cols-md-3 row-cols-lg-4 mb-0">
       {galleryThemes.map(({ theme, list }, indx) => (
         <li key={indx} className="col mb-3">
           <Link to={theme}>
-            <div className={`card ${s.hoverEffect}`}>
-              <img
-                src={require(`../../assets/images/gallery/${theme}/${list[0].filename}`)}
-                className="card-img-top"
-                alt={`${list[0].filename}`}
-                style={{ minHeight: "10rem" }}
-              />
+            <div className={`card overflow-hidden ${s.hoverEffect}`}>
+              <div className={s.imgWrapper}>
+                <img
+                  src={require(`../../assets/images/gallery/${theme}/${list[0].filename}`)}
+                  className={s.img}
+                  alt={`${list[0].filename}`}
+                />
+              </div>
               <div className="card-body">
                 <h5 className="card-title text-center">{theme}</h5>
               </div>

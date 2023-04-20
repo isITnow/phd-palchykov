@@ -4,6 +4,8 @@ import galleryThemes from "../../assets/data/galleryThemes.js";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
 
+import s from "./gallery.module.css";
+
 const GalleryByTheme = () => {
   const { theme } = useParams();
   const [list, setList] = useState([]);
@@ -41,13 +43,17 @@ const GalleryByTheme = () => {
                   caption={caption ? caption : null}
                 >
                   {({ ref, open }) => (
-                    <img
-                      ref={ref}
-                      onClick={open}
-                      src={require(`../../assets/images/gallery/${theme}/${filename.trim()}`)}
-                      alt={filename}
-                      className="img-fluid"
-                    />
+                    <div
+                      className={`rounded-1 overflow-hidden shadow ${s.imgWrapper}`}
+                    >
+                      <img
+                        ref={ref}
+                        onClick={open}
+                        src={require(`../../assets/images/gallery/${theme}/${filename.trim()}`)}
+                        alt={filename}
+                        className={s.img}
+                      />
+                    </div>
                   )}
                 </Item>
               </div>
