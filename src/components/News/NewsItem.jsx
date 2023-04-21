@@ -1,5 +1,5 @@
 const NewsItem = ({ news }) => {
-  const { title, description, img, date, url } = news;
+  const { title, description, img, date, urlList } = news;
   return (
     <div className="card text-center">
       <div className="card-header">
@@ -20,17 +20,21 @@ const NewsItem = ({ news }) => {
             />
           </div>
         )}
-        {url && (
-          <div className="mt-3">
-            <a
-              className="mb-3"
-              href={url}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              {url}
-            </a>
-          </div>
+        {urlList?.length > 0 && (
+          <ul>
+            {urlList.map((url, indx) => (
+              <li key={indx} className="mt-3">
+                <a
+                  className="mb-3"
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  {url}
+                </a>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
       <div className="card-footer text-body-secondary">{date}</div>
