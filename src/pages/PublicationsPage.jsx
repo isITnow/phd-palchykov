@@ -27,9 +27,10 @@ const PublicationsPage = () => {
 
   return (
     <section className="py-4">
-      <p className="mb-3 text-secondary text-end fw-bold">{period}</p>
+      {/* <p className="mb-3 text-secondary text-end fw-bold">{period}</p> */}
+      <PagesNav margin={"mb-3"} list={periodsList} location={period} />
       <PublicationsList publications={list} />
-      <PagesNav list={periodsList} location={period} />
+      <PagesNav margin={"mt-3 mb-0"} list={periodsList} location={period} />
     </section>
   );
 };
