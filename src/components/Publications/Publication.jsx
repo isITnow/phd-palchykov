@@ -16,7 +16,7 @@ const Publication = ({ publication }) => {
               <img
                 src={require(`../../assets/images/covers/${cover_img}`)}
                 className={s.img}
-                alt="..."
+                alt={cover_img}
               />
             </div>
             <div className="col">
@@ -40,7 +40,7 @@ const Publication = ({ publication }) => {
               abstract_img || cover_img
             }`)}
             className={s.img}
-            alt="..."
+            alt={abstract_img || cover_img}
           />
         </div>
       </div>
