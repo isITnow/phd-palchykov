@@ -602,7 +602,7 @@ const publicationsArray = [
           "Synthesis and neurotropic activity of novel sulfolane-containing cage sulfonamides",
         authors: ["I.S. Zarovnaya", "H.T. Zlenko", "V.A. Palchikov"],
         source: "Eur. Chem. Bull. 2014, 3(6), 543-547",
-        url: "http://dx.doi.org/10.17628/ecb.2014.3.543-547",
+        url: "https://www.eurchembull.com/uploads/paper/df47640441768cb77c96c8b70e61a0b3.pdf",
         cover_img: "EurChemBull2014_cover.jpg",
         abstract_img: "EurChemBull2014_abstract.jpg",
       },
