@@ -3,6 +3,26 @@ const publicationsArray = [
     period: "2021-present",
     publicationsList: [
       {
+        id: 63,
+        title:
+          "Synthesis of challenging 6-functionalized 1-oxaspiro[3.3]heptanes - new scaffolds for drug discovery",
+        authors: ["Y.K. Kozyriev", "V.A. Palchykov"],
+        source: "Tetrahedron Lett. 2023, 121, article number 154515",
+        url: "https://doi.org/10.1016/j.tetlet.2023.154515",
+        cover_img: "TL2023_cover.jpg",
+        abstract_img: "TL2023_154515_abstract.jpg",
+      },
+      {
+        id: 62,
+        title:
+          "Synthesis of 2-hexyl-5-ethylfuran-3-sulfonic acid (HEFS) - natural antithrombosis agent from Eisenia earthworms",
+        authors: ["V.A. Palchykov"],
+        source: "Chem. Heteroc. Comp. 2023, accepted",
+        url: "https://www.springer.com/journal/10593",
+        cover_img: "ChemHetComp_cover.jpg",
+        abstract_img: "ChemHetComp2023_abstract.jpg",
+      },
+      {
         id: 61,
         title:
           "She always worked with inspiration and was able to inspire others",
