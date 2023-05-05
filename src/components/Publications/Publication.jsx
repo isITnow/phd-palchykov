@@ -14,7 +14,7 @@ const Publication = ({ publication }) => {
           <div className="row row-cols-2 mt-2">
             <div className="col">
               <img
-                src={require(`../../assets/images/covers/${cover_img}`)}
+                src={require(`../../assets/images/publications/${cover_img}`)}
                 className={s.img}
                 alt={cover_img}
               />
@@ -36,7 +36,7 @@ const Publication = ({ publication }) => {
         )}
         <div className="mt-3">
           <img
-            src={require(`../../assets/images/covers/${
+            src={require(`../../assets/images/publications/${
               abstract_img || cover_img
             }`)}
             className={s.img}
