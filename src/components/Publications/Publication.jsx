@@ -39,7 +39,7 @@ const Publication = ({ publication }) => {
             src={require(`../../assets/images/publications/${
               abstract_img || cover_img
             }`)}
-            className={`shadow rounded ${s.img}`}
+            className={`shadow  rounded ${s.img}`}
             alt={abstract_img || cover_img}
           />
         </div>
