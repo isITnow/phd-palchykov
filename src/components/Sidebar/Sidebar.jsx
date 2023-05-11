@@ -7,7 +7,11 @@ const Sidebar = () => {
   return (
     <>
       <div className="mb-4">
-        <img className={s.img} src={photo} alt="Vitalii Palchykov at work" />
+        <img
+          className={`shadow-sm rounded ${s.img}`}
+          src={photo}
+          alt="Vitalii Palchykov at work"
+        />
       </div>
       <div className="d-flex justify-content-center">
         <SocialMedia position={"justify-content-around"} />

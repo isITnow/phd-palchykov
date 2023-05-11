@@ -14,7 +14,7 @@ const ContactsPage = () => {
           <SocialMedia all position={"justify-content-start"} />
         </div>
         <div className="col col-lg-7 ">
-          <img className="img-fluid" src={dnuImg} alt="DNU" />
+          <img className="img-fluid shadow-sm rounded" src={dnuImg} alt="DNU" />
         </div>
       </div>
     </section>
