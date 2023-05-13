@@ -4,6 +4,54 @@ const galleryThemes = [
     theme: "Awards",
     list: [
       {
+        filename: "Awards_2023_5.jpg",
+        size: {
+          hight: 958,
+          width: 1280,
+        },
+        caption: "",
+      },
+      {
+        filename: "Awards_2023_1.jpg",
+        size: {
+          hight: 2592,
+          width: 3872,
+        },
+        caption: "",
+      },
+      {
+        filename: "Awards_2023_2.jpg",
+        size: {
+          hight: 2592,
+          width: 3872,
+        },
+        caption: "",
+      },
+      {
+        filename: "Awards_2023_3.jpg",
+        size: {
+          hight: 1280,
+          width: 960,
+        },
+        caption: "",
+      },
+      {
+        filename: "Awards_2023_4.jpg",
+        size: {
+          hight: 1280,
+          width: 958,
+        },
+        caption: "",
+      },
+      {
+        filename: "Awards_2023_6.jpg",
+        size: {
+          hight: 1280,
+          width: 958,
+        },
+        caption: "",
+      },
+      {
         filename: "Awards_2010_1.jpg",
         size: {
           hight: 6882,
