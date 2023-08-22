@@ -1,14 +1,14 @@
 const NewsItem = ({ news }) => {
-  const { title, description, img, date, urlList } = news;
+  const { title, body, img, date, links } = news;
   return (
     <div className="card text-center">
       <div className="card-header">
         <h5 className="card-title text-danger mb-0">{title}</h5>
       </div>
       <div className="card-body">
-        {description && (
+        {body && (
           <p className="card-text" style={{ textAlign: "justify" }}>
-            {description}
+            {body}
           </p>
         )}
         {img && (
@@ -20,9 +20,9 @@ const NewsItem = ({ news }) => {
             />
           </div>
         )}
-        {urlList?.length > 0 && (
+        {links?.length > 0 && (
           <ul>
-            {urlList.map((url, indx) => (
+            {links.map((url, indx) => (
               <li key={indx} className="mt-3">
                 <a
                   className="mb-3"

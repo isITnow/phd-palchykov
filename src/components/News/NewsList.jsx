@@ -1,10 +1,10 @@
 import NewsItem from "./NewsItem";
-import newsArray from "../../assets/data/news";
+// import newsArray from "../../assets/data/news";
 
-const NewsList = () => {
+const NewsList = ({ newsList }) => {
   return (
     <ul>
-      {newsArray.map((news) => (
+      {newsList.map((news) => (
         <li className="mb-3" key={news.id}>
           <NewsItem news={news} />
         </li>
