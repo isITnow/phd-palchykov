@@ -2,9 +2,8 @@ import { api } from "./http";
 
 const fetchNews = async () => {
   const data = await api.get("/news");
-  console.log("data: ", data);
 
-  return data.data;
+  return data;
 };
 
 const postNews = async (body) => {
