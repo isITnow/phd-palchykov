@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import { newsAPI } from "../services/newsAPI.js";
 
 import Loader from "../components/Loader";
@@ -32,6 +34,11 @@ const NewsPage = () => {
   return (
     <section className="py-4">
       <NewsList newsList={newsList} />
+      <div className="mt-3">
+        <Link className="btn btn-primary" to={"/news/new"}>
+          new news
+        </Link>
+      </div>
     </section>
   );
 };

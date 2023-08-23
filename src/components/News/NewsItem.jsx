@@ -1,5 +1,5 @@
 const NewsItem = ({ news }) => {
-  const { title, body, img, date, links } = news;
+  const { title, body, image_url, date, links } = news;
   return (
     <div className="card text-center">
       <div className="card-header">
@@ -11,13 +11,9 @@ const NewsItem = ({ news }) => {
             {body}
           </p>
         )}
-        {img && (
+        {image_url && (
           <div className="">
-            <img
-              className="img-fluid"
-              src={require(`../../assets/images/news/${img}`)}
-              alt="..."
-            />
+            <img className="img-fluid" src={image_url} alt="..." />
           </div>
         )}
         {links?.length > 0 && (

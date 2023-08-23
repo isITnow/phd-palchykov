@@ -8,6 +8,7 @@ const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const GalleryByThemePage = lazy(() => import("./pages/GalleryByThemePage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const NewsPage = lazy(() => import("./pages/NewsPage"));
+const NewNewsPage = lazy(() => import("./pages/NewNewsPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 const PublicationsPage = lazy(() => import("./pages/PublicationsPage"));
 const ResearchPage = lazy(() => import("./pages/ResearchPage"));
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="gallery/:theme" element={<GalleryByThemePage />} />
         <Route path="news" element={<NewsPage />} />
+        <Route path="news/new" element={<NewNewsPage />} />
         <Route path="colleagues" element={<ColleaguesPage />} />
         <Route path="contacts" element={<ContactsPage />} />
       </Route>
