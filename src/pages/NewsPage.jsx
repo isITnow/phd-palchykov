@@ -18,7 +18,6 @@ const NewsPage = () => {
         const { data } = await newsAPI.fetchNews();
         setNewsList(data);
         setIsReady(true);
-        console.log("list: ", data);
       } catch (error) {
         console.log("error: ", error);
       }
