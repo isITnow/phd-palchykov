@@ -12,9 +12,11 @@ const NewsForm = () => {
     formData.append("news[title]", title);
     formData.append("news[body]", body);
     formData.append("news[date]", date);
-    links.forEach((element) => {
-      formData.append("news[links][]", element);
-    });
+    if (links.length) {
+      links.forEach((element) => {
+        formData.append("news[links][]", element);
+      });
+    }
     if (image) {
       formData.append("news[image]", image);
     }
