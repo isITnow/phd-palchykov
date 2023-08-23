@@ -1,45 +1,27 @@
-import { useState } from "react";
+import { FieldArray, Form, Formik } from "formik";
+
 import { newsAPI } from "../../services/newsAPI";
+import CustomInput from "../FormComponents/CustomInput";
+import { validation } from "../../assets/utils/validationSchema";
+import CustomTextArea from "../FormComponents/CustomTextArea";
 
 const NewsForm = () => {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [image, setImage] = useState(null);
-  const [isMessageShown, setIsMessageShown] = useState(false);
-
-  const handleNameChange = (event) => setTitle(event.target.value);
-
-  const handleAgeChange = (event) => setBody(event.target.value);
-
-  const handleImageChange = (event) => setImage(event.target.files[0]);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    // const formData = new FormData();
-    // formData.append("title", title);
-    // formData.append("body", body);
-    // formData.append("image", image);
-
-    const news = {
-      title,
-      body,
-      image,
-    };
-
-    const requestBody = {
-      news,
-    };
+  const handleSubmit = async (values, actions) => {
+    const { title, body, date, image, links } = values;
+    const formData = new FormData();
+    formData.append("news[title]", title);
+    formData.append("news[body]", body);
+    formData.append("news[image]", image);
+    formData.append("news[date]", date);
+    links.forEach((element) => {
+      formData.append("news[links][]", element);
+    });
 
     try {
-      const response = await newsAPI.postNews(requestBody);
-      console.log("response: ", response);
+      const response = await newsAPI.postNews(formData);
 
       if (response.status === 201) {
-        setTitle("");
-        setBody("");
-        setImage(null);
-        setIsMessageShown(true);
+        actions.resetForm();
         console.log("SUCCESS");
       } else {
         console.log("Failed to save record.");
@@ -51,45 +33,89 @@ const NewsForm = () => {
   };
 
   return (
-    <div className="container">
-      {isMessageShown && (
-        <div>
-          <p>
-            News created successfully{" "}
-            <span
-              onClick={() => {
-                setIsMessageShown(false);
-              }}
-            >
-              x
-            </span>
-          </p>
-        </div>
-      )}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title:
-          <input type="text" value={title} onChange={handleNameChange} />
-        </label>
-        <br />
-        <label>
-          Body:
-          <input type="text" value={body} onChange={handleAgeChange} />
-        </label>
-        <br />
-        <label>
-          Image:
-          <input
-            type="file"
-            name="image"
-            // accept="image/*"
-            onChange={handleImageChange}
+    <Formik
+      initialValues={{
+        title: "",
+        body: "",
+        date: "",
+        links: [],
+        image: "",
+      }}
+      validationSchema={validation.newsSchema}
+      onSubmit={handleSubmit}
+    >
+      {(props) => (
+        <Form>
+          <CustomInput label="News title" name="title" type="text" />
+          <CustomTextArea
+            label="Description"
+            name="body"
+            type="text-area"
+            rows="5"
           />
-        </label>
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
+          <CustomInput label="Date" name="date" type="text" />
+          <input
+            className="form-control mb-3"
+            type="file"
+            onChange={(e) => {
+              props.setFieldValue("image", e.target.files[0]);
+            }}
+          />
+          <div>
+            <FieldArray name="links">
+              {(fieldArrayProps) => {
+                const { push, remove, insert, form } = fieldArrayProps;
+                const { values } = form;
+                const { links } = values;
+                return (
+                  <div>
+                    {links && links.length > 0 ? (
+                      links.map((link, index) => (
+                        <div key={index}>
+                          <CustomInput
+                            type="text"
+                            label="Link"
+                            name={`links.${index}`}
+                          />
+                          <div className="btn-group mb-3" role="group">
+                            <button
+                              type="button"
+                              className="btn btn-outline-primary"
+                              onClick={() => remove(index)} // remove a friend from the list
+                            >
+                              remove link
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-outline-primary"
+                              onClick={() => insert(index, "")} // insert an empty string at a position
+                            >
+                              add a new link
+                            </button>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <button
+                        type="button"
+                        className="btn btn-outline-primary"
+                        onClick={() => push("")}
+                      >
+                        {/* show this when user has removed all friends from the list */}
+                        Add a link
+                      </button>
+                    )}
+                  </div>
+                );
+              }}
+            </FieldArray>
+          </div>
+          <button type="submit" className="btn btn-primary mt-3">
+            Submit
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
