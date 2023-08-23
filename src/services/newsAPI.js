@@ -8,10 +8,12 @@ const fetchNews = async () => {
 
 const postNews = async (body) => {
   console.log("newsAPI/request body: ", body);
-  const config = {
-    headers: { "content-type": "multipart/form-data" },
-  };
-  const data = await api.post("/news", body, config);
+
+  const data = await api.post("/news", body, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
 
   return data;
 };
