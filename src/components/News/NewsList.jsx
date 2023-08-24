@@ -1,5 +1,4 @@
 import NewsItem from "./NewsItem";
-// import newsArray from "../../assets/data/news";
 
 const NewsList = ({ newsList }) => {
   return (
