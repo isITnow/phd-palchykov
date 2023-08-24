@@ -1,13 +1,18 @@
 import { FieldArray, Form, Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 
-import { newsAPI } from "../../services/newsAPI";
 import CustomInput from "../FormComponents/CustomInput";
-import { validation } from "../../assets/utils/validationSchema";
 import CustomTextArea from "../FormComponents/CustomTextArea";
+import { newsAPI } from "../../services/newsAPI";
+import { validation } from "../../assets/utils/validationSchema";
 
-const NewsForm = () => {
+const NewsForm = ({ newsItem }) => {
+  const isNewItem = !newsItem;
+  const navigate = useNavigate();
+
   const handleSubmit = async (values, actions) => {
     const { title, body, date, image, links } = values;
+
     const formData = new FormData();
     formData.append("news[title]", title);
     formData.append("news[body]", body);
@@ -22,11 +27,16 @@ const NewsForm = () => {
     }
 
     try {
-      const response = await newsAPI.postNews(formData);
+      const response = isNewItem
+        ? await newsAPI.postNews(formData)
+        : await newsAPI.editNews(newsItem.id, formData);
 
       if (response.status === 201) {
         actions.resetForm();
         console.log("SUCCESS");
+      } else if (response.status === 202) {
+        console.log("SUCCESS");
+        return navigate("/news");
       } else {
         console.log("Failed to save record.");
       }
@@ -38,13 +48,17 @@ const NewsForm = () => {
 
   return (
     <Formik
-      initialValues={{
-        title: "",
-        body: "",
-        date: "",
-        links: [],
-        image: "",
-      }}
+      initialValues={
+        isNewItem
+          ? {
+              title: "",
+              body: "",
+              date: "",
+              links: [],
+              image: "",
+            }
+          : newsItem
+      }
       validationSchema={validation.newsSchema}
       onSubmit={handleSubmit}
     >
@@ -115,7 +129,7 @@ const NewsForm = () => {
             </FieldArray>
           </div>
           <button type="submit" className="btn btn-primary mt-3">
-            Submit
+            {isNewItem ? "Create news" : "Update news"}
           </button>
         </Form>
       )}
