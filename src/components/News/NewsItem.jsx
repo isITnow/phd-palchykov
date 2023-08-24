@@ -16,9 +16,6 @@ const NewsItem = ({ news }) => {
       console.log("DELETE Error: ", error.message);
     }
   };
-  const editHandler = () => {
-    console.log("Edit Click");
-  };
 
   return (
     <div className="card text-center">
@@ -57,16 +54,13 @@ const NewsItem = ({ news }) => {
         <div className="d-flex justify-content-between">
           {date}
           <div className="btn-group">
-            <Link className="btn bnt-sm btn-primary" to={`/news/${id}/edit`}>
-              edit
-            </Link>
-            {/* <button
-              type="button"
+            <Link
               className="btn bnt-sm btn-primary"
-              onClick={editHandler}
+              to={`/news/${id}/edit`}
+              state={news}
             >
               edit
-            </button> */}
+            </Link>
             <button
               type="button"
               className="btn bnt-sm btn-danger"
