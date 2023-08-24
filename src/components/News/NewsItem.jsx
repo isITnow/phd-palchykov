@@ -1,5 +1,25 @@
+import { Link } from "react-router-dom";
+import { newsAPI } from "../../services/newsAPI";
+
 const NewsItem = ({ news }) => {
-  const { title, body, image_url, date, links } = news;
+  const { id, title, body, image_url, date, links } = news;
+  const deleteHandler = async () => {
+    try {
+      const response = await newsAPI.deleteNews(id);
+      if (response.status === 204) {
+        console.log("DELETE SUCCESS");
+      } else {
+        console.log("Failed to delete record.");
+      }
+    } catch (error) {
+      console.log("Error occurred while deleting the record:", error);
+      console.log("DELETE Error: ", error.message);
+    }
+  };
+  const editHandler = () => {
+    console.log("Edit Click");
+  };
+
   return (
     <div className="card text-center">
       <div className="card-header">
@@ -33,7 +53,30 @@ const NewsItem = ({ news }) => {
           </ul>
         )}
       </div>
-      <div className="card-footer text-body-secondary">{date}</div>
+      <div className="card-footer text-body-secondary">
+        <div className="d-flex justify-content-between">
+          {date}
+          <div className="btn-group">
+            <Link className="btn bnt-sm btn-primary" to={`/news/${id}/edit`}>
+              edit
+            </Link>
+            {/* <button
+              type="button"
+              className="btn bnt-sm btn-primary"
+              onClick={editHandler}
+            >
+              edit
+            </button> */}
+            <button
+              type="button"
+              className="btn bnt-sm btn-danger"
+              onClick={deleteHandler}
+            >
+              delete
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
