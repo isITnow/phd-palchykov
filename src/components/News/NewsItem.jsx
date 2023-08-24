@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { newsAPI } from "../../services/newsAPI";
 
 const NewsItem = ({ news }) => {
   const { id, title, body, image_url, date, links } = news;
+  const [isDisabled, setIsDisabled] = useState(false);
+
   const deleteHandler = async () => {
+    setIsDisabled(true);
     try {
       const response = await newsAPI.deleteNews(id);
       if (response.status === 204) {
@@ -14,6 +18,8 @@ const NewsItem = ({ news }) => {
     } catch (error) {
       console.log("Error occurred while deleting the record:", error);
       console.log("DELETE Error: ", error.message);
+    } finally {
+      setIsDisabled(false);
     }
   };
 
@@ -62,6 +68,7 @@ const NewsItem = ({ news }) => {
               edit
             </Link>
             <button
+              disabled={isDisabled}
               type="button"
               className="btn bnt-sm btn-danger"
               onClick={deleteHandler}

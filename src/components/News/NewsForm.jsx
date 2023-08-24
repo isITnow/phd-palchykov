@@ -128,7 +128,11 @@ const NewsForm = ({ newsItem }) => {
               }}
             </FieldArray>
           </div>
-          <button type="submit" className="btn btn-primary mt-3">
+          <button
+            disabled={props.isSubmitting}
+            type="submit"
+            className="btn btn-primary mt-3"
+          >
             {isNewItem ? "Create news" : "Update news"}
           </button>
         </Form>
