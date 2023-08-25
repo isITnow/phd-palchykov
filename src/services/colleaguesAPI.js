@@ -15,7 +15,7 @@ const postColleague = async (body) => {
 };
 
 const deleteColleague = async (id) => {
-  const data = await api.delete(`/colleagues/${id}`, id);
+  const data = await api.delete(`/colleagues/${id}`);
 
   return data;
 };
