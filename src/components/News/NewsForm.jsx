@@ -76,7 +76,12 @@ const NewsForm = ({ newsItem }) => {
       >
         {(props) => (
           <Form>
-            <CustomInput label="News title" name="title" type="text" />
+            <CustomInput
+              label="News title"
+              name="title"
+              type="text"
+              autoFocus
+            />
             <CustomTextArea
               label="Description"
               name="body"
