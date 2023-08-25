@@ -2,6 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 import Layout from "./components/Layout";
 
+const NewColleaguePage = lazy(() => import("./pages/NewColleaguePage"));
+const EditColleaguePage = lazy(() => import("./pages/EditColleaguePage"));
 const ColleaguesPage = lazy(() => import("./pages/ColleaguesPage"));
 const ContactsPage = lazy(() => import("./pages/ContactsPage"));
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
@@ -27,6 +29,8 @@ const App = () => {
         <Route path="news/new" element={<NewNewsPage />} />
         <Route path="news/:id/edit" element={<EditNewsPage />} />
         <Route path="colleagues" element={<ColleaguesPage />} />
+        <Route path="colleagues/new" element={<NewColleaguePage />} />
+        <Route path="colleagues/:id/edit" element={<EditColleaguePage />} />
         <Route path="contacts" element={<ContactsPage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
