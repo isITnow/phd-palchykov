@@ -1,6 +1,9 @@
 import { NavLink, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+import { periodsAPI } from "../../services/publicationPeriodsAPI";
 import s from "./navigation.module.css";
-import publicationsArray from "../../assets/data/publications";
+// import publicationsArray from "../../assets/data/publications";
 
 const setActive = ({ isActive }) =>
   isActive
@@ -8,6 +11,19 @@ const setActive = ({ isActive }) =>
     : `${s.nav_item} nav-link fw-bold`;
 
 const Navigation = () => {
+  const [periods, setPeriods] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await periodsAPI.fetchPeriods();
+        setPeriods(data);
+      } catch (error) {
+        console.log("Periods error", error);
+      }
+    })();
+  }, []);
+
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid px-0">
@@ -53,13 +69,10 @@ const Navigation = () => {
                 <span>Publications</span>
               </NavLink>
               <ul className="dropdown-menu text-center overflow-hidden">
-                {publicationsArray.map((item, idx) => (
-                  <li key={idx + 1}>
-                    <Link
-                      className="dropdown-item"
-                      to={`publications/${item.period}`}
-                    >
-                      {item.period}
+                {periods.map(({ title, id }, index) => (
+                  <li key={index}>
+                    <Link className="dropdown-item" to={`publications/${id}`}>
+                      {title}
                     </Link>
                   </li>
                 ))}
