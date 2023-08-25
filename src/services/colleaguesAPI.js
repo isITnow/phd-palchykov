@@ -7,8 +7,6 @@ const fetchColleagues = async () => {
 };
 
 const postColleague = async (body) => {
-  console.log("colleaguesAPI/request body: ", body);
-
   const data = await api.post("/colleagues", body, {});
 
   return data;
