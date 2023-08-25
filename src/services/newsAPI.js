@@ -9,17 +9,13 @@ const fetchNews = async () => {
 const postNews = async (body) => {
   console.log("newsAPI/request body: ", body);
 
-  const data = await api.post("/news", body, {
-    // headers: {
-    //   // Accept: "application/json",
-    // },
-  });
+  const data = await api.post("/news", body);
 
   return data;
 };
 
 const deleteNews = async (id) => {
-  const data = await api.delete(`/news/${id}`, id);
+  const data = await api.delete(`/news/${id}`);
 
   return data;
 };
