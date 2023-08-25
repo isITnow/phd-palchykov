@@ -46,7 +46,7 @@ const NewsItem = ({ news, onDelete, btnDisable }) => {
           {date}
           <div className="btn-group">
             <Link
-              className="btn bnt-sm btn-primary"
+              className="btn btn-sm btn-primary"
               to={`/news/${id}/edit`}
               state={news}
             >
@@ -55,7 +55,7 @@ const NewsItem = ({ news, onDelete, btnDisable }) => {
             <button
               disabled={btnDisable}
               type="button"
-              className="btn bnt-sm btn-danger"
+              className="btn btn-sm btn-danger"
               onClick={() => handleClick(id)}
             >
               delete
