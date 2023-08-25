@@ -2,19 +2,37 @@ import { api } from "./http";
 
 const fetchNews = async () => {
   const data = await api.get("/news");
-  console.log("data: ", data);
 
-  return data.data;
+  return data;
 };
 
 const postNews = async (body) => {
-  const data = await api.patch("/news", body);
-  console.log("data: ", data);
+  console.log("newsAPI/request body: ", body);
 
-  return data.data;
+  const data = await api.post("/news", body, {
+    // headers: {
+    //   // Accept: "application/json",
+    // },
+  });
+
+  return data;
+};
+
+const deleteNews = async (id) => {
+  const data = await api.delete(`/news/${id}`, id);
+
+  return data;
+};
+
+const editNews = async (id, body) => {
+  const data = await api.patch(`/news/${id}`, body);
+
+  return data;
 };
 
 export const newsAPI = {
   fetchNews,
   postNews,
+  deleteNews,
+  editNews,
 };
