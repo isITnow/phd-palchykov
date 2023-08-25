@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useAlert } from "../../assets/utils/useAlert.js";
+
+import Alert from "../Alert.jsx";
+import Loader from "../Loader";
+import NewsItem from "./NewsItem";
 
 import { newsAPI } from "../../services/newsAPI.js";
-import NewsItem from "./NewsItem";
-import Loader from "../Loader";
-import Alert from "../Alert.jsx";
-import { useAlert } from "../../assets/utils/useAlert.js";
+
+let message = "";
 
 const NewsList = () => {
   const [newsList, setNewsList] = useState([]);
@@ -20,13 +23,16 @@ const NewsList = () => {
         setNewsList(data);
         setIsReady(true);
       } catch (error) {
+        message = "Error occurred. Contact your administrator!";
+        showAlert(message, "danger");
+
         console.log("error: ", error);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toggle]);
 
   const deleteHandler = async (id) => {
-    let message = "";
     setIsDisabled(true);
     try {
       const response = await newsAPI.deleteNews(id);
@@ -59,8 +65,8 @@ const NewsList = () => {
           <li className="mb-3" key={news.id}>
             <NewsItem
               onDelete={deleteHandler}
-              news={news}
               btnDisable={isDisabled}
+              news={news}
             />
           </li>
         ))}
