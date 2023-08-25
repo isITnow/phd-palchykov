@@ -11,7 +11,6 @@ const NewsList = () => {
   const [isReady, setIsReady] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  // const [alert, setAlert] = useState(alertInitState);
   const { alert, showAlert } = useAlert();
 
   useEffect(() => {
