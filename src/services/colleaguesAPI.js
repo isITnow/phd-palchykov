@@ -26,7 +26,7 @@ const editColleague = async (id, body) => {
   return data;
 };
 
-export const newsAPI = {
+export const colleaguesAPI = {
   fetchColleagues,
   postColleague,
   deleteColleague,
