@@ -34,10 +34,10 @@ const ColleagueForm = ({ colleague }) => {
 
       if (response.status === 201) {
         actions.resetForm();
-        message = "Colleague created successfully";
+        message = "Card created successfully";
         showAlert(message, "success");
       } else if (response.status === 202) {
-        message = "Colleague updated successfully";
+        message = "Card updated successfully";
         showAlert(message, "success");
         return navigate("/colleagues");
       } else {
