@@ -24,7 +24,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="publications/:period" element={<PublicationsPage />} />
+        <Route path="periods/:id/publications" element={<PublicationsPage />} />
         <Route path="research" element={<ResearchPage />} />
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="gallery/:theme" element={<GalleryByThemePage />} />
