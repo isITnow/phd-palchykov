@@ -1,14 +1,22 @@
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectColleagues } from "../redux/colleagues/selectorColleagues";
+
 import ColleagueForm from "../components/Colleagues/ColleagueForm";
-import { useLocation } from "react-router-dom";
 
 const EditColleaguePage = () => {
-  const location = useLocation();
-  const colleague = location.state;
+  const { colleagues } = useSelector(selectColleagues);
+  const { id } = useParams();
+
+  const colleague = colleagues.find(
+    (colleague) => colleague.id === parseInt(id)
+  );
+  console.log("EDIT colleague: ", colleague);
 
   return (
     <section className="py-4">
       <h4>Edit news</h4>
-      {/* <p>required fields: title, date</p> */}
+      <p>required fields: title, date</p>
       <ColleagueForm colleague={colleague} />
     </section>
   );
