@@ -12,15 +12,15 @@ import Loader from "../Loader";
 const ColleaguesList = () => {
   const dispatch = useDispatch();
   const { colleagues, status, error } = useSelector(selectColleagues);
+  console.log("Colleagues List status: ", status);
+  console.log("Colleagues List error: ", error);
   const { alert, showAlert } = useAlert();
 
   useEffect(() => {
     dispatch(getColleaguesThunk());
   }, [dispatch]);
 
-  if (error) {
-    showAlert(error, "danger");
-  }
+  // TODO: implement alert with error message
 
   if (status === "pending") {
     return <Loader />;
@@ -28,7 +28,7 @@ const ColleaguesList = () => {
 
   return (
     <>
-      {error && <Alert state={alert} />}
+      {alert.visible && <Alert state={alert} />}
       <ul className="row row-cols-1 row-cols-lg-2">
         {colleagues.map((colleague) => (
           <li className="col mb-3" key={colleague.id}>
