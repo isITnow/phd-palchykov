@@ -31,15 +31,28 @@ const ColleagueForm = ({ colleague }) => {
     if (photo) {
       formData.append("colleague[photo]", photo);
     }
+
+    dispatch(addColleagueThunk(formData));
+
     console.log("form error: ", error);
     console.log("form status: ", status);
 
-    dispatch(addColleagueThunk(formData));
+    if (!isNewItem) {
+      if (status === "fulfilled") {
+        navigate("/colleagues");
+        return;
+      }
+      if (status === "rejected") {
+        showAlert(error, "danger");
+        // return
+      }
+    }
 
     if (status === "fulfilled") {
       actions.resetForm();
       showAlert("Card created successfully", "success");
-    } else if (status === "rejected") {
+    }
+    if (status === "rejected") {
       showAlert(error, "danger");
     }
   };
