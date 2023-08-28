@@ -7,8 +7,6 @@ const fetchNews = async () => {
 };
 
 const postNews = async (body) => {
-  console.log("newsAPI/request body: ", body);
-
   const data = await api.post("/news", body);
 
   return data;

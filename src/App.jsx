@@ -3,12 +3,12 @@ import { lazy } from "react";
 import Layout from "./components/Layout";
 
 const NewsPage = lazy(() => import("./pages/NewsPage"));
-const EditNewsPage = lazy(() => import("./pages/EditNewsPage"));
-const NewNewsPage = lazy(() => import("./pages/NewNewsPage"));
+const NewsOperationsPage = lazy(() => import("./pages/NewsOperationsPage"));
 
 const ColleaguesPage = lazy(() => import("./pages/ColleaguesPage"));
-const EditColleaguePage = lazy(() => import("./pages/EditColleaguePage"));
-const NewColleaguePage = lazy(() => import("./pages/NewColleaguePage"));
+const ColleagueOperationsPage = lazy(() =>
+  import("./pages/ColleagueOperationsPage")
+);
 
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const GalleryByThemePage = lazy(() => import("./pages/GalleryByThemePage"));
@@ -29,11 +29,14 @@ const App = () => {
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="gallery/:theme" element={<GalleryByThemePage />} />
         <Route path="news" element={<NewsPage />} />
-        <Route path="news/new" element={<NewNewsPage />} />
-        <Route path="news/:id/edit" element={<EditNewsPage />} />
+        <Route path="news/new" element={<NewsOperationsPage />} />
+        <Route path="news/:id/edit" element={<NewsOperationsPage edit />} />
         <Route path="colleagues" element={<ColleaguesPage />} />
-        <Route path="colleagues/new" element={<NewColleaguePage />} />
-        <Route path="colleagues/:id/edit" element={<EditColleaguePage />} />
+        <Route path="colleagues/new" element={<ColleagueOperationsPage />} />
+        <Route
+          path="colleagues/:id/edit"
+          element={<ColleagueOperationsPage edit />}
+        />
         <Route path="contacts" element={<ContactsPage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
