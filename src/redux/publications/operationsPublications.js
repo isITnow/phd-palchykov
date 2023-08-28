@@ -4,9 +4,9 @@ import { publicationsAPI } from "../../services/publicationsAPI";
 export const getPublicationsThunk = createAsyncThunk(
   "publications/get",
 
-  async (_, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      const resp = await publicationsAPI.fetchPublications();
+      const resp = await publicationsAPI.fetchPublications(id);
 
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
