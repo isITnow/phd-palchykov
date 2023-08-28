@@ -1,5 +1,8 @@
 import { NavLink, Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
+
 import s from "./navigation.module.css";
 
 const setActive = ({ isActive }) =>
@@ -7,7 +10,9 @@ const setActive = ({ isActive }) =>
     ? `${s.nav_item} nav-link text-primary fw-bold`
     : `${s.nav_item} nav-link fw-bold`;
 
-const Navigation = ({ periods }) => {
+const Navigation = () => {
+  const { periods } = useSelector(selectPeriods);
+
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid px-0">
