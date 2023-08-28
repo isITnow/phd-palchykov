@@ -13,10 +13,14 @@ const ColleagueOperationsPage = lazy(() =>
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const GalleryByThemePage = lazy(() => import("./pages/GalleryByThemePage"));
 
+const PublicationsPage = lazy(() => import("./pages/PublicationsPage"));
+const PublicationOperationsPage = lazy(() =>
+  import("./pages/PublicationOperationsPage")
+);
+
 const ContactsPage = lazy(() => import("./pages/ContactsPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
-const PublicationsPage = lazy(() => import("./pages/PublicationsPage"));
 const ResearchPage = lazy(() => import("./pages/ResearchPage"));
 
 const App = () => {
@@ -24,7 +28,18 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="periods/:id/publications" element={<PublicationsPage />} />
+        <Route
+          path="periods/:period_id/publications"
+          element={<PublicationsPage />}
+        />
+        <Route
+          path="periods/:period_id/publications/new"
+          element={<PublicationOperationsPage />}
+        />
+        <Route
+          path="periods/:period_id/publications/:publication_id/edit"
+          element={<PublicationOperationsPage edit />}
+        />
         <Route path="research" element={<ResearchPage />} />
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="gallery/:theme" element={<GalleryByThemePage />} />
