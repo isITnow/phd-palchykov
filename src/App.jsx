@@ -1,11 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 import Layout from "./components/Layout";
-// import ColleagueOperationsPage from "./pages/ColleagueOparationsPage";
 
 const NewsPage = lazy(() => import("./pages/NewsPage"));
-const EditNewsPage = lazy(() => import("./pages/EditNewsPage"));
-const NewNewsPage = lazy(() => import("./pages/NewNewsPage"));
+const NewsOperationsPage = lazy(() => import("./pages/NewsOperationsPage"));
 
 const ColleaguesPage = lazy(() => import("./pages/ColleaguesPage"));
 const ColleagueOperationsPage = lazy(() =>
@@ -31,8 +29,8 @@ const App = () => {
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="gallery/:theme" element={<GalleryByThemePage />} />
         <Route path="news" element={<NewsPage />} />
-        <Route path="news/new" element={<NewNewsPage />} />
-        <Route path="news/:id/edit" element={<EditNewsPage />} />
+        <Route path="news/new" element={<NewsOperationsPage />} />
+        <Route path="news/:id/edit" element={<NewsOperationsPage edit />} />
         <Route path="colleagues" element={<ColleaguesPage />} />
         <Route path="colleagues/new" element={<ColleagueOperationsPage />} />
         <Route
