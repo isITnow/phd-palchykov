@@ -8,14 +8,15 @@ import ColleagueForm from "../components/Colleagues/ColleagueForm";
 import Alert from "../components/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 
-const EditColleaguePage = () => {
+const ColleagueOperationsPage = ({ edit }) => {
   const { colleagues, error, status } = useSelector(selectColleagues);
-  const { id } = useParams();
   const { alert, showAlert } = useAlert();
+  const { id } = useParams();
+  let colleague = null;
 
-  const colleague = colleagues.find(
-    (colleague) => colleague.id === parseInt(id)
-  );
+  if (edit) {
+    colleague = colleagues.find((colleague) => colleague.id === parseInt(id));
+  }
 
   useEffect(() => {
     if (status === "rejected") {
@@ -23,7 +24,10 @@ const EditColleaguePage = () => {
       return;
     }
     if (status === "fulfilled") {
-      showAlert("Card updated successfully", "success");
+      const text = edit
+        ? "Card updated successfully"
+        : "Card created successfully";
+      showAlert(text, "success");
       return;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,10 +49,10 @@ const EditColleaguePage = () => {
             </li>
           </ul>
         </div>
-        <ColleagueForm colleague={colleague} />
+        <ColleagueForm colleague={edit ? colleague : null} />
       </section>
     </>
   );
 };
 
-export default EditColleaguePage;
+export default ColleagueOperationsPage;
