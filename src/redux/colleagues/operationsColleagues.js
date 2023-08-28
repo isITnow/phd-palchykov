@@ -66,7 +66,6 @@ export const removeColleagueThunk = createAsyncThunk(
       if (resp.status !== 204) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
-      dispatch(getColleaguesThunk());
       return id;
     } catch (error) {
       console.log("DELETE colleague error: ", error);
