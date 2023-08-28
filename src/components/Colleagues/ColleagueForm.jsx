@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useAlert } from "../../assets/utils/useAlert";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addColleagueThunk } from "../../redux/colleagues/operationsColleagues";
+import {
+  addColleagueThunk,
+  updateColleagueThunk,
+} from "../../redux/colleagues/operationsColleagues";
 import { selectColleagues } from "../../redux/colleagues/selectorColleagues";
 
 import Alert from "../Alert";
@@ -32,7 +35,11 @@ const ColleagueForm = ({ colleague }) => {
       formData.append("colleague[photo]", photo);
     }
 
-    dispatch(addColleagueThunk(formData));
+    isNewItem
+      ? dispatch(addColleagueThunk(formData))
+      : dispatch(
+          updateColleagueThunk({ id: colleague.id, colleague: formData })
+        );
 
     console.log("form error: ", error);
     console.log("form status: ", status);

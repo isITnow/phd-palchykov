@@ -1,10 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getColleaguesThunk, addColleagueThunk } from "./operationsColleagues";
+import {
+  getColleaguesThunk,
+  addColleagueThunk,
+  updateColleagueThunk,
+  removeColleagueThunk,
+} from "./operationsColleagues";
 
 const initColleagues = {
   colleagues: [],
   status: null,
   error: null,
+};
+
+const setError = (state, { payload }) => {
+  state.status = "rejected";
+  state.error = payload;
 };
 
 const colleaguesSlice = createSlice({
@@ -13,7 +23,7 @@ const colleaguesSlice = createSlice({
   reducers: {},
 
   extraReducers: (builder) => {
-    // fetch all colleagues
+    // FETCH ALL COLLEAGUES
     builder.addCase(getColleaguesThunk.pending, (state) => {
       state.status = "pending";
       state.error = null;
@@ -22,11 +32,8 @@ const colleaguesSlice = createSlice({
       state.status = "fulfilled";
       state.colleagues = payload;
     });
-    builder.addCase(getColleaguesThunk.rejected, (state, { payload }) => {
-      state.status = "rejected";
-      state.error = payload;
-    });
-    // create colleague card
+    builder.addCase(getColleaguesThunk.rejected, setError);
+    // CREATE COLLEAGUE CARD
     builder.addCase(addColleagueThunk.pending, (state) => {
       state.status = "pending";
       state.error = null;
@@ -35,14 +42,34 @@ const colleaguesSlice = createSlice({
       state.status = "fulfilled";
       state.colleagues.push(payload);
     });
-    builder.addCase(addColleagueThunk.rejected, (state, { payload }) => {
-      state.status = "rejected";
-      state.error = payload;
+    builder.addCase(addColleagueThunk.rejected, setError);
+    // UPDATE COLLEAGUE CARD
+    builder.addCase(updateColleagueThunk.pending, (state) => {
+      state.status = "pending";
+      state.error = null;
     });
+    builder.addCase(updateColleagueThunk.fulfilled, (state, { payload }) => {
+      state.status = "fulfilled";
+      // state.colleagues.forEach((colleague) => {
+      //   if (colleague.id === payload.id) {
+      //     colleague = payload;
+      //   }
+      // });
+    });
+    builder.addCase(updateColleagueThunk.rejected, setError);
+    // REMOVE COLLEAGUE CARD
+    builder.addCase(removeColleagueThunk.pending, (state, { payload }) => {
+      state.status = "pending";
+      state.error = null;
+    });
+    builder.addCase(removeColleagueThunk.fulfilled, (state, { payload }) => {
+      state.status = "fulfilled";
+      // state.colleagues = state.colleagues.filter(
+      //   (colleague) => colleague.id !== payload
+      // );
+    });
+    builder.addCase(removeColleagueThunk.rejected, setError);
   },
 });
-
-// export const { addColleague, removeColleague, updateColleague } =
-//   colleaguesSlice.actions;
 
 export default colleaguesSlice.reducer;

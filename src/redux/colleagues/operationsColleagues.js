@@ -36,3 +36,41 @@ export const addColleagueThunk = createAsyncThunk(
     }
   }
 );
+
+export const updateColleagueThunk = createAsyncThunk(
+  "colleagues/update",
+
+  async ({ id, colleague }, { dispatch, rejectWithValue }) => {
+    try {
+      const resp = await colleaguesAPI.editColleague(id, colleague);
+
+      if (resp.status !== 202) {
+        throw new Error("Error occurred! Please contact your administrator.");
+      }
+      dispatch(getColleaguesThunk());
+      return resp.data;
+    } catch (error) {
+      console.log("EDIT colleague error: ", error);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const removeColleagueThunk = createAsyncThunk(
+  "colleagues/delete",
+
+  async (id, { dispatch, rejectWithValue }) => {
+    try {
+      const resp = await colleaguesAPI.deleteColleague(id);
+
+      if (resp.status !== 204) {
+        throw new Error("Error occurred! Please contact your administrator.");
+      }
+      dispatch(getColleaguesThunk());
+      return id;
+    } catch (error) {
+      console.log("DELETE colleague error: ", error);
+      return rejectWithValue(error.message);
+    }
+  }
+);

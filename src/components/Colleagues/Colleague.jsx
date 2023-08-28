@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { removeColleagueThunk } from "../../redux/colleagues/operationsColleagues";
+
 import s from "./colleague.module.css";
 
-const Colleague = ({ colleague, onDelete, btnDisable }) => {
+const Colleague = ({ colleague, btnDisable }) => {
   const { id, name, position, photo_url, phone, email } = colleague;
+  const dispatch = useDispatch();
 
   const handleClick = (id) => {
     alert("Are you sure you want to delete item?");
-    onDelete(id);
+    dispatch(removeColleagueThunk(id));
   };
 
   return (
