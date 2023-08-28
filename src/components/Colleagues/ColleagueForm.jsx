@@ -23,10 +23,10 @@ const ColleagueForm = ({ colleague }) => {
     const { name, position, phone, email, photo } = values;
 
     const formData = new FormData();
-    formData.append("colleague[name]", name);
-    formData.append("colleague[position]", position);
-    formData.append("colleague[phone]", phone);
-    formData.append("colleague[email]", email);
+    formData.append("colleague[name]", name.trim());
+    formData.append("colleague[position]", position.trim());
+    formData.append("colleague[phone]", phone.trim());
+    formData.append("colleague[email]", email.trim().toLowerCase());
 
     if (photo) {
       formData.append("colleague[photo]", photo);
