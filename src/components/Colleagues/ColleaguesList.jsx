@@ -17,7 +17,7 @@ const ColleaguesList = () => {
     dispatch(getColleaguesThunk());
   }, [dispatch]);
 
-  if (status === "pending") {
+  if (status === "loading") {
     return <Loader />;
   }
 
