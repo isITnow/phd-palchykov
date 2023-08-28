@@ -25,7 +25,7 @@ const colleaguesSlice = createSlice({
   extraReducers: (builder) => {
     // FETCH ALL COLLEAGUES
     builder.addCase(getColleaguesThunk.pending, (state) => {
-      state.status = "pending";
+      state.status = "loading";
       state.error = null;
     });
     builder.addCase(getColleaguesThunk.fulfilled, (state, { payload }) => {
@@ -64,9 +64,9 @@ const colleaguesSlice = createSlice({
     });
     builder.addCase(removeColleagueThunk.fulfilled, (state, { payload }) => {
       state.status = "fulfilled";
-      // state.colleagues = state.colleagues.filter(
-      //   (colleague) => colleague.id !== payload
-      // );
+      state.colleagues = state.colleagues.filter(
+        (colleague) => colleague.id !== payload
+      );
     });
     builder.addCase(removeColleagueThunk.rejected, setError);
   },
