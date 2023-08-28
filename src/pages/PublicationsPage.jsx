@@ -14,19 +14,19 @@ import setPageTitle from "../assets/utils/setPageTitle";
 
 const PublicationsPage = () => {
   setPageTitle("Publications");
-  const { id } = useParams();
+  const { period_id } = useParams();
   const dispatch = useDispatch();
   const { periods } = useSelector(selectPeriods);
   const { publications, status, error } = useSelector(selectPublications);
   // console.log("publications: ", publications);
 
   useEffect(() => {
-    dispatch(getPublicationsThunk(id));
+    dispatch(getPublicationsThunk(period_id));
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  }, [dispatch, id]);
+  }, [dispatch, period_id]);
 
   if (status === "loading") {
     return <Loader />;
@@ -37,10 +37,14 @@ const PublicationsPage = () => {
       <PagesNav
         margin={"mb-3"}
         periods={periods}
-        currentPeriodId={parseInt(id)}
+        currentPeriodId={parseInt(period_id)}
       />
       <PublicationsList publications={publications} />
-      <PagesNav margin={"mt-3 mb-0"} periods={periods} currentPeriodId={id} />
+      <PagesNav
+        margin={"mt-3 mb-0"}
+        periods={periods}
+        currentPeriodId={period_id}
+      />
     </section>
   );
 };
