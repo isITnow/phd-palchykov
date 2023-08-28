@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { newsAPI } from "../../services/newsAPI";
 
 export const getNewsThunk = createAsyncThunk(
-  "colleagues/get",
+  "news/get",
 
   async (_, { rejectWithValue }) => {
     try {
@@ -20,7 +20,7 @@ export const getNewsThunk = createAsyncThunk(
 );
 
 export const addNewsThunk = createAsyncThunk(
-  "colleagues/post",
+  "news/post",
 
   async (news, { rejectWithValue }) => {
     try {
@@ -38,7 +38,7 @@ export const addNewsThunk = createAsyncThunk(
 );
 
 export const updateNewsThunk = createAsyncThunk(
-  "colleagues/update",
+  "news/update",
 
   async ({ id, news }, { dispatch, rejectWithValue }) => {
     try {
@@ -57,7 +57,7 @@ export const updateNewsThunk = createAsyncThunk(
 );
 
 export const removeNewsThunk = createAsyncThunk(
-  "colleagues/delete",
+  "news/delete",
 
   async (id, { dispatch, rejectWithValue }) => {
     try {
