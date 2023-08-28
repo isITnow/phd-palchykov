@@ -13,7 +13,7 @@ export const getPeriodsThunk = createAsyncThunk(
       }
       return resp.data;
     } catch (error) {
-      console.log("GET news error: ", error);
+      console.log("GET periods error: ", error);
       return rejectWithValue(error.message);
     }
   }
