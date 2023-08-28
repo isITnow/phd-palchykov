@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeColleagueThunk } from "../../redux/colleagues/operationsColleagues";
+import { selectColleagues } from "../../redux/colleagues/selectorColleagues";
 
 import s from "./colleague.module.css";
 
-const Colleague = ({ colleague, btnDisable }) => {
+const Colleague = ({ colleague }) => {
   const { id, name, position, photo_url, phone, email } = colleague;
+  const { status } = useSelector(selectColleagues);
+  const btnDisabled = status === "pending";
   const dispatch = useDispatch();
 
   const handleClick = (id) => {
@@ -46,7 +49,7 @@ const Colleague = ({ colleague, btnDisable }) => {
                 edit
               </Link>
               <button
-                disabled={btnDisable}
+                disabled={btnDisabled}
                 onClick={() => handleClick(id)}
                 className="btn btn-sm btn-danger"
               >
