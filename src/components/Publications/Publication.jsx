@@ -62,7 +62,10 @@ const Publication = ({ publication }) => {
         </div>
         <div className="text-end mt-3">
           <div className="btn-group">
-            <Link className="btn btn-sm btn-primary" to={`/news/${id}/edit`}>
+            <Link
+              className="btn btn-sm btn-primary"
+              to={`/periods/${period_id}/publications/${id}/edit`}
+            >
               edit
             </Link>
             <button
