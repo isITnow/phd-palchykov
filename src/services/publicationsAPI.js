@@ -7,8 +7,6 @@ const fetchPublications = async (period_id) => {
 };
 
 const postPublication = async (period_id, body) => {
-  console.log("publicationsAPI/request body: ", body);
-
   const data = await api.post(
     `/publication_periods/${period_id}/publications`,
     body
