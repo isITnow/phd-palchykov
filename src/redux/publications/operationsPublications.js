@@ -57,7 +57,7 @@ export const updatePublicationThunk = createAsyncThunk(
       if (resp.status !== 202) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
-      dispatch(getPublicationsThunk());
+      dispatch(getPublicationsThunk(period_id));
       return resp.data;
     } catch (error) {
       console.log("EDIT publication error: ", error);
