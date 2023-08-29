@@ -29,7 +29,7 @@ const colleaguesSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getColleaguesThunk.fulfilled, (state, { payload }) => {
-      state.status = "fulfilled";
+      state.status = "loaded";
       state.colleagues = payload;
     });
     builder.addCase(getColleaguesThunk.rejected, setError);
