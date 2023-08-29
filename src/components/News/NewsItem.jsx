@@ -10,7 +10,7 @@ const NewsItem = ({ news }) => {
   const btnDisabled = status === "pending";
   const dispatch = useDispatch();
 
-  const handleClick = (id) => {
+  const handleClick = () => {
     alert("Are you sure you want to delete item?");
     dispatch(removeNewsThunk(id));
   };
@@ -63,7 +63,7 @@ const NewsItem = ({ news }) => {
               disabled={btnDisabled}
               type="button"
               className="btn btn-sm btn-danger"
-              onClick={() => handleClick(id)}
+              onClick={() => handleClick()}
             >
               delete
             </button>
