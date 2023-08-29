@@ -29,7 +29,7 @@ const publicationsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getPublicationsThunk.fulfilled, (state, { payload }) => {
-      state.status = "fulfilled";
+      state.status = "loaded";
       state.publications = payload;
     });
     builder.addCase(getPublicationsThunk.rejected, setError);
