@@ -10,6 +10,9 @@ import PagesNav from "../components/PagesNav/PagesNav";
 import Loader from "../components/Loader";
 import PublicationsList from "../components/Publications/PublicationsList";
 
+import Alert from "../components/Alert";
+import { useAlert } from "../assets/utils/useAlert";
+
 import setPageTitle from "../assets/utils/setPageTitle";
 
 const PublicationsPage = () => {
@@ -18,7 +21,7 @@ const PublicationsPage = () => {
   const dispatch = useDispatch();
   const { periods } = useSelector(selectPeriods);
   const { publications, status, error } = useSelector(selectPublications);
-  // console.log("publications: ", publications);
+  const { alert, showAlert } = useAlert();
 
   useEffect(() => {
     dispatch(getPublicationsThunk(period_id));
@@ -28,32 +31,43 @@ const PublicationsPage = () => {
     });
   }, [dispatch, period_id]);
 
+  useEffect(() => {
+    if (status === "rejected") {
+      showAlert(`${error}. Please contact your administrator!`, "danger");
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
+
   if (status === "loading") {
     return <Loader />;
   }
 
   return (
-    <section className="py-4">
-      <PagesNav
-        margin={"mb-3"}
-        periods={periods}
-        currentPeriodId={parseInt(period_id)}
-      />
-      <PublicationsList publications={publications} />
-      <div className="d-flex justify-content-between mt-3">
-        <div>
-          <Link
-            className="btn btn-primary"
-            to={`/periods/${period_id}/publications/new`}
-          >
-            new publication
-          </Link>
+    <>
+      {alert.visible && <Alert state={alert} />}
+      <section className="py-4">
+        <PagesNav
+          margin={"mb-3"}
+          periods={periods}
+          currentPeriodId={parseInt(period_id)}
+        />
+        <PublicationsList publications={publications} />
+        <div className="d-flex justify-content-between mt-3">
+          <div>
+            <Link
+              className="btn btn-primary"
+              to={`/periods/${period_id}/publications/new`}
+            >
+              new publication
+            </Link>
+          </div>
+          {publications.length > 4 && (
+            <PagesNav periods={periods} currentPeriodId={parseInt(period_id)} />
+          )}
         </div>
-        {publications.length > 4 && (
-          <PagesNav periods={periods} currentPeriodId={parseInt(period_id)} />
-        )}
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
