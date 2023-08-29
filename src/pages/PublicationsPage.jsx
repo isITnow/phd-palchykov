@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -40,11 +40,19 @@ const PublicationsPage = () => {
         currentPeriodId={parseInt(period_id)}
       />
       <PublicationsList publications={publications} />
-      <PagesNav
-        margin={"mt-3 mb-0"}
-        periods={periods}
-        currentPeriodId={period_id}
-      />
+      <div className="d-flex justify-content-between mt-3">
+        <div>
+          <Link
+            className="btn btn-primary"
+            to={`/periods/${period_id}/publications/new`}
+          >
+            new publication
+          </Link>
+        </div>
+        {publications.length > 4 && (
+          <PagesNav periods={periods} currentPeriodId={parseInt(period_id)} />
+        )}
+      </div>
     </section>
   );
 };
