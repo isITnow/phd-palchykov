@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+import { removeColleagueThunk } from "../../redux/colleagues/operationsColleagues";
+import { selectColleagues } from "../../redux/colleagues/selectorColleagues";
+
 import s from "./colleague.module.css";
 
-const Colleague = ({ colleague, onDelete, btnDisable }) => {
+const Colleague = ({ colleague }) => {
   const { id, name, position, photo_url, phone, email } = colleague;
+  const { status } = useSelector(selectColleagues);
+  const btnDisabled = status === "pending";
+  const dispatch = useDispatch();
 
-  const handleClick = (id) => {
+  const handleClick = () => {
     alert("Are you sure you want to delete item?");
-    onDelete(id);
+    dispatch(removeColleagueThunk(id));
   };
 
   return (
@@ -31,7 +39,6 @@ const Colleague = ({ colleague, onDelete, btnDisable }) => {
                 </a>
               </li>
             </ul>
-            {/* TODO: fix btn-group position */}
             <div className="btn-group position-absolute bottom-0 end-0">
               <Link
                 className="btn btn-sm btn-primary"
@@ -41,8 +48,8 @@ const Colleague = ({ colleague, onDelete, btnDisable }) => {
                 edit
               </Link>
               <button
-                disabled={btnDisable}
-                onClick={() => handleClick(id)}
+                disabled={btnDisabled}
+                onClick={() => handleClick()}
                 className="btn btn-sm btn-danger"
               >
                 delete

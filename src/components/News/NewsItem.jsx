@@ -1,11 +1,18 @@
 import { Link } from "react-router-dom";
 
-const NewsItem = ({ news, onDelete, btnDisable }) => {
-  const { id, title, body, image_url, date, links } = news;
+import { useDispatch, useSelector } from "react-redux";
+import { removeNewsThunk } from "../../redux/news/operationsNews";
+import { selectNews } from "../../redux/news/selectorNews";
 
-  const handleClick = (id) => {
+const NewsItem = ({ news }) => {
+  const { id, title, body, image_url, date, links } = news;
+  const { status } = useSelector(selectNews);
+  const btnDisabled = status === "pending";
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
     alert("Are you sure you want to delete item?");
-    onDelete(id);
+    dispatch(removeNewsThunk(id));
   };
 
   return (
@@ -53,10 +60,10 @@ const NewsItem = ({ news, onDelete, btnDisable }) => {
               edit
             </Link>
             <button
-              disabled={btnDisable}
+              disabled={btnDisabled}
               type="button"
               className="btn btn-sm btn-danger"
-              onClick={() => handleClick(id)}
+              onClick={() => handleClick()}
             >
               delete
             </button>

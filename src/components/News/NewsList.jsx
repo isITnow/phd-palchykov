@@ -1,73 +1,38 @@
-import { useEffect, useState } from "react";
-import { useAlert } from "../../assets/utils/useAlert.js";
+// import { useEffect } from "react";
 
-import Alert from "../Alert.jsx";
-import Loader from "../Loader";
+// import { useSelector, useDispatch } from "react-redux";
+// import { getNewsThunk } from "../../redux/news/operationsNews";
+// import { selectNews } from "../../redux/news/selectorNews";
+
+// import Alert from "../Alert.jsx";
+// import Loader from "../Loader";
 import NewsItem from "./NewsItem";
 
-import { newsAPI } from "../../services/newsAPI.js";
+const NewsList = ({ news }) => {
+  // const dispatch = useDispatch();
+  // const { news, status, error } = useSelector(selectNews);
+  // const alert = { text: "", type: "" };
 
-let message = "";
+  // useEffect(() => {
+  //   dispatch(getNewsThunk());
+  // }, [dispatch]);
 
-const NewsList = () => {
-  const [newsList, setNewsList] = useState([]);
-  const [isReady, setIsReady] = useState(false);
-  const [toggle, setToggle] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
-  const { alert, showAlert } = useAlert();
+  // if (status === "loading") {
+  //   return <Loader />;
+  // }
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await newsAPI.fetchNews();
-        setNewsList(data);
-        setIsReady(true);
-      } catch (error) {
-        message = "Error occurred. Contact your administrator!";
-        showAlert(message, "danger");
-
-        console.log("error: ", error);
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [toggle]);
-
-  const deleteHandler = async (id) => {
-    setIsDisabled(true);
-    try {
-      const response = await newsAPI.deleteNews(id);
-      if (response.status === 204) {
-        console.log("DELETE SUCCESS");
-        setToggle((prevState) => !prevState);
-      } else {
-        message = "Failed to delete record. Contact your administrator!";
-        showAlert(message, "danger");
-      }
-    } catch (error) {
-      message = "Error occurred. Contact your administrator!";
-      showAlert(message, "danger");
-
-      console.log("Error occurred while deleting the record:", error);
-    } finally {
-      setIsDisabled(false);
-    }
-  };
-
-  if (!isReady) {
-    return <Loader />;
-  }
+  // if (status === "rejected") {
+  //   alert.text = `${error}. Please contact your administrator!`;
+  //   alert.type = "danger";
+  // }
 
   return (
     <>
-      {alert.visible && <Alert state={alert} />}
+      {/* {error && <Alert state={alert} />} */}
       <ul>
-        {newsList.map((news) => (
-          <li className="mb-3" key={news.id}>
-            <NewsItem
-              onDelete={deleteHandler}
-              btnDisable={isDisabled}
-              news={news}
-            />
+        {news.map((newsItem) => (
+          <li className="mb-3" key={newsItem.id}>
+            <NewsItem news={newsItem} />
           </li>
         ))}
       </ul>

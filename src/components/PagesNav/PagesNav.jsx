@@ -1,22 +1,22 @@
 import { Link } from "react-router-dom";
 import s from "./pagesNav.module.css";
 
-const PagesNav = ({ location, list, margin = "my-0" }) => {
-  const isDisabled = (name) => (location === name ? "none" : "auto");
-  const getStyle = (name) =>
-    location === name
+const PagesNav = ({ currentPeriodId, periods, margin = "my-0" }) => {
+  const isDisabled = (id) => (currentPeriodId === id ? "none" : "auto");
+  const getStyle = (id) =>
+    currentPeriodId === id
       ? "mb-3 text-danger fw-bold"
       : `mb-3 text-secondary fw-bold ${s.hoverEffect}`;
   return (
     <ul className={`text-end ${margin}`}>
-      {list.map((name, indx) => (
-        <li key={indx}>
+      {periods.map(({ title, id }) => (
+        <li key={id}>
           <Link
-            style={{ pointerEvents: isDisabled(name) }}
-            className={getStyle(name)}
-            to={`/publications/${name}`}
+            style={{ pointerEvents: isDisabled(id) }}
+            className={getStyle(id)}
+            to={`/periods/${id}/publications`}
           >
-            {name}
+            {title}
           </Link>
         </li>
       ))}

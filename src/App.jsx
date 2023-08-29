@@ -3,20 +3,24 @@ import { lazy } from "react";
 import Layout from "./components/Layout";
 
 const NewsPage = lazy(() => import("./pages/NewsPage"));
-const EditNewsPage = lazy(() => import("./pages/EditNewsPage"));
-const NewNewsPage = lazy(() => import("./pages/NewNewsPage"));
+const NewsOperationsPage = lazy(() => import("./pages/NewsOperationsPage"));
 
 const ColleaguesPage = lazy(() => import("./pages/ColleaguesPage"));
-const EditColleaguePage = lazy(() => import("./pages/EditColleaguePage"));
-const NewColleaguePage = lazy(() => import("./pages/NewColleaguePage"));
+const ColleagueOperationsPage = lazy(() =>
+  import("./pages/ColleagueOperationsPage")
+);
 
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const GalleryByThemePage = lazy(() => import("./pages/GalleryByThemePage"));
 
+const PublicationsPage = lazy(() => import("./pages/PublicationsPage"));
+const PublicationOperationsPage = lazy(() =>
+  import("./pages/PublicationOperationsPage")
+);
+
 const ContactsPage = lazy(() => import("./pages/ContactsPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
-const PublicationsPage = lazy(() => import("./pages/PublicationsPage"));
 const ResearchPage = lazy(() => import("./pages/ResearchPage"));
 
 const App = () => {
@@ -24,16 +28,30 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="publications/:period" element={<PublicationsPage />} />
+        <Route
+          path="periods/:period_id/publications"
+          element={<PublicationsPage />}
+        />
+        <Route
+          path="periods/:period_id/publications/new"
+          element={<PublicationOperationsPage />}
+        />
+        <Route
+          path="periods/:period_id/publications/:publication_id/edit"
+          element={<PublicationOperationsPage edit />}
+        />
         <Route path="research" element={<ResearchPage />} />
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="gallery/:theme" element={<GalleryByThemePage />} />
         <Route path="news" element={<NewsPage />} />
-        <Route path="news/new" element={<NewNewsPage />} />
-        <Route path="news/:id/edit" element={<EditNewsPage />} />
+        <Route path="news/new" element={<NewsOperationsPage />} />
+        <Route path="news/:id/edit" element={<NewsOperationsPage edit />} />
         <Route path="colleagues" element={<ColleaguesPage />} />
-        <Route path="colleagues/new" element={<NewColleaguePage />} />
-        <Route path="colleagues/:id/edit" element={<EditColleaguePage />} />
+        <Route path="colleagues/new" element={<ColleagueOperationsPage />} />
+        <Route
+          path="colleagues/:id/edit"
+          element={<ColleagueOperationsPage edit />}
+        />
         <Route path="contacts" element={<ContactsPage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
