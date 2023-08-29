@@ -12,7 +12,7 @@ const Colleague = ({ colleague }) => {
   const btnDisabled = status === "pending";
   const dispatch = useDispatch();
 
-  const handleClick = (id) => {
+  const handleClick = () => {
     alert("Are you sure you want to delete item?");
     dispatch(removeColleagueThunk(id));
   };
@@ -39,7 +39,6 @@ const Colleague = ({ colleague }) => {
                 </a>
               </li>
             </ul>
-            {/* TODO: fix btn-group position */}
             <div className="btn-group position-absolute bottom-0 end-0">
               <Link
                 className="btn btn-sm btn-primary"
@@ -50,7 +49,7 @@ const Colleague = ({ colleague }) => {
               </Link>
               <button
                 disabled={btnDisabled}
-                onClick={() => handleClick(id)}
+                onClick={() => handleClick()}
                 className="btn btn-sm btn-danger"
               >
                 delete
