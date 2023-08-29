@@ -24,7 +24,7 @@ const PublicationOperationsPage = ({ edit }) => {
 
   if (edit) {
     publication = publications.find(
-      (publication) => publication.id === currentPeriodId
+      (publication) => publication.publication_period_id === currentPeriodId
     );
   }
 
@@ -60,7 +60,7 @@ const PublicationOperationsPage = ({ edit }) => {
             </li>
           </ul>
         </div>
-        <PublicationForm colleague={edit ? publication : null} />
+        <PublicationForm publication={edit ? publication : null} />
       </section>
     </>
   );
