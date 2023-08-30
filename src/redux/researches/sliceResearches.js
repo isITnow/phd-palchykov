@@ -29,7 +29,7 @@ const researchesSlice = createSlice({
     });
     builder.addCase(getResearchesThunk.fulfilled, (state, { payload }) => {
       state.status = "loaded";
-      state.publications = payload;
+      state.researches = payload;
     });
     builder.addCase(getResearchesThunk.rejected, setError);
     // CREATE RESEARCH
@@ -39,7 +39,7 @@ const researchesSlice = createSlice({
     });
     builder.addCase(addResearchThunk.fulfilled, (state, { payload }) => {
       state.status = "fulfilled";
-      // state.publications.unshift(payload);
+      // state.researches.unshift(payload);
     });
     builder.addCase(addResearchThunk.rejected, setError);
     // REMOVE RESEARCH
@@ -49,8 +49,8 @@ const researchesSlice = createSlice({
     });
     builder.addCase(removeResearchThunk.fulfilled, (state, { payload }) => {
       state.status = "fulfilled";
-      state.publications = state.publications.filter(
-        (publication) => publication.id !== payload
+      state.researches = state.researches.filter(
+        (research) => research.id !== payload
       );
     });
     builder.addCase(removeResearchThunk.rejected, setError);
