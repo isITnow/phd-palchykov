@@ -62,7 +62,7 @@ const PublicationForm = ({ publication }) => {
               source: "",
               cover: "",
               abstract: "",
-              authors: [],
+              authors: [""],
             }
           : publication
       }
