@@ -11,6 +11,6 @@ export default configureStore({
     news: newsReducer,
     periods: publicationPeriodsReducer,
     publications: publicationsReducer,
-    researcher: researchesReducer,
+    researches: researchesReducer,
   },
 });
