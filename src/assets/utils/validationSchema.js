@@ -21,8 +21,16 @@ const publicationSchema = yup.object().shape({
   // author: yup.string().min(5, "Too short").required("Required"),
 });
 
+const researchSchema = yup.object().shape({
+  title: yup.string().required("Required"),
+  description: yup.string().required("Required"),
+  source: yup.string().required("Required"),
+  source_url: yup.string().required("Required"),
+});
+
 export const validation = {
   newsSchema,
   colleagueSchema,
   publicationSchema,
+  researchSchema,
 };
