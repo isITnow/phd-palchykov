@@ -1,5 +1,7 @@
 import * as yup from "yup";
 
+// TODO: validate array items, attachments
+
 const newsSchema = yup.object().shape({
   title: yup.string().min(5, "Too short").required("Required"),
   body: yup.string().min(10, "Too short"),
@@ -18,14 +20,14 @@ const publicationSchema = yup.object().shape({
   title: yup.string().min(5, "Too short").required("Required"),
   source: yup.string().min(5, "Too short").required("Required"),
   source_url: yup.string().min(5, "Too short").required("Required"),
-  // author: yup.string().min(5, "Too short").required("Required"),
+  // authors: yup.string().min(5, "Too short").required("Required"),
 });
 
 const researchSchema = yup.object().shape({
   title: yup.string().required("Required"),
   description: yup.string().required("Required"),
-  source: yup.string().required("Required"),
-  source_url: yup.string().required("Required"),
+  // source: yup.string().required("Required"),
+  // source_url: yup.string().required("Required"),
 });
 
 export const validation = {
