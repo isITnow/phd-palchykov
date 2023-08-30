@@ -64,7 +64,7 @@ export const removeResearchThunk = createAsyncThunk(
       if (resp.status !== 204) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
-      return resp.data;
+      return id;
     } catch (error) {
       console.log("DELETE research error: ", error);
       return rejectWithValue(error.message);
