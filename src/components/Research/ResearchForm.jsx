@@ -1,7 +1,8 @@
 import { FieldArray, Form, Formik } from "formik";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addResearchThunk } from "../../redux/researches/operationsResearches";
+import { selectResearches } from "../../redux/researches/selectorResearches";
 
 import { validation } from "../../assets/utils/validationSchema";
 
@@ -10,13 +11,19 @@ import CustomTextArea from "../FormComponents/CustomTextArea";
 
 const ResearchForm = () => {
   const dispatch = useDispatch();
-  const handleSubmit = (values, actions) => {
-    // console.log("values: ", values);
-    const { title, description, schema, sourceList } = values;
+  const { status } = useSelector(selectResearches);
+  console.log("status: ", status);
 
-    const formData = new FormData();
-    formData.append("illustration[description]", description.trim());
-    formData.append("illustration[schema]", schema);
+  const handleSubmit = (values, actions) => {
+    const { title, illustrationList, sourceList } = values;
+
+    let illustrationsData = [];
+    illustrationList.forEach(({ schema, description }) => {
+      const formData = new FormData();
+      formData.append("illustration[description]", description.trim());
+      formData.append("illustration[schema]", schema);
+      illustrationsData.push(formData);
+    });
 
     const researchFormData = new FormData();
     const payload = {
@@ -26,16 +33,25 @@ const ResearchForm = () => {
     researchFormData.append("research[payload]", JSON.stringify(payload));
 
     dispatch(
-      addResearchThunk({ illustration: formData, research: researchFormData })
+      addResearchThunk({ illustrationsData, research: researchFormData })
     );
+
+    if (status === "fulfilled") {
+      console.log("HERE!");
+      actions.resetForm();
+    }
   };
 
   return (
     <Formik
       initialValues={{
         title: "",
-        description: "",
-        schema: "",
+        illustrationList: [
+          {
+            description: "",
+            schema: "",
+          },
+        ],
         sourceList: [
           {
             source: "",
@@ -43,7 +59,7 @@ const ResearchForm = () => {
           },
         ],
       }}
-      validationSchema={validation.researchSchema}
+      // validationSchema={validation.researchSchema}
       onSubmit={handleSubmit}
     >
       {(props) => (
@@ -54,24 +70,85 @@ const ResearchForm = () => {
             type="text"
             autoFocus
           />
-          <CustomTextArea
-            label="Description"
-            name="description"
-            type="text-area"
-            rows="5"
-          />
-          <div className="mb-3">
-            <label htmlFor="formFile" className="form-label">
-              Illustration image
-            </label>
-            <input
-              className="form-control mb-3"
-              id="formFile"
-              type="file"
-              onChange={(e) => {
-                props.setFieldValue("schema", e.target.files[0]);
+          <div>
+            <FieldArray name="illustrationList">
+              {({ push, remove, form }) => {
+                const { values } = form;
+                const { illustrationList } = values;
+                return (
+                  <div>
+                    {illustrationList && illustrationList.length > 0 ? (
+                      illustrationList.map((item, index) => (
+                        <div
+                          className="border-bottom border-3 mb-3"
+                          key={index}
+                        >
+                          <div className="text-end">
+                            <span className="px-3 badge rounded-pill text-bg-secondary">
+                              {`illustration ${index + 1}`}
+                            </span>
+                          </div>
+                          <CustomTextArea
+                            label="Description"
+                            type="text-area"
+                            rows="5"
+                            name={`illustrationList.${index}.description`}
+                          />
+                          <label htmlFor="formFile" className="form-label">
+                            Illustration image
+                          </label>
+                          <input
+                            className="form-control mb-3"
+                            id="formFile"
+                            type="file"
+                            onChange={(e) => {
+                              props.setFieldValue(
+                                `illustrationList.${index}.schema`,
+                                e.target.files[0]
+                              );
+                            }}
+                          />
+                          <div className="btn-group mb-3" role="group">
+                            <button
+                              type="button"
+                              className="btn btn-outline-primary"
+                              onClick={() => remove(index)} // remove a friend from the list
+                            >
+                              remove illustration
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btn-outline-primary"
+                              onClick={() =>
+                                push({
+                                  description: "",
+                                  schema: "",
+                                })
+                              }
+                            >
+                              add an illustration
+                            </button>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <button
+                        type="button"
+                        className="btn btn-outline-primary"
+                        onClick={() =>
+                          push({
+                            source: "",
+                            source_url: "",
+                          })
+                        }
+                      >
+                        Add an illustration
+                      </button>
+                    )}
+                  </div>
+                );
               }}
-            />
+            </FieldArray>
           </div>
           <div>
             <FieldArray name="sourceList">
@@ -79,10 +156,18 @@ const ResearchForm = () => {
                 const { values } = form;
                 const { sourceList } = values;
                 return (
-                  <div className="border-bottom border-3">
+                  <div>
                     {sourceList && sourceList.length > 0 ? (
                       sourceList.map((item, index) => (
-                        <div key={index}>
+                        <div
+                          className="border-bottom border-3 mb-3"
+                          key={index}
+                        >
+                          <div className="text-end">
+                            <span className="px-3 badge rounded-pill text-bg-secondary">
+                              {`resource ${index + 1}`}
+                            </span>
+                          </div>
                           <CustomInput
                             type="text"
                             label="Source"
@@ -136,7 +221,7 @@ const ResearchForm = () => {
             </FieldArray>
           </div>
           <button
-            // disabled={props.isSubmitting}
+            disabled={props.isSubmitting}
             type="submit"
             className="btn btn-primary mt-3"
           >

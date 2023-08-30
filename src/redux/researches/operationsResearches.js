@@ -24,24 +24,26 @@ export const getResearchesThunk = createAsyncThunk(
 export const addResearchThunk = createAsyncThunk(
   "researches/post",
 
-  async ({ illustration, research }, { rejectWithValue }) => {
+  async ({ illustrationsData, research }, { rejectWithValue }) => {
     try {
-      const researchData = await researchesAPI.postResearch(research);
+      const researchResp = await researchesAPI.postResearch(research);
 
-      if (researchData.status === 201) {
-        const id = researchData.data.id;
-        const illustrationData = await illustrationsAPI.postIllustration(
-          id,
-          illustration
-        );
-
-        if (illustrationData.status === 201) {
-          getResearchesThunk();
-        } else {
-          throw new Error(
-            "Illustration POST Error! Please contact your administrator."
+      if (researchResp.status === 201) {
+        const id = researchResp.data.id;
+        illustrationsData.forEach(async (illustration) => {
+          const illustrationResp = await illustrationsAPI.postIllustration(
+            id,
+            illustration
           );
-        }
+          if (illustrationResp.status === 201) {
+          } else {
+            throw new Error(
+              "Illustration POST Error! Please contact your administrator."
+            );
+          }
+        });
+
+        getResearchesThunk();
       } else {
         throw new Error(
           "Research POST Error! Please contact your administrator."
