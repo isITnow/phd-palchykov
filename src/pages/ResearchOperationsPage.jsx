@@ -1,11 +1,39 @@
+import { useEffect } from "react";
+
+import { useSelector } from "react-redux";
+import { selectResearches } from "../redux/researches/selectorResearches";
+
+import Alert from "../components/Alert";
+import { useAlert } from "../assets/utils/useAlert";
 import ResearchForm from "../components/Research/ResearchForm";
 
 const ResearchOperationsPage = () => {
+  const { status, error } = useSelector(selectResearches);
+  const { alert, showAlert } = useAlert();
+
+  const title = "Create research";
+
+  useEffect(() => {
+    if (status === "rejected") {
+      showAlert(`${error}. Please contact your administrator!`, "danger");
+      return;
+    }
+    if (status === "fulfilled") {
+      const text = "Research created successfully";
+      showAlert(text, "success");
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
+
   return (
-    <section className="py-4">
-      <h4>ResearchOperationsPage</h4>
-      <ResearchForm />
-    </section>
+    <>
+      {alert.visible && <Alert state={alert} />}
+      <section className="py-4">
+        <h4>{title}</h4>
+        <ResearchForm />
+      </section>
+    </>
   );
 };
 
