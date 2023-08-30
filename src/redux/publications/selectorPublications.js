@@ -1,1 +1,1 @@
-export const selectPublications = (store) => store.publications;
+export const selectPublications = (state) => state.publications;
