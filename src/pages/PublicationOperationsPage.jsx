@@ -51,7 +51,7 @@ const PublicationOperationsPage = ({ edit }) => {
         <div className="mb-3">
           <p className="mb-2 fw-bolder">required fields: </p>
           <ul className="list-group list-group-numbered">
-            <li className="list-group-item">Title</li>
+            <li className="list-group-item">Publication title</li>
             <li className="list-group-item">Source </li>
             <li className="list-group-item">Source URL</li>
             <li className="list-group-item">Author ( at least one )</li>
