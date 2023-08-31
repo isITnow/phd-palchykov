@@ -1,11 +1,10 @@
 import { Form, Formik } from "formik";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   addColleagueThunk,
   updateColleagueThunk,
 } from "../../redux/colleagues/operationsColleagues";
-import { selectColleagues } from "../../redux/colleagues/selectorColleagues";
 
 import CustomInput from "../FormComponents/CustomInput";
 
@@ -13,7 +12,6 @@ import { validation } from "../../assets/utils/validationSchema";
 
 const ColleagueForm = ({ colleague }) => {
   const dispatch = useDispatch();
-  const { status } = useSelector(selectColleagues);
 
   const isNewItem = !colleague;
 
@@ -30,20 +28,17 @@ const ColleagueForm = ({ colleague }) => {
       formData.append("colleague[photo]", photo);
     }
 
-    isNewItem
-      ? dispatch(addColleagueThunk(formData))
-      : dispatch(
-          updateColleagueThunk({ id: colleague.id, colleague: formData })
-        );
+    if (isNewItem) {
+      dispatch(addColleagueThunk(formData));
+      actions.resetForm();
+    } else {
+      dispatch(updateColleagueThunk({ id: colleague.id, colleague: formData }));
+    }
 
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-
-    // if (status === "fulfilled" && isNewItem) {
-    //   actions.resetForm();
-    // }
   };
 
   return (
@@ -76,7 +71,7 @@ const ColleagueForm = ({ colleague }) => {
             }}
           />
           <button
-            disabled={status === "pending"}
+            disabled={props.isSubmitting}
             type="submit"
             className="btn btn-primary mt-3"
           >

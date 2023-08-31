@@ -1,8 +1,7 @@
 import { FieldArray, Form, Formik } from "formik";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addResearchThunk } from "../../redux/researches/operationsResearches";
-// import { selectResearches } from "../../redux/researches/selectorResearches";
 
 import { validation } from "../../assets/utils/validationSchema";
 
@@ -12,7 +11,6 @@ import Badge from "../shared/Badge";
 
 const ResearchForm = () => {
   const dispatch = useDispatch();
-  // const { status } = useSelector(selectResearches);
 
   const handleSubmit = (values, actions) => {
     const { title, illustrationList, sourceList } = values;
@@ -41,10 +39,7 @@ const ResearchForm = () => {
       behavior: "smooth",
     });
 
-    // if (status === "fulfilled") {
-    //   console.log("HERE!");
-    //   actions.resetForm();
-    // }
+    actions.resetForm();
   };
 
   return (
@@ -112,7 +107,7 @@ const ResearchForm = () => {
                             <button
                               type="button"
                               className="btn btn-outline-primary"
-                              onClick={() => remove(index)} // remove a friend from the list
+                              onClick={() => remove(index)}
                             >
                               remove illustration
                             </button>
@@ -177,7 +172,7 @@ const ResearchForm = () => {
                             <button
                               type="button"
                               className="btn btn-outline-primary"
-                              onClick={() => remove(index)} // remove a friend from the list
+                              onClick={() => remove(index)}
                             >
                               remove source
                             </button>
@@ -189,7 +184,7 @@ const ResearchForm = () => {
                                   source: "",
                                   source_url: "",
                                 })
-                              } // insert an empty string at a position
+                              }
                             >
                               add a new source
                             </button>
