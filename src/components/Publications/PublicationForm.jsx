@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { FieldArray, Form, Formik } from "formik";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -7,10 +8,10 @@ import {
 } from "../../redux/publications/operationsPublications";
 import { selectPublications } from "../../redux/publications/selectorPublications";
 
+import Badge from "../shared/Badge";
 import CustomInput from "../FormComponents/CustomInput";
 
 import { validation } from "../../assets/utils/validationSchema";
-import { useParams } from "react-router-dom";
 
 const PublicationForm = ({ publication }) => {
   const dispatch = useDispatch();
@@ -113,6 +114,9 @@ const PublicationForm = ({ publication }) => {
                     {authors && authors.length > 0 ? (
                       authors.map((author, index) => (
                         <div key={index}>
+                          {authors.length > 1 && (
+                            <Badge index={index} text={"author"} />
+                          )}
                           <CustomInput
                             type="text"
                             label="Author"

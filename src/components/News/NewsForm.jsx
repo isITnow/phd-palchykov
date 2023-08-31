@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNewsThunk, updateNewsThunk } from "../../redux/news/operationsNews";
 import { selectNews } from "../../redux/news/selectorNews";
 
+import Badge from "../shared/Badge";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
 
@@ -83,6 +84,9 @@ const NewsForm = ({ newsItem }) => {
                     {links && links.length > 0 ? (
                       links.map((link, index) => (
                         <div key={index}>
+                          {links.length > 1 && (
+                            <Badge index={index} text={"link"} />
+                          )}
                           <CustomInput
                             type="text"
                             label="Link"

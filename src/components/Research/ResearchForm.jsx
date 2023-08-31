@@ -8,6 +8,7 @@ import { validation } from "../../assets/utils/validationSchema";
 
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
+import Badge from "../shared/Badge";
 
 const ResearchForm = () => {
   const dispatch = useDispatch();
@@ -72,22 +73,17 @@ const ResearchForm = () => {
           />
           <div>
             <FieldArray name="illustrationList">
-              {({ push, remove, form }) => {
+              {({ push, remove, insert, form }) => {
                 const { values } = form;
                 const { illustrationList } = values;
                 return (
                   <div>
                     {illustrationList && illustrationList.length > 0 ? (
                       illustrationList.map((item, index) => (
-                        <div
-                          className="border-bottom border-3 mb-3"
-                          key={index}
-                        >
-                          <div className="text-end">
-                            <span className="px-3 badge rounded-pill text-bg-secondary">
-                              {`illustration ${index + 1}`}
-                            </span>
-                          </div>
+                        <div className="" key={index}>
+                          {illustrationList.length > 1 && (
+                            <Badge index={index} text={"illustration"} />
+                          )}
                           <CustomTextArea
                             label="Description"
                             type="text-area"
@@ -120,7 +116,7 @@ const ResearchForm = () => {
                               type="button"
                               className="btn btn-outline-primary"
                               onClick={() =>
-                                push({
+                                insert(index, {
                                   description: "",
                                   schema: "",
                                 })
@@ -159,15 +155,10 @@ const ResearchForm = () => {
                   <div>
                     {sourceList && sourceList.length > 0 ? (
                       sourceList.map((item, index) => (
-                        <div
-                          className="border-bottom border-3 mb-3"
-                          key={index}
-                        >
-                          <div className="text-end">
-                            <span className="px-3 badge rounded-pill text-bg-secondary">
-                              {`resource ${index + 1}`}
-                            </span>
-                          </div>
+                        <div className="" key={index}>
+                          {sourceList.length > 1 && (
+                            <Badge index={index} text={"resource"} />
+                          )}
                           <CustomInput
                             type="text"
                             label="Source"
