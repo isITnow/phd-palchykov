@@ -1,20 +1,19 @@
+import { useParams } from "react-router-dom";
 import { FieldArray, Form, Formik } from "formik";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   addPublicationThunk,
   updatePublicationThunk,
 } from "../../redux/publications/operationsPublications";
-import { selectPublications } from "../../redux/publications/selectorPublications";
 
+import Badge from "../shared/Badge";
 import CustomInput from "../FormComponents/CustomInput";
 
 import { validation } from "../../assets/utils/validationSchema";
-import { useParams } from "react-router-dom";
 
 const PublicationForm = ({ publication }) => {
   const dispatch = useDispatch();
-  const { status } = useSelector(selectPublications);
   const { period_id } = useParams();
   const isNewItem = !publication;
 
@@ -26,8 +25,8 @@ const PublicationForm = ({ publication }) => {
     formData.append("publication[source]", source.trim());
     formData.append("publication[source_url]", source_url.trim());
     if (authors.length) {
-      authors.forEach((element) => {
-        formData.append("publication[authors][]", element.trim());
+      authors.forEach((item) => {
+        formData.append("publication[authors][]", item.trim());
       });
     }
     if (cover) {
@@ -37,19 +36,23 @@ const PublicationForm = ({ publication }) => {
       formData.append("publication[abstract]", abstract);
     }
 
-    isNewItem
-      ? dispatch(addPublicationThunk({ period_id, publication: formData }))
-      : dispatch(
-          updatePublicationThunk({
-            period_id,
-            publication_id: publication.id,
-            publication: formData,
-          })
-        );
-
-    if (status === "fulfilled" && isNewItem) {
+    if (isNewItem) {
+      dispatch(addPublicationThunk({ period_id, publication: formData }));
       actions.resetForm();
+    } else {
+      dispatch(
+        updatePublicationThunk({
+          period_id,
+          publication_id: publication.id,
+          publication: formData,
+        })
+      );
     }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -62,7 +65,7 @@ const PublicationForm = ({ publication }) => {
               source: "",
               cover: "",
               abstract: "",
-              authors: [],
+              authors: [""],
             }
           : publication
       }
@@ -113,6 +116,9 @@ const PublicationForm = ({ publication }) => {
                     {authors && authors.length > 0 ? (
                       authors.map((author, index) => (
                         <div key={index}>
+                          {authors.length > 1 && (
+                            <Badge index={index} text={"author"} />
+                          )}
                           <CustomInput
                             type="text"
                             label="Author"

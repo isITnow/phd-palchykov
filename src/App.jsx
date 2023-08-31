@@ -2,9 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 import Layout from "./components/Layout";
 
-const NewsPage = lazy(() => import("./pages/NewsPage"));
-const NewsOperationsPage = lazy(() => import("./pages/NewsOperationsPage"));
-
 const ColleaguesPage = lazy(() => import("./pages/ColleaguesPage"));
 const ColleagueOperationsPage = lazy(() =>
   import("./pages/ColleagueOperationsPage")
@@ -13,15 +10,22 @@ const ColleagueOperationsPage = lazy(() =>
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const GalleryByThemePage = lazy(() => import("./pages/GalleryByThemePage"));
 
+const NewsPage = lazy(() => import("./pages/NewsPage"));
+const NewsOperationsPage = lazy(() => import("./pages/NewsOperationsPage"));
+
 const PublicationsPage = lazy(() => import("./pages/PublicationsPage"));
 const PublicationOperationsPage = lazy(() =>
   import("./pages/PublicationOperationsPage")
 );
 
+const ResearchPage = lazy(() => import("./pages/ResearchPage"));
+const ResearchOperationsPage = lazy(() =>
+  import("./pages/ResearchOperationsPage")
+);
+
 const ContactsPage = lazy(() => import("./pages/ContactsPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
-const ResearchPage = lazy(() => import("./pages/ResearchPage"));
 
 const App = () => {
   return (
@@ -41,6 +45,7 @@ const App = () => {
           element={<PublicationOperationsPage edit />}
         />
         <Route path="research" element={<ResearchPage />} />
+        <Route path="research/new" element={<ResearchOperationsPage />} />
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="gallery/:theme" element={<GalleryByThemePage />} />
         <Route path="news" element={<NewsPage />} />

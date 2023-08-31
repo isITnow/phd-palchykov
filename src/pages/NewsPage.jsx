@@ -36,7 +36,7 @@ const NewsPage = () => {
 
   return (
     <>
-      {error && <Alert state={alert} />}
+      {alert.visible && <Alert state={alert} />}
       <section className="py-4">
         <NewsList news={news} />
         <div className="mt-3">

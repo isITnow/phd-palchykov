@@ -1,9 +1,9 @@
 import { FieldArray, Form, Formik } from "formik";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addNewsThunk, updateNewsThunk } from "../../redux/news/operationsNews";
-import { selectNews } from "../../redux/news/selectorNews";
 
+import Badge from "../shared/Badge";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
 
@@ -11,7 +11,6 @@ import { validation } from "../../assets/utils/validationSchema";
 
 const NewsForm = ({ newsItem }) => {
   const dispatch = useDispatch();
-  const { status } = useSelector(selectNews);
   const isNewItem = !newsItem;
 
   const handleSubmit = async (values, actions) => {
@@ -30,13 +29,17 @@ const NewsForm = ({ newsItem }) => {
       formData.append("news[image]", image);
     }
 
-    isNewItem
-      ? dispatch(addNewsThunk(formData))
-      : dispatch(updateNewsThunk({ id: newsItem.id, news: formData }));
-
-    if (status === "fulfilled" && isNewItem) {
+    if (isNewItem) {
+      dispatch(addNewsThunk(formData));
       actions.resetForm();
+    } else {
+      dispatch(updateNewsThunk({ id: newsItem.id, news: formData }));
     }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -83,6 +86,9 @@ const NewsForm = ({ newsItem }) => {
                     {links && links.length > 0 ? (
                       links.map((link, index) => (
                         <div key={index}>
+                          {links.length > 1 && (
+                            <Badge index={index} text={"link"} />
+                          )}
                           <CustomInput
                             type="text"
                             label="Link"
