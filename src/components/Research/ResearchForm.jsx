@@ -2,7 +2,7 @@ import { FieldArray, Form, Formik } from "formik";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addResearchThunk } from "../../redux/researches/operationsResearches";
-import { selectResearches } from "../../redux/researches/selectorResearches";
+// import { selectResearches } from "../../redux/researches/selectorResearches";
 
 import { validation } from "../../assets/utils/validationSchema";
 
@@ -12,8 +12,7 @@ import Badge from "../shared/Badge";
 
 const ResearchForm = () => {
   const dispatch = useDispatch();
-  const { status } = useSelector(selectResearches);
-  console.log("status: ", status);
+  // const { status } = useSelector(selectResearches);
 
   const handleSubmit = (values, actions) => {
     const { title, illustrationList, sourceList } = values;
@@ -65,7 +64,7 @@ const ResearchForm = () => {
           },
         ],
       }}
-      // validationSchema={validation.researchSchema}
+      validationSchema={validation.researchSchema}
       onSubmit={handleSubmit}
     >
       {(props) => (
