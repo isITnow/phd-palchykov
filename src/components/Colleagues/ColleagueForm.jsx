@@ -1,5 +1,4 @@
 import { Form, Formik } from "formik";
-// import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,7 +16,6 @@ const ColleagueForm = ({ colleague }) => {
   const { status } = useSelector(selectColleagues);
 
   const isNewItem = !colleague;
-  // const navigate = useNavigate();
 
   const handleSubmit = async (values, actions) => {
     const { name, position, phone, email, photo } = values;
@@ -38,9 +36,14 @@ const ColleagueForm = ({ colleague }) => {
           updateColleagueThunk({ id: colleague.id, colleague: formData })
         );
 
-    if (status === "fulfilled" && isNewItem) {
-      actions.resetForm();
-    }
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    // if (status === "fulfilled" && isNewItem) {
+    //   actions.resetForm();
+    // }
   };
 
   return (

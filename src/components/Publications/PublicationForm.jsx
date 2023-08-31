@@ -48,9 +48,14 @@ const PublicationForm = ({ publication }) => {
           })
         );
 
-    if (status === "fulfilled" && isNewItem) {
-      actions.resetForm();
-    }
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    // if (status === "fulfilled" && isNewItem) {
+    //   actions.resetForm();
+    // }
   };
 
   return (

@@ -37,10 +37,15 @@ const ResearchForm = () => {
       addResearchThunk({ illustrationsData, research: researchFormData })
     );
 
-    if (status === "fulfilled") {
-      console.log("HERE!");
-      actions.resetForm();
-    }
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    // if (status === "fulfilled") {
+    //   console.log("HERE!");
+    //   actions.resetForm();
+    // }
   };
 
   return (

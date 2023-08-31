@@ -35,9 +35,14 @@ const NewsForm = ({ newsItem }) => {
       ? dispatch(addNewsThunk(formData))
       : dispatch(updateNewsThunk({ id: newsItem.id, news: formData }));
 
-    if (status === "fulfilled" && isNewItem) {
-      actions.resetForm();
-    }
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    // if (status === "fulfilled" && isNewItem) {
+    //   actions.resetForm();
+    // }
   };
 
   return (
