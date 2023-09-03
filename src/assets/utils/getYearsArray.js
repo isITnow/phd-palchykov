@@ -1,7 +1,14 @@
-const getYearsArray = (start, end) => {
+const getYearsArray = (period) => {
+  const [start, end] = period.title.split("-");
+
+  let till = end;
+
+  if (end === "present") {
+    till = 2023;
+  }
   let years = [];
   let i = start;
-  while (end >= i) {
+  while (till >= i) {
     years.push(i.toString());
     i++;
   }
