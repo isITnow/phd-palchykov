@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { selectPublications } from "../redux/publications/selectorPublications";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
 
+import getCurrentPeriod from "../assets/utils/getCurrentPeriod";
+
 import PublicationForm from "../components/Publications/PublicationForm";
 import Alert from "../components/Alert";
 import { useAlert } from "../assets/utils/useAlert";
@@ -15,7 +17,7 @@ const PublicationOperationsPage = ({ edit }) => {
   const { alert, showAlert } = useAlert();
   const { period_id } = useParams();
   const currentPeriodId = parseInt(period_id);
-  const currentPeriod = periods.find((period) => period.id === currentPeriodId);
+  const currentPeriod = getCurrentPeriod(periods, currentPeriodId);
 
   const title = edit
     ? `Edit publication [period: ${currentPeriod.title}]`
