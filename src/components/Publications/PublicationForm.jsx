@@ -10,11 +10,11 @@ import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicatio
 
 import Badge from "../shared/Badge";
 import CustomInput from "../FormComponents/CustomInput";
+import CustomSelect from "../FormComponents/CustomSelect";
 
 import { validation } from "../../assets/utils/validationSchema";
 import getCurrentPeriod from "../../assets/utils/getCurrentPeriod";
 import getYearsArray from "../../assets/utils/getYearsArray";
-import CustomSelect from "../FormComponents/CustomSelect";
 
 const PublicationForm = ({ publication }) => {
   const dispatch = useDispatch();
@@ -22,56 +22,49 @@ const PublicationForm = ({ publication }) => {
   const currentPeriodId = parseInt(period_id);
   const { periods } = useSelector(selectPeriods);
   const currentPeriod = getCurrentPeriod(periods, currentPeriodId);
-  const [start, end] = currentPeriod.title.split("-");
-
-  let till = end;
-
-  if (end === "present") {
-    till = 2023;
-  }
-
-  const years = getYearsArray(parseInt(start), parseInt(till));
+  const periodYears = getYearsArray(currentPeriod);
 
   const isNewItem = !publication;
 
   const handleSubmit = async (values, actions) => {
     const { title, year, source_url, source, cover, abstract, authors } =
       values;
-    console.log("values: ", values);
 
-    // const formData = new FormData();
-    // formData.append("publication[title]", title.trim());
-    // formData.append("publication[source]", source.trim());
-    // formData.append("publication[source_url]", source_url.trim());
-    // if (authors.length) {
-    //   authors.forEach((item) => {
-    //     formData.append("publication[authors][]", item.trim());
-    //   });
-    // }
-    // if (cover) {
-    //   formData.append("publication[cover]", cover);
-    // }
-    // if (abstract) {
-    //   formData.append("publication[abstract]", abstract);
-    // }
+    const formData = new FormData();
+    formData.append("publication[title]", title.trim());
+    formData.append("publication[year]", year);
+    formData.append("publication[title]", title.trim());
+    formData.append("publication[source]", source.trim());
+    formData.append("publication[source_url]", source_url.trim());
+    if (authors.length) {
+      authors.forEach((item) => {
+        formData.append("publication[authors][]", item.trim());
+      });
+    }
+    if (cover) {
+      formData.append("publication[cover]", cover);
+    }
+    if (abstract) {
+      formData.append("publication[abstract]", abstract);
+    }
 
-    // if (isNewItem) {
-    //   dispatch(addPublicationThunk({ period_id, publication: formData }));
-    //   actions.resetForm();
-    // } else {
-    //   dispatch(
-    //     updatePublicationThunk({
-    //       period_id,
-    //       publication_id: publication.id,
-    //       publication: formData,
-    //     })
-    //   );
-    // }
+    if (isNewItem) {
+      dispatch(addPublicationThunk({ period_id, publication: formData }));
+      actions.resetForm();
+    } else {
+      dispatch(
+        updatePublicationThunk({
+          period_id,
+          publication_id: publication.id,
+          publication: formData,
+        })
+      );
+    }
 
-    // window.scrollTo({
-    //   top: 0,
-    //   behavior: "smooth",
-    // });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -94,7 +87,11 @@ const PublicationForm = ({ publication }) => {
     >
       {(props) => (
         <Form>
-          <CustomSelect label="Select an year" name="year" years={years} />
+          <CustomSelect
+            label="Publication year"
+            name="year"
+            years={periodYears}
+          />
           <CustomInput
             label="Publication title"
             name="title"
@@ -104,7 +101,10 @@ const PublicationForm = ({ publication }) => {
           <CustomInput label="Source" name="source" type="text" />
           <CustomInput label="Source URL" name="source_url" type="text" />
           <div className="w-50 mb-3">
-            <label htmlFor="formFile" className="form-label">
+            <label
+              htmlFor="formFile"
+              className="form-label px-3 text-secondary fw-bold"
+            >
               Cover image
             </label>
             <input
@@ -115,7 +115,10 @@ const PublicationForm = ({ publication }) => {
                 props.setFieldValue("cover", e.target.files[0]);
               }}
             />
-            <label htmlFor="formFile" className="form-label">
+            <label
+              htmlFor="formFile"
+              className="form-label px-3 text-secondary fw-bold"
+            >
               Abstract
             </label>
             <input
