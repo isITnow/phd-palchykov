@@ -8,8 +8,16 @@ import { selectPublications } from "../../redux/publications/selectorPublication
 import s from "./publication.module.css";
 
 const Publication = ({ publication }) => {
-  const { id, title, authors, source, source_url, cover_url, abstract_url } =
-    publication;
+  const {
+    id,
+    title,
+    year,
+    authors,
+    source,
+    source_url,
+    cover_url,
+    abstract_url,
+  } = publication;
   const { period_id } = useParams();
   const { status } = useSelector(selectPublications);
   const btnDisabled = status === "pending";
@@ -24,10 +32,7 @@ const Publication = ({ publication }) => {
     <div className={`card h-100 ${s.hoverEffect}`}>
       <div className="card-body d-flex flex-column justify-content-between">
         <div>
-          <div className="d-flex">
-            <span className="me-2 text-secondary fs-5 lh-sm">{id}.</span>
-            <h5 className="card-title text-danger">{title}</h5>
-          </div>
+          <h5 className="card-title text-danger">{title}</h5>
           {cover_url && abstract_url ? (
             <div className="row row-cols-2 mt-2">
               <div className="col">
@@ -60,7 +65,8 @@ const Publication = ({ publication }) => {
             />
           </div>
         </div>
-        <div className="text-end mt-3">
+        <div className="d-flex justify-content-between align-items-end mt-3">
+          <span className="fst-italic text-secondary">{year}</span>
           <div className="btn-group">
             <Link
               className="btn btn-sm btn-primary"
