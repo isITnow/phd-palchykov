@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeResearchThunk } from "../../redux/researches/operationsResearches";
 import { selectResearches } from "../../redux/researches/selectorResearches";
 
-const Research = ({ research }) => {
+const Research = ({ research, index }) => {
   const { id, title, illustrations, sourceList } = research;
   const { status } = useSelector(selectResearches);
   const dispatch = useDispatch();
@@ -14,9 +14,9 @@ const Research = ({ research }) => {
   };
 
   return (
-    <div id={id}>
+    <div id={index}>
       <div className="d-flex mb-2 justify-content-center">
-        <span className="me-2 text-secondary fs-5 lh-sm">{id}.</span>
+        <span className="me-2 text-secondary fs-5 lh-sm">{index}.</span>
         <h5 className="card-title text-danger">{title}</h5>
       </div>
       {illustrations.map(({ id, schema_url, description }) => (

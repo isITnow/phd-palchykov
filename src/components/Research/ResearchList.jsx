@@ -10,8 +10,8 @@ const ResearchList = ({ researches }) => {
     });
   }
 
-  const handleClickScroll = (id) => {
-    const element = document.getElementById(id);
+  const handleClickScroll = (index) => {
+    const element = document.getElementById(index);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -21,21 +21,21 @@ const ResearchList = ({ researches }) => {
     return (
       <>
         <ul>
-          {researchList.map(({ id, title }) => (
+          {researchList.map(({ id, title }, index) => (
             <li
               className={`text-secondary ${s.hoverEffect}`}
               key={id}
-              onClick={() => handleClickScroll(id)}
+              onClick={() => handleClickScroll(index + 1)}
             >{`# ${title}`}</li>
           ))}
         </ul>
         <ul>
-          {researchList.map((research) => (
+          {researchList.map((research, index) => (
             <li
               className="mb-5 border-2 border-bottom border-danger pb-3"
               key={research.id}
             >
-              <Research research={research} />
+              <Research research={research} index={index + 1} />
             </li>
           ))}
         </ul>
