@@ -8,7 +8,7 @@ const initStateAuth = {
   isLoggedIn: false,
 };
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: "auth",
   initialState: initStateAuth,
   extraReducers: {
@@ -35,3 +35,5 @@ export const authSlice = createSlice({
     },
   },
 });
+
+export default authSlice.reducer;
