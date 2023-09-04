@@ -22,6 +22,7 @@ import authReducer from "./auth/sliceAuth";
 const persistConfig = {
   key: "root",
   storage,
+  whitelist: ["periods", "user"],
 };
 
 const rootReducer = combineReducers({
@@ -45,4 +46,4 @@ export const store = configureStore({
     }),
 });
 
-export const persistor = persistStore(store);
+export const persister = persistStore(store);
