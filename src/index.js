@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { Provider } from "react-redux";
-import { store, persistor } from "./redux/store";
+import { store, persister } from "./redux/store";
 
 import App from "./App";
 import Loader from "./components/Loader";
@@ -16,7 +16,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <PersistGate loading={<Loader />} persistor={persistor}>
+    <PersistGate loading={<Loader />} persistor={persister}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
