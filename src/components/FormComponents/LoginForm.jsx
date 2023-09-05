@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/auth/operationsAuth";
 
 import CustomInput from "../FormComponents/CustomInput";
+import { validation } from "../../assets/utils/validationSchema";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -22,10 +23,10 @@ const LoginForm = () => {
   return (
     <Formik
       initialValues={{
-        email: "rom@example.com",
-        password: "password",
+        email: "",
+        password: "",
       }}
-      // validationSchema={}
+      validationSchema={validation.loginSchema}
       onSubmit={handleSubmit}
     >
       {(props) => (
