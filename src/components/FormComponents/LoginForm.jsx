@@ -11,13 +11,13 @@ const LoginForm = () => {
 
   const handleSubmit = async (values, actions) => {
     const { email, password } = values;
-    console.log("values: ", values);
 
     const formData = new FormData();
     formData.append("email", email.trim());
     formData.append("password", password.trim());
 
     dispatch(loginThunk(formData));
+    actions.resetForm();
   };
 
   return (
