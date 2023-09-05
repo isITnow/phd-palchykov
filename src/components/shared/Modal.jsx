@@ -10,9 +10,12 @@ const Modal = ({ children }) => {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    if (error) {
-      showAlert(`${error}. Please contact your administrator!`, "danger");
+    const isWrongCredentials = error?.includes("400");
+    if (isWrongCredentials) {
+      showAlert("Email or password is incorrect!", "danger");
       return;
+    } else {
+      showAlert(`${error}. Please contact your administrator!`, "danger");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
@@ -38,8 +41,10 @@ const Modal = ({ children }) => {
               aria-label="Close"
             ></button>
           </div>
-          {alert.visible && <Alert state={alert} />}
-          <div className="modal-body text-start">{children}</div>
+          <div className="modal-body text-start">
+            {alert.visible && <Alert state={alert} />}
+            {children}
+          </div>
         </div>
       </div>
     </div>
