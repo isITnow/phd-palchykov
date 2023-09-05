@@ -15,22 +15,27 @@ import { token } from "../../services/http";
 //   }
 // );
 
-export const loginThunk = createAsyncThunk("auth/login", async (loginData) => {
-  try {
-    const resp = await authAPI.loginUser(loginData);
+export const loginThunk = createAsyncThunk(
+  "auth/login",
 
-    // TODO: implement error handling
+  async (loginData, { rejectWithValue }) => {
+    try {
+      const resp = await authAPI.loginUser(loginData);
 
-    // if (resp.status !== 200) {
-    //   throw new Error(resp.message);
-    // }
+      // TODO: implement error handling
+      // if (resp.status === 400) {
+      //   // throw new Error("Error occurred! Please contact your administrator.");
+      //   console.log("If Error ");
+      // }
 
-    token.set(resp.token);
-    return resp;
-  } catch (error) {
-    console.log(error.message);
+      token.set(resp.token);
+      return resp;
+    } catch (error) {
+      console.log("Sign In error: ", error);
+      return rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const logoutThunk = createAsyncThunk("auth/logout", async () => {
   try {
