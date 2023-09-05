@@ -10,12 +10,12 @@ const Modal = ({ children }) => {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    const isWrongCredentials = error?.includes("400");
-    if (isWrongCredentials) {
+    if (error) {
+      error?.includes("400")
+        ? showAlert("Email or password is incorrect!", "danger")
+        : showAlert(`${error}. Please contact your administrator!`, "danger");
       showAlert("Email or password is incorrect!", "danger");
       return;
-    } else {
-      showAlert(`${error}. Please contact your administrator!`, "danger");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
