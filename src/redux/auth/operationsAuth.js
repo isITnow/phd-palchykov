@@ -17,9 +17,16 @@ import { token } from "../../services/http";
 
 export const loginThunk = createAsyncThunk("auth/login", async (loginData) => {
   try {
-    const data = await authAPI.loginUser(loginData);
-    token.set(data.token);
-    return data;
+    const resp = await authAPI.loginUser(loginData);
+
+    // TODO: implement error handling
+
+    // if (resp.status !== 200) {
+    //   throw new Error(resp.message);
+    // }
+
+    token.set(resp.token);
+    return resp;
   } catch (error) {
     console.log(error.message);
   }
