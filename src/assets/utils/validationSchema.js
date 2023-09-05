@@ -14,7 +14,7 @@ const colleagueSchema = yup.object().shape({
   position: yup.string().min(5, "Too short").required("Required"),
   phone: yup.string(),
   email: yup.string(),
-  photo: yup.mixed().required("File is required"),
+  // photo: yup.mixed().required("File is required"),
 });
 
 const publicationSchema = yup.object().shape({
@@ -38,7 +38,7 @@ const researchSchema = yup.object().shape({
   illustrationList: yup.array().of(
     yup.object().shape({
       description: yup.string().min(5, "Too short").required("Required"),
-      schema: yup.mixed().required("File is required"),
+      // schema: yup.mixed().required("File is required"),
     })
   ),
 });
