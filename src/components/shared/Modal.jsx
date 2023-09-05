@@ -1,4 +1,22 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectError } from "../../redux/auth/selectorAuth";
+
+import Alert from "../../components/shared/Alert";
+import { useAlert } from "../../assets/utils/useAlert";
+
 const Modal = ({ children }) => {
+  const { alert, showAlert } = useAlert();
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    if (error) {
+      showAlert(`${error}. Please contact your administrator!`, "danger");
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
+
   return (
     <div
       className="modal fade"
@@ -20,6 +38,7 @@ const Modal = ({ children }) => {
               aria-label="Close"
             ></button>
           </div>
+          {alert.visible && <Alert state={alert} />}
           <div className="modal-body text-start">{children}</div>
         </div>
       </div>
