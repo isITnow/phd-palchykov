@@ -1,13 +1,15 @@
-import { api } from "./http";
+import { privateAPI, publicAPI } from "./http";
 
 const fetchPublications = async (period_id) => {
-  const data = await api.get(`/publication_periods/${period_id}/publications`);
+  const data = await publicAPI.get(
+    `/publication_periods/${period_id}/publications`
+  );
 
   return data;
 };
 
 const postPublication = async (period_id, body) => {
-  const data = await api.post(
+  const data = await privateAPI.post(
     `/publication_periods/${period_id}/publications`,
     body
   );
@@ -16,7 +18,7 @@ const postPublication = async (period_id, body) => {
 };
 
 const deletePublication = async (period_id, publication_id) => {
-  const data = await api.delete(
+  const data = await privateAPI.delete(
     `/publication_periods/${period_id}/publications/${publication_id}`
   );
 
@@ -24,7 +26,7 @@ const deletePublication = async (period_id, publication_id) => {
 };
 
 const editPublication = async (period_id, publication_id, body) => {
-  const data = await api.patch(
+  const data = await privateAPI.patch(
     `/publication_periods/${period_id}/publications/${publication_id}`,
     body
   );
