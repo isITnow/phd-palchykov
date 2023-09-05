@@ -27,25 +27,21 @@ const ResearchOperationsPage = () => {
   }, [status]);
 
   return (
-    <>
+    <section className="py-4">
       {alert.visible && <Alert state={alert} />}
-      <section className="py-4">
-        <h4>{title}</h4>
-        <div className="mb-3">
-          <p className="mb-2 fw-bolder">required fields: </p>
-          <ul className="list-group list-group-numbered">
-            <li className="list-group-item">Research title</li>
-            <li className="list-group-item">Description</li>
-            <li className="list-group-item">
-              Attachment ( illustration image )
-            </li>
-            <li className="list-group-item">Source </li>
-            <li className="list-group-item">Source URL</li>
-          </ul>
-        </div>
-        <ResearchForm />
-      </section>
-    </>
+      <h4>{title}</h4>
+      <div className="mb-3">
+        <p className="mb-2 fw-bolder">required fields: </p>
+        <ul className="list-group list-group-numbered">
+          <li className="list-group-item">Research title</li>
+          <li className="list-group-item">Description</li>
+          <li className="list-group-item">Attachment ( illustration image )</li>
+          <li className="list-group-item">Source </li>
+          <li className="list-group-item">Source URL</li>
+        </ul>
+      </div>
+      <ResearchForm />
+    </section>
   );
 };
 

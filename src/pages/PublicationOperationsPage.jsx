@@ -46,26 +46,24 @@ const PublicationOperationsPage = ({ edit }) => {
   }, [status]);
 
   return (
-    <>
+    <section className="py-4">
       {alert.visible && <Alert state={alert} />}
-      <section className="py-4">
-        <h4>{title}</h4>
-        <div className="mb-3">
-          <p className="mb-2 fw-bolder">required fields: </p>
-          <ul className="list-group list-group-numbered">
-            <li className="list-group-item">Publication year</li>
-            <li className="list-group-item">Publication title</li>
-            <li className="list-group-item">Source </li>
-            <li className="list-group-item">Source URL</li>
-            <li className="list-group-item">Author ( at least one )</li>
-            <li className="list-group-item">
-              Attachment ( required at least one, cover or abstract )
-            </li>
-          </ul>
-        </div>
-        <PublicationForm publication={edit ? publication : null} />
-      </section>
-    </>
+      <h4>{title}</h4>
+      <div className="mb-3">
+        <p className="mb-2 fw-bolder">required fields: </p>
+        <ul className="list-group list-group-numbered">
+          <li className="list-group-item">Publication year</li>
+          <li className="list-group-item">Publication title</li>
+          <li className="list-group-item">Source </li>
+          <li className="list-group-item">Source URL</li>
+          <li className="list-group-item">Author ( at least one )</li>
+          <li className="list-group-item">
+            Attachment ( required at least one, cover or abstract )
+          </li>
+        </ul>
+      </div>
+      <PublicationForm publication={edit ? publication : null} />
+    </section>
   );
 };
 

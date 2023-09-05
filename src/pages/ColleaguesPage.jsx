@@ -43,19 +43,17 @@ const ColleaguesPage = () => {
   }
 
   return (
-    <>
+    <section className="py-4">
       {alert.visible && <Alert state={alert} />}
-      <section className="py-4">
-        <ColleaguesList colleagues={colleagues} />
-        {isLoggedIn && (
-          <div className="mt-3">
-            <Link className="btn btn-primary" to={"/colleagues/new"}>
-              new colleague
-            </Link>
-          </div>
-        )}
-      </section>
-    </>
+      <ColleaguesList colleagues={colleagues} />
+      {isLoggedIn && (
+        <div className="mt-3">
+          <Link className="btn btn-primary" to={"/colleagues/new"}>
+            new colleague
+          </Link>
+        </div>
+      )}
+    </section>
   );
 };
 

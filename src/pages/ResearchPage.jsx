@@ -38,19 +38,17 @@ const ResearchPage = () => {
   }
 
   return (
-    <>
+    <section className="py-4">
       {alert.visible && <Alert state={alert} />}
-      <section className="py-4">
-        <ResearchList researches={researches} />
-        {isLoggedIn && (
-          <div className="">
-            <Link className="btn btn-primary" to={"/research/new"}>
-              new research
-            </Link>
-          </div>
-        )}
-      </section>
-    </>
+      <ResearchList researches={researches} />
+      {isLoggedIn && (
+        <div className="">
+          <Link className="btn btn-primary" to={"/research/new"}>
+            new research
+          </Link>
+        </div>
+      )}
+    </section>
   );
 };
 

@@ -46,32 +46,30 @@ const PublicationsPage = () => {
   }
 
   return (
-    <>
+    <section className="py-4">
       {alert.visible && <Alert state={alert} />}
-      <section className="py-4">
-        <PagesNav
-          margin={"mb-3"}
-          periods={periods}
-          currentPeriodId={parseInt(period_id)}
-        />
-        <PublicationsList publications={publications} />
-        <div className="d-flex justify-content-between mt-3">
-          {isLoggedIn && (
-            <div>
-              <Link
-                className="btn btn-primary"
-                to={`/periods/${period_id}/publications/new`}
-              >
-                new publication
-              </Link>
-            </div>
-          )}
-          {publications.length > 4 && (
-            <PagesNav periods={periods} currentPeriodId={parseInt(period_id)} />
-          )}
-        </div>
-      </section>
-    </>
+      <PagesNav
+        margin={"mb-3"}
+        periods={periods}
+        currentPeriodId={parseInt(period_id)}
+      />
+      <PublicationsList publications={publications} />
+      <div className="d-flex justify-content-between mt-3">
+        {isLoggedIn && (
+          <div>
+            <Link
+              className="btn btn-primary"
+              to={`/periods/${period_id}/publications/new`}
+            >
+              new publication
+            </Link>
+          </div>
+        )}
+        {publications.length > 4 && (
+          <PagesNav periods={periods} currentPeriodId={parseInt(period_id)} />
+        )}
+      </div>
+    </section>
   );
 };
 

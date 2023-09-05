@@ -38,19 +38,17 @@ const NewsPage = () => {
   }
 
   return (
-    <>
+    <section className="py-4">
       {alert.visible && <Alert state={alert} />}
-      <section className="py-4">
-        <NewsList news={news} />
-        {isLoggedIn && (
-          <div className="mt-3">
-            <Link className="btn btn-primary" to={"/news/new"}>
-              new news
-            </Link>
-          </div>
-        )}
-      </section>
-    </>
+      <NewsList news={news} />
+      {isLoggedIn && (
+        <div className="mt-3">
+          <Link className="btn btn-primary" to={"/news/new"}>
+            new news
+          </Link>
+        </div>
+      )}
+    </section>
   );
 };
 
