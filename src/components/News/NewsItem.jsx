@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeNewsThunk } from "../../redux/news/operationsNews";
 import { selectNews } from "../../redux/news/selectorNews";
 
+import useSignInStatus from "../../assets/utils/useSignInStatus";
+
 const NewsItem = ({ news }) => {
   const { id, title, body, image_url, date, links } = news;
+  const isLoggedIn = useSignInStatus();
   const { status } = useSelector(selectNews);
   const btnDisabled = status === "pending";
   const dispatch = useDispatch();
@@ -51,23 +54,25 @@ const NewsItem = ({ news }) => {
       <div className="card-footer text-body-secondary">
         <div className="d-flex justify-content-between">
           {date}
-          <div className="btn-group">
-            <Link
-              className="btn btn-sm btn-primary"
-              to={`/news/${id}/edit`}
-              state={news}
-            >
-              edit
-            </Link>
-            <button
-              disabled={btnDisabled}
-              type="button"
-              className="btn btn-sm btn-danger"
-              onClick={() => handleClick()}
-            >
-              delete
-            </button>
-          </div>
+          {isLoggedIn && (
+            <div className="btn-group">
+              <Link
+                className="btn btn-sm btn-primary"
+                to={`/news/${id}/edit`}
+                state={news}
+              >
+                edit
+              </Link>
+              <button
+                disabled={btnDisabled}
+                type="button"
+                className="btn btn-sm btn-danger"
+                onClick={() => handleClick()}
+              >
+                delete
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

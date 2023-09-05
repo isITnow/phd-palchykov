@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectResearches } from "../redux/researches/selectorResearches";
 
-import Alert from "../components/Alert";
+import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 import ResearchForm from "../components/Research/ResearchForm";
 

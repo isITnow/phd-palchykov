@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeColleagueThunk } from "../../redux/colleagues/operationsColleagues";
 import { selectColleagues } from "../../redux/colleagues/selectorColleagues";
 
+import useSignInStatus from "../../assets/utils/useSignInStatus";
+
 import s from "./colleague.module.css";
 
 const Colleague = ({ colleague }) => {
   const { id, name, position, photo_url, phone, email } = colleague;
   const { status } = useSelector(selectColleagues);
+  const isLoggedIn = useSignInStatus();
   const btnDisabled = status === "pending";
   const dispatch = useDispatch();
 
@@ -39,22 +42,24 @@ const Colleague = ({ colleague }) => {
                 </a>
               </li>
             </ul>
-            <div className="btn-group position-absolute bottom-0 end-0">
-              <Link
-                className="btn btn-sm btn-primary"
-                to={`/colleagues/${id}/edit`}
-                state={colleague}
-              >
-                edit
-              </Link>
-              <button
-                disabled={btnDisabled}
-                onClick={() => handleClick()}
-                className="btn btn-sm btn-danger"
-              >
-                delete
-              </button>
-            </div>
+            {isLoggedIn && (
+              <div className="btn-group position-absolute bottom-0 end-0">
+                <Link
+                  className="btn btn-sm btn-primary"
+                  to={`/colleagues/${id}/edit`}
+                  state={colleague}
+                >
+                  edit
+                </Link>
+                <button
+                  disabled={btnDisabled}
+                  onClick={() => handleClick()}
+                  className="btn btn-sm btn-danger"
+                >
+                  delete
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

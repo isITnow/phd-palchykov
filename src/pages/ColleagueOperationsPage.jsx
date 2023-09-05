@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectColleagues } from "../redux/colleagues/selectorColleagues";
 
 import ColleagueForm from "../components/Colleagues/ColleagueForm";
-import Alert from "../components/Alert";
+import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 
 const ColleagueOperationsPage = ({ edit }) => {

@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-// TODO: validate array items, attachments
+// TODO: attachments
 
 const newsSchema = yup.object().shape({
   title: yup.string().min(5, "Too short").required("Title is required"),
@@ -14,6 +14,7 @@ const colleagueSchema = yup.object().shape({
   position: yup.string().min(5, "Too short").required("Required"),
   phone: yup.string(),
   email: yup.string(),
+  // photo: yup.mixed().required("File is required"),
 });
 
 const publicationSchema = yup.object().shape({
@@ -37,9 +38,14 @@ const researchSchema = yup.object().shape({
   illustrationList: yup.array().of(
     yup.object().shape({
       description: yup.string().min(5, "Too short").required("Required"),
-      schema: yup.mixed().required("File is required"),
+      // schema: yup.mixed().required("File is required"),
     })
   ),
+});
+
+const loginSchema = yup.object().shape({
+  email: yup.string().required("Email required"),
+  password: yup.string().required("Password required"),
 });
 
 export const validation = {
@@ -47,4 +53,5 @@ export const validation = {
   colleagueSchema,
   publicationSchema,
   researchSchema,
+  loginSchema,
 };

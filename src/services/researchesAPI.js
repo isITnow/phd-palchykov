@@ -1,19 +1,19 @@
-import { api } from "./http";
+import { privateAPI, publicAPI } from "./http";
 
 const fetchResearches = async () => {
-  const data = await api.get("/researches");
+  const data = await publicAPI.get("/researches");
 
   return data;
 };
 
 const postResearch = async (body) => {
-  const data = await api.post("/researches", body);
+  const data = await privateAPI.post("/researches", body);
 
   return data;
 };
 
 const deleteResearch = async (id) => {
-  const data = await api.delete(`/researches/${id}`);
+  const data = await privateAPI.delete(`/researches/${id}`);
 
   return data;
 };

@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { removePublicationThunk } from "../../redux/publications/operationsPublications";
 import { selectPublications } from "../../redux/publications/selectorPublications";
 
+import useSignInStatus from "../../assets/utils/useSignInStatus";
+
 import s from "./publication.module.css";
 
 const Publication = ({ publication }) => {
@@ -20,6 +22,7 @@ const Publication = ({ publication }) => {
   } = publication;
   const { period_id } = useParams();
   const { status } = useSelector(selectPublications);
+  const isLoggedIn = useSignInStatus();
   const btnDisabled = status === "pending";
   const dispatch = useDispatch();
 
@@ -67,24 +70,26 @@ const Publication = ({ publication }) => {
         </div>
         <div className="d-flex justify-content-between align-items-end mt-3">
           <span className="fst-italic text-secondary">{year}</span>
-          <div className="btn-group">
-            <Link
-              className="btn btn-sm btn-primary"
-              to={`/periods/${period_id}/publications/${id}/edit`}
-            >
-              edit
-            </Link>
-            <button
-              disabled={btnDisabled}
-              type="button"
-              className="btn btn-sm btn-danger"
-              onClick={() => {
-                handleClick();
-              }}
-            >
-              delete
-            </button>
-          </div>
+          {isLoggedIn && (
+            <div className="btn-group">
+              <Link
+                className="btn btn-sm btn-primary"
+                to={`/periods/${period_id}/publications/${id}/edit`}
+              >
+                edit
+              </Link>
+              <button
+                disabled={btnDisabled}
+                type="button"
+                className="btn btn-sm btn-danger"
+                onClick={() => {
+                  handleClick();
+                }}
+              >
+                delete
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

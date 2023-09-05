@@ -1,0 +1,48 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { loginThunk, logoutThunk } from "./operationsAuth";
+
+const initStateAuth = {
+  user: null,
+  token: null,
+  refreshToken: null,
+  isLoggedIn: false,
+  error: null,
+};
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState: initStateAuth,
+  reducers: {},
+  extraReducers: (builder) => {
+    // SIGN IN USER
+    builder.addCase(loginThunk.pending, (state, { payload }) => {
+      state.user = null;
+      state.token = null;
+      state.refreshToken = null;
+      state.isLoggedIn = false;
+      state.error = null;
+    });
+    builder.addCase(loginThunk.fulfilled, (state, { payload }) => {
+      state.user = payload.resource_owner;
+      state.token = payload.token;
+      state.refreshToken = payload.refresh_token;
+      state.isLoggedIn = true;
+    });
+    builder.addCase(loginThunk.rejected, (state, { payload }) => {
+      state.user = null;
+      state.token = null;
+      state.refreshToken = null;
+      state.isLoggedIn = false;
+      state.error = payload;
+    });
+    // LOG OUT USER
+    builder.addCase(logoutThunk.fulfilled, (state) => {
+      state.user = null;
+      state.token = null;
+      state.refreshToken = null;
+      state.isLoggedIn = false;
+    });
+  },
+});
+
+export default authSlice.reducer;

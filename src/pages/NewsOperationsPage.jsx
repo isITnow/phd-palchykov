@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectNews } from "../redux/news/selectorNews";
 
 import NewsForm from "../components/News/NewsForm";
-import Alert from "../components/Alert";
+import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 
 const NewsOperationsPage = ({ edit }) => {

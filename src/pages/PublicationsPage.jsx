@@ -7,12 +7,13 @@ import { selectPublications } from "../redux/publications/selectorPublications";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
 
 import PagesNav from "../components/PagesNav/PagesNav";
-import Loader from "../components/Loader";
+import Loader from "../components/shared/Loader";
 import PublicationsList from "../components/Publications/PublicationsList";
 
-import Alert from "../components/Alert";
+import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 
+import useSignInStatus from "../assets/utils/useSignInStatus";
 import setPageTitle from "../assets/utils/setPageTitle";
 
 const PublicationsPage = () => {
@@ -22,6 +23,7 @@ const PublicationsPage = () => {
   const { periods } = useSelector(selectPeriods);
   const { publications, status, error } = useSelector(selectPublications);
   const { alert, showAlert } = useAlert();
+  const isLoggedIn = useSignInStatus();
 
   useEffect(() => {
     dispatch(getPublicationsThunk(period_id));
@@ -54,14 +56,16 @@ const PublicationsPage = () => {
         />
         <PublicationsList publications={publications} />
         <div className="d-flex justify-content-between mt-3">
-          <div>
-            <Link
-              className="btn btn-primary"
-              to={`/periods/${period_id}/publications/new`}
-            >
-              new publication
-            </Link>
-          </div>
+          {isLoggedIn && (
+            <div>
+              <Link
+                className="btn btn-primary"
+                to={`/periods/${period_id}/publications/new`}
+              >
+                new publication
+              </Link>
+            </div>
+          )}
           {publications.length > 4 && (
             <PagesNav periods={periods} currentPeriodId={parseInt(period_id)} />
           )}
