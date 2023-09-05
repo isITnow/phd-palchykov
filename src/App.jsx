@@ -1,7 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/shared/PrivateRoute";
+import { useSelector, useDispatch } from "react-redux";
+
+import { selectToken } from "./redux/auth/selectorAuth";
+import { refreshUserThunk } from "./redux/auth/operationsAuth";
 
 const ColleaguesPage = lazy(() => import("./pages/ColleaguesPage"));
 const ColleagueOperationsPage = lazy(() =>
@@ -29,6 +33,15 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 const App = () => {
+  const token = useSelector(selectToken);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (token) {
+      dispatch(refreshUserThunk());
+    }
+  }, [dispatch, token]);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

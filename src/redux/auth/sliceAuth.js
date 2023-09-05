@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginThunk, logoutThunk, refreshUserThunk } from "./operationsAuth";
+import { loginThunk, logoutThunk } from "./operationsAuth";
 
 const initStateAuth = {
   user: null,
@@ -40,16 +40,6 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.refreshToken = null;
-      state.isLoggedIn = false;
-    });
-    // REFRESH USER
-    builder.addCase(refreshUserThunk.fulfilled, (state, { payload }) => {
-      state.user = payload;
-      state.isLoggedIn = true;
-    });
-    builder.addCase(refreshUserThunk.rejected, (state) => {
-      state.user = { name: null, email: null };
-      state.token = null;
       state.isLoggedIn = false;
     });
   },
