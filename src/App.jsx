@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 import Layout from "./components/Layout";
+import PrivateRoute from "./components/shared/PrivateRoute";
 
 const ColleaguesPage = lazy(() => import("./pages/ColleaguesPage"));
 const ColleagueOperationsPage = lazy(() =>
@@ -36,28 +37,34 @@ const App = () => {
           path="periods/:period_id/publications"
           element={<PublicationsPage />}
         />
-        <Route
-          path="periods/:period_id/publications/new"
-          element={<PublicationOperationsPage />}
-        />
-        <Route
-          path="periods/:period_id/publications/:publication_id/edit"
-          element={<PublicationOperationsPage edit />}
-        />
+
         <Route path="research" element={<ResearchPage />} />
-        <Route path="research/new" element={<ResearchOperationsPage />} />
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="gallery/:theme" element={<GalleryByThemePage />} />
         <Route path="news" element={<NewsPage />} />
-        <Route path="news/new" element={<NewsOperationsPage />} />
-        <Route path="news/:id/edit" element={<NewsOperationsPage edit />} />
+
         <Route path="colleagues" element={<ColleaguesPage />} />
-        <Route path="colleagues/new" element={<ColleagueOperationsPage />} />
-        <Route
-          path="colleagues/:id/edit"
-          element={<ColleagueOperationsPage edit />}
-        />
+
         <Route path="contacts" element={<ContactsPage />} />
+        {/* PRIVATE ROUTES */}
+        <Route path="/" element={<PrivateRoute />}>
+          <Route
+            path="periods/:period_id/publications/new"
+            element={<PublicationOperationsPage />}
+          />
+          <Route
+            path="periods/:period_id/publications/:publication_id/edit"
+            element={<PublicationOperationsPage edit />}
+          />
+          <Route path="research/new" element={<ResearchOperationsPage />} />
+          <Route path="news/new" element={<NewsOperationsPage />} />
+          <Route path="news/:id/edit" element={<NewsOperationsPage edit />} />
+          <Route path="colleagues/new" element={<ColleagueOperationsPage />} />
+          <Route
+            path="colleagues/:id/edit"
+            element={<ColleagueOperationsPage edit />}
+          />
+        </Route>
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
