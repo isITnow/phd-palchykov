@@ -6,7 +6,7 @@ import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPe
 import { getPeriodsThunk } from "../redux/publicationPeriods/operationsPublicationPeriods";
 
 import Footer from "./Footer/Footer";
-import Loader from "../components/Loader";
+import Loader from "../components/shared/Loader";
 import Navigation from "./Navigation/Navigation";
 
 const Layout = () => {

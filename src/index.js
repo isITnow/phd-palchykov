@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { store, persister } from "./redux/store";
 
 import App from "./App";
-import Loader from "./components/Loader";
+import Loader from "./components/shared/Loader";
 
 import "./index.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";

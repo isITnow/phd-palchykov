@@ -7,10 +7,10 @@ import { selectPublications } from "../redux/publications/selectorPublications";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
 
 import PagesNav from "../components/PagesNav/PagesNav";
-import Loader from "../components/Loader";
+import Loader from "../components/shared/Loader";
 import PublicationsList from "../components/Publications/PublicationsList";
 
-import Alert from "../components/Alert";
+import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 
 import setPageTitle from "../assets/utils/setPageTitle";

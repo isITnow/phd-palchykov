@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getColleaguesThunk } from "../redux/colleagues/operationsColleagues.js";
 import { selectColleagues } from "../redux/colleagues/selectorColleagues.js";
 
-import Alert from "../components/Alert.jsx";
+import Alert from "../components/shared/Alert.jsx";
 import { useAlert } from "../assets/utils/useAlert.js";
 
-import Loader from "../components/Loader";
+import Loader from "../components/shared/Loader";
 import ColleaguesList from "../components/Colleagues/ColleaguesList";
 import setPageTitle from "../assets/utils/setPageTitle";
 

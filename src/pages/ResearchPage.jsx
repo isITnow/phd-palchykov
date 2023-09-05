@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectResearches } from "../redux/researches/selectorResearches";
 import { getResearchesThunk } from "../redux/researches/operationsResearches";
 
-import Alert from "../components/Alert";
+import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 
 import ResearchList from "../components/Research/ResearchList";
 import setPageTitle from "../assets/utils/setPageTitle";
-import Loader from "../components/Loader";
+import Loader from "../components/shared/Loader";
 
 const ResearchPage = () => {
   setPageTitle("Research");

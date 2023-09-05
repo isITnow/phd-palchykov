@@ -8,7 +8,7 @@ import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPe
 import getCurrentPeriod from "../assets/utils/getCurrentPeriod";
 
 import PublicationForm from "../components/Publications/PublicationForm";
-import Alert from "../components/Alert";
+import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 
 const PublicationOperationsPage = ({ edit }) => {

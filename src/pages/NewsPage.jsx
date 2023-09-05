@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getNewsThunk } from "../redux/news/operationsNews";
 import { selectNews } from "../redux/news/selectorNews";
 
-import Alert from "../components/Alert";
+import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 
-import Loader from "../components/Loader";
+import Loader from "../components/shared/Loader";
 import NewsList from "../components/News/NewsList";
 import setPageTitle from "../assets/utils/setPageTitle";
 
