@@ -10,10 +10,13 @@ import { useAlert } from "../assets/utils/useAlert";
 
 import Loader from "../components/shared/Loader";
 import NewsList from "../components/News/NewsList";
+
+import useSignInStatus from "../assets/utils/useSignInStatus";
 import setPageTitle from "../assets/utils/setPageTitle";
 
 const NewsPage = () => {
   setPageTitle("News");
+  const isLoggedIn = useSignInStatus();
   const dispatch = useDispatch();
   const { news, status, error } = useSelector(selectNews);
   const { alert, showAlert } = useAlert();
@@ -39,11 +42,13 @@ const NewsPage = () => {
       {alert.visible && <Alert state={alert} />}
       <section className="py-4">
         <NewsList news={news} />
-        <div className="mt-3">
-          <Link className="btn btn-primary" to={"/news/new"}>
-            new news
-          </Link>
-        </div>
+        {isLoggedIn && (
+          <div className="mt-3">
+            <Link className="btn btn-primary" to={"/news/new"}>
+              new news
+            </Link>
+          </div>
+        )}
       </section>
     </>
   );

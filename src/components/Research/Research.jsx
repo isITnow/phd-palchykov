@@ -2,10 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeResearchThunk } from "../../redux/researches/operationsResearches";
 import { selectResearches } from "../../redux/researches/selectorResearches";
 
+import useSignInStatus from "../../assets/utils/useSignInStatus";
+
 const Research = ({ research, index }) => {
   const { id, title, illustrations, sourceList } = research;
   const { status } = useSelector(selectResearches);
   const dispatch = useDispatch();
+  const isLoggedIn = useSignInStatus();
   const btnDisabled = status === "pending";
 
   const handleClick = () => {
@@ -46,18 +49,20 @@ const Research = ({ research, index }) => {
           </ul>
         </div>
 
-        <div className="me-4">
-          <button
-            disabled={btnDisabled}
-            type="button"
-            className="btn btn-sm btn-danger"
-            onClick={() => {
-              handleClick();
-            }}
-          >
-            delete
-          </button>
-        </div>
+        {isLoggedIn && (
+          <div className="me-4">
+            <button
+              disabled={btnDisabled}
+              type="button"
+              className="btn btn-sm btn-danger"
+              onClick={() => {
+                handleClick();
+              }}
+            >
+              delete
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
