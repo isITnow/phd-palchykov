@@ -1,11 +1,13 @@
 import axios from "axios";
 
+const BASE_URL = process.env.REACT_APP_RAILS_SERVER_BASE_URL;
+
 export const privateAPI = axios.create({
-  baseURL: "http://localhost:3000/api/v1/",
+  baseURL: BASE_URL,
 });
 
 export const publicAPI = axios.create({
-  baseURL: "http://localhost:3000/api/v1/",
+  baseURL: BASE_URL,
 });
 
 export const token = {
