@@ -46,19 +46,19 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
+        <Route path="colleagues" element={<ColleaguesPage />} />
+        <Route path="contacts" element={<ContactsPage />} />
+        <Route path="gallery" element={<GalleryPage />} />
+        <Route path="gallery/:theme" element={<GalleryByThemePage />} />
+        <Route path="news" element={<NewsPage />} />
         <Route
           path="periods/:period_id/publications"
           element={<PublicationsPage />}
         />
-
+        <Route path="posts" />
+        <Route path="posts/:id" />
         <Route path="research" element={<ResearchPage />} />
-        <Route path="gallery" element={<GalleryPage />} />
-        <Route path="gallery/:theme" element={<GalleryByThemePage />} />
-        <Route path="news" element={<NewsPage />} />
 
-        <Route path="colleagues" element={<ColleaguesPage />} />
-
-        <Route path="contacts" element={<ContactsPage />} />
         {/* PRIVATE ROUTES */}
         <Route path="/" element={<PrivateRoute />}>
           <Route
