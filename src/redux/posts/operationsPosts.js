@@ -37,7 +37,7 @@ export const addPostThunk = createAsyncThunk(
   }
 );
 
-export const updateColleagueThunk = createAsyncThunk(
+export const updatePostThunk = createAsyncThunk(
   "posts/update",
 
   async ({ id, post }, { dispatch, rejectWithValue }) => {
