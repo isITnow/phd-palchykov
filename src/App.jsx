@@ -18,6 +18,8 @@ const GalleryByThemePage = lazy(() => import("./pages/GalleryByThemePage"));
 const NewsPage = lazy(() => import("./pages/NewsPage"));
 const NewsOperationsPage = lazy(() => import("./pages/NewsOperationsPage"));
 
+const PostsPage = lazy(() => import("./pages/PostsPage"));
+
 const PublicationsPage = lazy(() => import("./pages/PublicationsPage"));
 const PublicationOperationsPage = lazy(() =>
   import("./pages/PublicationOperationsPage")
@@ -55,7 +57,7 @@ const App = () => {
           path="periods/:period_id/publications"
           element={<PublicationsPage />}
         />
-        <Route path="posts" />
+        <Route path="posts" element={<PostsPage />} />
         <Route path="posts/:id" />
         <Route path="research" element={<ResearchPage />} />
 
