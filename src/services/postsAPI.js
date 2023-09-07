@@ -24,7 +24,7 @@ const deletePost = async (id) => {
   return data;
 };
 
-export const newsAPI = {
+export const postsAPI = {
   fetchPosts,
   postPost,
   editPost,
