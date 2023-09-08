@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectPublications } from "../redux/publications/selectorPublications";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
 
-import getCurrentPeriod from "../assets/utils/getCurrentPeriod";
+import getCurrentPeriod from "../assets/utils/getCurrentEntity";
 
 import PublicationForm from "../components/Publications/PublicationForm";
 import Alert from "../components/shared/Alert";
