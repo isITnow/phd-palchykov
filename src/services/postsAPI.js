@@ -13,13 +13,13 @@ const postPost = async (body) => {
 };
 
 const editPost = async (id, body) => {
-  const data = await privateAPI.patch(`/post/${id}`, body);
+  const data = await privateAPI.patch(`/posts/${id}`, body);
 
   return data;
 };
 
 const deletePost = async (id) => {
-  const data = await privateAPI.delete(`/post/${id}`);
+  const data = await privateAPI.delete(`/posts/${id}`);
 
   return data;
 };
