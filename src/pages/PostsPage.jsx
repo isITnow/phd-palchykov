@@ -8,10 +8,11 @@ import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 
 import Loader from "../components/shared/Loader";
+import PostsList from "../components/Posts/PostsList";
+import PostForm from "../components/Posts/PostForm";
 
 import setPageTitle from "../assets/utils/setPageTitle";
 import useSignInStatus from "../assets/utils/useSignInStatus";
-import PostsList from "../components/Posts/PostsList";
 
 const PostsPage = () => {
   setPageTitle("Blog");
@@ -29,6 +30,10 @@ const PostsPage = () => {
       showAlert(`${error}. Please contact your administrator!`, "danger");
       return;
     }
+    if (status === "fulfilled") {
+      showAlert("Post created successfully", "success");
+      return;
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
@@ -38,16 +43,10 @@ const PostsPage = () => {
 
   return (
     <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+      <Alert state={alert} />
       {isLoggedIn && (
-        <div className="mb-3 text-end">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => console.log("Click")}
-          >
-            new post
-          </button>
+        <div className="mb-4">
+          <PostForm />
         </div>
       )}
       <PostsList posts={posts} />
