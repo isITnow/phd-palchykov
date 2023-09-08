@@ -1,30 +1,31 @@
-import moment from "moment";
 import { Link } from "react-router-dom";
+
+import formateDate from "../../assets/utils/formateDate";
 
 import s from "./post.module.css";
 
 const Post = ({ post }) => {
-  const postedDate = moment(post.created_at).fromNow();
-  const editedDate = moment(post.updated_at).fromNow();
-  const isEdited = post.updated_at > post.created_at;
+  const { postedDate, editedDate, isEdited } = formateDate(post);
 
   return (
-    <Link to={`/posts/${post.id}`}>
-      <div className={`${s.hoverEffect} card`}>
-        <div className="card-header">
-          <small className="text-primary">posted: {postedDate}</small>
-          {isEdited && (
-            <>
-              <span className="mx-2">|</span>
-              <small className="text-primary">updated: {editedDate}</small>
-            </>
-          )}
-        </div>
+    <div className={`${s.hoverEffect} card`}>
+      <div className="card-header">
+        <small className="text-primary fw-bold">posted: {postedDate}</small>
+        {isEdited && (
+          <>
+            <span className="mx-2">|</span>
+            <small className="text-primary fw-bold">
+              updated: {editedDate}
+            </small>
+          </>
+        )}
+      </div>
+      <Link to={`/posts/${post.id}`} style={{ color: "inherit" }}>
         <div className="card-body">
           <p className="card-text">{post.body}</p>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 
