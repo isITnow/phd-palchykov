@@ -39,7 +39,7 @@ const ResearchPage = () => {
 
   return (
     <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+      <Alert state={alert} />
       <ResearchList researches={researches} />
       {isLoggedIn && (
         <div className="">

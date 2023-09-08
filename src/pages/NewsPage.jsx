@@ -39,7 +39,7 @@ const NewsPage = () => {
 
   return (
     <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+      <Alert state={alert} />
       <NewsList news={news} />
       {isLoggedIn && (
         <div className="mt-3">

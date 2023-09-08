@@ -44,7 +44,7 @@ const ColleaguesPage = () => {
 
   return (
     <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+      <Alert state={alert} />
       <ColleaguesList colleagues={colleagues} />
       {isLoggedIn && (
         <div className="mt-3">

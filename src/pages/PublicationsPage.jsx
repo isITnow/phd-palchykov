@@ -47,7 +47,7 @@ const PublicationsPage = () => {
 
   return (
     <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+      <Alert state={alert} />
       <PagesNav
         margin={"mb-3"}
         periods={periods}

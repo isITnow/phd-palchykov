@@ -28,7 +28,7 @@ const ResearchOperationsPage = () => {
 
   return (
     <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+      <Alert state={alert} />
       <h4>{title}</h4>
       <div className="mb-3">
         <p className="mb-2 fw-bolder">required fields: </p>
