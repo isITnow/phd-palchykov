@@ -10,6 +10,7 @@ import { useAlert } from "../assets/utils/useAlert.js";
 
 import Loader from "../components/shared/Loader";
 import ColleaguesList from "../components/Colleagues/ColleaguesList";
+import Section from "../components/shared/Section.jsx";
 
 import useSignInStatus from "../assets/utils/useSignInStatus";
 import setPageTitle from "../assets/utils/setPageTitle";
@@ -43,7 +44,7 @@ const ColleaguesPage = () => {
   }
 
   return (
-    <section className="py-4">
+    <Section>
       <Alert state={alert} />
       <ColleaguesList colleagues={colleagues} />
       {isLoggedIn && (
@@ -53,7 +54,7 @@ const ColleaguesPage = () => {
           </Link>
         </div>
       )}
-    </section>
+    </Section>
   );
 };
 

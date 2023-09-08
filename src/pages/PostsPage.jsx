@@ -10,6 +10,7 @@ import { useAlert } from "../assets/utils/useAlert";
 import Loader from "../components/shared/Loader";
 import PostsList from "../components/Posts/PostsList";
 import PostForm from "../components/Posts/PostForm";
+import Section from "../components/shared/Section";
 
 import setPageTitle from "../assets/utils/setPageTitle";
 import useSignInStatus from "../assets/utils/useSignInStatus";
@@ -42,7 +43,7 @@ const PostsPage = () => {
   }
 
   return (
-    <section className="py-4">
+    <Section>
       <Alert state={alert} />
       {isLoggedIn && (
         <div className="mb-4">
@@ -50,7 +51,7 @@ const PostsPage = () => {
         </div>
       )}
       <PostsList posts={posts} />
-    </section>
+    </Section>
   );
 };
 

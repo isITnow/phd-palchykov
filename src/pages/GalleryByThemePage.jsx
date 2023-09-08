@@ -1,13 +1,14 @@
 import GalleryByTheme from "../components/Gallery/GalleryByTheme";
+import Section from "../components/shared/Section";
 
 import setPageTitle from "../assets/utils/setPageTitle";
 
 const GalleryByThemePage = () => {
   setPageTitle("Gallery");
   return (
-    <section className="py-4">
+    <Section>
       <GalleryByTheme />
-    </section>
+    </Section>
   );
 };
 

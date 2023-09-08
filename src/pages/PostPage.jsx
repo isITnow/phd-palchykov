@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 
-import { useDispatch, useSelector } from "react-redux";
-import { removePostThunk } from "../redux/posts/operationsPosts";
+// import { useDispatch, useSelector } from "react-redux";
+// import { removePostThunk } from "../redux/posts/operationsPosts";
 
-import Post from "../components/Posts/Post";
+// import Post from "../components/Posts/Post";
 import Section from "../components/shared/Section";
 
 const PostPage = () => {
