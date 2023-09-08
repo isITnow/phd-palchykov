@@ -85,6 +85,11 @@ const Navigation = () => {
               </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink className={setActive} to={"posts"}>
+                <span>Blog</span>
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className={setActive} to={"contacts"}>
                 <span>Contacts</span>
               </NavLink>
