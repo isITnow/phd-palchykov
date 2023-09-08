@@ -2,6 +2,19 @@ import * as yup from "yup";
 
 // TODO: attachments
 
+const colleagueSchema = yup.object().shape({
+  name: yup.string().min(5, "Too short").required("Name is required"),
+  position: yup.string().min(5, "Too short").required("Required"),
+  phone: yup.string(),
+  email: yup.string(),
+  // photo: yup.mixed().required("File is required"),
+});
+
+const loginSchema = yup.object().shape({
+  email: yup.string().required("Email required"),
+  password: yup.string().required("Password required"),
+});
+
 const newsSchema = yup.object().shape({
   title: yup.string().min(5, "Too short").required("Title is required"),
   body: yup.string().min(10, "Too short"),
@@ -9,12 +22,8 @@ const newsSchema = yup.object().shape({
   links: yup.array().of(yup.string().min(5, "Too short")),
 });
 
-const colleagueSchema = yup.object().shape({
-  name: yup.string().min(5, "Too short").required("Name is required"),
-  position: yup.string().min(5, "Too short").required("Required"),
-  phone: yup.string(),
-  email: yup.string(),
-  // photo: yup.mixed().required("File is required"),
+const postSchema = yup.object().shape({
+  body: yup.string().min(5, "To short").required("Text required"),
 });
 
 const publicationSchema = yup.object().shape({
@@ -43,15 +52,11 @@ const researchSchema = yup.object().shape({
   ),
 });
 
-const loginSchema = yup.object().shape({
-  email: yup.string().required("Email required"),
-  password: yup.string().required("Password required"),
-});
-
 export const validation = {
-  newsSchema,
   colleagueSchema,
+  loginSchema,
+  newsSchema,
+  postSchema,
   publicationSchema,
   researchSchema,
-  loginSchema,
 };
