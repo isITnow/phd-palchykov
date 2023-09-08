@@ -89,7 +89,10 @@ const ResearchForm = () => {
                             rows="5"
                             name={`illustrationList.${index}.description`}
                           />
-                          <label htmlFor="formFile" className="form-label">
+                          <label
+                            htmlFor="formFile"
+                            className="form-label px-3 text-secondary fw-bold"
+                          >
                             Illustration image
                           </label>
                           <input
