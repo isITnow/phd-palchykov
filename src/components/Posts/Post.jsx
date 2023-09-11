@@ -4,8 +4,10 @@ import formateDate from "../../assets/utils/formateDate";
 
 import s from "./post.module.css";
 
-const Post = ({ post }) => {
+const Post = ({ post, single }) => {
   const { postedDate, editedDate, isEdited } = formateDate(post);
+
+  const paragraphStyle = single ? "card-text" : "card-text text-truncate";
 
   return (
     <div className={`${s.hoverEffect} card`}>
@@ -22,7 +24,7 @@ const Post = ({ post }) => {
       </div>
       <Link to={`/posts/${post.id}`} style={{ color: "inherit" }}>
         <div className="card-body">
-          <p className="card-text">{post.body}</p>
+          <p className={paragraphStyle}>{post.body}</p>
         </div>
       </Link>
     </div>
