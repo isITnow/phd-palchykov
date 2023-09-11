@@ -17,6 +17,12 @@ export const addIllustrationThunk = createAsyncThunk(
       // return resp.data;
     } catch (error) {
       console.log("POST illustration error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }

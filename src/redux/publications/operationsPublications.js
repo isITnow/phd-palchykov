@@ -35,6 +35,12 @@ export const addPublicationThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("POST publication error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -61,6 +67,12 @@ export const updatePublicationThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("EDIT publication error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -82,6 +94,12 @@ export const removePublicationThunk = createAsyncThunk(
       return publication_id;
     } catch (error) {
       console.log("DELETE publication error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }

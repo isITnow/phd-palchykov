@@ -53,6 +53,12 @@ export const addPostThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("POST post error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -73,6 +79,12 @@ export const updatePostThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("EDIT post error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -92,6 +104,12 @@ export const removePostThunk = createAsyncThunk(
       return id;
     } catch (error) {
       console.log("DELETE post error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }

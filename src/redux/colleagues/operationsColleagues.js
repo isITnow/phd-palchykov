@@ -32,6 +32,12 @@ export const addColleagueThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("POST colleague error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -51,6 +57,12 @@ export const updateColleagueThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("EDIT colleague error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -69,6 +81,12 @@ export const removeColleagueThunk = createAsyncThunk(
       return id;
     } catch (error) {
       console.log("DELETE colleague error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }

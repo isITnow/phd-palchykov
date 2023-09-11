@@ -32,6 +32,12 @@ export const addNewsThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("POST news error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -51,6 +57,12 @@ export const updateNewsThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("EDIT news error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -69,6 +81,12 @@ export const removeNewsThunk = createAsyncThunk(
       return id;
     } catch (error) {
       console.log("DELETE news error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }

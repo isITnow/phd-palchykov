@@ -51,6 +51,12 @@ export const addResearchThunk = createAsyncThunk(
       }
     } catch (error) {
       console.log("POST research error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -69,6 +75,12 @@ export const removeResearchThunk = createAsyncThunk(
       return id;
     } catch (error) {
       console.log("DELETE research error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
