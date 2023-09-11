@@ -27,13 +27,12 @@ export const removeCommentThunk = createAsyncThunk(
   async ({ post_id, comment_id }, { dispatch, rejectWithValue }) => {
     try {
       const resp = await commentsAPI.deleteComment(post_id, comment_id);
-      console.log("resp: ", resp);
 
-      // if (resp.status !== 204) {
-      //   throw new Error("Error occurred! Please contact your administrator.");
-      // }
+      if (resp.status !== 204) {
+        throw new Error("Error occurred! Please contact your administrator.");
+      }
 
-      // return comment_id;
+      return comment_id;
     } catch (error) {
       console.log("DELETE post error: ", error);
       return rejectWithValue(error.message);

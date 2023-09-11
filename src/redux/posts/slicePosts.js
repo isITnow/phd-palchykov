@@ -105,7 +105,7 @@ const postsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(removeCommentThunk.fulfilled, (state, { payload }) => {
-      state.status = "removed";
+      state.status = "comment removed";
       state.onePost.comments = state.onePost.comments.filter(
         (comment) => comment.id !== payload
       );

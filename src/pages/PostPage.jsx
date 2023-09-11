@@ -67,6 +67,11 @@ const PostPage = () => {
         setShowForm(false);
         navigate("/posts");
         break;
+
+      case "comment removed":
+        setShowForm(false);
+        showAlert("Comment deleted", "success");
+        break;
       default:
         break;
     }
