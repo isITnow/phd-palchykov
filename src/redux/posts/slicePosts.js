@@ -8,7 +8,8 @@ import {
 } from "./operationsPosts";
 
 const initPosts = {
-  posts: [],
+  postsList: [],
+  onePost: null,
   status: null,
   error: null,
 };
@@ -31,7 +32,7 @@ const postsSlice = createSlice({
     });
     builder.addCase(getPostsThunk.fulfilled, (state, { payload }) => {
       state.status = "loaded";
-      state.posts = payload;
+      state.postsList = payload;
     });
     builder.addCase(getPostsThunk.rejected, setError);
 
@@ -41,9 +42,8 @@ const postsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getOnePostThunk.fulfilled, (state, { payload }) => {
-      console.log("payload: ", payload);
       state.status = "loaded";
-      state.posts.push(payload);
+      state.onePost = payload;
     });
     builder.addCase(getOnePostThunk.rejected, setError);
 
@@ -54,7 +54,7 @@ const postsSlice = createSlice({
     });
     builder.addCase(addPostThunk.fulfilled, (state, { payload }) => {
       state.status = "fulfilled";
-      state.posts.unshift(payload);
+      state.postsList.unshift(payload);
     });
     builder.addCase(addPostThunk.rejected, setError);
 
@@ -65,11 +65,7 @@ const postsSlice = createSlice({
     });
     builder.addCase(updatePostThunk.fulfilled, (state, { payload }) => {
       state.status = "fulfilled";
-      // state.colleagues.forEach((colleague) => {
-      //   if (colleague.id === payload.id) {
-      //     colleague = payload;
-      //   }
-      // });
+      state.onePost = payload;
     });
     builder.addCase(updatePostThunk.rejected, setError);
 
@@ -79,8 +75,8 @@ const postsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(removePostThunk.fulfilled, (state, { payload }) => {
-      state.status = "fulfilled";
-      state.posts = state.posts.filter((colleague) => colleague.id !== payload);
+      state.status = "removed";
+      state.postsList = state.postsList.filter((post) => post.id !== payload);
     });
     builder.addCase(removePostThunk.rejected, setError);
   },
