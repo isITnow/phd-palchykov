@@ -2,7 +2,11 @@ import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getPostsThunk } from "../redux/posts/operationsPosts";
-import { selectPosts } from "../redux/posts/selectorPosts";
+import {
+  selectPostsList,
+  selectError,
+  selectStatus,
+} from "../redux/posts/selectorPosts";
 
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
@@ -17,8 +21,11 @@ import useSignInStatus from "../assets/utils/useSignInStatus";
 
 const PostsPage = () => {
   setPageTitle("Blog");
+
   const dispatch = useDispatch(getPostsThunk());
-  const { posts, status, error } = useSelector(selectPosts);
+  const posts = useSelector(selectPostsList);
+  const error = useSelector(selectError);
+  const status = useSelector(selectStatus);
   const { alert, showAlert } = useAlert();
   const isLoggedIn = useSignInStatus();
 
@@ -27,13 +34,20 @@ const PostsPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (status === "rejected") {
-      showAlert(`${error}. Please contact your administrator!`, "danger");
-      return;
-    }
-    if (status === "fulfilled") {
-      showAlert("Post created successfully", "success");
-      return;
+    switch (status) {
+      case "rejected":
+        showAlert(`${error}. Please contact your administrator!`, "danger");
+        break;
+
+      case "fulfilled":
+        showAlert("Post created successfully", "success");
+        break;
+
+      case "removed":
+        showAlert("Post deleted successfully", "success");
+        break;
+      default:
+        break;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
