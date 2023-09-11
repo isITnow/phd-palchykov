@@ -11,6 +11,7 @@ export const getPostsThunk = createAsyncThunk(
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return resp.data;
     } catch (error) {
       console.log("GET posts error: ", error);
@@ -29,6 +30,7 @@ export const getOnePostThunk = createAsyncThunk(
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return resp.data;
     } catch (error) {
       console.log("GET one post error: ", error);
@@ -47,6 +49,7 @@ export const addPostThunk = createAsyncThunk(
       if (resp.status !== 201) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return resp.data;
     } catch (error) {
       console.log("POST post error: ", error);
@@ -65,6 +68,7 @@ export const updatePostThunk = createAsyncThunk(
       if (resp.status !== 202) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       dispatch(getPostsThunk());
       return resp.data;
     } catch (error) {
@@ -84,6 +88,7 @@ export const removePostThunk = createAsyncThunk(
       if (resp.status !== 204) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return id;
     } catch (error) {
       console.log("DELETE post error: ", error);
