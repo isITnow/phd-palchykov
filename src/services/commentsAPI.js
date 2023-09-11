@@ -14,7 +14,7 @@ const deleteComment = async (post_id, comment_id) => {
   return data;
 };
 
-export const publicationsAPI = {
+export const commentsAPI = {
   postComment,
   deleteComment,
 };
