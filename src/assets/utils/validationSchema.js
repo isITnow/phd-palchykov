@@ -10,6 +10,11 @@ const colleagueSchema = yup.object().shape({
   // photo: yup.mixed().required("File is required"),
 });
 
+const commentSchema = yup.object().shape({
+  author: yup.string().min(4, "Too short").max(25, "Max 25 characters"),
+  body: yup.string().min(5, "Too short").required("Text required"),
+});
+
 const loginSchema = yup.object().shape({
   email: yup.string().required("Email required"),
   password: yup.string().required("Password required"),
@@ -54,6 +59,7 @@ const researchSchema = yup.object().shape({
 
 export const validation = {
   colleagueSchema,
+  commentSchema,
   loginSchema,
   newsSchema,
   postSchema,
