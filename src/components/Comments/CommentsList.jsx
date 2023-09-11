@@ -9,7 +9,7 @@ const listItem = {
 
 const CommentsList = ({ comments }) => {
   return (
-    <ul className="list-group mt-3">
+    <ul className="list-group">
       <AnimatePresence>
         {comments.map((comment) => {
           return (
