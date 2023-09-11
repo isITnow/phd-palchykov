@@ -32,7 +32,7 @@ const ResearchList = ({ researches }) => {
         <ul>
           {researchList.map((research, index) => (
             <li
-              className="mb-5 border-2 border-bottom border-danger pb-3"
+              className="mb-5 border-2 border-bottom border-secondary pb-3"
               key={research.id}
             >
               <Research research={research} index={index + 1} />
