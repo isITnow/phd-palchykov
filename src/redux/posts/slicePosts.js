@@ -34,6 +34,7 @@ const postsSlice = createSlice({
     builder.addCase(getPostsThunk.pending, (state) => {
       state.status = "loading";
       state.error = null;
+      state.onePost = null;
     });
     builder.addCase(getPostsThunk.fulfilled, (state, { payload }) => {
       state.status = "loaded";
