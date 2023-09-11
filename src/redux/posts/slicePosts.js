@@ -94,7 +94,7 @@ const postsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(addCommentThunk.fulfilled, (state, { payload }) => {
-      state.status = "fulfilled";
+      state.status = "comment added";
       state.onePost.comments.unshift(payload);
     });
     builder.addCase(addCommentThunk.rejected, setError);
