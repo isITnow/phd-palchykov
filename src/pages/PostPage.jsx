@@ -166,7 +166,16 @@ const PostPage = () => {
       {/* COMMENT FORM */}
       <CommentForm />
       {/* COMMENTS LIST */}
-      {comments.length > 0 && <CommentsList comments={comments} />}
+      <div className="mt-3">
+        {!!comments.length ? (
+          <h3 className="text-center text-secondary fw-bold mb-3">Comments</h3>
+        ) : (
+          <h3 className="text-center text-secondary fw-bold mb-3">
+            No comments
+          </h3>
+        )}
+        {!!comments.length && <CommentsList comments={comments} />}
+      </div>
     </Section>
   );
 };
