@@ -25,6 +25,7 @@ import Section from "../components/shared/Section";
 import setPageTitle from "../assets/utils/setPageTitle";
 import useSignInStatus from "../assets/utils/useSignInStatus";
 import CommentsList from "../components/Comments/CommentsList";
+import CommentForm from "../components/Comments/CommentForm";
 
 const fadeInOut = {
   initial: { opacity: 0 },
@@ -66,6 +67,10 @@ const PostPage = () => {
       case "removed":
         setShowForm(false);
         navigate("/posts");
+        break;
+
+      case "comment added":
+        showAlert("Comment published successfully", "success");
         break;
 
       case "comment removed":
@@ -158,6 +163,8 @@ const PostPage = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* COMMENT FORM */}
+      <CommentForm />
       {/* COMMENTS LIST */}
       {comments.length > 0 && <CommentsList comments={comments} />}
     </Section>
