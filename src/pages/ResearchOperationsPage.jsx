@@ -6,6 +6,7 @@ import { selectResearches } from "../redux/researches/selectorResearches";
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 import ResearchForm from "../components/Research/ResearchForm";
+import Section from "../components/shared/Section";
 
 const ResearchOperationsPage = () => {
   const { status, error } = useSelector(selectResearches);
@@ -27,8 +28,8 @@ const ResearchOperationsPage = () => {
   }, [status]);
 
   return (
-    <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+    <Section>
+      <Alert state={alert} />
       <h4>{title}</h4>
       <div className="mb-3">
         <p className="mb-2 fw-bolder">required fields: </p>
@@ -41,7 +42,7 @@ const ResearchOperationsPage = () => {
         </ul>
       </div>
       <ResearchForm />
-    </section>
+    </Section>
   );
 };
 

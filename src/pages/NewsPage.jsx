@@ -10,6 +10,7 @@ import { useAlert } from "../assets/utils/useAlert";
 
 import Loader from "../components/shared/Loader";
 import NewsList from "../components/News/NewsList";
+import Section from "../components/shared/Section";
 
 import useSignInStatus from "../assets/utils/useSignInStatus";
 import setPageTitle from "../assets/utils/setPageTitle";
@@ -38,8 +39,8 @@ const NewsPage = () => {
   }
 
   return (
-    <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+    <Section>
+      <Alert state={alert} />
       <NewsList news={news} />
       {isLoggedIn && (
         <div className="mt-3">
@@ -48,7 +49,7 @@ const NewsPage = () => {
           </Link>
         </div>
       )}
-    </section>
+    </Section>
   );
 };
 

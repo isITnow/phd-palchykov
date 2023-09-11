@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-const initState = { text: "", type: "", visible: false };
+const initState = { text: "", type: "", isVisible: false };
 
 export const useAlert = () => {
   const [alert, setAlert] = useState(initState);
   const showAlert = (text, type) => {
-    setAlert({ text, type, visible: true });
+    setAlert({ text, type, isVisible: true });
     setTimeout(() => {
       setAlert(initState);
     }, 5000);

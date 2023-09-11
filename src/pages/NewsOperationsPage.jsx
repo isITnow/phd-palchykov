@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectNews } from "../redux/news/selectorNews";
 
-import NewsForm from "../components/News/NewsForm";
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
+import NewsForm from "../components/News/NewsForm";
+import Section from "../components/shared/Section";
 
 const NewsOperationsPage = ({ edit }) => {
   const { news, error, status } = useSelector(selectNews);
@@ -35,8 +36,8 @@ const NewsOperationsPage = ({ edit }) => {
   }, [status]);
 
   return (
-    <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+    <Section>
+      <Alert state={alert} />
       <h4>{title}</h4>
       <div className="mb-3">
         <p className="mb-2 fw-bolder">required fields: </p>
@@ -46,7 +47,7 @@ const NewsOperationsPage = ({ edit }) => {
         </ul>
       </div>
       <NewsForm newsItem={newsItem} />
-    </section>
+    </Section>
   );
 };
 

@@ -6,12 +6,13 @@ import { getPublicationsThunk } from "../redux/publications/operationsPublicatio
 import { selectPublications } from "../redux/publications/selectorPublications";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
 
-import PagesNav from "../components/PagesNav/PagesNav";
-import Loader from "../components/shared/Loader";
-import PublicationsList from "../components/Publications/PublicationsList";
-
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
+
+import Loader from "../components/shared/Loader";
+import PagesNav from "../components/PagesNav/PagesNav";
+import PublicationsList from "../components/Publications/PublicationsList";
+import Section from "../components/shared/Section";
 
 import useSignInStatus from "../assets/utils/useSignInStatus";
 import setPageTitle from "../assets/utils/setPageTitle";
@@ -46,8 +47,8 @@ const PublicationsPage = () => {
   }
 
   return (
-    <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+    <Section>
+      <Alert state={alert} />
       <PagesNav
         margin={"mb-3"}
         periods={periods}
@@ -69,7 +70,7 @@ const PublicationsPage = () => {
           <PagesNav periods={periods} currentPeriodId={parseInt(period_id)} />
         )}
       </div>
-    </section>
+    </Section>
   );
 };
 

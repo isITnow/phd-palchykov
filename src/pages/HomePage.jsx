@@ -1,12 +1,13 @@
 import About from "../components/About/About";
 import Sidebar from "../components/Sidebar/Sidebar";
+import Section from "../components/shared/Section";
 
 import setPageTitle from "../assets/utils/setPageTitle";
 
 const HomePage = () => {
   setPageTitle();
   return (
-    <section className="py-4">
+    <Section>
       <div className="row">
         <div className="col-12 col-md-4 h-25 mb-5">
           <Sidebar />
@@ -15,7 +16,7 @@ const HomePage = () => {
           <About />
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

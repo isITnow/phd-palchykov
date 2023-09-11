@@ -10,6 +10,7 @@ import { useAlert } from "../assets/utils/useAlert";
 
 import Loader from "../components/shared/Loader";
 import ResearchList from "../components/Research/ResearchList";
+import Section from "../components/shared/Section";
 
 import setPageTitle from "../assets/utils/setPageTitle";
 import useSignInStatus from "../assets/utils/useSignInStatus";
@@ -38,8 +39,8 @@ const ResearchPage = () => {
   }
 
   return (
-    <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+    <Section>
+      <Alert state={alert} />
       <ResearchList researches={researches} />
       {isLoggedIn && (
         <div className="">
@@ -48,7 +49,7 @@ const ResearchPage = () => {
           </Link>
         </div>
       )}
-    </section>
+    </Section>
   );
 };
 

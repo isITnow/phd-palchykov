@@ -1,9 +1,29 @@
+import { motion, AnimatePresence } from "framer-motion";
+
+const fadeInOut = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+
 const Alert = ({ state }) => {
-  const { text, type } = state;
+  const { text, type, isVisible } = state;
   return (
-    <div className={`alert alert-${type}`} role="alert">
-      {text}
-    </div>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.p
+          key="child"
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={fadeInOut}
+          className={`alert alert-${type}`}
+          role="alert"
+        >
+          {text}
+        </motion.p>
+      )}
+    </AnimatePresence>
   );
 };
 

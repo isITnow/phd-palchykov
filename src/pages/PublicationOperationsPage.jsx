@@ -5,11 +5,12 @@ import { useSelector } from "react-redux";
 import { selectPublications } from "../redux/publications/selectorPublications";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
 
-import getCurrentPeriod from "../assets/utils/getCurrentPeriod";
-
-import PublicationForm from "../components/Publications/PublicationForm";
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
+import PublicationForm from "../components/Publications/PublicationForm";
+import Section from "../components/shared/Section";
+
+import getCurrentPeriod from "../assets/utils/getCurrentEntity";
 
 const PublicationOperationsPage = ({ edit }) => {
   const { publications, error, status } = useSelector(selectPublications);
@@ -46,8 +47,8 @@ const PublicationOperationsPage = ({ edit }) => {
   }, [status]);
 
   return (
-    <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+    <Section>
+      <Alert state={alert} />
       <h4>{title}</h4>
       <div className="mb-3">
         <p className="mb-2 fw-bolder">required fields: </p>
@@ -63,7 +64,7 @@ const PublicationOperationsPage = ({ edit }) => {
         </ul>
       </div>
       <PublicationForm publication={edit ? publication : null} />
-    </section>
+    </Section>
   );
 };
 

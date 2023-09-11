@@ -12,12 +12,13 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import authReducer from "./auth/sliceAuth";
 import colleaguesReducer from "./colleagues/sliceColleagues";
 import newsReducer from "./news/sliceNews";
+import postsReducer from "./posts/slicePosts";
 import publicationsReducer from "./publications/slicePublications";
 import publicationPeriodsReducer from "./publicationPeriods/slicePublicationPeriods";
 import researchesReducer from "./researches/sliceResearches";
-import authReducer from "./auth/sliceAuth";
 
 const persistConfig = {
   key: "root",
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   colleagues: colleaguesReducer,
   news: newsReducer,
   periods: publicationPeriodsReducer,
+  posts: postsReducer,
   publications: publicationsReducer,
   researches: researchesReducer,
   user: authReducer,

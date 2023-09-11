@@ -13,7 +13,7 @@ import CustomInput from "../FormComponents/CustomInput";
 import CustomSelect from "../FormComponents/CustomSelect";
 
 import { validation } from "../../assets/utils/validationSchema";
-import getCurrentPeriod from "../../assets/utils/getCurrentPeriod";
+import getCurrentPeriod from "../../assets/utils/getCurrentEntity";
 import getYearsArray from "../../assets/utils/getYearsArray";
 
 const PublicationForm = ({ publication }) => {

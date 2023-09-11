@@ -42,7 +42,7 @@ const Modal = ({ children }) => {
             ></button>
           </div>
           <div className="modal-body text-start">
-            {alert.visible && <Alert state={alert} />}
+            <Alert state={alert} />
             {children}
           </div>
         </div>

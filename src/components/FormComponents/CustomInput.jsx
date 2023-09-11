@@ -7,7 +7,7 @@ const CustomInput = ({ label, ...props }) => {
       <label className="form-label px-3 text-secondary fw-bold">{label}</label>
       <input {...field} {...props} className="form-control" />
       {meta.touched && meta.error && (
-        <div className="form-text text-danger">{meta.error}</div>
+        <div className="form-text text-danger px-3">{meta.error}</div>
       )}
     </div>
   );

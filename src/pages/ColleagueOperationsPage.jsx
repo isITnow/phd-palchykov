@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectColleagues } from "../redux/colleagues/selectorColleagues";
 
-import ColleagueForm from "../components/Colleagues/ColleagueForm";
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
+import ColleagueForm from "../components/Colleagues/ColleagueForm";
+import Section from "../components/shared/Section";
 
 const ColleagueOperationsPage = ({ edit }) => {
   const { colleagues, error, status } = useSelector(selectColleagues);
@@ -35,8 +36,8 @@ const ColleagueOperationsPage = ({ edit }) => {
   }, [status]);
 
   return (
-    <section className="py-4">
-      {alert.visible && <Alert state={alert} />}
+    <Section>
+      <Alert state={alert} />
       <h4>{title}</h4>
       <div className="mb-3">
         <p className="mb-2 fw-bolder">required fields: </p>
@@ -48,7 +49,7 @@ const ColleagueOperationsPage = ({ edit }) => {
         </ul>
       </div>
       <ColleagueForm colleague={edit ? colleague : null} />
-    </section>
+    </Section>
   );
 };
 

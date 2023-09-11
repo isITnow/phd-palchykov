@@ -18,6 +18,9 @@ const GalleryByThemePage = lazy(() => import("./pages/GalleryByThemePage"));
 const NewsPage = lazy(() => import("./pages/NewsPage"));
 const NewsOperationsPage = lazy(() => import("./pages/NewsOperationsPage"));
 
+const PostsPage = lazy(() => import("./pages/PostsPage"));
+const PostPage = lazy(() => import("./pages/PostPage"));
+
 const PublicationsPage = lazy(() => import("./pages/PublicationsPage"));
 const PublicationOperationsPage = lazy(() =>
   import("./pages/PublicationOperationsPage")
@@ -46,19 +49,19 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
+        <Route path="colleagues" element={<ColleaguesPage />} />
+        <Route path="contacts" element={<ContactsPage />} />
+        <Route path="gallery" element={<GalleryPage />} />
+        <Route path="gallery/:theme" element={<GalleryByThemePage />} />
+        <Route path="news" element={<NewsPage />} />
         <Route
           path="periods/:period_id/publications"
           element={<PublicationsPage />}
         />
-
+        <Route path="posts" element={<PostsPage />} />
+        <Route path="posts/:id" element={<PostPage />} />
         <Route path="research" element={<ResearchPage />} />
-        <Route path="gallery" element={<GalleryPage />} />
-        <Route path="gallery/:theme" element={<GalleryByThemePage />} />
-        <Route path="news" element={<NewsPage />} />
 
-        <Route path="colleagues" element={<ColleaguesPage />} />
-
-        <Route path="contacts" element={<ContactsPage />} />
         {/* PRIVATE ROUTES */}
         <Route path="/" element={<PrivateRoute />}>
           <Route
