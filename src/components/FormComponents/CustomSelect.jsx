@@ -14,7 +14,7 @@ const CustomSelect = ({ label, years, ...props }) => {
         ))}
       </select>
       {meta.touched && meta.error && (
-        <div className="form-text text-danger">{meta.error}</div>
+        <div className="form-text text-danger px-3">{meta.error}</div>
       )}
     </div>
   );

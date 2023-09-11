@@ -7,7 +7,7 @@ const CustomTextArea = ({ label, ...props }) => {
       <label className="form-label px-3 text-secondary fw-bold">{label}</label>
       <textarea {...field} {...props} className="form-control" />
       {meta.touched && meta.error && (
-        <div className="form-text text-danger">{meta.error}</div>
+        <div className="form-text text-danger px-3">{meta.error}</div>
       )}
     </div>
   );
