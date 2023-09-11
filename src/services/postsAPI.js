@@ -6,6 +6,12 @@ const fetchPosts = async () => {
   return data;
 };
 
+const fetchOnePost = async (id) => {
+  const data = await publicAPI.get(`/posts/${id}`);
+
+  return data;
+};
+
 const postPost = async (body) => {
   const data = await privateAPI.post("/posts", body);
 
@@ -26,6 +32,7 @@ const deletePost = async (id) => {
 
 export const postsAPI = {
   fetchPosts,
+  fetchOnePost,
   postPost,
   editPost,
   deletePost,

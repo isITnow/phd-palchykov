@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  getPostsThunk,
   addPostThunk,
-  updatePostThunk,
+  getOnePostThunk,
+  getPostsThunk,
   removePostThunk,
+  updatePostThunk,
 } from "./operationsPosts";
 
 const initPosts = {
@@ -33,6 +34,19 @@ const postsSlice = createSlice({
       state.posts = payload;
     });
     builder.addCase(getPostsThunk.rejected, setError);
+
+    // FETCH ONE POST
+    builder.addCase(getOnePostThunk.pending, (state) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(getOnePostThunk.fulfilled, (state, { payload }) => {
+      console.log("payload: ", payload);
+      state.status = "loaded";
+      state.posts.push(payload);
+    });
+    builder.addCase(getOnePostThunk.rejected, setError);
+
     // CREATE POST
     builder.addCase(addPostThunk.pending, (state) => {
       state.status = "pending";
@@ -43,6 +57,7 @@ const postsSlice = createSlice({
       state.posts.unshift(payload);
     });
     builder.addCase(addPostThunk.rejected, setError);
+
     // UPDATE POST
     builder.addCase(updatePostThunk.pending, (state) => {
       state.status = "pending";
@@ -57,6 +72,7 @@ const postsSlice = createSlice({
       // });
     });
     builder.addCase(updatePostThunk.rejected, setError);
+
     // REMOVE POST
     builder.addCase(removePostThunk.pending, (state, { payload }) => {
       state.status = "pending";

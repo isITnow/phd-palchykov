@@ -19,6 +19,24 @@ export const getPostsThunk = createAsyncThunk(
   }
 );
 
+export const getOnePostThunk = createAsyncThunk(
+  "posts/getOne",
+
+  async (id, { rejectWithValue }) => {
+    try {
+      const resp = await postsAPI.fetchOnePost(id);
+
+      if (resp.status !== 200) {
+        throw new Error("Error occurred! Please contact your administrator.");
+      }
+      return resp.data;
+    } catch (error) {
+      console.log("GET one post error: ", error);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const addPostThunk = createAsyncThunk(
   "posts/post",
 
