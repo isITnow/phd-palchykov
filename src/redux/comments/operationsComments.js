@@ -7,15 +7,20 @@ export const addCommentThunk = createAsyncThunk(
   async ({ post_id, comment }, { rejectWithValue }) => {
     try {
       const resp = await commentsAPI.postComment(post_id, comment);
-      console.log("resp: ", resp);
 
-      // if (resp.status !== 201) {
-      //   throw new Error("Error occurred! Please contact your administrator.");
-      // }
+      if (resp.status !== 201) {
+        throw new Error("Error occurred! Please contact your administrator.");
+      }
 
-      // return resp.data;
+      return resp.data;
     } catch (error) {
       console.log("POST comment error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -35,6 +40,12 @@ export const removeCommentThunk = createAsyncThunk(
       return comment_id;
     } catch (error) {
       console.log("DELETE post error: ", error);
+
+      if (error.response.status === 401) {
+        return rejectWithValue(
+          error.response.data.error_description.join(", ")
+        );
+      }
       return rejectWithValue(error.message);
     }
   }
