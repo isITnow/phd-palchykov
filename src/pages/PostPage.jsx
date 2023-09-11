@@ -8,8 +8,9 @@ import {
   removePostThunk,
 } from "../redux/posts/operationsPosts";
 import {
-  selectOnePost,
+  selectComments,
   selectError,
+  selectOnePost,
   selectStatus,
 } from "../redux/posts/selectorPosts";
 
@@ -23,6 +24,7 @@ import Section from "../components/shared/Section";
 
 import setPageTitle from "../assets/utils/setPageTitle";
 import useSignInStatus from "../assets/utils/useSignInStatus";
+import CommentsList from "../components/Comments/CommentsList";
 
 const fadeInOut = {
   initial: { opacity: 0 },
@@ -37,8 +39,10 @@ const PostPage = () => {
   const [showForm, setShowForm] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const post = useSelector(selectOnePost);
+
   const error = useSelector(selectError);
+  const comments = useSelector(selectComments);
+  const post = useSelector(selectOnePost);
   const status = useSelector(selectStatus);
 
   const { alert, showAlert } = useAlert();
@@ -75,10 +79,10 @@ const PostPage = () => {
   };
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate("/posts");
   };
 
-  if (status === "loading") {
+  if (!post) {
     return <Loader />;
   }
 
@@ -86,7 +90,8 @@ const PostPage = () => {
     <Section>
       <Alert state={alert} />
       {post && <Post post={post} single />}
-      <div className="my-3 text-end">
+      {/* BUTTONS */}
+      <div className="mt-3 text-end">
         <button
           type="button"
           className="btn btn-outline-secondary"
@@ -133,7 +138,7 @@ const PostPage = () => {
           </div>
         )}
       </div>
-
+      {/* POST FORM */}
       <AnimatePresence>
         {showForm && (
           <motion.div
@@ -142,11 +147,14 @@ const PostPage = () => {
             animate="animate"
             exit="exit"
             variants={fadeInOut}
+            className="mt-3"
           >
             <PostForm post={post} />
           </motion.div>
         )}
       </AnimatePresence>
+      {/* COMMENTS LIST */}
+      {comments.length > 0 && <CommentsList comments={comments} />}
     </Section>
   );
 };
