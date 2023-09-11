@@ -36,20 +36,16 @@ const PostForm = ({ post }) => {
     >
       {(props) => (
         <Form>
-          <CustomTextArea
-            label="Post text"
-            name="body"
-            type="text"
-            rows="3"
-            autoFocus
-          />
-          <button
-            disabled={props.isSubmitting}
-            type="submit"
-            className="btn btn-primary"
-          >
-            {post ? "update" : "submit"}
-          </button>
+          <CustomTextArea label="Post text" name="body" type="text" rows="3" />
+          <div className="text-end">
+            <button
+              disabled={props.isSubmitting}
+              type="submit"
+              className="btn btn-primary"
+            >
+              {post ? "update" : "submit"}
+            </button>
+          </div>
         </Form>
       )}
     </Formik>
