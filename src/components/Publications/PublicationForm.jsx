@@ -148,45 +148,51 @@ const PublicationForm = ({ publication }) => {
                             label="Author"
                             name={`authors.${index}`}
                           />
-                          <div className="btn-group mb-3" role="group">
-                            <button
-                              type="button"
-                              className="btn btn-outline-primary"
-                              onClick={() => remove(index)} // remove a friend from the list
-                            >
-                              remove author
-                            </button>
-                            <button
-                              type="button"
-                              className="btn btn-outline-primary"
-                              onClick={() => insert(index, "")} // insert an empty string at a position
-                            >
-                              add an author
-                            </button>
+                          <div className="text-end mb-3">
+                            <div className="btn-group" role="group">
+                              <button
+                                type="button"
+                                className="btn btn-outline-primary"
+                                onClick={() => remove(index)} // remove a friend from the list
+                              >
+                                remove the author
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-outline-primary"
+                                onClick={() => insert(index, "")} // insert an empty string at a position
+                              >
+                                add an author
+                              </button>
+                            </div>
                           </div>
                         </div>
                       ))
                     ) : (
-                      <button
-                        type="button"
-                        className="btn btn-outline-primary"
-                        onClick={() => push("")}
-                      >
-                        Add an author
-                      </button>
+                      <div className="text-end">
+                        <button
+                          type="button"
+                          className="btn btn-outline-primary"
+                          onClick={() => push("")}
+                        >
+                          Add an author
+                        </button>
+                      </div>
                     )}
                   </div>
                 );
               }}
             </FieldArray>
           </div>
-          <button
-            disabled={props.isSubmitting}
-            type="submit"
-            className="btn btn-primary mt-3"
-          >
-            {isNewItem ? "Create publication" : "Update publication"}
-          </button>
+          <div className="text-end mb-3">
+            <button
+              disabled={props.isSubmitting}
+              type="submit"
+              className="btn btn-primary"
+            >
+              {isNewItem ? "Create publication" : "Update publication"}
+            </button>
+          </div>
         </Form>
       )}
     </Formik>

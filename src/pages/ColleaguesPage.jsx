@@ -48,7 +48,7 @@ const ColleaguesPage = () => {
       <Alert state={alert} />
       <ColleaguesList colleagues={colleagues} />
       {isLoggedIn && (
-        <div className="mt-3">
+        <div className="mt-3 text-end">
           <Link className="btn btn-primary" to={"/colleagues/new"}>
             new colleague
           </Link>

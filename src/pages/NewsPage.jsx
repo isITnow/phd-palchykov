@@ -43,7 +43,7 @@ const NewsPage = () => {
       <Alert state={alert} />
       <NewsList news={news} />
       {isLoggedIn && (
-        <div className="mt-3">
+        <div className="mt-3 text-end">
           <Link className="btn btn-primary" to={"/news/new"}>
             new news
           </Link>

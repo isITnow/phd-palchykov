@@ -70,13 +70,15 @@ const ColleagueForm = ({ colleague }) => {
               props.setFieldValue("photo", e.target.files[0]);
             }}
           />
-          <button
-            disabled={props.isSubmitting}
-            type="submit"
-            className="btn btn-primary mt-3"
-          >
-            {isNewItem ? "Create colleague" : "Update colleague"}
-          </button>
+          <div className="text-end">
+            <button
+              disabled={props.isSubmitting}
+              type="submit"
+              className="btn btn-primary mt-3"
+            >
+              {isNewItem ? "Create colleague" : "Update colleague"}
+            </button>
+          </div>
         </Form>
       )}
     </Formik>

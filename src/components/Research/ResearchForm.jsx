@@ -106,49 +106,53 @@ const ResearchForm = () => {
                               );
                             }}
                           />
-                          <div className="btn-group mb-3" role="group">
-                            <button
-                              type="button"
-                              className="btn btn-outline-primary"
-                              onClick={() => remove(index)}
-                            >
-                              remove illustration
-                            </button>
-                            <button
-                              type="button"
-                              className="btn btn-outline-primary"
-                              onClick={() =>
-                                insert(index, {
-                                  description: "",
-                                  schema: "",
-                                })
-                              }
-                            >
-                              add an illustration
-                            </button>
+                          <div className="text-end mb-3">
+                            <div className="btn-group" role="group">
+                              <button
+                                type="button"
+                                className="btn btn-outline-primary"
+                                onClick={() => remove(index)}
+                              >
+                                remove the illustration
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-outline-primary"
+                                onClick={() =>
+                                  insert(index, {
+                                    description: "",
+                                    schema: "",
+                                  })
+                                }
+                              >
+                                add an illustration
+                              </button>
+                            </div>
                           </div>
                         </div>
                       ))
                     ) : (
-                      <button
-                        type="button"
-                        className="btn btn-outline-primary"
-                        onClick={() =>
-                          push({
-                            source: "",
-                            source_url: "",
-                          })
-                        }
-                      >
-                        Add an illustration
-                      </button>
+                      <div className="text-end">
+                        <button
+                          type="button"
+                          className="btn btn-outline-primary"
+                          onClick={() =>
+                            push({
+                              source: "",
+                              source_url: "",
+                            })
+                          }
+                        >
+                          Add an illustration
+                        </button>
+                      </div>
                     )}
                   </div>
                 );
               }}
             </FieldArray>
           </div>
-          <div>
+          <div className="mt-3">
             <FieldArray name="sourceList">
               {({ push, remove, form }) => {
                 const { values } = form;
@@ -171,55 +175,61 @@ const ResearchForm = () => {
                             label="Source URL"
                             name={`sourceList.${index}.source_url`}
                           />
-                          <div className="btn-group mb-3" role="group">
-                            <button
-                              type="button"
-                              className="btn btn-outline-primary"
-                              onClick={() => remove(index)}
-                            >
-                              remove source
-                            </button>
-                            <button
-                              type="button"
-                              className="btn btn-outline-primary"
-                              onClick={() =>
-                                push({
-                                  source: "",
-                                  source_url: "",
-                                })
-                              }
-                            >
-                              add a new source
-                            </button>
+                          <div className="text-end mb-3">
+                            <div className="btn-group" role="group">
+                              <button
+                                type="button"
+                                className="btn btn-outline-primary"
+                                onClick={() => remove(index)}
+                              >
+                                remove the source
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-outline-primary"
+                                onClick={() =>
+                                  push({
+                                    source: "",
+                                    source_url: "",
+                                  })
+                                }
+                              >
+                                add a new source
+                              </button>
+                            </div>
                           </div>
                         </div>
                       ))
                     ) : (
-                      <button
-                        type="button"
-                        className="btn btn-outline-primary"
-                        onClick={() =>
-                          push({
-                            source: "",
-                            source_url: "",
-                          })
-                        }
-                      >
-                        Add a source
-                      </button>
+                      <div className="text-end">
+                        <button
+                          type="button"
+                          className="btn btn-outline-primary"
+                          onClick={() =>
+                            push({
+                              source: "",
+                              source_url: "",
+                            })
+                          }
+                        >
+                          Add a source
+                        </button>
+                      </div>
                     )}
                   </div>
                 );
               }}
             </FieldArray>
           </div>
-          <button
-            disabled={props.isSubmitting}
-            type="submit"
-            className="btn btn-primary mt-3"
-          >
-            Create research card
-          </button>
+          <div className="text-end mb-3">
+            <button
+              disabled={props.isSubmitting}
+              type="submit"
+              className="btn btn-primary"
+            >
+              Create research card
+            </button>
+          </div>
         </Form>
       )}
     </Formik>

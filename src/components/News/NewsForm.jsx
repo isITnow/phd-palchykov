@@ -94,45 +94,51 @@ const NewsForm = ({ newsItem }) => {
                             label="Link"
                             name={`links.${index}`}
                           />
-                          <div className="btn-group mb-3" role="group">
-                            <button
-                              type="button"
-                              className="btn btn-outline-primary"
-                              onClick={() => remove(index)} // remove a friend from the list
-                            >
-                              remove link
-                            </button>
-                            <button
-                              type="button"
-                              className="btn btn-outline-primary"
-                              onClick={() => insert(index, "")} // insert an empty string at a position
-                            >
-                              add a new link
-                            </button>
+                          <div className="text-end">
+                            <div className="btn-group mb-3" role="group">
+                              <button
+                                type="button"
+                                className="btn btn-outline-primary"
+                                onClick={() => remove(index)} // remove a friend from the list
+                              >
+                                remove link
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-outline-primary"
+                                onClick={() => insert(index, "")} // insert an empty string at a position
+                              >
+                                add a new link
+                              </button>
+                            </div>
                           </div>
                         </div>
                       ))
                     ) : (
-                      <button
-                        type="button"
-                        className="btn btn-outline-primary"
-                        onClick={() => push("")}
-                      >
-                        Add a link
-                      </button>
+                      <div className="text-end">
+                        <button
+                          type="button"
+                          className="btn btn-outline-primary"
+                          onClick={() => push("")}
+                        >
+                          Add a link
+                        </button>
+                      </div>
                     )}
                   </div>
                 );
               }}
             </FieldArray>
           </div>
-          <button
-            disabled={props.isSubmitting}
-            type="submit"
-            className="btn btn-primary mt-3"
-          >
-            {isNewItem ? "Create news" : "Update news"}
-          </button>
+          <div className="text-end">
+            <button
+              disabled={props.isSubmitting}
+              type="submit"
+              className="btn btn-primary mt-3"
+            >
+              {isNewItem ? "Create news" : "Update news"}
+            </button>
+          </div>
         </Form>
       )}
     </Formik>
