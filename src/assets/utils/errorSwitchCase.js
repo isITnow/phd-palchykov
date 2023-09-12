@@ -3,7 +3,7 @@ const errorSwitchCase = (error) => {
     case 401:
       return error.response.data.error_description.join(", ");
 
-    case 404:
+    case 404 || 400:
       return error.response.data.error;
 
     default:
