@@ -21,7 +21,7 @@ export const addCommentThunk = createAsyncThunk(
           error.response.data.error_description.join(", ")
         );
       }
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.error);
     }
   }
 );
@@ -46,7 +46,7 @@ export const removeCommentThunk = createAsyncThunk(
           error.response.data.error_description.join(", ")
         );
       }
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data.error);
     }
   }
 );
