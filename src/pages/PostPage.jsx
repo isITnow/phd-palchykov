@@ -56,7 +56,7 @@ const PostPage = () => {
   useEffect(() => {
     switch (status) {
       case "rejected":
-        showAlert(`${error}. Please contact your administrator!`, "danger");
+        showAlert(error, "danger");
         break;
 
       case "fulfilled":
@@ -92,90 +92,95 @@ const PostPage = () => {
     navigate("/posts");
   };
 
-  if (!post) {
+  if (status === "loading") {
     return <Loader />;
   }
 
   return (
     <Section>
       <Alert state={alert} />
-      {post && <Post post={post} single />}
-      {/* BUTTONS */}
-      <div className="mt-3 text-end">
-        <button
-          type="button"
-          className="btn btn-outline-secondary"
-          onClick={handleGoBack}
-        >
-          go back
-        </button>
-        {isLoggedIn && (
-          <div className="btn-group ms-3">
-            {showForm ? (
-              <AnimatePresence>
-                <motion.button
-                  type="button"
-                  key="child"
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  variants={fadeInOut}
-                  className="btn btn-outline-secondary"
-                  onClick={() => setShowForm(false)}
-                >
-                  cancel update
-                </motion.button>
-              </AnimatePresence>
-            ) : (
-              <AnimatePresence>
-                <motion.button
-                  type="button"
-                  key="child"
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  variants={fadeInOut}
-                  className="btn btn-primary"
-                  onClick={() => setShowForm(true)}
-                >
-                  edit
-                </motion.button>
-              </AnimatePresence>
+      {post && (
+        <>
+          <Post post={post} single />
+          {/* BUTTONS */}
+          <div className="mt-3 text-end">
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={handleGoBack}
+            >
+              go back
+            </button>
+            {isLoggedIn && (
+              <div className="btn-group ms-3">
+                {showForm ? (
+                  <AnimatePresence>
+                    <motion.button
+                      type="button"
+                      key="child"
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      variants={fadeInOut}
+                      className="btn btn-outline-secondary"
+                      onClick={() => setShowForm(false)}
+                    >
+                      cancel update
+                    </motion.button>
+                  </AnimatePresence>
+                ) : (
+                  <AnimatePresence>
+                    <motion.button
+                      type="button"
+                      key="child"
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      variants={fadeInOut}
+                      className="btn btn-primary"
+                      onClick={() => setShowForm(true)}
+                    >
+                      edit
+                    </motion.button>
+                  </AnimatePresence>
+                )}
+                <div className="btn btn-danger" onClick={handleDelete}>
+                  delete
+                </div>
+              </div>
             )}
-            <div className="btn btn-danger" onClick={handleDelete}>
-              delete
-            </div>
           </div>
-        )}
-      </div>
-      {/* POST FORM */}
-      <AnimatePresence>
-        {showForm && (
-          <motion.div
-            key="child"
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={fadeInOut}
-            className="mt-3"
-          >
-            <PostForm post={post} />
-          </motion.div>
-        )}
-      </AnimatePresence>
-      {/* COMMENT FORM */}
-      <CommentForm />
-      {/* COMMENTS LIST */}
-      <div className="mt-3">
-        {!!comments.length ? (
-          <h3 className="text-center text-secondary fw-bold mb-3">Comments</h3>
-        ) : (
-          <h3 className="text-center text-secondary fw-bold mb-3">
-            No comments
-          </h3>
-        )}
-        {!!comments.length && <CommentsList comments={comments} />}
-      </div>
+          {/* POST FORM */}
+          <AnimatePresence>
+            {showForm && (
+              <motion.div
+                key="child"
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={fadeInOut}
+                className="mt-3"
+              >
+                <PostForm post={post} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          {/* COMMENTS */}
+          <CommentForm />
+          <div className="mt-3">
+            {!!comments?.length ? (
+              <h3 className="text-center text-secondary fw-bold mb-3">
+                Comments
+              </h3>
+            ) : (
+              <h3 className="text-center text-secondary fw-bold mb-3">
+                No comments
+              </h3>
+            )}
+            {!!comments?.length && <CommentsList comments={comments} />}
+          </div>
+        </>
+      )}
     </Section>
   );
 };

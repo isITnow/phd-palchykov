@@ -22,7 +22,7 @@ const NewsOperationsPage = ({ edit }) => {
 
   useEffect(() => {
     if (status === "rejected") {
-      showAlert(`${error}. Please contact your administrator!`, "danger");
+      showAlert(error, "danger");
       return;
     }
     if (status === "fulfilled") {
