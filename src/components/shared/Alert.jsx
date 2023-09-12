@@ -17,7 +17,7 @@ const Alert = ({ state }) => {
           animate="animate"
           exit="exit"
           variants={fadeInOut}
-          className={`alert alert-${type}`}
+          className={`text-center fw-bold alert alert-${type}`}
           role="alert"
         >
           {text}
