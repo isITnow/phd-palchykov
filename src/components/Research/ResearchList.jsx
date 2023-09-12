@@ -1,6 +1,14 @@
+import { motion } from "framer-motion";
 import Research from "./Research";
 
 import s from "./research.module.css";
+
+const listItem = {
+  initial: { opacity: 0, y: -15 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.9, delay: 0.4 },
+  exit: { opacity: 0, y: -15 },
+};
 
 const ResearchList = ({ researches }) => {
   let researchList = null;
@@ -31,12 +39,17 @@ const ResearchList = ({ researches }) => {
         </ul>
         <ul>
           {researchList.map((research, index) => (
-            <li
+            <motion.li
               className="mb-5 border-2 border-bottom border-secondary pb-3"
               key={research.id}
+              initial="initial"
+              animate="animate"
+              transition="transition"
+              exit="exit"
+              variants={listItem}
             >
               <Research research={research} index={index + 1} />
-            </li>
+            </motion.li>
           ))}
         </ul>
       </>
