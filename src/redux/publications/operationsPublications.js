@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { publicationsAPI } from "../../services/publicationsAPI";
 
+import errorSwitchCase from "../../assets/utils/errorSwitchCase";
+
 export const getPublicationsThunk = createAsyncThunk(
   "publications/get",
 
@@ -11,10 +13,11 @@ export const getPublicationsThunk = createAsyncThunk(
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return resp.data;
     } catch (error) {
       console.log("GET publications error: ", error);
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -32,16 +35,11 @@ export const addPublicationThunk = createAsyncThunk(
       if (resp.status !== 201) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return resp.data;
     } catch (error) {
       console.log("POST publication error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -63,17 +61,12 @@ export const updatePublicationThunk = createAsyncThunk(
       if (resp.status !== 202) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       dispatch(getPublicationsThunk(period_id));
       return resp.data;
     } catch (error) {
       console.log("EDIT publication error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -91,16 +84,11 @@ export const removePublicationThunk = createAsyncThunk(
       if (resp.status !== 204) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return publication_id;
     } catch (error) {
       console.log("DELETE publication error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );

@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { newsAPI } from "../../services/newsAPI";
 
+import errorSwitchCase from "../../assets/utils/errorSwitchCase";
+
 export const getNewsThunk = createAsyncThunk(
   "news/get",
 
@@ -11,10 +13,11 @@ export const getNewsThunk = createAsyncThunk(
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return resp.data;
     } catch (error) {
       console.log("GET news error: ", error);
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -29,16 +32,11 @@ export const addNewsThunk = createAsyncThunk(
       if (resp.status !== 201) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return resp.data;
     } catch (error) {
       console.log("POST news error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -53,17 +51,12 @@ export const updateNewsThunk = createAsyncThunk(
       if (resp.status !== 202) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       dispatch(getNewsThunk());
       return resp.data;
     } catch (error) {
       console.log("EDIT news error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -78,16 +71,11 @@ export const removeNewsThunk = createAsyncThunk(
       if (resp.status !== 204) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return id;
     } catch (error) {
       console.log("DELETE news error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );

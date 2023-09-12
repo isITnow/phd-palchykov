@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { postsAPI } from "../../services/postsAPI";
 
+import errorSwitchCase from "../../assets/utils/errorSwitchCase";
+
 export const getPostsThunk = createAsyncThunk(
   "posts/get",
 
@@ -15,7 +17,7 @@ export const getPostsThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("GET posts error: ", error);
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -34,7 +36,7 @@ export const getOnePostThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("GET one post error: ", error);
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -53,13 +55,7 @@ export const addPostThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("POST post error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -79,13 +75,7 @@ export const updatePostThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("EDIT post error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -104,13 +94,7 @@ export const removePostThunk = createAsyncThunk(
       return id;
     } catch (error) {
       console.log("DELETE post error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );

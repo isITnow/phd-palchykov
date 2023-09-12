@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { researchesAPI } from "../../services/researchesAPI";
 import { illustrationsAPI } from "../../services/illustrationsAPI";
-// import { addIllustrationThunk } from "../illustrations/operationsIllustrations";
+
+import errorSwitchCase from "../../assets/utils/errorSwitchCase";
 
 export const getResearchesThunk = createAsyncThunk(
   "researches/get",
@@ -13,10 +14,11 @@ export const getResearchesThunk = createAsyncThunk(
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return resp.data;
     } catch (error) {
       console.log("GET researches error: ", error);
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -51,13 +53,7 @@ export const addResearchThunk = createAsyncThunk(
       }
     } catch (error) {
       console.log("POST research error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -72,16 +68,11 @@ export const removeResearchThunk = createAsyncThunk(
       if (resp.status !== 204) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
       return id;
     } catch (error) {
       console.log("DELETE research error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.message);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
