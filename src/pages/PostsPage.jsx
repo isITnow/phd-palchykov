@@ -59,9 +59,19 @@ const PostsPage = () => {
   return (
     <Section>
       <Alert state={alert} />
-      {isLoggedIn && (
+
+      {isLoggedIn ? (
         <div className="mb-4">
           <PostForm />
+        </div>
+      ) : (
+        <div className="mb-4">
+          <h3 className="text-center text-primary fw-bold">
+            Welcome to my personal Blog
+          </h3>
+          <h4 className="text-center text-secondary fw-bold">
+            Feel free to leave your comments
+          </h4>
         </div>
       )}
       <PostsList posts={posts} />
