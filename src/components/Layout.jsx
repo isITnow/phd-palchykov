@@ -21,7 +21,7 @@ const Layout = () => {
 
   return (
     <>
-      <header className="shadow-sm py-3">
+      <header className="shadow-sm py-3 bg-light bg-gradient">
         <div className="container">
           <Navigation />
         </div>
