@@ -1,4 +1,4 @@
-import Address from "../components/Address";
+import Address from "../components/shared/Address";
 import SocialMedia from "../components/SocialMedia/SocialMedia";
 import Section from "../components/shared/Section";
 
