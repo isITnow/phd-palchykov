@@ -58,7 +58,7 @@ const publicationsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(removePublicationThunk.fulfilled, (state, { payload }) => {
-      state.status = "fulfilled";
+      state.status = "removed";
       state.publications = state.publications.filter(
         (publication) => publication.id !== payload
       );
