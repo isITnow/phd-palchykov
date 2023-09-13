@@ -7,17 +7,21 @@ import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPe
 
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
+
 import PublicationForm from "../components/Publications/PublicationForm";
 import Section from "../components/shared/Section";
 
 import getCurrentPeriod from "../assets/utils/getCurrentEntity";
 
 const PublicationOperationsPage = ({ edit }) => {
+  const { alert, showAlert } = useAlert();
+
   const { publications, error, status } = useSelector(selectPublications);
   const { periods } = useSelector(selectPeriods);
-  const { alert, showAlert } = useAlert();
-  const { period_id } = useParams();
+
+  const { period_id, publication_id } = useParams();
   const currentPeriodId = parseInt(period_id);
+  const currentPublicationId = parseInt(publication_id);
   const currentPeriod = getCurrentPeriod(periods, currentPeriodId);
 
   const title = edit
@@ -27,7 +31,9 @@ const PublicationOperationsPage = ({ edit }) => {
 
   if (edit) {
     publication = publications.find(
-      (publication) => publication.publication_period_id === currentPeriodId
+      (publication) =>
+        publication.publication_period_id === currentPeriodId &&
+        publication.id === currentPublicationId
     );
   }
 
