@@ -32,7 +32,7 @@ const Publication = ({ publication }) => {
   };
 
   return (
-    <div className={`card h-100 ${s.hoverEffect}`}>
+    <div className="card h-100 shadow-sm">
       <div className="card-body d-flex flex-column justify-content-between">
         <div>
           <h5 className="card-title text-danger">{title}</h5>
