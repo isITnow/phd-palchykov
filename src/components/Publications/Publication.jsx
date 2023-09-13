@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { removePublicationThunk } from "../../redux/publications/operationsPublications";
@@ -12,6 +11,7 @@ import s from "./publication.module.css";
 const Publication = ({ publication }) => {
   const {
     id,
+    publication_period_id,
     title,
     year,
     authors,
@@ -20,7 +20,7 @@ const Publication = ({ publication }) => {
     cover_url,
     abstract_url,
   } = publication;
-  const { period_id } = useParams();
+
   const { status } = useSelector(selectPublications);
   const isLoggedIn = useSignInStatus();
   const btnDisabled = status === "pending";
@@ -28,7 +28,12 @@ const Publication = ({ publication }) => {
 
   const handleClick = () => {
     alert("Are you sure you want to delete item?");
-    dispatch(removePublicationThunk({ period_id, publication_id: id }));
+    dispatch(
+      removePublicationThunk({
+        period_id: publication_period_id,
+        publication_id: id,
+      })
+    );
   };
 
   return (
@@ -74,7 +79,7 @@ const Publication = ({ publication }) => {
             <div className="btn-group">
               <Link
                 className="btn btn-sm btn-primary"
-                to={`/periods/${period_id}/publications/${id}/edit`}
+                to={`/periods/${publication_period_id}/publications/${id}/edit`}
               >
                 edit
               </Link>
