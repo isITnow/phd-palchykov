@@ -6,6 +6,7 @@ import {
   updateColleagueThunk,
 } from "../../redux/colleagues/operationsColleagues";
 
+import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 
 import { validation } from "../../assets/utils/validationSchema";
@@ -70,14 +71,17 @@ const ColleagueForm = ({ colleague }) => {
               props.setFieldValue("photo", e.target.files[0]);
             }}
           />
-          <div className="text-end">
-            <button
-              disabled={props.isSubmitting}
-              type="submit"
-              className="btn btn-primary mt-3"
-            >
-              {isNewItem ? "Create colleague" : "Update colleague"}
-            </button>
+          <div className="text-end mt-3">
+            <div className="btn-group">
+              <BackBtn path="/colleagues">Cancel</BackBtn>
+              <button
+                disabled={props.isSubmitting}
+                type="submit"
+                className="btn btn-primary"
+              >
+                {isNewItem ? "Create colleague" : "Update colleague"}
+              </button>
+            </div>
           </div>
         </Form>
       )}

@@ -5,6 +5,7 @@ import { addResearchThunk } from "../../redux/researches/operationsResearches";
 
 import { validation } from "../../assets/utils/validationSchema";
 
+import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
 import Badge from "../shared/Badge";
@@ -222,13 +223,16 @@ const ResearchForm = () => {
             </FieldArray>
           </div>
           <div className="text-end mb-3">
-            <button
-              disabled={props.isSubmitting}
-              type="submit"
-              className="btn btn-primary"
-            >
-              Create research card
-            </button>
+            <div className="btn-group">
+              <BackBtn path="/research">Cancel</BackBtn>
+              <button
+                disabled={props.isSubmitting}
+                type="submit"
+                className="btn btn-primary"
+              >
+                Create research card
+              </button>
+            </div>
           </div>
         </Form>
       )}

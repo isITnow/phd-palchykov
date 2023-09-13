@@ -17,6 +17,7 @@ import {
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 
+import BackBtn from "../components/shared/BackBtn";
 import Loader from "../components/shared/Loader";
 import Post from "../components/Posts/Post";
 import PostForm from "../components/Posts/PostForm";
@@ -88,10 +89,6 @@ const PostPage = () => {
     dispatch(removePostThunk(id));
   };
 
-  const handleGoBack = () => {
-    navigate("/posts");
-  };
-
   if (status === "loading") {
     return <Loader />;
   }
@@ -104,13 +101,7 @@ const PostPage = () => {
           <Post post={post} single />
           {/* BUTTONS */}
           <div className="mt-3 text-end">
-            <button
-              type="button"
-              className="btn btn-outline-secondary"
-              onClick={handleGoBack}
-            >
-              go back
-            </button>
+            <BackBtn path="/posts">Go back</BackBtn>
             {isLoggedIn && (
               <div className="btn-group ms-3">
                 {showForm ? (

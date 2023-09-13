@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addNewsThunk, updateNewsThunk } from "../../redux/news/operationsNews";
 
 import Badge from "../shared/Badge";
+import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
 
@@ -130,14 +131,17 @@ const NewsForm = ({ newsItem }) => {
               }}
             </FieldArray>
           </div>
-          <div className="text-end">
-            <button
-              disabled={props.isSubmitting}
-              type="submit"
-              className="btn btn-primary mt-3"
-            >
-              {isNewItem ? "Create news" : "Update news"}
-            </button>
+          <div className="text-end mt-3">
+            <div className="btn-group">
+              <BackBtn path="/news">Cancel</BackBtn>
+              <button
+                disabled={props.isSubmitting}
+                type="submit"
+                className="btn btn-primary"
+              >
+                {isNewItem ? "Create news" : "Update news"}
+              </button>
+            </div>
           </div>
         </Form>
       )}

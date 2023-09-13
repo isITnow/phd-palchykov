@@ -9,6 +9,7 @@ import {
 import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
 
 import Badge from "../shared/Badge";
+import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomSelect from "../FormComponents/CustomSelect";
 
@@ -185,13 +186,18 @@ const PublicationForm = ({ publication }) => {
             </FieldArray>
           </div>
           <div className="text-end mb-3">
-            <button
-              disabled={props.isSubmitting}
-              type="submit"
-              className="btn btn-primary"
-            >
-              {isNewItem ? "Create publication" : "Update publication"}
-            </button>
+            <div className="btn-group">
+              <BackBtn path={`/periods/${period_id}/publications`}>
+                Cancel
+              </BackBtn>
+              <button
+                disabled={props.isSubmitting}
+                type="submit"
+                className="btn btn-primary"
+              >
+                {isNewItem ? "Create publication" : "Update publication"}
+              </button>
+            </div>
           </div>
         </Form>
       )}
