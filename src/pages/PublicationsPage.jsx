@@ -39,6 +39,10 @@ const PublicationsPage = () => {
       showAlert(`${error}. Please contact your administrator!`, "danger");
       return;
     }
+    if (status === "removed") {
+      showAlert("Publication deleted successfully", "success");
+      return;
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
