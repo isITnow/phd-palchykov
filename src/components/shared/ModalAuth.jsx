@@ -5,7 +5,7 @@ import { selectError } from "../../redux/auth/selectorAuth";
 import Alert from "../../components/shared/Alert";
 import { useAlert } from "../../assets/utils/useAlert";
 
-const Modal = ({ children }) => {
+const ModalAuth = ({ children }) => {
   const { alert, showAlert } = useAlert();
   const error = useSelector(selectError);
 
@@ -23,15 +23,18 @@ const Modal = ({ children }) => {
   return (
     <div
       className="modal fade"
-      id="exampleModal"
+      id="authModal"
       tabIndex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="authModalLabel"
       aria-hidden="true"
     >
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
-          <div className="modal-header">
-            <h1 className="modal-title fs-5 text-danger" id="exampleModalLabel">
+          <div className="modal-header bg-warning bg-gradient">
+            <h1
+              className="modal-title fw-bold fs-5 text-danger"
+              id="authModalLabel"
+            >
               Admin only
             </h1>
             <button
@@ -51,4 +54,4 @@ const Modal = ({ children }) => {
   );
 };
 
-export default Modal;
+export default ModalAuth;

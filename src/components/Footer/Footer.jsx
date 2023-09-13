@@ -3,7 +3,7 @@ import { selectToken, selectIsLoggedIn } from "../../redux/auth/selectorAuth";
 import { logoutThunk } from "../../redux/auth/operationsAuth";
 
 import LoginForm from "../FormComponents/LoginForm";
-import Modal from "../shared/Modal";
+import ModalAuth from "../shared/ModalAuth";
 import { CiLogin, CiLogout } from "react-icons/ci";
 
 const Footer = () => {
@@ -45,14 +45,14 @@ const Footer = () => {
           <CiLogin
             style={{ cursor: "pointer" }}
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#authModal"
             size="22"
           />
         )}
       </div>
-      <Modal>
+      <ModalAuth>
         <LoginForm />
-      </Modal>
+      </ModalAuth>
     </div>
   );
 };

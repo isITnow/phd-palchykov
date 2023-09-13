@@ -33,13 +33,15 @@ const LoginForm = () => {
         <Form>
           <CustomInput label="Email" name="email" type="email" autoFocus />
           <CustomInput label="Password" name="password" type="password" />
-          <button
-            disabled={props.isSubmitting}
-            type="submit"
-            className="btn btn-primary mt-3"
-          >
-            submit
-          </button>
+          <div className="text-end">
+            <button
+              disabled={props.isSubmitting}
+              type="submit"
+              className="btn btn-primary mt-3"
+            >
+              Log In
+            </button>
+          </div>
         </Form>
       )}
     </Formik>
