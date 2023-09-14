@@ -64,8 +64,15 @@ const ColleagueForm = ({ colleague }) => {
           <CustomInput label="Position" name="position" type="text" />
           <CustomInput label="Email" name="email" type="email" />
           <CustomInput label="Phone" name="phone" type="text" />
+          <label
+            htmlFor="photo"
+            className="form-label px-3 text-secondary fw-bold"
+          >
+            Photo
+          </label>
           <input
             className="form-control mb-3"
+            id="photo"
             type="file"
             onChange={(e) => {
               props.setFieldValue("photo", e.target.files[0]);

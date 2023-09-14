@@ -6,8 +6,13 @@ import { selectNews } from "../redux/news/selectorNews";
 
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
+
+import FormTitle from "../components/FormComponents/FormTitle";
+import FormRequirements from "../components/FormComponents/FormRequirements";
 import NewsForm from "../components/News/NewsForm";
 import Section from "../components/shared/Section";
+
+const requirementsList = ["News title", "Date ( example: April 1, 2023 )"];
 
 const NewsOperationsPage = ({ edit }) => {
   const { news, error, status } = useSelector(selectNews);
@@ -38,14 +43,8 @@ const NewsOperationsPage = ({ edit }) => {
   return (
     <Section>
       <Alert state={alert} />
-      <h4>{title}</h4>
-      <div className="mb-3">
-        <p className="mb-2 fw-bolder">required fields: </p>
-        <ul className="list-group list-group-numbered">
-          <li className="list-group-item">News title</li>
-          <li className="list-group-item">Date ( example: April 1, 2023 )</li>
-        </ul>
-      </div>
+      <FormTitle>{title}</FormTitle>
+      <FormRequirements requirementsList={requirementsList} />
       <NewsForm newsItem={newsItem} />
     </Section>
   );

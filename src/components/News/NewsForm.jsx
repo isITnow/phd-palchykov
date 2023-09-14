@@ -69,8 +69,15 @@ const NewsForm = ({ newsItem }) => {
             rows="5"
           />
           <CustomInput label="Date" name="date" type="text" />
+          <label
+            htmlFor="image"
+            className="form-label px-3 text-secondary fw-bold"
+          >
+            Image
+          </label>
           <input
             className="form-control mb-3"
+            id="image"
             type="file"
             onChange={(e) => {
               props.setFieldValue("image", e.target.files[0]);

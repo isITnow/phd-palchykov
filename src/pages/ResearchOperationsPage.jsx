@@ -5,8 +5,19 @@ import { selectResearches } from "../redux/researches/selectorResearches";
 
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
+
+import FormTitle from "../components/FormComponents/FormTitle";
+import FormRequirements from "../components/FormComponents/FormRequirements";
 import ResearchForm from "../components/Research/ResearchForm";
 import Section from "../components/shared/Section";
+
+const requirementsList = [
+  "Research title",
+  "Description",
+  "Attachment ( illustration image )",
+  "Source",
+  "Source URL",
+];
 
 const ResearchOperationsPage = () => {
   const { status, error } = useSelector(selectResearches);
@@ -30,17 +41,8 @@ const ResearchOperationsPage = () => {
   return (
     <Section>
       <Alert state={alert} />
-      <h4>{title}</h4>
-      <div className="mb-3">
-        <p className="mb-2 fw-bolder">required fields: </p>
-        <ul className="list-group list-group-numbered">
-          <li className="list-group-item">Research title</li>
-          <li className="list-group-item">Description</li>
-          <li className="list-group-item">Attachment ( illustration image )</li>
-          <li className="list-group-item">Source </li>
-          <li className="list-group-item">Source URL</li>
-        </ul>
-      </div>
+      <FormTitle>{title}</FormTitle>
+      <FormRequirements requirementsList={requirementsList} />
       <ResearchForm />
     </Section>
   );

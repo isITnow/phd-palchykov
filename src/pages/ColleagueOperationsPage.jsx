@@ -6,8 +6,19 @@ import { selectColleagues } from "../redux/colleagues/selectorColleagues";
 
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
+
 import ColleagueForm from "../components/Colleagues/ColleagueForm";
+import FormTitle from "../components/FormComponents/FormTitle";
+import FormRequirements from "../components/FormComponents/FormRequirements";
 import Section from "../components/shared/Section";
+
+const requirementsList = [
+  "Name",
+  "Position",
+  "Email",
+  "Photo",
+  "Phone ( example: +380775554433 )",
+];
 
 const ColleagueOperationsPage = ({ edit }) => {
   const { colleagues, error, status } = useSelector(selectColleagues);
@@ -38,16 +49,8 @@ const ColleagueOperationsPage = ({ edit }) => {
   return (
     <Section>
       <Alert state={alert} />
-      <h4>{title}</h4>
-      <div className="mb-3">
-        <p className="mb-2 fw-bolder">required fields: </p>
-        <ul className="list-group list-group-numbered">
-          <li className="list-group-item">Name</li>
-          <li className="list-group-item">Position </li>
-          <li className="list-group-item">Email</li>
-          <li className="list-group-item">Phone ( example: +380775554433 )</li>
-        </ul>
-      </div>
+      <FormTitle>{title}</FormTitle>
+      <FormRequirements requirementsList={requirementsList} />
       <ColleagueForm colleague={edit ? colleague : null} />
     </Section>
   );

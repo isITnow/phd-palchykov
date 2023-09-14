@@ -8,10 +8,21 @@ import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPe
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/utils/useAlert";
 
+import FormTitle from "../components/FormComponents/FormTitle";
+import FormRequirements from "../components/FormComponents/FormRequirements";
 import PublicationForm from "../components/Publications/PublicationForm";
 import Section from "../components/shared/Section";
 
 import getCurrentPeriod from "../assets/utils/getCurrentEntity";
+
+const requirementsList = [
+  "Publication year",
+  "Publication title",
+  "Source",
+  "SourceURL",
+  "Author ( at least one )",
+  "Attachment ( required at least one, cover or abstract )",
+];
 
 const PublicationOperationsPage = ({ edit }) => {
   const { alert, showAlert } = useAlert();
@@ -55,20 +66,8 @@ const PublicationOperationsPage = ({ edit }) => {
   return (
     <Section>
       <Alert state={alert} />
-      <h4>{title}</h4>
-      <div className="mb-3">
-        <p className="mb-2 fw-bolder">required fields: </p>
-        <ul className="list-group list-group-numbered">
-          <li className="list-group-item">Publication year</li>
-          <li className="list-group-item">Publication title</li>
-          <li className="list-group-item">Source </li>
-          <li className="list-group-item">Source URL</li>
-          <li className="list-group-item">Author ( at least one )</li>
-          <li className="list-group-item">
-            Attachment ( required at least one, cover or abstract )
-          </li>
-        </ul>
-      </div>
+      <FormTitle>{title}</FormTitle>
+      <FormRequirements requirementsList={requirementsList} />
       <PublicationForm publication={edit ? publication : null} />
     </Section>
   );
