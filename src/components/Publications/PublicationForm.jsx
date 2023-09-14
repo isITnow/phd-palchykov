@@ -31,7 +31,7 @@ const PublicationForm = ({ publication }) => {
     const {
       title,
       year,
-      sequenceNumber,
+      sequence_number,
       source_url,
       source,
       cover,
@@ -42,7 +42,7 @@ const PublicationForm = ({ publication }) => {
     const formData = new FormData();
     formData.append("publication[title]", title.trim());
     formData.append("publication[year]", year);
-    formData.append("publication[sequence_number]", sequenceNumber);
+    formData.append("publication[sequence_number]", sequence_number);
     formData.append("publication[title]", title.trim());
     formData.append("publication[source]", source.trim());
     formData.append("publication[source_url]", source_url.trim());
@@ -84,7 +84,7 @@ const PublicationForm = ({ publication }) => {
           ? {
               title: "",
               year: "",
-              sequenceNumber: 0,
+              sequence_number: 0,
               source_url: "",
               source: "",
               cover: "",
@@ -109,7 +109,7 @@ const PublicationForm = ({ publication }) => {
             <div className="col-6 col-md-4">
               <CustomInput
                 label="Sequence Num"
-                name="sequenceNumber"
+                name="sequence_number"
                 type="number"
               />
             </div>
