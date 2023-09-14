@@ -4,8 +4,9 @@ const getYearsArray = (period) => {
   let till = end;
 
   if (end === "present") {
-    till = 2023;
+    till = new Date().getFullYear();
   }
+
   let years = [];
   let i = start;
   while (till >= i) {
