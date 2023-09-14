@@ -28,12 +28,21 @@ const PublicationForm = ({ publication }) => {
   const isNewItem = !publication;
 
   const handleSubmit = async (values, actions) => {
-    const { title, year, source_url, source, cover, abstract, authors } =
-      values;
+    const {
+      title,
+      year,
+      sequenceNumber,
+      source_url,
+      source,
+      cover,
+      abstract,
+      authors,
+    } = values;
 
     const formData = new FormData();
     formData.append("publication[title]", title.trim());
     formData.append("publication[year]", year);
+    formData.append("publication[sequence_number]", sequenceNumber);
     formData.append("publication[title]", title.trim());
     formData.append("publication[source]", source.trim());
     formData.append("publication[source_url]", source_url.trim());
@@ -75,6 +84,7 @@ const PublicationForm = ({ publication }) => {
           ? {
               title: "",
               year: "",
+              sequenceNumber: 0,
               source_url: "",
               source: "",
               cover: "",
@@ -88,20 +98,31 @@ const PublicationForm = ({ publication }) => {
     >
       {(props) => (
         <Form>
-          <CustomSelect
-            label="Publication year"
-            name="year"
-            years={periodYears}
-          />
+          <div className="row">
+            <div className="col-6 col-md-8">
+              <CustomSelect
+                label="Publication Year"
+                name="year"
+                years={periodYears}
+              />
+            </div>
+            <div className="col-6 col-md-4">
+              <CustomInput
+                label="Sequence Num"
+                name="sequenceNumber"
+                type="number"
+              />
+            </div>
+          </div>
           <CustomInput
-            label="Publication title"
+            label="Publication Title"
             name="title"
             type="text"
             autoFocus
           />
           <CustomInput label="Source" name="source" type="text" />
           <CustomInput label="Source URL" name="source_url" type="text" />
-          <div className="w-50 mb-3">
+          <div className="col-md-6 mb-3">
             <label
               htmlFor="formFile"
               className="form-label px-3 text-secondary fw-bold"
@@ -120,7 +141,7 @@ const PublicationForm = ({ publication }) => {
               htmlFor="formFile"
               className="form-label px-3 text-secondary fw-bold"
             >
-              Abstract
+              Abstract image
             </label>
             <input
               className="form-control"

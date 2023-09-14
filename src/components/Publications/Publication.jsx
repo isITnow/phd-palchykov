@@ -14,6 +14,7 @@ const Publication = ({ publication }) => {
     publication_period_id,
     title,
     year,
+    sequence_number,
     authors,
     source,
     source_url,
@@ -40,7 +41,13 @@ const Publication = ({ publication }) => {
     <div className="card h-100 shadow-sm">
       <div className="card-body d-flex flex-column justify-content-between">
         <div>
-          <h5 className="card-title text-danger">{title}</h5>
+          <div className="d-flex">
+            <span className="me-2 text-secondary fs-5 lh-sm">
+              {sequence_number}.
+            </span>
+            <h5 className="card-title text-danger">{title}</h5>
+          </div>
+          {/* <h5 className="card-title text-danger">{title}</h5> */}
           {cover_url && abstract_url ? (
             <div className="row row-cols-2 mt-2">
               <div className="col">
