@@ -11,9 +11,7 @@ const ModalAuth = ({ children }) => {
 
   useEffect(() => {
     if (error) {
-      error?.includes("400")
-        ? showAlert("Email or password is invalid", "danger")
-        : showAlert(error, "danger");
+      showAlert(error, "danger");
       return;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
