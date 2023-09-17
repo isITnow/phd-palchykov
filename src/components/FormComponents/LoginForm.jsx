@@ -13,8 +13,8 @@ const LoginForm = () => {
     const { email, password } = values;
 
     const formData = new FormData();
-    formData.append("email", email.trim().toLowerCase());
-    formData.append("password", password.trim());
+    formData.append("user[email]", email.trim().toLowerCase());
+    formData.append("user[password]", password.trim());
 
     dispatch(loginThunk(formData));
     actions.resetForm();
