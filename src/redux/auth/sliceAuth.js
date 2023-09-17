@@ -4,7 +4,6 @@ import { loginThunk, logoutThunk } from "./operationsAuth";
 const initStateAuth = {
   user: null,
   token: null,
-  refreshToken: null,
   isLoggedIn: false,
   error: null,
 };
@@ -15,23 +14,20 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     // SIGN IN USER
-    builder.addCase(loginThunk.pending, (state, { payload }) => {
+    builder.addCase(loginThunk.pending, (state) => {
       state.user = null;
       state.token = null;
-      state.refreshToken = null;
       state.isLoggedIn = false;
       state.error = null;
     });
     builder.addCase(loginThunk.fulfilled, (state, { payload }) => {
-      state.user = payload.resource_owner;
+      state.user = payload.user;
       state.token = payload.token;
-      state.refreshToken = payload.refresh_token;
       state.isLoggedIn = true;
     });
     builder.addCase(loginThunk.rejected, (state, { payload }) => {
       state.user = null;
       state.token = null;
-      state.refreshToken = null;
       state.isLoggedIn = false;
       state.error = payload;
     });
@@ -39,7 +35,6 @@ const authSlice = createSlice({
     builder.addCase(logoutThunk.fulfilled, (state) => {
       state.user = null;
       state.token = null;
-      state.refreshToken = null;
       state.isLoggedIn = false;
     });
   },
