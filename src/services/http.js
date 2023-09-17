@@ -10,7 +10,7 @@ export const publicAPI = axios.create({
   baseURL: BASE_URL,
 });
 
-export const token = {
+export const tokenOperations = {
   set(token) {
     privateAPI.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
