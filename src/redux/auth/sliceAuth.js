@@ -37,6 +37,12 @@ const authSlice = createSlice({
       state.token = null;
       state.isLoggedIn = false;
     });
+    builder.addCase(logoutThunk.rejected, (state, { payload }) => {
+      state.user = null;
+      state.token = null;
+      state.isLoggedIn = false;
+      // state.error = payload;
+    });
   },
 });
 
