@@ -31,7 +31,7 @@ export const logoutThunk = createAsyncThunk(
       tokenOperations.unset();
     } catch (error) {
       console.log("Logout Error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      // return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
