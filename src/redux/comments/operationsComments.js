@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { commentsAPI } from "../../services/commentsAPI";
 
+import errorSwitchCase from "../../assets/utils/errorSwitchCase";
+
 export const addCommentThunk = createAsyncThunk(
   "comments/post",
 
@@ -15,13 +17,7 @@ export const addCommentThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("POST comment error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.response.data.error);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
@@ -40,13 +36,7 @@ export const removeCommentThunk = createAsyncThunk(
       return comment_id;
     } catch (error) {
       console.log("DELETE post error: ", error);
-
-      if (error.response.status === 401) {
-        return rejectWithValue(
-          error.response.data.error_description.join(", ")
-        );
-      }
-      return rejectWithValue(error.response.data.error);
+      return rejectWithValue(errorSwitchCase(error));
     }
   }
 );
