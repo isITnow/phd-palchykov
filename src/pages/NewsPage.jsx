@@ -6,13 +6,13 @@ import { getNewsThunk } from "../redux/news/operationsNews";
 import { selectNews } from "../redux/news/selectorNews";
 
 import Alert from "../components/shared/Alert";
-import { useAlert } from "../assets/utils/useAlert";
+import { useAlert } from "../assets/customHooks/useAlert";
 
 import Loader from "../components/shared/Loader";
 import NewsList from "../components/News/NewsList";
 import Section from "../components/shared/Section";
 
-import useSignInStatus from "../assets/utils/useSignInStatus";
+import useSignInStatus from "../assets/customHooks/useSignInStatus";
 import setPageTitle from "../assets/utils/setPageTitle";
 
 const NewsPage = () => {

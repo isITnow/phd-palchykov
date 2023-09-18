@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectResearches } from "../redux/researches/selectorResearches";
 
 import Alert from "../components/shared/Alert";
-import { useAlert } from "../assets/utils/useAlert";
+import { useAlert } from "../assets/customHooks/useAlert";
 
 import FormTitle from "../components/FormComponents/FormTitle";
 import FormRequirements from "../components/FormComponents/FormRequirements";

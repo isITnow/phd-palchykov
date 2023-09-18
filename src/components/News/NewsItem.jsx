@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeNewsThunk } from "../../redux/news/operationsNews";
 import { selectNews } from "../../redux/news/selectorNews";
 
-import useSignInStatus from "../../assets/utils/useSignInStatus";
+import useSignInStatus from "../../assets/customHooks/useSignInStatus";
 
 const NewsItem = ({ news }) => {
   const { id, title, body, image_url, date, links } = news;

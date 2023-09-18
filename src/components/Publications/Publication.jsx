@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removePublicationThunk } from "../../redux/publications/operationsPublications";
 import { selectPublications } from "../../redux/publications/selectorPublications";
 
-import useSignInStatus from "../../assets/utils/useSignInStatus";
+import useSignInStatus from "../../assets/customHooks/useSignInStatus";
 
 import s from "./publication.module.css";
 

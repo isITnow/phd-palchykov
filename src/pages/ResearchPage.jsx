@@ -6,14 +6,14 @@ import { selectResearches } from "../redux/researches/selectorResearches";
 import { getResearchesThunk } from "../redux/researches/operationsResearches";
 
 import Alert from "../components/shared/Alert";
-import { useAlert } from "../assets/utils/useAlert";
+import { useAlert } from "../assets/customHooks/useAlert";
 
 import Loader from "../components/shared/Loader";
 import ResearchList from "../components/Research/ResearchList";
 import Section from "../components/shared/Section";
 
 import setPageTitle from "../assets/utils/setPageTitle";
-import useSignInStatus from "../assets/utils/useSignInStatus";
+import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
 const ResearchPage = () => {
   setPageTitle("Research");

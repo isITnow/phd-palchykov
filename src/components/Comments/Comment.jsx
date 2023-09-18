@@ -1,5 +1,5 @@
 import formateDate from "../../assets/utils/formateDate";
-import useSignInStatus from "../../assets/utils/useSignInStatus";
+import useSignInStatus from "../../assets/customHooks/useSignInStatus";
 
 import { useDispatch } from "react-redux";
 import { removeCommentThunk } from "../../redux/comments/operationsComments";

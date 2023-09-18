@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeResearchThunk } from "../../redux/researches/operationsResearches";
 import { selectResearches } from "../../redux/researches/selectorResearches";
 
-import useSignInStatus from "../../assets/utils/useSignInStatus";
+import useSignInStatus from "../../assets/customHooks/useSignInStatus";
 
 const Research = ({ research, index }) => {
   const { id, title, illustrations, sourceList } = research;

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectColleagues } from "../redux/colleagues/selectorColleagues";
 
 import Alert from "../components/shared/Alert";
-import { useAlert } from "../assets/utils/useAlert";
+import { useAlert } from "../assets/customHooks/useAlert";
 
 import ColleagueForm from "../components/Colleagues/ColleagueForm";
 import FormTitle from "../components/FormComponents/FormTitle";

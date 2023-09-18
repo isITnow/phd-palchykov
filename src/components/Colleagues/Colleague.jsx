@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeColleagueThunk } from "../../redux/colleagues/operationsColleagues";
 import { selectColleagues } from "../../redux/colleagues/selectorColleagues";
 
-import useSignInStatus from "../../assets/utils/useSignInStatus";
+import useSignInStatus from "../../assets/customHooks/useSignInStatus";
 
 import s from "./colleague.module.css";
 

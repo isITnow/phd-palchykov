@@ -15,7 +15,7 @@ import {
 } from "../redux/posts/selectorPosts";
 
 import Alert from "../components/shared/Alert";
-import { useAlert } from "../assets/utils/useAlert";
+import { useAlert } from "../assets/customHooks/useAlert";
 
 import BackBtn from "../components/shared/BackBtn";
 import Loader from "../components/shared/Loader";
@@ -24,7 +24,7 @@ import PostForm from "../components/Posts/PostForm";
 import Section from "../components/shared/Section";
 
 import setPageTitle from "../assets/utils/setPageTitle";
-import useSignInStatus from "../assets/utils/useSignInStatus";
+import useSignInStatus from "../assets/customHooks/useSignInStatus";
 import CommentsList from "../components/Comments/CommentsList";
 import CommentForm from "../components/Comments/CommentForm";
 

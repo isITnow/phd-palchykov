@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectError } from "../../redux/auth/selectorAuth";
 
 import Alert from "../../components/shared/Alert";
-import { useAlert } from "../../assets/utils/useAlert";
+import { useAlert } from "../../assets/customHooks/useAlert";
 
 const ModalAuth = ({ children }) => {
   const { alert, showAlert } = useAlert();

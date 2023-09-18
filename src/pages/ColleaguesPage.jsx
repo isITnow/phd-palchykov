@@ -6,13 +6,13 @@ import { getColleaguesThunk } from "../redux/colleagues/operationsColleagues.js"
 import { selectColleagues } from "../redux/colleagues/selectorColleagues.js";
 
 import Alert from "../components/shared/Alert.jsx";
-import { useAlert } from "../assets/utils/useAlert.js";
+import { useAlert } from "../assets/customHooks/useAlert.js";
 
 import Loader from "../components/shared/Loader";
 import ColleaguesList from "../components/Colleagues/ColleaguesList";
 import Section from "../components/shared/Section.jsx";
 
-import useSignInStatus from "../assets/utils/useSignInStatus";
+import useSignInStatus from "../assets/customHooks/useSignInStatus.js";
 import setPageTitle from "../assets/utils/setPageTitle";
 
 const ColleaguesPage = () => {

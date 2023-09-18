@@ -7,14 +7,14 @@ import { selectPublications } from "../redux/publications/selectorPublications";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
 
 import Alert from "../components/shared/Alert";
-import { useAlert } from "../assets/utils/useAlert";
+import { useAlert } from "../assets/customHooks/useAlert";
 
 import Loader from "../components/shared/Loader";
 import PagesNav from "../components/PagesNav/PagesNav";
 import PublicationsList from "../components/Publications/PublicationsList";
 import Section from "../components/shared/Section";
 
-import useSignInStatus from "../assets/utils/useSignInStatus";
+import useSignInStatus from "../assets/customHooks/useSignInStatus";
 import setPageTitle from "../assets/utils/setPageTitle";
 
 const PublicationsPage = () => {
