@@ -28,7 +28,7 @@ const Publication = ({ publication }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    alert("Are you sure you want to delete item?");
+    // alert("Are you sure you want to delete item?");
     dispatch(
       removePublicationThunk({
         period_id: publication_period_id,
@@ -47,7 +47,6 @@ const Publication = ({ publication }) => {
             </span>
             <h5 className="card-title text-danger">{title}</h5>
           </div>
-          {/* <h5 className="card-title text-danger">{title}</h5> */}
           {cover_url && abstract_url ? (
             <div className="row row-cols-2 mt-2">
               <div className="col">

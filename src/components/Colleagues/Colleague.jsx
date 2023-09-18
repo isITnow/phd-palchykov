@@ -16,7 +16,7 @@ const Colleague = ({ colleague }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    alert("Are you sure you want to delete item?");
+    // alert("Are you sure you want to delete item?");
     dispatch(removeColleagueThunk(id));
   };
 

@@ -12,7 +12,7 @@ const Research = ({ research, index }) => {
   const btnDisabled = status === "pending";
 
   const handleClick = () => {
-    alert("Are you sure you want to delete item?");
+    // alert("Are you sure you want to delete item?");
     dispatch(removeResearchThunk(id));
   };
 

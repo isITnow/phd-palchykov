@@ -13,7 +13,7 @@ const Comment = ({ comment }) => {
   const isLoggedIn = useSignInStatus();
 
   const handleClick = () => {
-    window.alert("Are you sure?");
+    // window.alert("Are you sure?");
     dispatch(removeCommentThunk({ post_id: id, comment_id: comment.id }));
   };
 

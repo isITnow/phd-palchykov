@@ -85,7 +85,7 @@ const PostPage = () => {
   }, [status]);
 
   const handleDelete = () => {
-    window.alert("Are you sure you want to delete post?");
+    // window.alert("Are you sure you want to delete post?");
     dispatch(removePostThunk(id));
   };
 
