@@ -51,7 +51,7 @@ const ColleagueOperationsPage = ({ edit }) => {
       <Alert state={alert} />
       <FormTitle>{title}</FormTitle>
       <FormRequirements requirementsList={requirementsList} />
-      <ColleagueForm colleague={edit ? colleague : null} />
+      <ColleagueForm colleague={edit ? colleague : null} status={status} />
     </Section>
   );
 };

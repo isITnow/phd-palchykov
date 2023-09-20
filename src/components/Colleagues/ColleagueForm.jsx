@@ -8,10 +8,11 @@ import {
 
 import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
+import SpinnerThreeDots from "../shared/SpinnerThreeDots";
 
 import { validation } from "../../assets/utils/validationSchema";
 
-const ColleagueForm = ({ colleague }) => {
+const ColleagueForm = ({ colleague, status }) => {
   const dispatch = useDispatch();
 
   const isNewItem = !colleague;
@@ -58,40 +59,49 @@ const ColleagueForm = ({ colleague }) => {
       validationSchema={validation.colleagueSchema}
       onSubmit={handleSubmit}
     >
-      {(props) => (
-        <Form>
-          <CustomInput label="Name" name="name" type="text" autoFocus />
-          <CustomInput label="Position" name="position" type="text" />
-          <CustomInput label="Email" name="email" type="email" />
-          <CustomInput label="Phone" name="phone" type="text" />
-          <label
-            htmlFor="photo"
-            className="form-label px-3 text-secondary fw-bold"
-          >
-            Photo
-          </label>
-          <input
-            className="form-control mb-3"
-            id="photo"
-            type="file"
-            onChange={(e) => {
-              props.setFieldValue("photo", e.target.files[0]);
-            }}
-          />
-          <div className="text-end mt-3">
-            <div className="btn-group">
-              <BackBtn path="/colleagues">Cancel</BackBtn>
-              <button
-                disabled={props.isSubmitting}
-                type="submit"
-                className="btn btn-primary"
-              >
-                {isNewItem ? "Create colleague" : "Update colleague"}
-              </button>
+      {(props) => {
+        const isDisable = props.isSubmitting || status === "pending";
+        return (
+          <Form>
+            <CustomInput label="Name" name="name" type="text" autoFocus />
+            <CustomInput label="Position" name="position" type="text" />
+            <CustomInput label="Email" name="email" type="email" />
+            <CustomInput label="Phone" name="phone" type="text" />
+            <label
+              htmlFor="photo"
+              className="form-label px-3 text-secondary fw-bold"
+            >
+              Photo
+            </label>
+            <input
+              className="form-control mb-3"
+              id="photo"
+              type="file"
+              onChange={(e) => {
+                props.setFieldValue("photo", e.target.files[0]);
+              }}
+            />
+            <div className="text-end mt-3">
+              <div className="btn-group">
+                <BackBtn path="/colleagues">Cancel</BackBtn>
+                <button
+                  disabled={isDisable}
+                  type="submit"
+                  className="btn btn-primary"
+                >
+                  {isDisable ? (
+                    <SpinnerThreeDots />
+                  ) : isNewItem ? (
+                    "Create colleague"
+                  ) : (
+                    "Update colleague"
+                  )}
+                </button>
+              </div>
             </div>
-          </div>
-        </Form>
-      )}
+          </Form>
+        );
+      }}
     </Formik>
   );
 };

@@ -43,7 +43,7 @@ const ResearchOperationsPage = () => {
       <Alert state={alert} />
       <FormTitle>{title}</FormTitle>
       <FormRequirements requirementsList={requirementsList} />
-      <ResearchForm />
+      <ResearchForm status={status} />
     </Section>
   );
 };

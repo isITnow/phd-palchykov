@@ -7,10 +7,11 @@ import Badge from "../shared/Badge";
 import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
+import SpinnerThreeDots from "../shared/SpinnerThreeDots";
 
 import { validation } from "../../assets/utils/validationSchema";
 
-const NewsForm = ({ newsItem }) => {
+const NewsForm = ({ newsItem, status }) => {
   const dispatch = useDispatch();
   const isNewItem = !newsItem;
 
@@ -59,99 +60,113 @@ const NewsForm = ({ newsItem }) => {
       validationSchema={validation.newsSchema}
       onSubmit={handleSubmit}
     >
-      {(props) => (
-        <Form>
-          <CustomInput label="News title" name="title" type="text" autoFocus />
-          <CustomTextArea
-            label="Description"
-            name="body"
-            type="text-area"
-            rows="5"
-          />
-          <CustomInput label="Date" name="date" type="text" />
-          <label
-            htmlFor="image"
-            className="form-label px-3 text-secondary fw-bold"
-          >
-            Image
-          </label>
-          <input
-            className="form-control mb-3"
-            id="image"
-            type="file"
-            onChange={(e) => {
-              props.setFieldValue("image", e.target.files[0]);
-            }}
-          />
-          <div>
-            <FieldArray name="links">
-              {(fieldArrayProps) => {
-                const { push, remove, insert, form } = fieldArrayProps;
-                const { values } = form;
-                const { links } = values;
-                return (
-                  <div>
-                    {links && links.length > 0 ? (
-                      links.map((link, index) => (
-                        <div key={index}>
-                          {links.length > 1 && (
-                            <Badge index={index} text={"link"} />
-                          )}
-                          <CustomInput
-                            type="text"
-                            label="Link"
-                            name={`links.${index}`}
-                          />
-                          <div className="text-end">
-                            <div className="btn-group mb-3" role="group">
-                              <button
-                                type="button"
-                                className="btn btn-outline-primary"
-                                onClick={() => remove(index)} // remove a friend from the list
-                              >
-                                remove link
-                              </button>
-                              <button
-                                type="button"
-                                className="btn btn-outline-primary"
-                                onClick={() => insert(index, "")} // insert an empty string at a position
-                              >
-                                add a new link
-                              </button>
+      {(props) => {
+        const isDisable = props.isSubmitting || status === "pending";
+        return (
+          <Form>
+            <CustomInput
+              label="News title"
+              name="title"
+              type="text"
+              autoFocus
+            />
+            <CustomTextArea
+              label="Description"
+              name="body"
+              type="text-area"
+              rows="5"
+            />
+            <CustomInput label="Date" name="date" type="text" />
+            <label
+              htmlFor="image"
+              className="form-label px-3 text-secondary fw-bold"
+            >
+              Image
+            </label>
+            <input
+              className="form-control mb-3"
+              id="image"
+              type="file"
+              onChange={(e) => {
+                props.setFieldValue("image", e.target.files[0]);
+              }}
+            />
+            <div>
+              <FieldArray name="links">
+                {(fieldArrayProps) => {
+                  const { push, remove, insert, form } = fieldArrayProps;
+                  const { values } = form;
+                  const { links } = values;
+                  return (
+                    <div>
+                      {links && links.length > 0 ? (
+                        links.map((link, index) => (
+                          <div key={index}>
+                            {links.length > 1 && (
+                              <Badge index={index} text={"link"} />
+                            )}
+                            <CustomInput
+                              type="text"
+                              label="Link"
+                              name={`links.${index}`}
+                            />
+                            <div className="text-end">
+                              <div className="btn-group mb-3" role="group">
+                                <button
+                                  type="button"
+                                  className="btn btn-outline-primary"
+                                  onClick={() => remove(index)} // remove a friend from the list
+                                >
+                                  remove link
+                                </button>
+                                <button
+                                  type="button"
+                                  className="btn btn-outline-primary"
+                                  onClick={() => insert(index, "")} // insert an empty string at a position
+                                >
+                                  add a new link
+                                </button>
+                              </div>
                             </div>
                           </div>
+                        ))
+                      ) : (
+                        <div className="text-end">
+                          <button
+                            type="button"
+                            className="btn btn-outline-primary"
+                            onClick={() => push("")}
+                          >
+                            Add a link
+                          </button>
                         </div>
-                      ))
-                    ) : (
-                      <div className="text-end">
-                        <button
-                          type="button"
-                          className="btn btn-outline-primary"
-                          onClick={() => push("")}
-                        >
-                          Add a link
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                );
-              }}
-            </FieldArray>
-          </div>
-          <div className="text-end mt-3">
-            <div className="btn-group">
-              <BackBtn path="/news">Cancel</BackBtn>
-              <button
-                disabled={props.isSubmitting}
-                type="submit"
-                className="btn btn-primary"
-              >
-                {isNewItem ? "Create news" : "Update news"}
-              </button>
+                      )}
+                    </div>
+                  );
+                }}
+              </FieldArray>
             </div>
-          </div>
-        </Form>
-      )}
+            <div className="text-end mt-3">
+              <div className="btn-group">
+                <BackBtn path="/news">Cancel</BackBtn>
+                <button
+                  disabled={isDisable}
+                  type="submit"
+                  className="btn btn-primary"
+                >
+                  {isDisable ? (
+                    <SpinnerThreeDots />
+                  ) : isNewItem ? (
+                    "Create news"
+                  ) : (
+                    "Update news"
+                  )}
+                </button>
+              </div>
+            </div>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };

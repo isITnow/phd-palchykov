@@ -12,12 +12,13 @@ import Badge from "../shared/Badge";
 import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomSelect from "../FormComponents/CustomSelect";
+import SpinnerThreeDots from "../shared/SpinnerThreeDots";
 
 import { validation } from "../../assets/utils/validationSchema";
 import getCurrentPeriod from "../../assets/utils/getCurrentEntity";
 import getYearsArray from "../../assets/utils/getYearsArray";
 
-const PublicationForm = ({ publication }) => {
+const PublicationForm = ({ publication, status }) => {
   const dispatch = useDispatch();
   const { period_id } = useParams();
   const currentPeriodId = parseInt(period_id);
@@ -96,132 +97,141 @@ const PublicationForm = ({ publication }) => {
       validationSchema={validation.publicationSchema}
       onSubmit={handleSubmit}
     >
-      {(props) => (
-        <Form>
-          <div className="row">
-            <div className="col-6 col-md-8">
-              <CustomSelect
-                label="Publication Year"
-                name="year"
-                years={periodYears}
+      {(props) => {
+        const isDisable = props.isSubmitting || status === "pending";
+        return (
+          <Form>
+            <div className="row">
+              <div className="col-6 col-md-8">
+                <CustomSelect
+                  label="Publication Year"
+                  name="year"
+                  years={periodYears}
+                />
+              </div>
+              <div className="col-6 col-md-4">
+                <CustomInput
+                  label="Sequence Num"
+                  name="sequence_number"
+                  type="number"
+                />
+              </div>
+            </div>
+            <CustomInput
+              label="Publication Title"
+              name="title"
+              type="text"
+              autoFocus
+            />
+            <CustomInput label="Source" name="source" type="text" />
+            <CustomInput label="Source URL" name="source_url" type="text" />
+            <div className="col-md-6 mb-3">
+              <label
+                htmlFor="formFile"
+                className="form-label px-3 text-secondary fw-bold"
+              >
+                Cover image
+              </label>
+              <input
+                className="form-control mb-3"
+                id="formFile"
+                type="file"
+                onChange={(e) => {
+                  props.setFieldValue("cover", e.target.files[0]);
+                }}
+              />
+              <label
+                htmlFor="formFile"
+                className="form-label px-3 text-secondary fw-bold"
+              >
+                Abstract image
+              </label>
+              <input
+                className="form-control"
+                type="file"
+                onChange={(e) => {
+                  props.setFieldValue("abstract", e.target.files[0]);
+                }}
               />
             </div>
-            <div className="col-6 col-md-4">
-              <CustomInput
-                label="Sequence Num"
-                name="sequence_number"
-                type="number"
-              />
-            </div>
-          </div>
-          <CustomInput
-            label="Publication Title"
-            name="title"
-            type="text"
-            autoFocus
-          />
-          <CustomInput label="Source" name="source" type="text" />
-          <CustomInput label="Source URL" name="source_url" type="text" />
-          <div className="col-md-6 mb-3">
-            <label
-              htmlFor="formFile"
-              className="form-label px-3 text-secondary fw-bold"
-            >
-              Cover image
-            </label>
-            <input
-              className="form-control mb-3"
-              id="formFile"
-              type="file"
-              onChange={(e) => {
-                props.setFieldValue("cover", e.target.files[0]);
-              }}
-            />
-            <label
-              htmlFor="formFile"
-              className="form-label px-3 text-secondary fw-bold"
-            >
-              Abstract image
-            </label>
-            <input
-              className="form-control"
-              type="file"
-              onChange={(e) => {
-                props.setFieldValue("abstract", e.target.files[0]);
-              }}
-            />
-          </div>
-          <div>
-            <FieldArray name="authors">
-              {(fieldArrayProps) => {
-                const { push, remove, insert, form } = fieldArrayProps;
-                const { values } = form;
-                const { authors } = values;
-                return (
-                  <div>
-                    {authors && authors.length > 0 ? (
-                      authors.map((author, index) => (
-                        <div key={index}>
-                          {authors.length > 1 && (
-                            <Badge index={index} text={"author"} />
-                          )}
-                          <CustomInput
-                            type="text"
-                            label="Author"
-                            name={`authors.${index}`}
-                          />
-                          <div className="text-end mb-3">
-                            <div className="btn-group" role="group">
-                              <button
-                                type="button"
-                                className="btn btn-outline-primary"
-                                onClick={() => remove(index)} // remove a friend from the list
-                              >
-                                remove the author
-                              </button>
-                              <button
-                                type="button"
-                                className="btn btn-outline-primary"
-                                onClick={() => insert(index, "")} // insert an empty string at a position
-                              >
-                                add an author
-                              </button>
+            <div>
+              <FieldArray name="authors">
+                {(fieldArrayProps) => {
+                  const { push, remove, insert, form } = fieldArrayProps;
+                  const { values } = form;
+                  const { authors } = values;
+                  return (
+                    <div>
+                      {authors && authors.length > 0 ? (
+                        authors.map((author, index) => (
+                          <div key={index}>
+                            {authors.length > 1 && (
+                              <Badge index={index} text={"author"} />
+                            )}
+                            <CustomInput
+                              type="text"
+                              label="Author"
+                              name={`authors.${index}`}
+                            />
+                            <div className="text-end mb-3">
+                              <div className="btn-group" role="group">
+                                <button
+                                  type="button"
+                                  className="btn btn-outline-primary"
+                                  onClick={() => remove(index)} // remove a friend from the list
+                                >
+                                  remove the author
+                                </button>
+                                <button
+                                  type="button"
+                                  className="btn btn-outline-primary"
+                                  onClick={() => insert(index, "")} // insert an empty string at a position
+                                >
+                                  add an author
+                                </button>
+                              </div>
                             </div>
                           </div>
+                        ))
+                      ) : (
+                        <div className="text-end">
+                          <button
+                            type="button"
+                            className="btn btn-outline-primary"
+                            onClick={() => push("")}
+                          >
+                            Add an author
+                          </button>
                         </div>
-                      ))
-                    ) : (
-                      <div className="text-end">
-                        <button
-                          type="button"
-                          className="btn btn-outline-primary"
-                          onClick={() => push("")}
-                        >
-                          Add an author
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                );
-              }}
-            </FieldArray>
-          </div>
-          <div className="text-end mb-3">
-            <div className="btn-group">
-              <BackBtn path={`/periods/${period_id}/publications`}>
-                Cancel
-              </BackBtn>
-              <button
-                disabled={props.isSubmitting}
-                type="submit"
-                className="btn btn-primary"
-              >
-                {isNewItem ? "Create publication" : "Update publication"}
-              </button>
+                      )}
+                    </div>
+                  );
+                }}
+              </FieldArray>
             </div>
-          </div>
-        </Form>
-      )}
+            <div className="text-end mb-3">
+              <div className="btn-group">
+                <BackBtn path={`/periods/${period_id}/publications`}>
+                  Cancel
+                </BackBtn>
+                <button
+                  disabled={isDisable}
+                  type="submit"
+                  className="btn btn-primary"
+                >
+                  {isDisable ? (
+                    <SpinnerThreeDots />
+                  ) : isNewItem ? (
+                    "Create publication"
+                  ) : (
+                    "Update publication"
+                  )}
+                </button>
+              </div>
+            </div>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };

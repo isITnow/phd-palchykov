@@ -68,7 +68,10 @@ const PublicationOperationsPage = ({ edit }) => {
       <Alert state={alert} />
       <FormTitle>{title}</FormTitle>
       <FormRequirements requirementsList={requirementsList} />
-      <PublicationForm publication={edit ? publication : null} />
+      <PublicationForm
+        publication={edit ? publication : null}
+        status={status}
+      />
     </Section>
   );
 };

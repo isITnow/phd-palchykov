@@ -45,7 +45,7 @@ const NewsOperationsPage = ({ edit }) => {
       <Alert state={alert} />
       <FormTitle>{title}</FormTitle>
       <FormRequirements requirementsList={requirementsList} />
-      <NewsForm newsItem={newsItem} />
+      <NewsForm newsItem={edit ? newsItem : null} status={status} />
     </Section>
   );
 };
