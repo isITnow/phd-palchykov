@@ -114,14 +114,14 @@ const ResearchForm = ({ status }) => {
                               <div className="btn-group" role="group">
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-sm btn-outline-primary"
                                   onClick={() => remove(index)}
                                 >
                                   remove the illustration
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-sm btn-outline-primary"
                                   onClick={() =>
                                     insert(index, {
                                       description: "",
@@ -139,7 +139,7 @@ const ResearchForm = ({ status }) => {
                         <div className="text-end">
                           <button
                             type="button"
-                            className="btn btn-outline-primary"
+                            className="btn btn-sm btn-outline-primary"
                             onClick={() =>
                               push({
                                 source: "",
@@ -179,18 +179,18 @@ const ResearchForm = ({ status }) => {
                               label="Source URL"
                               name={`sourceList.${index}.source_url`}
                             />
-                            <div className="text-end mb-3">
+                            <div className="text-end">
                               <div className="btn-group" role="group">
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-sm btn-outline-primary"
                                   onClick={() => remove(index)}
                                 >
                                   remove the source
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-sm btn-outline-primary"
                                   onClick={() =>
                                     push({
                                       source: "",
@@ -208,7 +208,7 @@ const ResearchForm = ({ status }) => {
                         <div className="text-end">
                           <button
                             type="button"
-                            className="btn btn-outline-primary"
+                            className="btn  btn-outline-primary"
                             onClick={() =>
                               push({
                                 source: "",
@@ -225,7 +225,7 @@ const ResearchForm = ({ status }) => {
                 }}
               </FieldArray>
             </div>
-            <div className="text-end mb-3">
+            <div className="text-end mt-3">
               <div className="btn-group">
                 <BackBtn path="/research">Cancel</BackBtn>
                 <button

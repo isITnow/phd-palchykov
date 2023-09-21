@@ -111,17 +111,17 @@ const NewsForm = ({ newsItem, status }) => {
                               name={`links.${index}`}
                             />
                             <div className="text-end">
-                              <div className="btn-group mb-3" role="group">
+                              <div className="btn-group" role="group">
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-sm btn-outline-primary"
                                   onClick={() => remove(index)} // remove a friend from the list
                                 >
-                                  remove link
+                                  remove the link
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-sm btn-outline-primary"
                                   onClick={() => insert(index, "")} // insert an empty string at a position
                                 >
                                   add a new link
@@ -134,7 +134,7 @@ const NewsForm = ({ newsItem, status }) => {
                         <div className="text-end">
                           <button
                             type="button"
-                            className="btn btn-outline-primary"
+                            className="btn btn-sm btn-outline-primary"
                             onClick={() => push("")}
                           >
                             Add a link

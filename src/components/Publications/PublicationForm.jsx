@@ -173,18 +173,18 @@ const PublicationForm = ({ publication, status }) => {
                               label="Author"
                               name={`authors.${index}`}
                             />
-                            <div className="text-end mb-3">
+                            <div className="text-end">
                               <div className="btn-group" role="group">
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-sm btn-outline-primary"
                                   onClick={() => remove(index)} // remove a friend from the list
                                 >
                                   remove the author
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-outline-primary"
+                                  className="btn btn-sm btn-outline-primary"
                                   onClick={() => insert(index, "")} // insert an empty string at a position
                                 >
                                   add an author
@@ -197,7 +197,7 @@ const PublicationForm = ({ publication, status }) => {
                         <div className="text-end">
                           <button
                             type="button"
-                            className="btn btn-outline-primary"
+                            className="btn btn-sm btn-outline-primary"
                             onClick={() => push("")}
                           >
                             Add an author
@@ -209,7 +209,7 @@ const PublicationForm = ({ publication, status }) => {
                 }}
               </FieldArray>
             </div>
-            <div className="text-end mb-3">
+            <div className="text-end mt-3">
               <div className="btn-group">
                 <BackBtn path={`/periods/${period_id}/publications`}>
                   Cancel
