@@ -3,7 +3,7 @@ import { ThreeDots } from "react-loader-spinner";
 const SpinnerThreeDots = () => {
   return (
     <ThreeDots
-      height="auto"
+      height="100%"
       width="5rem"
       radius="9"
       color="#a5cfff"
