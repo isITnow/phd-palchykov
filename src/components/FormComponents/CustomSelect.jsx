@@ -1,4 +1,5 @@
 import { useField } from "formik";
+import FormWarning from "./FormWarning";
 
 const CustomSelect = ({ label, years, ...props }) => {
   const [field, meta] = useField(props.name);
@@ -13,9 +14,7 @@ const CustomSelect = ({ label, years, ...props }) => {
           </option>
         ))}
       </select>
-      {meta.touched && meta.error && (
-        <div className="form-text text-danger px-3">{meta.error}</div>
-      )}
+      {meta.touched && meta.error && <FormWarning>{meta.error}</FormWarning>}
     </div>
   );
 };
