@@ -12,7 +12,11 @@ const colleagueSchema = yup.object().shape({
 
 const commentSchema = yup.object().shape({
   author: yup.string().min(4, "Too short").max(25, "Max 25 characters"),
-  body: yup.string().min(5, "Too short").required("Text is required"),
+  body: yup
+    .string()
+    .min(5, "Too short")
+    .max(700, "Max 700 characters")
+    .required("Text is required"),
 });
 
 const loginSchema = yup.object().shape({
