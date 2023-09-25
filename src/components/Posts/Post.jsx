@@ -8,9 +8,10 @@ const Post = ({ post, single }) => {
   const { postedDate, editedDate, isEdited } = formateDate(post);
 
   const commentsCount = single ? post?.comments?.length : post?.comments;
+  const cardStyle = single ? "card shadow" : `${s.hoverEffect} card`;
 
   return (
-    <div className={`${s.hoverEffect} card`}>
+    <div className={cardStyle}>
       <div className="card-header">
         <small className="text-primary fw-bold">posted: {postedDate}</small>
         {isEdited && (
