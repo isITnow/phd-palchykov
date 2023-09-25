@@ -18,6 +18,9 @@ import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/customHooks/useAlert";
 
 import BackBtn from "../components/shared/BackBtn";
+import CommentsList from "../components/Comments/CommentsList";
+import CommentsListTitle from "../components/Comments/CommentsListTitle";
+import CommentForm from "../components/Comments/CommentForm";
 import Loader from "../components/shared/Loader";
 import Post from "../components/Posts/Post";
 import PostForm from "../components/Posts/PostForm";
@@ -25,8 +28,6 @@ import Section from "../components/shared/Section";
 
 import setPageTitle from "../assets/utils/setPageTitle";
 import useSignInStatus from "../assets/customHooks/useSignInStatus";
-import CommentsList from "../components/Comments/CommentsList";
-import CommentForm from "../components/Comments/CommentForm";
 
 const fadeInOut = {
   initial: { opacity: 0 },
@@ -44,6 +45,7 @@ const PostPage = () => {
 
   const error = useSelector(selectError);
   const comments = useSelector(selectComments);
+  const anyComments = !!comments?.length;
   const post = useSelector(selectOnePost);
   const status = useSelector(selectStatus);
 
@@ -152,23 +154,19 @@ const PostPage = () => {
                 variants={fadeInOut}
                 className="mt-3"
               >
-                <PostForm post={post} />
+                <PostForm post={post} status={status} />
               </motion.div>
             )}
           </AnimatePresence>
           {/* COMMENTS */}
           <CommentForm />
           <div className="mt-3">
-            {!!comments?.length ? (
-              <h3 className="text-center text-secondary fw-bold mb-3">
-                Comments
-              </h3>
-            ) : (
-              <h3 className="text-center text-secondary fw-bold mb-3">
-                No comments
-              </h3>
-            )}
-            {!!comments?.length && <CommentsList comments={comments} />}
+            <div className="mb-3">
+              <CommentsListTitle
+                text={anyComments ? "Comments" : "No comments"}
+              />
+            </div>
+            {anyComments && <CommentsList comments={comments} />}
           </div>
         </>
       )}
