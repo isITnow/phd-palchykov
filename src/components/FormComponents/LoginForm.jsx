@@ -4,9 +4,10 @@ import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/auth/operationsAuth";
 
 import CustomInput from "../FormComponents/CustomInput";
+import SubmitBtn from "../shared/SubmitBtn";
 import { validation } from "../../assets/utils/validationSchema";
 
-const LoginForm = () => {
+const LoginForm = ({ status }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (values, actions) => {
@@ -29,21 +30,18 @@ const LoginForm = () => {
       validationSchema={validation.loginSchema}
       onSubmit={handleSubmit}
     >
-      {(props) => (
-        <Form>
-          <CustomInput label="Email" name="email" type="email" autoFocus />
-          <CustomInput label="Password" name="password" type="password" />
-          <div className="text-end">
-            <button
-              disabled={props.isSubmitting}
-              type="submit"
-              className="btn btn-primary mt-3"
-            >
-              Log In
-            </button>
-          </div>
-        </Form>
-      )}
+      {(props) => {
+        const isDisabled = props.isSubmitting || status === "pending";
+        return (
+          <Form>
+            <CustomInput label="Email" name="email" type="email" autoFocus />
+            <CustomInput label="Password" name="password" type="password" />
+            <div className="text-end">
+              <SubmitBtn text="Log In" disabled={isDisabled} />
+            </div>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };

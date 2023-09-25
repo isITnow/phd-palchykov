@@ -7,10 +7,12 @@ import {
 } from "../../redux/posts/operationsPosts";
 
 import CustomTextArea from "../FormComponents/CustomTextArea";
+import SubmitBtn from "../shared/SubmitBtn";
 import { validation } from "../../assets/utils/validationSchema";
 
-const PostForm = ({ post }) => {
+const PostForm = ({ post, status }) => {
   const dispatch = useDispatch();
+  const isNewItem = !post;
 
   const handleSubmit = async (values, actions) => {
     const { body } = values;
@@ -29,25 +31,29 @@ const PostForm = ({ post }) => {
   return (
     <Formik
       initialValues={{
-        body: post ? post.body : "",
+        body: isNewItem ? "" : post.body,
       }}
       validationSchema={validation.postSchema}
       onSubmit={handleSubmit}
     >
-      {(props) => (
-        <Form>
-          <CustomTextArea label="Post text" name="body" type="text" rows="3" />
-          <div className="text-end">
-            <button
-              disabled={props.isSubmitting}
-              type="submit"
-              className="btn btn-primary"
-            >
-              {post ? "update" : "submit"}
-            </button>
-          </div>
-        </Form>
-      )}
+      {(props) => {
+        const isDisabled = props.isSubmitting || status === "pending";
+        const submitBtnText = isNewItem ? "Create post" : "Update post";
+
+        return (
+          <Form>
+            <CustomTextArea
+              label="Post text"
+              name="body"
+              type="text"
+              rows="3"
+            />
+            <div className="text-end">
+              <SubmitBtn text={submitBtnText} disabled={isDisabled} />
+            </div>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };

@@ -3,7 +3,7 @@ import { CiLogin, CiLogout } from "react-icons/ci";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logoutThunk } from "../../redux/auth/operationsAuth";
-import { selectError } from "../../redux/auth/selectorAuth";
+import { selectError, selectStatus } from "../../redux/auth/selectorAuth";
 
 import useSignInStatus from "../../assets/customHooks/useSignInStatus";
 import { useAlert } from "../../assets/customHooks/useAlert";
@@ -18,6 +18,7 @@ const Auth = () => {
 
   const { alert, showAlert } = useAlert();
   const error = useSelector(selectError);
+  const status = useSelector(selectStatus);
 
   useEffect(() => {
     if (error) {
@@ -59,7 +60,7 @@ const Auth = () => {
       )}
       <AuthModal show={modalShow} onHide={() => setModalShow(false)}>
         <Alert state={alert} />
-        <LoginForm />
+        <LoginForm status={status} />
       </AuthModal>
     </>
   );

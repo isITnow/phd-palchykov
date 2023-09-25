@@ -8,7 +8,7 @@ import {
 
 import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
-import SpinnerThreeDots from "../shared/SpinnerThreeDots";
+import SubmitBtn from "../shared/SubmitBtn";
 
 import { validation } from "../../assets/utils/validationSchema";
 
@@ -60,7 +60,10 @@ const ColleagueForm = ({ colleague, status }) => {
       onSubmit={handleSubmit}
     >
       {(props) => {
-        const isDisable = props.isSubmitting || status === "pending";
+        const isDisabled = props.isSubmitting || status === "pending";
+        const submitBtnText = isNewItem
+          ? "Create colleague"
+          : "Update colleague";
         return (
           <Form>
             <CustomInput label="Name" name="name" type="text" autoFocus />
@@ -84,19 +87,7 @@ const ColleagueForm = ({ colleague, status }) => {
             <div className="text-end mt-3">
               <div className="btn-group">
                 <BackBtn path="/colleagues">Cancel</BackBtn>
-                <button
-                  disabled={isDisable}
-                  type="submit"
-                  className="btn btn-primary"
-                >
-                  {isDisable ? (
-                    <SpinnerThreeDots />
-                  ) : isNewItem ? (
-                    "Create colleague"
-                  ) : (
-                    "Update colleague"
-                  )}
-                </button>
+                <SubmitBtn text={submitBtnText} disabled={isDisabled} />
               </div>
             </div>
           </Form>

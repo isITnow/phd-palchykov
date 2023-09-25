@@ -12,7 +12,7 @@ import Badge from "../shared/Badge";
 import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomSelect from "../FormComponents/CustomSelect";
-import SpinnerThreeDots from "../shared/SpinnerThreeDots";
+import SubmitBtn from "../shared/SubmitBtn";
 
 import { validation } from "../../assets/utils/validationSchema";
 import getCurrentPeriod from "../../assets/utils/getCurrentEntity";
@@ -98,7 +98,10 @@ const PublicationForm = ({ publication, status }) => {
       onSubmit={handleSubmit}
     >
       {(props) => {
-        const isDisable = props.isSubmitting || status === "pending";
+        const isDisabled = props.isSubmitting || status === "pending";
+        const submitBtnText = isNewItem
+          ? "Create publication"
+          : "Update publication";
         return (
           <Form>
             <div className="row">
@@ -214,19 +217,7 @@ const PublicationForm = ({ publication, status }) => {
                 <BackBtn path={`/periods/${period_id}/publications`}>
                   Cancel
                 </BackBtn>
-                <button
-                  disabled={isDisable}
-                  type="submit"
-                  className="btn btn-primary"
-                >
-                  {isDisable ? (
-                    <SpinnerThreeDots />
-                  ) : isNewItem ? (
-                    "Create publication"
-                  ) : (
-                    "Update publication"
-                  )}
-                </button>
+                <SubmitBtn text={submitBtnText} disabled={isDisabled} />
               </div>
             </div>
           </Form>

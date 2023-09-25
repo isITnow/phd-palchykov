@@ -9,7 +9,7 @@ import Badge from "../shared/Badge";
 import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
-import SpinnerThreeDots from "../shared/SpinnerThreeDots";
+import SubmitBtn from "../shared/SubmitBtn";
 
 const ResearchForm = ({ status }) => {
   const dispatch = useDispatch();
@@ -65,7 +65,7 @@ const ResearchForm = ({ status }) => {
       onSubmit={handleSubmit}
     >
       {(props) => {
-        const isDisable = props.isSubmitting || status === "pending";
+        const isDisabled = props.isSubmitting || status === "pending";
         return (
           <Form>
             <CustomInput
@@ -228,13 +228,7 @@ const ResearchForm = ({ status }) => {
             <div className="text-end mt-3">
               <div className="btn-group">
                 <BackBtn path="/research">Cancel</BackBtn>
-                <button
-                  disabled={isDisable}
-                  type="submit"
-                  className="btn btn-primary"
-                >
-                  {isDisable ? <SpinnerThreeDots /> : "Create research card"}
-                </button>
+                <SubmitBtn text="Create research card" disabled={isDisabled} />
               </div>
             </div>
           </Form>

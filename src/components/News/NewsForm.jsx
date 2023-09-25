@@ -7,7 +7,7 @@ import Badge from "../shared/Badge";
 import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
-import SpinnerThreeDots from "../shared/SpinnerThreeDots";
+import SubmitBtn from "../shared/SubmitBtn";
 
 import { validation } from "../../assets/utils/validationSchema";
 
@@ -61,7 +61,8 @@ const NewsForm = ({ newsItem, status }) => {
       onSubmit={handleSubmit}
     >
       {(props) => {
-        const isDisable = props.isSubmitting || status === "pending";
+        const isDisabled = props.isSubmitting || status === "pending";
+        const submitBtnText = isNewItem ? "Create news" : "Update news";
         return (
           <Form>
             <CustomInput
@@ -149,19 +150,7 @@ const NewsForm = ({ newsItem, status }) => {
             <div className="text-end mt-3">
               <div className="btn-group">
                 <BackBtn path="/news">Cancel</BackBtn>
-                <button
-                  disabled={isDisable}
-                  type="submit"
-                  className="btn btn-primary"
-                >
-                  {isDisable ? (
-                    <SpinnerThreeDots />
-                  ) : isNewItem ? (
-                    "Create news"
-                  ) : (
-                    "Update news"
-                  )}
-                </button>
+                <SubmitBtn text={submitBtnText} disabled={isDisabled} />
               </div>
             </div>
           </Form>
