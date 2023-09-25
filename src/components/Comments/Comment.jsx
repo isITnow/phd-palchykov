@@ -20,7 +20,7 @@ const Comment = ({ comment }) => {
   return (
     <div className="py-3">
       <span className="fw-bold text-primary">{comment.author}</span>
-      <p className="mt-2">{comment.body}</p>
+      <p className="mt-2 text-break">{comment.body}</p>
       <div className="d-flex justify-content-between">
         <small className="text-secondary">{postedDate}</small>
         {isLoggedIn && (
