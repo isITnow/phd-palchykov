@@ -167,7 +167,7 @@ const ResearchForm = ({ status }) => {
                   const { values } = form;
                   const { sourceList } = values;
                   return (
-                    <div>
+                    <>
                       {sourceList && sourceList.length > 0 ? (
                         <ul className="list-group">
                           {sourceList.map((item, index) => (
@@ -230,7 +230,7 @@ const ResearchForm = ({ status }) => {
                           </button>
                         </div>
                       )}
-                    </div>
+                    </>
                   );
                 }}
               </FieldArray>
