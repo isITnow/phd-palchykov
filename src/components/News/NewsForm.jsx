@@ -99,38 +99,43 @@ const NewsForm = ({ newsItem, status }) => {
                   const { values } = form;
                   const { links } = values;
                   return (
-                    <div>
+                    <>
                       {links && links.length > 0 ? (
-                        links.map((link, index) => (
-                          <div key={index}>
-                            {links.length > 1 && (
-                              <Badge index={index} text={"link"} />
-                            )}
-                            <CustomInput
-                              type="text"
-                              label="Link"
-                              name={`links.${index}`}
-                            />
-                            <div className="text-end">
-                              <div className="btn-group" role="group">
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-outline-primary"
-                                  onClick={() => remove(index)}
-                                >
-                                  remove the link
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-outline-primary"
-                                  onClick={() => push("")}
-                                >
-                                  add a new link
-                                </button>
+                        <ul className="list-group">
+                          {links.map((link, index) => (
+                            <li
+                              className="list-group-item border-2 mb-2"
+                              key={index}
+                            >
+                              {links.length > 1 && (
+                                <Badge index={index} text={"link"} />
+                              )}
+                              <CustomInput
+                                type="text"
+                                label="Link"
+                                name={`links.${index}`}
+                              />
+                              <div className="text-end">
+                                <div className="btn-group" role="group">
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-outline-primary"
+                                    onClick={() => remove(index)}
+                                  >
+                                    remove the link
+                                  </button>
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-outline-primary"
+                                    onClick={() => push("")}
+                                  >
+                                    add a new link
+                                  </button>
+                                </div>
                               </div>
-                            </div>
-                          </div>
-                        ))
+                            </li>
+                          ))}
+                        </ul>
                       ) : (
                         <div className="text-end">
                           <button
@@ -142,7 +147,7 @@ const NewsForm = ({ newsItem, status }) => {
                           </button>
                         </div>
                       )}
-                    </div>
+                    </>
                   );
                 }}
               </FieldArray>

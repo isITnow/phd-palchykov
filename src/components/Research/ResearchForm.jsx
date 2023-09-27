@@ -80,61 +80,66 @@ const ResearchForm = ({ status }) => {
                   const { values } = form;
                   const { illustrationList } = values;
                   return (
-                    <div>
+                    <>
                       {illustrationList && illustrationList.length > 0 ? (
-                        illustrationList.map((item, index) => (
-                          <div className="" key={index}>
-                            {illustrationList.length > 1 && (
-                              <Badge index={index} text={"illustration"} />
-                            )}
-                            <CustomTextArea
-                              label="Description"
-                              type="text-area"
-                              rows="5"
-                              name={`illustrationList.${index}.description`}
-                            />
-                            <label
-                              htmlFor="formFile"
-                              className="form-label px-3 text-secondary fw-bold"
+                        <ul className="list-group">
+                          {illustrationList.map((item, index) => (
+                            <li
+                              className="list-group-item border-2 mb-2"
+                              key={index}
                             >
-                              Illustration image
-                            </label>
-                            <input
-                              className="form-control mb-3"
-                              id="formFile"
-                              type="file"
-                              onChange={(e) => {
-                                props.setFieldValue(
-                                  `illustrationList.${index}.schema`,
-                                  e.target.files[0]
-                                );
-                              }}
-                            />
-                            <div className="text-end mb-3">
-                              <div className="btn-group" role="group">
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-outline-primary"
-                                  onClick={() => remove(index)}
-                                >
-                                  remove the illustration
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-outline-primary"
-                                  onClick={() =>
-                                    push({
-                                      description: "",
-                                      schema: "",
-                                    })
-                                  }
-                                >
-                                  add an illustration
-                                </button>
+                              {illustrationList.length > 1 && (
+                                <Badge index={index} text={"illustration"} />
+                              )}
+                              <CustomTextArea
+                                label="Description"
+                                type="text-area"
+                                rows="5"
+                                name={`illustrationList.${index}.description`}
+                              />
+                              <label
+                                htmlFor="formFile"
+                                className="form-label px-3 text-secondary fw-bold"
+                              >
+                                Illustration image
+                              </label>
+                              <input
+                                className="form-control mb-3"
+                                id="formFile"
+                                type="file"
+                                onChange={(e) => {
+                                  props.setFieldValue(
+                                    `illustrationList.${index}.schema`,
+                                    e.target.files[0]
+                                  );
+                                }}
+                              />
+                              <div className="text-end mb-3">
+                                <div className="btn-group" role="group">
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-outline-primary"
+                                    onClick={() => remove(index)}
+                                  >
+                                    remove the illustration
+                                  </button>
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-outline-primary"
+                                    onClick={() =>
+                                      push({
+                                        description: "",
+                                        schema: "",
+                                      })
+                                    }
+                                  >
+                                    add an illustration
+                                  </button>
+                                </div>
                               </div>
-                            </div>
-                          </div>
-                        ))
+                            </li>
+                          ))}
+                        </ul>
                       ) : (
                         <div className="text-end">
                           <button
@@ -151,7 +156,7 @@ const ResearchForm = ({ status }) => {
                           </button>
                         </div>
                       )}
-                    </div>
+                    </>
                   );
                 }}
               </FieldArray>
@@ -164,46 +169,51 @@ const ResearchForm = ({ status }) => {
                   return (
                     <div>
                       {sourceList && sourceList.length > 0 ? (
-                        sourceList.map((item, index) => (
-                          <div className="" key={index}>
-                            {sourceList.length > 1 && (
-                              <Badge index={index} text={"resource"} />
-                            )}
-                            <CustomInput
-                              type="text"
-                              label="Source"
-                              name={`sourceList.${index}.source`}
-                            />
-                            <CustomInput
-                              type="text"
-                              label="Source URL"
-                              name={`sourceList.${index}.source_url`}
-                            />
-                            <div className="text-end">
-                              <div className="btn-group" role="group">
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-outline-primary"
-                                  onClick={() => remove(index)}
-                                >
-                                  remove the source
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-outline-primary"
-                                  onClick={() =>
-                                    push({
-                                      source: "",
-                                      source_url: "",
-                                    })
-                                  }
-                                >
-                                  add a new source
-                                </button>
+                        <ul className="list-group">
+                          {sourceList.map((item, index) => (
+                            <li
+                              className="list-group-item border-2 mb-2"
+                              key={index}
+                            >
+                              {sourceList.length > 1 && (
+                                <Badge index={index} text={"resource"} />
+                              )}
+                              <CustomInput
+                                type="text"
+                                label="Source"
+                                name={`sourceList.${index}.source`}
+                              />
+                              <CustomInput
+                                type="text"
+                                label="Source URL"
+                                name={`sourceList.${index}.source_url`}
+                              />
+                              <div className="text-end">
+                                <div className="btn-group" role="group">
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-outline-primary"
+                                    onClick={() => remove(index)}
+                                  >
+                                    remove the source
+                                  </button>
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-outline-primary"
+                                    onClick={() =>
+                                      push({
+                                        source: "",
+                                        source_url: "",
+                                      })
+                                    }
+                                  >
+                                    add a source
+                                  </button>
+                                </div>
                               </div>
-                            </div>
-                          </div>
-                        ))
+                            </li>
+                          ))}
+                        </ul>
                       ) : (
                         <div className="text-end">
                           <button
@@ -228,7 +238,7 @@ const ResearchForm = ({ status }) => {
             <div className="text-end mt-3">
               <div className="btn-group">
                 <BackBtn path="/research">Cancel</BackBtn>
-                <SubmitBtn text="Create research card" disabled={isDisabled} />
+                <SubmitBtn text="Create Research card" disabled={isDisabled} />
               </div>
             </div>
           </Form>

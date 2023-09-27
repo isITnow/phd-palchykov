@@ -100,8 +100,8 @@ const PublicationForm = ({ publication, status }) => {
       {(props) => {
         const isDisabled = props.isSubmitting || status === "pending";
         const submitBtnText = isNewItem
-          ? "Create publication"
-          : "Update publication";
+          ? "Create Publication"
+          : "Update Publication";
         return (
           <Form>
             <div className="row">
@@ -164,38 +164,43 @@ const PublicationForm = ({ publication, status }) => {
                   const { values } = form;
                   const { authors } = values;
                   return (
-                    <div>
+                    <>
                       {authors && authors.length > 0 ? (
-                        authors.map((author, index) => (
-                          <div key={index}>
-                            {authors.length > 1 && (
-                              <Badge index={index} text={"author"} />
-                            )}
-                            <CustomInput
-                              type="text"
-                              label="Author"
-                              name={`authors.${index}`}
-                            />
-                            <div className="text-end">
-                              <div className="btn-group" role="group">
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-outline-primary"
-                                  onClick={() => remove(index)} // remove a friend from the list
-                                >
-                                  remove the author
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-outline-primary"
-                                  onClick={() => push("")}
-                                >
-                                  add an author
-                                </button>
+                        <ul className="list-group">
+                          {authors.map((author, index) => (
+                            <li
+                              className="list-group-item border-2 mb-2"
+                              key={index}
+                            >
+                              {authors.length > 1 && (
+                                <Badge index={index} text={"author"} />
+                              )}
+                              <CustomInput
+                                type="text"
+                                label="Author"
+                                name={`authors.${index}`}
+                              />
+                              <div className="text-end">
+                                <div className="btn-group" role="group">
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-outline-primary"
+                                    onClick={() => remove(index)} // remove a friend from the list
+                                  >
+                                    remove the author
+                                  </button>
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-outline-primary"
+                                    onClick={() => push("")}
+                                  >
+                                    add an author
+                                  </button>
+                                </div>
                               </div>
-                            </div>
-                          </div>
-                        ))
+                            </li>
+                          ))}
+                        </ul>
                       ) : (
                         <div className="text-end">
                           <button
@@ -207,7 +212,7 @@ const PublicationForm = ({ publication, status }) => {
                           </button>
                         </div>
                       )}
-                    </div>
+                    </>
                   );
                 }}
               </FieldArray>

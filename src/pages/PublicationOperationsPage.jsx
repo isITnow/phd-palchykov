@@ -17,6 +17,7 @@ import getCurrentPeriod from "../assets/utils/getCurrentEntity";
 
 const requirementsList = [
   "Publication year",
+  "Sequence number",
   "Publication title",
   "Source",
   "SourceURL",
