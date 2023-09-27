@@ -160,7 +160,7 @@ const PublicationForm = ({ publication, status }) => {
             <div>
               <FieldArray name="authors">
                 {(fieldArrayProps) => {
-                  const { push, remove, insert, form } = fieldArrayProps;
+                  const { push, remove, form } = fieldArrayProps;
                   const { values } = form;
                   const { authors } = values;
                   return (
@@ -188,7 +188,7 @@ const PublicationForm = ({ publication, status }) => {
                                 <button
                                   type="button"
                                   className="btn btn-sm btn-outline-primary"
-                                  onClick={() => insert(index, "")} // insert an empty string at a position
+                                  onClick={() => push("")}
                                 >
                                   add an author
                                 </button>

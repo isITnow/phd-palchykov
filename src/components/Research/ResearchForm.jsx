@@ -76,7 +76,7 @@ const ResearchForm = ({ status }) => {
             />
             <div>
               <FieldArray name="illustrationList">
-                {({ push, remove, insert, form }) => {
+                {({ push, remove, form }) => {
                   const { values } = form;
                   const { illustrationList } = values;
                   return (
@@ -123,7 +123,7 @@ const ResearchForm = ({ status }) => {
                                   type="button"
                                   className="btn btn-sm btn-outline-primary"
                                   onClick={() =>
-                                    insert(index, {
+                                    push({
                                       description: "",
                                       schema: "",
                                     })

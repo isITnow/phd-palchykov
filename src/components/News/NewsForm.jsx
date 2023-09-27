@@ -95,7 +95,7 @@ const NewsForm = ({ newsItem, status }) => {
             <div>
               <FieldArray name="links">
                 {(fieldArrayProps) => {
-                  const { push, remove, insert, form } = fieldArrayProps;
+                  const { push, remove, form } = fieldArrayProps;
                   const { values } = form;
                   const { links } = values;
                   return (
@@ -116,14 +116,14 @@ const NewsForm = ({ newsItem, status }) => {
                                 <button
                                   type="button"
                                   className="btn btn-sm btn-outline-primary"
-                                  onClick={() => remove(index)} // remove a friend from the list
+                                  onClick={() => remove(index)}
                                 >
                                   remove the link
                                 </button>
                                 <button
                                   type="button"
                                   className="btn btn-sm btn-outline-primary"
-                                  onClick={() => insert(index, "")} // insert an empty string at a position
+                                  onClick={() => push("")}
                                 >
                                   add a new link
                                 </button>
