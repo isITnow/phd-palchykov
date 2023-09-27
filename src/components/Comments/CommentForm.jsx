@@ -1,8 +1,9 @@
 import { Form, Formik } from "formik";
 import { useParams } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCommentThunk } from "../../redux/comments/operationsComments";
+import { selectUserName } from "../../redux/auth/selectorAuth";
 
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
@@ -11,6 +12,7 @@ import { validation } from "../../assets/utils/validationSchema";
 const CommentForm = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const currentUserName = useSelector(selectUserName) || null;
 
   const handleSubmit = async (values, actions) => {
     const { body, author } = values;
@@ -26,7 +28,7 @@ const CommentForm = () => {
   return (
     <Formik
       initialValues={{
-        author: "",
+        author: currentUserName || "",
         body: "",
       }}
       validationSchema={validation.commentSchema}
