@@ -18,9 +18,10 @@ const ResearchForm = ({ status }) => {
     const { title, illustrationList, sourceList } = values;
 
     let illustrationsData = [];
-    illustrationList.forEach(({ schema, description }) => {
+    illustrationList.forEach(({ schema, description, sequence_number }) => {
       const formData = new FormData();
       formData.append("illustration[description]", description.trim());
+      formData.append("illustration[sequence_number]", sequence_number);
       formData.append("illustration[schema]", schema);
       illustrationsData.push(formData);
     });
@@ -52,6 +53,7 @@ const ResearchForm = ({ status }) => {
           {
             description: "",
             schema: "",
+            sequence_number: 0,
           },
         ],
         sourceList: [
@@ -72,6 +74,7 @@ const ResearchForm = ({ status }) => {
               label="Research title"
               name="title"
               type="text"
+              bsclass="mb-3"
               autoFocus
             />
             <div>
@@ -114,8 +117,16 @@ const ResearchForm = ({ status }) => {
                                   );
                                 }}
                               />
-                              <div className="text-end mb-3">
-                                <div className="btn-group" role="group">
+                              <div className="d-flex flex-column flex-md-row justify-content-md-between align-items-md-end">
+                                <CustomInput
+                                  label="Sequence Num"
+                                  type="number"
+                                  name={`illustrationList.${index}.sequence_number`}
+                                />
+                                <div
+                                  className="btn-group mt-3 mt-md-0"
+                                  role="group"
+                                >
                                   <button
                                     type="button"
                                     className="btn btn-sm btn-outline-primary"
@@ -130,6 +141,7 @@ const ResearchForm = ({ status }) => {
                                       push({
                                         description: "",
                                         schema: "",
+                                        sequence_number: 0,
                                       })
                                     }
                                   >
@@ -147,8 +159,9 @@ const ResearchForm = ({ status }) => {
                             className="btn btn-sm btn-outline-primary"
                             onClick={() =>
                               push({
-                                source: "",
-                                source_url: "",
+                                description: "",
+                                schema: "",
+                                sequence_number: 0,
                               })
                             }
                           >
@@ -182,11 +195,13 @@ const ResearchForm = ({ status }) => {
                                 type="text"
                                 label="Source"
                                 name={`sourceList.${index}.source`}
+                                bsclass="mb-3"
                               />
                               <CustomInput
                                 type="text"
                                 label="Source URL"
                                 name={`sourceList.${index}.source_url`}
+                                bsclass="mb-3"
                               />
                               <div className="text-end">
                                 <div className="btn-group" role="group">

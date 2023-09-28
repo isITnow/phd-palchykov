@@ -67,6 +67,14 @@ const researchSchema = yup.object().shape({
         .string()
         .min(5, "Too short")
         .required("Description is required"),
+      sequence_number: yup
+        .number()
+        .required("Sequence number is required")
+        .test(
+          "Is positive?",
+          "Number must be greater than 0",
+          (value) => value > 0
+        ),
       // schema: yup.mixed().required("File is required"),
     })
   ),
