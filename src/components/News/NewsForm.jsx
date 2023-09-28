@@ -62,13 +62,14 @@ const NewsForm = ({ newsItem, status }) => {
     >
       {(props) => {
         const isDisabled = props.isSubmitting || status === "pending";
-        const submitBtnText = isNewItem ? "Create news" : "Update news";
+        const submitBtnText = isNewItem ? "Create News" : "Update nNws";
         return (
           <Form>
             <CustomInput
               label="News title"
               name="title"
               type="text"
+              bsclass="mb-3"
               autoFocus
             />
             <CustomTextArea
@@ -77,7 +78,7 @@ const NewsForm = ({ newsItem, status }) => {
               type="text-area"
               rows="5"
             />
-            <CustomInput label="Date" name="date" type="text" />
+            <CustomInput label="Date" name="date" type="text" bsclass="mb-3" />
             <label
               htmlFor="image"
               className="form-label px-3 text-secondary fw-bold"
@@ -114,6 +115,7 @@ const NewsForm = ({ newsItem, status }) => {
                                 type="text"
                                 label="Link"
                                 name={`links.${index}`}
+                                bsclass="mb-3"
                               />
                               <div className="text-end">
                                 <div className="btn-group" role="group">
@@ -129,7 +131,7 @@ const NewsForm = ({ newsItem, status }) => {
                                     className="btn btn-sm btn-outline-primary"
                                     onClick={() => push("")}
                                   >
-                                    add a new link
+                                    add a link
                                   </button>
                                 </div>
                               </div>

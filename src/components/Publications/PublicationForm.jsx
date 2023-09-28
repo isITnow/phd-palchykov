@@ -117,6 +117,7 @@ const PublicationForm = ({ publication, status }) => {
                   label="Sequence Num"
                   name="sequence_number"
                   type="number"
+                  bsclass="mb-3"
                 />
               </div>
             </div>
@@ -124,10 +125,21 @@ const PublicationForm = ({ publication, status }) => {
               label="Publication Title"
               name="title"
               type="text"
+              bsclass="mb-3"
               autoFocus
             />
-            <CustomInput label="Source" name="source" type="text" />
-            <CustomInput label="Source URL" name="source_url" type="text" />
+            <CustomInput
+              label="Source"
+              name="source"
+              type="text"
+              bsclass="mb-3"
+            />
+            <CustomInput
+              label="Source URL"
+              name="source_url"
+              type="text"
+              bsclass="mb-3"
+            />
             <div className="col-md-6 mb-3">
               <label
                 htmlFor="formFile"
@@ -179,6 +191,7 @@ const PublicationForm = ({ publication, status }) => {
                                 type="text"
                                 label="Author"
                                 name={`authors.${index}`}
+                                bsclass="mb-3"
                               />
                               <div className="text-end">
                                 <div className="btn-group" role="group">

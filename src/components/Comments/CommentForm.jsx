@@ -36,7 +36,7 @@ const CommentForm = () => {
     >
       {(props) => (
         <Form>
-          <CustomInput label="Name" name="author" type="text" />
+          <CustomInput label="Name" name="author" type="text" bsclass="mb-3" />
           <CustomTextArea label="Comment" name="body" type="text" rows="3" />
           <div className="text-end">
             <button

@@ -62,14 +62,35 @@ const ColleagueForm = ({ colleague, status }) => {
       {(props) => {
         const isDisabled = props.isSubmitting || status === "pending";
         const submitBtnText = isNewItem
-          ? "Create colleague"
-          : "Update colleague";
+          ? "Create Colleague"
+          : "Update Colleague";
         return (
           <Form>
-            <CustomInput label="Name" name="name" type="text" autoFocus />
-            <CustomInput label="Position" name="position" type="text" />
-            <CustomInput label="Email" name="email" type="email" />
-            <CustomInput label="Phone" name="phone" type="text" />
+            <CustomInput
+              label="Name"
+              name="name"
+              type="text"
+              bsclass="mb-3"
+              autoFocus
+            />
+            <CustomInput
+              label="Position"
+              name="position"
+              type="text"
+              bsclass="mb-3"
+            />
+            <CustomInput
+              label="Email"
+              name="email"
+              type="email"
+              bsclass="mb-3"
+            />
+            <CustomInput
+              label="Phone"
+              name="phone"
+              type="text"
+              bsclass="mb-3"
+            />
             <label
               htmlFor="photo"
               className="form-label px-3 text-secondary fw-bold"
