@@ -38,7 +38,7 @@ const PostForm = ({ post, status }) => {
     >
       {(props) => {
         const isDisabled = props.isSubmitting || status === "pending";
-        const submitBtnText = isNewItem ? "Create post" : "Update post";
+        const submitBtnText = isNewItem ? "Create Post" : "Update Post";
 
         return (
           <Form>
