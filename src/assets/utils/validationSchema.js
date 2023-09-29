@@ -37,7 +37,7 @@ const postSchema = yup.object().shape({
 
 const publicationSchema = yup.object().shape({
   title: yup.string().min(5, "Too short").required("Title is required"),
-  year: yup.string().max(4, "Select an year").required("Year is required"),
+  year: yup.string().required("Year is required"),
   sequence_number: yup
     .number()
     .required("Sequence number is required")

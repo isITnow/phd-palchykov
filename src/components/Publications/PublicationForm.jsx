@@ -21,10 +21,13 @@ import getYearsArray from "../../assets/utils/getYearsArray";
 const PublicationForm = ({ publication, status }) => {
   const dispatch = useDispatch();
   const { period_id } = useParams();
-  const currentPeriodId = parseInt(period_id);
   const { periods } = useSelector(selectPeriods);
+
+  const currentPeriodId = parseInt(period_id);
   const currentPeriod = getCurrentPeriod(periods, currentPeriodId);
-  const periodYears = getYearsArray(currentPeriod);
+  const periodYears = getYearsArray(currentPeriod).length
+    ? getYearsArray(currentPeriod)
+    : ["no data"];
 
   const isNewItem = !publication;
 
@@ -109,7 +112,7 @@ const PublicationForm = ({ publication, status }) => {
                 <CustomSelect
                   label="Publication Year"
                   name="year"
-                  years={periodYears}
+                  items={periodYears}
                 />
               </div>
               <div className="col-6 col-md-4">
