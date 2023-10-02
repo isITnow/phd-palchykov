@@ -80,7 +80,7 @@ const Publication = ({ publication }) => {
           </div>
         </div>
         <div className="d-flex justify-content-between align-items-end mt-3">
-          <span className="fst-italic text-secondary">{year}</span>
+          <small className="fst-italic text-secondary">year: {year}</small>
           {isLoggedIn && (
             <div className="btn-group">
               <Link
