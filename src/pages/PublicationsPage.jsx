@@ -60,16 +60,16 @@ const PublicationsPage = () => {
       />
       <PublicationsList publications={publications} />
       <div className="d-flex justify-content-between mt-3">
-        {isLoggedIn && (
-          <div>
+        <div>
+          {isLoggedIn && (
             <Link
               className="btn btn-primary"
               to={`/periods/${period_id}/publications/new`}
             >
               new publication
             </Link>
-          </div>
-        )}
+          )}
+        </div>
         {publications.length > 4 && (
           <PagesNav periods={periods} currentPeriodId={parseInt(period_id)} />
         )}
