@@ -34,8 +34,19 @@ const LoginForm = ({ status }) => {
         const isDisabled = props.isSubmitting || status === "pending";
         return (
           <Form>
-            <CustomInput label="Email" name="email" type="email" autoFocus />
-            <CustomInput label="Password" name="password" type="password" />
+            <CustomInput
+              label="Email"
+              name="email"
+              type="email"
+              bsclass="mb-3"
+              autoFocus
+            />
+            <CustomInput
+              label="Password"
+              name="password"
+              type="password"
+              bsclass="mb-3"
+            />
             <div className="text-end">
               <SubmitBtn text="Log In" disabled={isDisabled} />
             </div>
