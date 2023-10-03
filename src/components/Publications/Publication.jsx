@@ -24,8 +24,10 @@ const Publication = ({ publication }) => {
 
   const { status } = useSelector(selectPublications);
   const isLoggedIn = useSignInStatus();
-  const btnDisabled = status === "pending";
   const dispatch = useDispatch();
+
+  const btnDisabled = status === "pending";
+  const isYear = year !== "no data";
 
   const handleClick = () => {
     // alert("Are you sure you want to delete item?");
@@ -80,7 +82,9 @@ const Publication = ({ publication }) => {
           </div>
         </div>
         <div className="d-flex justify-content-between align-items-end mt-3">
-          <small className="fst-italic text-secondary">year: {year}</small>
+          {isYear && (
+            <small className="fst-italic text-secondary">year: {year}</small>
+          )}
           {isLoggedIn && (
             <div className="btn-group">
               <Link
