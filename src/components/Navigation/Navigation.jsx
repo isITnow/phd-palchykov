@@ -1,6 +1,9 @@
 import { NavLink, Link } from "react-router-dom";
+
+import { useSelector } from "react-redux";
+import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
+
 import s from "./navigation.module.css";
-import publicationsArray from "../../assets/data/publications";
 
 const setActive = ({ isActive }) =>
   isActive
@@ -8,6 +11,8 @@ const setActive = ({ isActive }) =>
     : `${s.nav_item} nav-link fw-bold`;
 
 const Navigation = () => {
+  const { periods } = useSelector(selectPeriods);
+
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid px-0">
@@ -41,7 +46,6 @@ const Navigation = () => {
                 <span>Research</span>
               </NavLink>
             </li>
-
             <li className="nav-item dropdown">
               <NavLink
                 className={`${s.nav_item} nav-link dropdown-toggle fw-bold`}
@@ -53,13 +57,13 @@ const Navigation = () => {
                 <span>Publications</span>
               </NavLink>
               <ul className="dropdown-menu text-center overflow-hidden">
-                {publicationsArray.map((item, idx) => (
-                  <li key={idx + 1}>
+                {periods.map(({ title, id }, index) => (
+                  <li key={index}>
                     <Link
                       className="dropdown-item"
-                      to={`publications/${item.period}`}
+                      to={`periods/${id}/publications`}
                     >
-                      {item.period}
+                      {title}
                     </Link>
                   </li>
                 ))}
@@ -78,6 +82,11 @@ const Navigation = () => {
             <li className="nav-item">
               <NavLink className={setActive} to={"colleagues"}>
                 <span>Colleagues</span>
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className={setActive} to={"posts"}>
+                <span>Blog</span>
               </NavLink>
             </li>
             <li className="nav-item">
