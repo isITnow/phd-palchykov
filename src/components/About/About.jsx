@@ -50,6 +50,12 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
+            <strong className="me-2">2023</strong>Visiting Researcher in Prof.
+            Ishida group, Kyoto University, Japan
+          </p>
+        </li>
+        <li>
+          <p className="mb-2">
             <strong className="me-2">2020 - 2021</strong>Research Associate in
             Prof. Gevorgyan group, University of Texas at Dallas, United States{" "}
           </p>
