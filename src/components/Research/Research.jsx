@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeResearchThunk } from "../../redux/researches/operationsResearches";
 import { selectResearches } from "../../redux/researches/selectorResearches";
@@ -48,9 +49,14 @@ const Research = ({ research, index }) => {
             ))}
           </ul>
         </div>
-
         {isLoggedIn && (
-          <div className="me-4">
+          <div className="btn-group">
+            <Link
+              className="btn btn-sm btn-primary"
+              to={`/researches/${id}/edit`}
+            >
+              edit Research
+            </Link>
             <button
               disabled={btnDisabled}
               type="button"
@@ -59,7 +65,7 @@ const Research = ({ research, index }) => {
                 handleClick();
               }}
             >
-              delete
+              delete Research
             </button>
           </div>
         )}
