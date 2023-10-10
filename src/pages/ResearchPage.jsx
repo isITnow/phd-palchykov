@@ -44,7 +44,7 @@ const ResearchPage = () => {
       <ResearchList researches={researches} />
       {isLoggedIn && (
         <div className="text-end">
-          <Link className="btn btn-primary" to={"/research/new"}>
+          <Link className="btn btn-primary" to={"/researches/new"}>
             new research
           </Link>
         </div>
