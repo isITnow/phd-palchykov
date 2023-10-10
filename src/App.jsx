@@ -32,6 +32,7 @@ const ResearchPage = lazy(() => import("./pages/ResearchPage"));
 const ResearchOperationsPage = lazy(() =>
   import("./pages/ResearchOperationsPage")
 );
+const EditResearchPage = lazy(() => import("./pages/EditResearchPage"));
 
 const ContactsPage = lazy(() => import("./pages/ContactsPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -61,7 +62,7 @@ const App = () => {
         />
         <Route path="posts" element={<PostsPage />} />
         <Route path="posts/:id" element={<PostPage />} />
-        <Route path="research" element={<ResearchPage />} />
+        <Route path="researches" element={<ResearchPage />} />
 
         {/* PRIVATE ROUTES */}
         <Route path="/" element={<PrivateRoute />}>
@@ -73,7 +74,8 @@ const App = () => {
             path="periods/:period_id/publications/:publication_id/edit"
             element={<PublicationOperationsPage edit />}
           />
-          <Route path="research/new" element={<ResearchOperationsPage />} />
+          <Route path="researches/new" element={<ResearchOperationsPage />} />
+          <Route path="researches/:id/edit" element={<EditResearchPage />} />
           <Route path="news/new" element={<NewsOperationsPage />} />
           <Route path="news/:id/edit" element={<NewsOperationsPage edit />} />
           <Route path="colleagues/new" element={<ColleagueOperationsPage />} />
