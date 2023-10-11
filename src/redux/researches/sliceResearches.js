@@ -80,12 +80,12 @@ const researchesSlice = createSlice({
       state.error = null;
     });
     builder.addCase(updateIllustrationThunk.fulfilled, (state) => {
-      state.status = "fulfilled";
+      state.status = "updated";
       state.error = null;
     });
     builder.addCase(updateIllustrationThunk.rejected, setError);
 
-    //* REMOVE ILLUSTRATION
+    //* REMOVE ILLUSTRATION doesn't implemented in the app
     builder.addCase(removeIllustrationThunk.pending, (state) => {
       state.status = "pending";
       state.error = null;

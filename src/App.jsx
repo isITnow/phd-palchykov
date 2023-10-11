@@ -33,6 +33,7 @@ const ResearchOperationsPage = lazy(() =>
   import("./pages/ResearchOperationsPage")
 );
 const EditResearchPage = lazy(() => import("./pages/EditResearchPage"));
+const EditIllustrationPage = lazy(() => import("./pages/EditIllustrationPage"));
 
 const ContactsPage = lazy(() => import("./pages/ContactsPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -76,6 +77,10 @@ const App = () => {
           />
           <Route path="researches/new" element={<ResearchOperationsPage />} />
           <Route path="researches/:id/edit" element={<EditResearchPage />} />
+          <Route
+            path="researches/:research_id/illustrations/:id/edit"
+            element={<EditIllustrationPage />}
+          />
           <Route path="news/new" element={<NewsOperationsPage />} />
           <Route path="news/:id/edit" element={<NewsOperationsPage edit />} />
           <Route path="colleagues/new" element={<ColleagueOperationsPage />} />
