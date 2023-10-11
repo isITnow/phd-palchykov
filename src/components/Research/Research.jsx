@@ -34,6 +34,16 @@ const Research = ({ research, index }) => {
           <div className="p-3 text-center">
             <img className="img-fluid" src={schema_url} alt="schema" />
           </div>
+          {isLoggedIn && (
+            <div className="d-flex justify-content-end border-bottom border-2 pb-3">
+              <Link
+                className="btn btn-sm btn-primary"
+                to={`/researches/${research.id}/illustrations/${id}/edit`}
+              >
+                edit Illustration
+              </Link>
+            </div>
+          )}
         </div>
       ))}
       <div className="d-flex justify-content-between align-items-end">
