@@ -42,7 +42,7 @@ const Navigation = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={setActive} to={"research"}>
+              <NavLink className={setActive} to={"researches"}>
                 <span>Research</span>
               </NavLink>
             </li>

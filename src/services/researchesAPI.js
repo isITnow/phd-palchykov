@@ -12,6 +12,12 @@ const postResearch = async (body) => {
   return data;
 };
 
+const editResearch = async (id, body) => {
+  const data = await privateAPI.patch(`/researches/${id}`, body);
+
+  return data;
+};
+
 const deleteResearch = async (id) => {
   const data = await privateAPI.delete(`/researches/${id}`);
 
@@ -19,7 +25,8 @@ const deleteResearch = async (id) => {
 };
 
 export const researchesAPI = {
-  postResearch,
   fetchResearches,
+  postResearch,
+  editResearch,
   deleteResearch,
 };

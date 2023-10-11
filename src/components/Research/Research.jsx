@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeResearchThunk } from "../../redux/researches/operationsResearches";
 import { selectResearches } from "../../redux/researches/selectorResearches";
@@ -33,6 +34,16 @@ const Research = ({ research, index }) => {
           <div className="p-3 text-center">
             <img className="img-fluid" src={schema_url} alt="schema" />
           </div>
+          {isLoggedIn && (
+            <div className="d-flex justify-content-end border-bottom border-2 pb-3">
+              <Link
+                className="btn btn-sm btn-primary"
+                to={`/researches/${research.id}/illustrations/${id}/edit`}
+              >
+                edit Illustration
+              </Link>
+            </div>
+          )}
         </div>
       ))}
       <div className="d-flex justify-content-between align-items-end">
@@ -48,9 +59,14 @@ const Research = ({ research, index }) => {
             ))}
           </ul>
         </div>
-
         {isLoggedIn && (
-          <div className="me-4">
+          <div className="btn-group">
+            <Link
+              className="btn btn-sm btn-primary"
+              to={`/researches/${id}/edit`}
+            >
+              edit Research
+            </Link>
             <button
               disabled={btnDisabled}
               type="button"
@@ -59,7 +75,7 @@ const Research = ({ research, index }) => {
                 handleClick();
               }}
             >
-              delete
+              delete Research
             </button>
           </div>
         )}
