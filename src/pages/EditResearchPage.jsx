@@ -85,7 +85,7 @@ const EditResearchPage = () => {
           title: researchParsed.title,
           sourceList: researchParsed.sourceList,
         }}
-        validationSchema={validation.researchSchema}
+        validationSchema={validation.editResearchSchema}
         onSubmit={handleSubmit}
       >
         {(props) => {
