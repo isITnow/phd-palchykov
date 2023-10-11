@@ -52,6 +52,8 @@ export const updateIllustrationThunk = createAsyncThunk(
   }
 );
 
+//* Remove thunk doesn't implemented in the app
+
 export const removeIllustrationThunk = createAsyncThunk(
   "illustrations/delete",
 
