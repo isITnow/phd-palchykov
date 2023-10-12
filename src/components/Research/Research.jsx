@@ -31,7 +31,7 @@ const Research = ({ research, index }) => {
           >
             {description}
           </p>
-          <div className="p-3 text-center">
+          <div className="col-12 col-md-11 col-lg-9 mx-auto d-flex justify-content-center">
             <img className="img-fluid" src={schema_url} alt="schema" />
           </div>
           {isLoggedIn && (
@@ -49,7 +49,7 @@ const Research = ({ research, index }) => {
       <div className="d-flex justify-content-between align-items-end">
         <div className="ms-4">
           <p className="mb-2">Our relevant works:</p>
-          <ul style={{ fontSize: "0.75rem" }}>
+          <ul>
             {sourceList.map(({ source_url, source }, index) => (
               <li key={index}>
                 <a href={source_url} target="_blank" rel="noreferrer noopener">
