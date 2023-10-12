@@ -102,7 +102,7 @@ const EditResearchPage = () => {
               />
               <div className="mt-3">
                 <FieldArray name="sourceList">
-                  {({ push, remove, form }) => {
+                  {({ push, insert, remove, form }) => {
                     const { values } = form;
                     const { sourceList } = values;
                     return (
@@ -142,7 +142,7 @@ const EditResearchPage = () => {
                                       type="button"
                                       className="btn btn-sm btn-outline-primary"
                                       onClick={() =>
-                                        push({
+                                        insert(index, {
                                           source: "",
                                           source_url: "",
                                         })
