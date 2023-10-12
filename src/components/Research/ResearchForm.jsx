@@ -252,7 +252,7 @@ const ResearchForm = ({ status }) => {
             </div>
             <div className="text-end mt-3">
               <div className="btn-group">
-                <BackBtn path="/research">Cancel</BackBtn>
+                <BackBtn path="/researches">Cancel</BackBtn>
                 <SubmitBtn text="Create Research card" disabled={isDisabled} />
               </div>
             </div>
