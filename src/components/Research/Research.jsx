@@ -13,7 +13,9 @@ const Research = ({ research, index }) => {
   const btnDisabled = status === "pending";
 
   const sourceListClass =
-    sourceList.length > 8 ? "row row-cols-md-2 row-cols-lg-3" : "row";
+    sourceList.length > 8
+      ? "row row-cols-1 row-cols-md-2 row-cols-lg-3"
+      : "row row-cols-1";
 
   const handleClick = () => {
     // alert("Are you sure you want to delete item?");
@@ -53,7 +55,7 @@ const Research = ({ research, index }) => {
         <p className="mb-2">Our relevant works:</p>
         <ul className={sourceListClass}>
           {sourceList.map(({ source_url, source }, index) => (
-            <li className="cow" key={index}>
+            <li className="col" key={index}>
               <a href={source_url} target="_blank" rel="noreferrer noopener">
                 <span className="fst-italic">{source}</span>
               </a>
