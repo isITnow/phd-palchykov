@@ -2,7 +2,7 @@ const About = () => {
   return (
     <section>
       <h1 className="mb-4 text-center">Prof. Dr. Vitalii Palchykov</h1>
-      <h4 className="ms-3">Education</h4>
+      <h4 className="ms-0 ms-lg-4 text-center text-lg-start">Education</h4>
       <ul>
         <li>
           <p className="mb-2">
@@ -34,7 +34,9 @@ const About = () => {
           </p>
         </li>
       </ul>
-      <h4 className="ms-3">Research and Teaching Experience</h4>
+      <h4 className="ms-0 ms-lg-4 text-center text-lg-start">
+        Research and Teaching Experience
+      </h4>
       <ul>
         <li>
           <p className="mb-2">
@@ -111,7 +113,9 @@ const About = () => {
           </p>
         </li>
       </ul>
-      <h4 className="ms-3">Awards and Achievements</h4>
+      <h4 className="ms-0 ms-lg-4 text-center text-lg-start">
+        Awards and Achievements
+      </h4>
       <ul>
         <li>
           <p className="mb-2">
@@ -234,7 +238,9 @@ const About = () => {
           </p>
         </li>
       </ul>
-      <h4 className="ms-3">Professional activity</h4>
+      <h4 className="ms-0 ms-lg-4 text-center text-lg-start">
+        Professional activity
+      </h4>
       <ul>
         <li>
           <p className="mb-2">
@@ -255,7 +261,9 @@ const About = () => {
           </p>
         </li>
       </ul>
-      <h4 className="ms-3">Research Interests</h4>
+      <h4 className="ms-0 ms-lg-4 text-center text-lg-start">
+        Research Interests
+      </h4>
       <p>
         Chemistry of cage-like compounds and N,O,S-heterocycles, new synthetic
         methodologies based on organo- and photoredox catalysis, mechanisms and
