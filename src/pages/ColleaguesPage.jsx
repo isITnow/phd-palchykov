@@ -13,10 +13,8 @@ import ColleaguesList from "../components/Colleagues/ColleaguesList";
 import Section from "../components/shared/Section.jsx";
 
 import useSignInStatus from "../assets/customHooks/useSignInStatus.js";
-import setPageTitle from "../assets/utils/setPageTitle";
 
 const ColleaguesPage = () => {
-  setPageTitle("Colleagues");
   const isLoggedIn = useSignInStatus();
   const dispatch = useDispatch();
   const { colleagues, status, error } = useSelector(selectColleagues);
@@ -50,7 +48,7 @@ const ColleaguesPage = () => {
       {isLoggedIn && (
         <div className="mt-3 text-end">
           <Link className="btn btn-primary" to={"/colleagues/new"}>
-            new colleague
+            new Colleague
           </Link>
         </div>
       )}

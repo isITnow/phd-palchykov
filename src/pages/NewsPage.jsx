@@ -13,10 +13,8 @@ import NewsList from "../components/News/NewsList";
 import Section from "../components/shared/Section";
 
 import useSignInStatus from "../assets/customHooks/useSignInStatus";
-import setPageTitle from "../assets/utils/setPageTitle";
 
 const NewsPage = () => {
-  setPageTitle("News");
   const isLoggedIn = useSignInStatus();
   const dispatch = useDispatch();
   const { news, status, error } = useSelector(selectNews);
@@ -45,7 +43,7 @@ const NewsPage = () => {
       {isLoggedIn && (
         <div className="mt-3 text-end">
           <Link className="btn btn-primary" to={"/news/new"}>
-            new news
+            new News
           </Link>
         </div>
       )}

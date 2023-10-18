@@ -15,10 +15,8 @@ import PublicationsList from "../components/Publications/PublicationsList";
 import Section from "../components/shared/Section";
 
 import useSignInStatus from "../assets/customHooks/useSignInStatus";
-import setPageTitle from "../assets/utils/setPageTitle";
 
 const PublicationsPage = () => {
-  setPageTitle("Publications");
   const { period_id } = useParams();
   const dispatch = useDispatch();
   const { periods } = useSelector(selectPeriods);
@@ -66,7 +64,7 @@ const PublicationsPage = () => {
               className="btn btn-primary"
               to={`/periods/${period_id}/publications/new`}
             >
-              new publication
+              new Publication
             </Link>
           )}
         </div>
