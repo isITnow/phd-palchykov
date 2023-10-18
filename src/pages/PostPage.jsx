@@ -26,7 +26,6 @@ import Post from "../components/Posts/Post";
 import PostForm from "../components/Posts/PostForm";
 import Section from "../components/shared/Section";
 
-import setPageTitle from "../assets/utils/setPageTitle";
 import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
 const fadeInOut = {
@@ -36,8 +35,6 @@ const fadeInOut = {
 };
 
 const PostPage = () => {
-  setPageTitle("Post");
-
   const { id } = useParams();
   const [showForm, setShowForm] = useState(false);
   const dispatch = useDispatch();

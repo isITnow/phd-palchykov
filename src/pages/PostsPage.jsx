@@ -16,12 +16,9 @@ import PostsList from "../components/Posts/PostsList";
 import PostForm from "../components/Posts/PostForm";
 import Section from "../components/shared/Section";
 
-import setPageTitle from "../assets/utils/setPageTitle";
 import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
 const PostsPage = () => {
-  setPageTitle("Blog");
-
   const dispatch = useDispatch(getPostsThunk());
   const posts = useSelector(selectPostsList);
   const error = useSelector(selectError);

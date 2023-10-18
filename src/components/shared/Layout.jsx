@@ -1,5 +1,5 @@
 import { Suspense, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
@@ -9,9 +9,17 @@ import Footer from "../Footer/Footer";
 import Loader from "./Loader";
 import Navigation from "../Navigation/Navigation";
 
+import setPageTitle from "../../assets/utils/setPageTitle";
+
 const Layout = () => {
   const dispatch = useDispatch();
   const { periods } = useSelector(selectPeriods);
+  const location = useLocation();
+
+  useEffect(() => {
+    const { pathname } = location;
+    setPageTitle(pathname);
+  }, [location]);
 
   useEffect(() => {
     if (!periods.length) {
