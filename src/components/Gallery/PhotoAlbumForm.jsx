@@ -1,7 +1,7 @@
 import { Form, Formik } from "formik";
 
 import { useDispatch } from "react-redux";
-import { addPhotoAlbumThunk } from "../../redux/gallery/oparationsGallery";
+import { addPhotoAlbumThunk } from "../../redux/gallery/operationsGallery";
 
 // import { validation } from "../../assets/utils/validationSchema";
 import CustomInput from "../FormComponents/CustomInput";
