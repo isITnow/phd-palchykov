@@ -178,40 +178,43 @@ const PublicationForm = ({ publication, status }) => {
                   const { push, remove, form } = fieldArrayProps;
                   const { values } = form;
                   const { authors } = values;
+                  const authorsListClass =
+                    authors.length > 1
+                      ? "row row-cols-1 row-cols-md-2"
+                      : "row row-cols-1";
                   return (
                     <>
                       {authors && authors.length > 0 ? (
-                        <ul className="list-group">
+                        <ul className={authorsListClass}>
                           {authors.map((author, index) => (
-                            <li
-                              className="list-group-item border-2 mb-2"
-                              key={index}
-                            >
-                              {authors.length > 1 && (
-                                <Badge index={index} text={"author"} />
-                              )}
-                              <CustomInput
-                                type="text"
-                                label="Author"
-                                name={`authors.${index}`}
-                                bsclass="mb-3"
-                              />
-                              <div className="text-end">
-                                <div className="btn-group" role="group">
-                                  <button
-                                    type="button"
-                                    className="btn btn-sm btn-outline-primary"
-                                    onClick={() => remove(index)} // remove a friend from the list
-                                  >
-                                    remove the author
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="btn btn-sm btn-outline-primary"
-                                    onClick={() => push("")}
-                                  >
-                                    add an author
-                                  </button>
+                            <li className="col mb-3" key={index}>
+                              <div className="p-2 border border-2 rounded">
+                                {authors.length > 1 && (
+                                  <Badge index={index} text={"author"} />
+                                )}
+                                <CustomInput
+                                  type="text"
+                                  label="Author"
+                                  name={`authors.${index}`}
+                                  bsclass="mb-3"
+                                />
+                                <div className="text-end">
+                                  <div className="btn-group" role="group">
+                                    <button
+                                      type="button"
+                                      className="btn btn-sm btn-outline-primary"
+                                      onClick={() => remove(index)} // remove a friend from the list
+                                    >
+                                      remove the author
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn btn-sm btn-outline-primary"
+                                      onClick={() => push("")}
+                                    >
+                                      add an author
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
                             </li>

@@ -2,10 +2,7 @@ import About from "../components/About/About";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Section from "../components/shared/Section";
 
-import setPageTitle from "../assets/utils/setPageTitle";
-
 const HomePage = () => {
-  setPageTitle();
   return (
     <Section>
       <div className="row">

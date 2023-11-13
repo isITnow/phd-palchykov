@@ -80,9 +80,36 @@ const researchSchema = yup.object().shape({
   ),
 });
 
+const editResearchSchema = yup.object().shape({
+  title: yup.string().min(5, "Too short").required("Title is required"),
+  sourceList: yup.array().of(
+    yup.object().shape({
+      source: yup.string().min(5, "Too short").required("Source is required"),
+      source_url: yup.string().min(5, "Too short").required("URL is required"),
+    })
+  ),
+});
+
+const editIllustrationSchema = yup.object().shape({
+  description: yup
+    .string()
+    .min(5, "Too short")
+    .required("Description is required"),
+  sequence_number: yup
+    .number()
+    .required("Sequence number is required")
+    .test(
+      "Is positive?",
+      "Number must be greater than 0",
+      (value) => value > 0
+    ),
+});
+
 export const validation = {
   colleagueSchema,
   commentSchema,
+  editResearchSchema,
+  editIllustrationSchema,
   loginSchema,
   newsSchema,
   postSchema,

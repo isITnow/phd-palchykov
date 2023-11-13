@@ -58,6 +58,26 @@ export const addResearchThunk = createAsyncThunk(
   }
 );
 
+export const updateResearchThunk = createAsyncThunk(
+  "researches/update",
+
+  async ({ id, research }, { dispatch, rejectWithValue }) => {
+    try {
+      const resp = await researchesAPI.editResearch(id, research);
+
+      if (resp.status !== 202) {
+        throw new Error("Error occurred! Please contact your administrator.");
+      }
+
+      dispatch(getResearchesThunk());
+      return resp.data;
+    } catch (error) {
+      console.log("EDIT research error: ", error);
+      return rejectWithValue(errorSwitchCase(error));
+    }
+  }
+);
+
 export const removeResearchThunk = createAsyncThunk(
   "researches/delete",
 

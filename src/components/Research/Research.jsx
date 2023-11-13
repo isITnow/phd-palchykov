@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeResearchThunk } from "../../redux/researches/operationsResearches";
 import { selectResearches } from "../../redux/researches/selectorResearches";
@@ -10,6 +11,11 @@ const Research = ({ research, index }) => {
   const dispatch = useDispatch();
   const isLoggedIn = useSignInStatus();
   const btnDisabled = status === "pending";
+
+  const sourceListClass =
+    sourceList.length > 8
+      ? "row row-cols-1 row-cols-md-2 row-cols-lg-3"
+      : "row row-cols-1";
 
   const handleClick = () => {
     // alert("Are you sure you want to delete item?");
@@ -30,40 +36,53 @@ const Research = ({ research, index }) => {
           >
             {description}
           </p>
-          <div className="p-3 text-center">
+          <div className="col-12 col-md-11 col-lg-9 mx-auto d-flex justify-content-center">
             <img className="img-fluid" src={schema_url} alt="schema" />
           </div>
+          {isLoggedIn && (
+            <div className="d-flex justify-content-end border-bottom border-2 py-3">
+              <Link
+                className="btn btn-sm btn-primary"
+                to={`/researches/${research.id}/illustrations/${id}/edit`}
+              >
+                edit Illustration
+              </Link>
+            </div>
+          )}
         </div>
       ))}
-      <div className="d-flex justify-content-between align-items-end">
-        <div className="ms-4">
-          <p className="mb-2">Our relevant works:</p>
-          <ul style={{ fontSize: "0.75rem" }}>
-            {sourceList.map(({ source_url, source }, index) => (
-              <li key={index}>
-                <a href={source_url} target="_blank" rel="noreferrer noopener">
-                  <span className="fst-italic">{source}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {isLoggedIn && (
-          <div className="me-4">
+      <div className="">
+        <p className="mb-2">Our relevant works:</p>
+        <ul className={sourceListClass}>
+          {sourceList.map(({ source_url, source }, index) => (
+            <li className="col" key={index}>
+              <a href={source_url} target="_blank" rel="noreferrer noopener">
+                <span className="fst-italic">{source}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      {isLoggedIn && (
+        <div className="mt-3 d-flex justify-content-end">
+          <div className="btn-group">
+            <Link
+              className="btn btn-sm btn-primary"
+              to={`/researches/${id}/edit`}
+            >
+              edit Research
+            </Link>
             <button
               disabled={btnDisabled}
               type="button"
               className="btn btn-sm btn-danger"
-              onClick={() => {
-                handleClick();
-              }}
+              onClick={handleClick}
             >
-              delete
+              delete Research
             </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

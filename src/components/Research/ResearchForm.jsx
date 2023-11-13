@@ -176,54 +176,57 @@ const ResearchForm = ({ status }) => {
             </div>
             <div className="mt-3">
               <FieldArray name="sourceList">
-                {({ push, remove, form }) => {
+                {({ push, insert, remove, form }) => {
                   const { values } = form;
                   const { sourceList } = values;
+                  const sourceListClass =
+                    sourceList.length > 1
+                      ? "row row-cols-1 row-cols-md-2"
+                      : "row row-cols-1";
                   return (
                     <>
                       {sourceList && sourceList.length > 0 ? (
-                        <ul className="list-group">
+                        <ul className={sourceListClass}>
                           {sourceList.map((item, index) => (
-                            <li
-                              className="list-group-item border-2 mb-2"
-                              key={index}
-                            >
-                              {sourceList.length > 1 && (
-                                <Badge index={index} text={"resource"} />
-                              )}
-                              <CustomInput
-                                type="text"
-                                label="Source"
-                                name={`sourceList.${index}.source`}
-                                bsclass="mb-3"
-                              />
-                              <CustomInput
-                                type="text"
-                                label="Source URL"
-                                name={`sourceList.${index}.source_url`}
-                                bsclass="mb-3"
-                              />
-                              <div className="text-end">
-                                <div className="btn-group" role="group">
-                                  <button
-                                    type="button"
-                                    className="btn btn-sm btn-outline-primary"
-                                    onClick={() => remove(index)}
-                                  >
-                                    remove the source
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="btn btn-sm btn-outline-primary"
-                                    onClick={() =>
-                                      push({
-                                        source: "",
-                                        source_url: "",
-                                      })
-                                    }
-                                  >
-                                    add a source
-                                  </button>
+                            <li className="col mb-3" key={index}>
+                              <div className="p-2 border border-2 rounded">
+                                {sourceList.length > 1 && (
+                                  <Badge index={index} text={"resource"} />
+                                )}
+                                <CustomInput
+                                  type="text"
+                                  label="Source"
+                                  name={`sourceList.${index}.source`}
+                                  bsclass="mb-3"
+                                />
+                                <CustomInput
+                                  type="text"
+                                  label="Source URL"
+                                  name={`sourceList.${index}.source_url`}
+                                  bsclass="mb-3"
+                                />
+                                <div className="text-end">
+                                  <div className="btn-group" role="group">
+                                    <button
+                                      type="button"
+                                      className="btn btn-sm btn-outline-primary"
+                                      onClick={() => remove(index)}
+                                    >
+                                      remove the source
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn btn-sm btn-outline-primary"
+                                      onClick={() =>
+                                        insert(index, {
+                                          source: "",
+                                          source_url: "",
+                                        })
+                                      }
+                                    >
+                                      add a source
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
                             </li>
@@ -252,7 +255,7 @@ const ResearchForm = ({ status }) => {
             </div>
             <div className="text-end mt-3">
               <div className="btn-group">
-                <BackBtn path="/research">Cancel</BackBtn>
+                <BackBtn path="/researches">Cancel</BackBtn>
                 <SubmitBtn text="Create Research card" disabled={isDisabled} />
               </div>
             </div>

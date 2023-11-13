@@ -99,40 +99,43 @@ const NewsForm = ({ newsItem, status }) => {
                   const { push, remove, form } = fieldArrayProps;
                   const { values } = form;
                   const { links } = values;
+                  const linksListClass =
+                    links.length > 1
+                      ? "row row-cols-1 row-cols-md-2"
+                      : "row row-cols-1";
                   return (
                     <>
                       {links && links.length > 0 ? (
-                        <ul className="list-group">
+                        <ul className={linksListClass}>
                           {links.map((link, index) => (
-                            <li
-                              className="list-group-item border-2 mb-2"
-                              key={index}
-                            >
-                              {links.length > 1 && (
-                                <Badge index={index} text={"link"} />
-                              )}
-                              <CustomInput
-                                type="text"
-                                label="Link"
-                                name={`links.${index}`}
-                                bsclass="mb-3"
-                              />
-                              <div className="text-end">
-                                <div className="btn-group" role="group">
-                                  <button
-                                    type="button"
-                                    className="btn btn-sm btn-outline-primary"
-                                    onClick={() => remove(index)}
-                                  >
-                                    remove the link
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="btn btn-sm btn-outline-primary"
-                                    onClick={() => push("")}
-                                  >
-                                    add a link
-                                  </button>
+                            <li className="col mb-3" key={index}>
+                              <div className="p-2 border border-2 rounded">
+                                {links.length > 1 && (
+                                  <Badge index={index} text={"link"} />
+                                )}
+                                <CustomInput
+                                  type="text"
+                                  label="Link"
+                                  name={`links.${index}`}
+                                  bsclass="mb-3"
+                                />
+                                <div className="text-end">
+                                  <div className="btn-group" role="group">
+                                    <button
+                                      type="button"
+                                      className="btn btn-sm btn-outline-primary"
+                                      onClick={() => remove(index)}
+                                    >
+                                      remove the link
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn btn-sm btn-outline-primary"
+                                      onClick={() => push("")}
+                                    >
+                                      add a link
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
                             </li>
