@@ -2,9 +2,8 @@ import { privateAPI, publicAPI } from "./http";
 
 const fetchPhotoAlbums = async () => {
   const data = await publicAPI.get("/photo_albums");
-  console.log("Photo Album data: ", data);
 
-  // return data;
+  return data;
 };
 
 const fetchOnePhotoAlbum = async (id) => {

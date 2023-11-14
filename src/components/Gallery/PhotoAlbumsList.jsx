@@ -1,26 +1,21 @@
-import { Link } from "react-router-dom";
-import galleryThemes from "../../assets/data/galleryThemes.js";
+// import { Link } from "react-router-dom";
 import s from "./gallery.module.css";
 
-const PhotoAlbumsList = () => {
+const PhotoAlbumsList = ({ photoAlbums }) => {
   return (
     <ul className="row row-cols-2 row-cols-md-3 row-cols-lg-4 mb-0">
-      {galleryThemes.map(({ theme, list }, indx) => (
-        <li key={indx} className="col mb-3">
-          <Link to={theme}>
-            <div className={`card overflow-hidden ${s.hoverEffect}`}>
-              <div className={s.imgWrapper}>
-                <img
-                  src={require(`../../assets/images/gallery/${theme}/${list[0].filename}`)}
-                  className={s.img}
-                  alt={`${list[0].filename}`}
-                />
-              </div>
-              <div className="card-body">
-                <h5 className="card-title text-center">{theme}</h5>
-              </div>
+      {photoAlbums.map(({ id, cover_image_url, title }, indx) => (
+        <li key={id} className="col mb-3">
+          {/* <Link to={theme}> */}
+          <div className={`card overflow-hidden ${s.hoverEffect}`}>
+            <div className={s.imgWrapper}>
+              <img src={cover_image_url} className={s.img} alt={title} />
             </div>
-          </Link>
+            <div className="card-body">
+              <h5 className="card-title text-center">{title}</h5>
+            </div>
+          </div>
+          {/* </Link> */}
         </li>
       ))}
     </ul>
