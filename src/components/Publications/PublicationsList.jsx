@@ -1,12 +1,6 @@
 import { motion } from "framer-motion";
+import listItemMotionOptions from "../../assets/utils/motionOptions";
 import Publication from "./Publication";
-
-const listItem = {
-  initial: { opacity: 0, y: -15 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8 },
-  exit: { opacity: 0, y: -15 },
-};
 
 const PublicationsList = ({ publications }) => {
   return (
@@ -19,7 +13,7 @@ const PublicationsList = ({ publications }) => {
           animate="animate"
           transition="transition"
           exit="exit"
-          variants={listItem}
+          variants={listItemMotionOptions}
         >
           <Publication publication={publication} />
         </motion.li>
