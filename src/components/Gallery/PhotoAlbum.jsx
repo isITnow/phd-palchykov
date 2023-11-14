@@ -6,7 +6,7 @@ import "photoswipe/dist/photoswipe.css";
 
 import s from "./gallery.module.css";
 
-const GalleryByTheme = () => {
+const PhotoAlbum = () => {
   const { theme } = useParams();
   const [list, setList] = useState([]);
 
@@ -71,4 +71,4 @@ const GalleryByTheme = () => {
   );
 };
 
-export default GalleryByTheme;
+export default PhotoAlbum;

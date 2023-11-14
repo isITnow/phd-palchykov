@@ -1,10 +1,10 @@
-import GalleryByTheme from "../components/Gallery/GalleryByTheme";
+import PhotoAlbum from "../components/Gallery/PhotoAlbum";
 import Section from "../components/shared/Section";
 
 const GalleryByThemePage = () => {
   return (
     <Section>
-      <GalleryByTheme />
+      <PhotoAlbum />
     </Section>
   );
 };
