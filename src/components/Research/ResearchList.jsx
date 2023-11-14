@@ -1,14 +1,7 @@
 import { motion } from "framer-motion";
+import listItemMotionOptions from "../../assets/utils/motionOptions";
 import Research from "./Research";
-
 import s from "./research.module.css";
-
-const listItem = {
-  initial: { opacity: 0, y: -15 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.9, delay: 0.4 },
-  exit: { opacity: 0, y: -15 },
-};
 
 const ResearchList = ({ researches }) => {
   let researchList = null;
@@ -46,7 +39,7 @@ const ResearchList = ({ researches }) => {
               animate="animate"
               transition="transition"
               exit="exit"
-              variants={listItem}
+              variants={listItemMotionOptions}
             >
               <Research research={research} index={index + 1} />
             </motion.li>

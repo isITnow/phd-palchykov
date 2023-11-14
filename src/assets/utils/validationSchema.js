@@ -31,6 +31,14 @@ const newsSchema = yup.object().shape({
   links: yup.array().of(yup.string().min(5, "Too short")),
 });
 
+const photoAlbumSchema = yup.object().shape({
+  title: yup
+    .string()
+    .min(5, "To short")
+    .max(80, "Max 80 characters")
+    .required("Title is required"),
+});
+
 const postSchema = yup.object().shape({
   body: yup.string().min(5, "To short").required("Text is required"),
 });
@@ -112,6 +120,7 @@ export const validation = {
   editIllustrationSchema,
   loginSchema,
   newsSchema,
+  photoAlbumSchema,
   postSchema,
   publicationSchema,
   researchSchema,
