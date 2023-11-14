@@ -44,14 +44,14 @@ export const getOnePhotoAlbumThunk = createAsyncThunk(
 export const addPhotoAlbumThunk = createAsyncThunk(
   "gallery/post",
 
-  async (photoAlbum, { rejectWithValue }) => {
+  async (photoAlbum, { rejectWithValue, dispatch }) => {
     try {
       const resp = await galleryAPI.postPhotoAlbum(photoAlbum);
 
       if (resp.status !== 201) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
-
+      dispatch(getPhotoAlbumsThunk);
       // return resp.data;
     } catch (error) {
       console.log("POST photo album error: ", error);
@@ -90,6 +90,8 @@ export const removePhotoAlbumThunk = createAsyncThunk(
       if (resp.status !== 204) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
+      dispatch(getPhotoAlbumsThunk());
       return id;
     } catch (error) {
       console.log("DELETE photo album error: ", error);

@@ -54,7 +54,7 @@ const gallerySlice = createSlice({
     });
     builder.addCase(addPhotoAlbumThunk.fulfilled, (state, { payload }) => {
       state.status = "fulfilled";
-      state.photoAlbums.push(payload);
+      // state.photoAlbums.push(payload);
     });
     builder.addCase(addPhotoAlbumThunk.rejected, setError);
 
@@ -74,10 +74,11 @@ const gallerySlice = createSlice({
       state.error = null;
     });
     builder.addCase(removePhotoAlbumThunk.fulfilled, (state, { payload }) => {
-      state.status = "fulfilled";
-      state.photoAlbums = state.photoAlbums.filter(
-        (photoAlbum) => photoAlbum.id !== payload
-      );
+      state.status = "removed";
+      state.error = null;
+      // state.photoAlbums = state.photoAlbums.filter(
+      //   (photoAlbum) => photoAlbum.id !== payload
+      // );
     });
     builder.addCase(removePhotoAlbumThunk.rejected, setError);
   },

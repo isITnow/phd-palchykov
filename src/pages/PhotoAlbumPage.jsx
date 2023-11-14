@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
   getOnePhotoAlbumThunk,
-  // removePhotoAlbumThunk,
+  removePhotoAlbumThunk,
 } from "../redux/gallery/operationsGallery";
 import {
   selectOnePhotoAlbum,
@@ -15,51 +15,44 @@ import {
 import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/customHooks/useAlert";
 
+import BackBtn from "../components/shared/BackBtn";
 import Loader from "../components/shared/Loader";
 import PhotoAlbum from "../components/Gallery/PhotoAlbum";
 import Section from "../components/shared/Section";
 
-// import useSignInStatus from "../assets/customHooks/useSignInStatus";
+import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
 const PhotoAlbumPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
   const error = useSelector(selectError);
   const photoAlbum = useSelector(selectOnePhotoAlbum);
   const status = useSelector(selectStatus);
   const { alert, showAlert } = useAlert();
-  // const isLoggedIn = useSignInStatus();
+  const isLoggedIn = useSignInStatus();
 
-  // const isReady = isLoaded && photoAlbum;
+  const btnDisabled = status === "pending";
+
+  const handleClick = () => {
+    dispatch(removePhotoAlbumThunk(id));
+    navigate("/gallery");
+  };
 
   useEffect(() => {
     dispatch(getOnePhotoAlbumThunk(id));
   }, [dispatch, id]);
 
   useEffect(() => {
-    switch (status) {
-      case "rejected":
-        showAlert(error, "danger");
-        break;
+    if (status === "rejected") {
+      showAlert(error, "danger");
+      return;
+    }
 
-      case "album loaded":
-        setIsLoaded(true);
-        break;
-
-      // case "removed":
-      //   navigate("/posts");
-      //   break;
-
-      // case "comment added":
-      //   showAlert("Comment published successfully", "success");
-      //   break;
-
-      // case "comment removed":
-      //   showAlert("Comment deleted", "success");
-      //   break;
-      default:
-        break;
+    if (status === "album loaded") {
+      setIsLoaded(true);
+      return;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
@@ -71,6 +64,32 @@ const PhotoAlbumPage = () => {
   return (
     <Section>
       <Alert state={alert} />
+      <div className="d-flex flex-column flex-lg-row justify-content-lg-between align-items-center mb-4">
+        <h4 className="text-secondary fw-bold mb-3 mb-lg-0">
+          {photoAlbum.title}
+        </h4>
+        <div className="text-end">
+          <BackBtn path="/gallery">Back to Gallery</BackBtn>
+          {isLoggedIn && (
+            <div className="btn-group ms-3">
+              <Link
+                to={`/gallery/photo_albums/${photoAlbum.id}/edit`}
+                className="btn btn-primary"
+              >
+                edit
+              </Link>
+              <button
+                type="button"
+                className="btn btn-danger"
+                disabled={btnDisabled}
+                onClick={() => handleClick()}
+              >
+                delete
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
       <PhotoAlbum photoAlbum={photoAlbum} />
     </Section>
   );

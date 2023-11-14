@@ -14,23 +14,20 @@ const fetchOnePhotoAlbum = async (id) => {
 
 const postPhotoAlbum = async (body) => {
   const data = await privateAPI.post("/photo_albums", body, {});
-  console.log("Photo Album data: ", data);
 
-  // return data;
+  return data;
 };
 
 const deletePhotoAlbum = async (id) => {
   const data = await privateAPI.delete(`/photo_albums/${id}`);
-  console.log("Photo Album data: ", data);
 
-  // return data;
+  return data;
 };
 
 const editPhotoAlbum = async (id, body) => {
   const data = await privateAPI.patch(`/photo_albums/${id}`, body);
-  console.log("Photo Album data: ", data);
 
-  // return data;
+  return data;
 };
 
 export const galleryAPI = {
