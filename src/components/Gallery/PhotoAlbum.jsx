@@ -1,26 +1,17 @@
-import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import galleryThemes from "../../assets/data/galleryThemes.js";
+import { Link } from "react-router-dom";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
 
 import s from "./gallery.module.css";
 
-const PhotoAlbum = () => {
-  const { theme } = useParams();
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    const data = galleryThemes.find((item) => item.theme === theme).list;
-    setList(data);
-  }, [theme]);
-
+const PhotoAlbum = ({ photoAlbum }) => {
+  const { title, pictures_list } = photoAlbum;
   return (
     <>
       {/* TODO change flex to flex-column */}
       <div className="d-flex flex-wrap justify-content-end justify-content-lg-between align-items-center mb-4">
         <h4 className="text-end text-lg-center text-secondary fw-bold mb-0">
-          {theme}
+          {title}
         </h4>
         <Link className="btn btn-link fw-bold" to={"/gallery"}>
           back to gallery
@@ -28,20 +19,21 @@ const PhotoAlbum = () => {
       </div>
       <Gallery withCaption>
         <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 align-items-center mb-0">
-          {list.map((item, indx) => {
+          {pictures_list.map((picture) => {
             const {
+              id,
               filename,
-              size: { width, hight },
-              caption,
-            } = item;
+              picture_url,
+              metadata: { width, height },
+            } = picture;
             return (
-              <div key={indx} className="col mb-3">
+              <div key={id} className="col mb-3">
                 <Item
-                  original={require(`../../assets/images/gallery/${theme}/${filename.trim()}`)}
-                  thumbnail={require(`../../assets/images/gallery/${theme}/${filename.trim()}`)}
+                  original={picture_url}
+                  thumbnail={picture_url}
                   width={width}
-                  height={hight}
-                  caption={caption ? caption : null}
+                  height={height}
+                  // caption={caption ? caption : null}
                 >
                   {({ ref, open }) => (
                     <div
@@ -50,7 +42,7 @@ const PhotoAlbum = () => {
                       <img
                         ref={ref}
                         onClick={open}
-                        src={require(`../../assets/images/gallery/${theme}/${filename.trim()}`)}
+                        src={picture_url}
                         alt={filename}
                         className={s.img}
                       />

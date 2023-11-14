@@ -8,9 +8,8 @@ const fetchPhotoAlbums = async () => {
 
 const fetchOnePhotoAlbum = async (id) => {
   const data = await publicAPI.get(`/photo_albums/${id}`);
-  console.log("Photo Album data: ", data);
 
-  // return data;
+  return data;
 };
 
 const postPhotoAlbum = async (body) => {

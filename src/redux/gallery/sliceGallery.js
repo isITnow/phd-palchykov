@@ -42,7 +42,7 @@ const gallerySlice = createSlice({
       state.error = null;
     });
     builder.addCase(getOnePhotoAlbumThunk.fulfilled, (state, { payload }) => {
-      state.status = "loaded";
+      state.status = "album loaded";
       state.onePhotoAlbum = payload;
     });
     builder.addCase(getOnePhotoAlbumThunk.rejected, setError);
