@@ -14,6 +14,7 @@ import storage from "redux-persist/lib/storage";
 
 import authReducer from "./auth/sliceAuth";
 import colleaguesReducer from "./colleagues/sliceColleagues";
+import galleryReducer from "./gallery/sliceGallery";
 import newsReducer from "./news/sliceNews";
 import postsReducer from "./posts/slicePosts";
 import publicationsReducer from "./publications/slicePublications";
@@ -28,6 +29,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   colleagues: colleaguesReducer,
+  gallery: galleryReducer,
   news: newsReducer,
   periods: publicationPeriodsReducer,
   posts: postsReducer,
