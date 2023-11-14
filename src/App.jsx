@@ -15,7 +15,7 @@ const ColleagueOperationsPage = lazy(() =>
 );
 
 const GalleryPage = lazy(() => import("./pages/GalleryPage"));
-const GalleryByThemePage = lazy(() => import("./pages/GalleryByThemePage"));
+const PhotoAlbumPage = lazy(() => import("./pages/PhotoAlbumPage"));
 
 const NewsPage = lazy(() => import("./pages/NewsPage"));
 const NewsOperationsPage = lazy(() => import("./pages/NewsOperationsPage"));
@@ -55,7 +55,7 @@ const App = () => {
         <Route path="colleagues" element={<ColleaguesPage />} />
         <Route path="contacts" element={<ContactsPage />} />
         <Route path="gallery" element={<GalleryPage />} />
-        <Route path="gallery/:theme" element={<GalleryByThemePage />} />
+        <Route path="gallery/:id" element={<PhotoAlbumPage />} />
         <Route path="news" element={<NewsPage />} />
         <Route
           path="periods/:period_id/publications"

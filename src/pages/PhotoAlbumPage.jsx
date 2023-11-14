@@ -1,7 +1,7 @@
 import PhotoAlbum from "../components/Gallery/PhotoAlbum";
 import Section from "../components/shared/Section";
 
-const GalleryByThemePage = () => {
+const PhotoAlbumPage = () => {
   return (
     <Section>
       <PhotoAlbum />
@@ -9,4 +9,4 @@ const GalleryByThemePage = () => {
   );
 };
 
-export default GalleryByThemePage;
+export default PhotoAlbumPage;
