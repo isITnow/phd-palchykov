@@ -55,7 +55,7 @@ const App = () => {
         <Route path="colleagues" element={<ColleaguesPage />} />
         <Route path="contacts" element={<ContactsPage />} />
         <Route path="gallery" element={<GalleryPage />} />
-        <Route path="gallery/:id" element={<PhotoAlbumPage />} />
+        <Route path="gallery/photo_albums/:id" element={<PhotoAlbumPage />} />
         <Route path="news" element={<NewsPage />} />
         <Route
           path="periods/:period_id/publications"
