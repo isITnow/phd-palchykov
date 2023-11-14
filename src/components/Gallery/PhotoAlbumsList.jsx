@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import galleryThemes from "../../assets/data/galleryThemes.js";
 import s from "./gallery.module.css";
 
-const Gallery = () => {
+const PhotoAlbumsList = () => {
   return (
     <ul className="row row-cols-2 row-cols-md-3 row-cols-lg-4 mb-0">
       {galleryThemes.map(({ theme, list }, indx) => (
@@ -27,4 +27,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default PhotoAlbumsList;
