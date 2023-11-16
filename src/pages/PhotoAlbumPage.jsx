@@ -33,7 +33,7 @@ const PhotoAlbumPage = () => {
   const { alert, showAlert } = useAlert();
   const isLoggedIn = useSignInStatus();
 
-  const btnDisabled = status === "pending";
+  const isDisabled = status === "pending";
 
   const handleClick = () => {
     dispatch(removePhotoAlbumThunk(id));
@@ -45,14 +45,21 @@ const PhotoAlbumPage = () => {
   }, [dispatch, id]);
 
   useEffect(() => {
-    if (status === "rejected") {
-      showAlert(error, "danger");
-      return;
-    }
+    switch (status) {
+      case "rejected":
+        showAlert(error, "danger");
+        break;
 
-    if (status === "album loaded") {
-      setIsLoaded(true);
-      return;
+      case "album loaded":
+        setIsLoaded(true);
+        break;
+
+      case "picture removed":
+        showAlert("Picture deleted successfully", "success");
+        break;
+
+      default:
+        break;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
@@ -81,7 +88,7 @@ const PhotoAlbumPage = () => {
               <button
                 type="button"
                 className="btn btn-danger"
-                disabled={btnDisabled}
+                disabled={isDisabled}
                 onClick={() => handleClick()}
               >
                 delete

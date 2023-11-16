@@ -4,6 +4,7 @@ import {
   getOnePhotoAlbumThunk,
   getPhotoAlbumsThunk,
   removePhotoAlbumThunk,
+  removePictureThunk,
   updatePhotoAlbumThunk,
 } from "./operationsGallery";
 
@@ -52,7 +53,7 @@ const gallerySlice = createSlice({
       state.status = "pending";
       state.error = null;
     });
-    builder.addCase(addPhotoAlbumThunk.fulfilled, (state, { payload }) => {
+    builder.addCase(addPhotoAlbumThunk.fulfilled, (state) => {
       state.status = "fulfilled";
       // state.photoAlbums.push(payload);
     });
@@ -63,13 +64,13 @@ const gallerySlice = createSlice({
       state.status = "pending";
       state.error = null;
     });
-    builder.addCase(updatePhotoAlbumThunk.fulfilled, (state, { payload }) => {
+    builder.addCase(updatePhotoAlbumThunk.fulfilled, (state) => {
       state.status = "fulfilled";
     });
     builder.addCase(updatePhotoAlbumThunk.rejected, setError);
 
     // REMOVE PHOTO ALBUM
-    builder.addCase(removePhotoAlbumThunk.pending, (state, { payload }) => {
+    builder.addCase(removePhotoAlbumThunk.pending, (state) => {
       state.status = "pending";
       state.error = null;
     });
@@ -81,6 +82,21 @@ const gallerySlice = createSlice({
       // );
     });
     builder.addCase(removePhotoAlbumThunk.rejected, setError);
+
+    // REMOVE PICTURE
+    builder.addCase(removePictureThunk.pending, (state) => {
+      state.status = "pending";
+      state.error = null;
+    });
+    builder.addCase(removePictureThunk.fulfilled, (state, { payload }) => {
+      state.status = "picture removed";
+      state.error = null;
+      state.onePhotoAlbum.pictures_list =
+        state.onePhotoAlbum.pictures_list.filter(
+          (picture) => picture.id !== payload
+        );
+    });
+    builder.addCase(removePictureThunk.rejected, setError);
   },
 });
 

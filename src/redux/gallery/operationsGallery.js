@@ -99,3 +99,22 @@ export const removePhotoAlbumThunk = createAsyncThunk(
     }
   }
 );
+
+export const removePictureThunk = createAsyncThunk(
+  "gallery/deletePicture",
+
+  async (id, { dispatch, rejectWithValue }) => {
+    try {
+      const resp = await galleryAPI.deletePicture(id);
+
+      if (resp.status !== 204) {
+        throw new Error("Error occurred! Please contact your administrator.");
+      }
+
+      return id;
+    } catch (error) {
+      console.log("DELETE photo album error: ", error);
+      return rejectWithValue(errorSwitchCase(error));
+    }
+  }
+);
