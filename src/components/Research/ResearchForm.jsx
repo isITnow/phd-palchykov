@@ -1,4 +1,5 @@
 import { FieldArray, Form, Formik } from "formik";
+// import FormWarning from "../FormComponents/FormWarning";
 
 import { useDispatch } from "react-redux";
 import { addResearchThunk } from "../../redux/researches/operationsResearches";
@@ -67,6 +68,7 @@ const ResearchForm = ({ status }) => {
       onSubmit={handleSubmit}
     >
       {(props) => {
+        // console.log("RESEARCH :", props);
         const isDisabled = props.isSubmitting || status === "pending";
         return (
           <Form>
@@ -100,23 +102,31 @@ const ResearchForm = ({ status }) => {
                                 rows="5"
                                 name={`illustrationList.${index}.description`}
                               />
-                              <label
-                                htmlFor="formFile"
-                                className="form-label px-3 text-secondary fw-bold"
-                              >
-                                Illustration image
-                              </label>
-                              <input
-                                className="form-control mb-3"
-                                id="formFile"
-                                type="file"
-                                onChange={(e) => {
-                                  props.setFieldValue(
-                                    `illustrationList.${index}.schema`,
-                                    e.target.files[0]
-                                  );
-                                }}
-                              />
+                              <div className="col-md-6 mb-3">
+                                <label
+                                  htmlFor="schema"
+                                  className="form-label px-3 text-secondary fw-bold"
+                                >
+                                  Illustration image
+                                </label>
+                                <input
+                                  className="form-control"
+                                  id="schema"
+                                  type="file"
+                                  onChange={(e) => {
+                                    props.setFieldValue(
+                                      `illustrationList.${index}.schema`,
+                                      e.target.files[0]
+                                    );
+                                  }}
+                                />
+                                {/* TODO: schema validation error message */}
+                                {/* {props.illustrationList && (
+                                  <FormWarning>
+                                    {props.errors.illustrationList}
+                                  </FormWarning>
+                                )} */}
+                              </div>
                               <div className="d-flex flex-column flex-md-row justify-content-md-between align-items-md-end">
                                 <CustomInput
                                   label="Sequence Num"

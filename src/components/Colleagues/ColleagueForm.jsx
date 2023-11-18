@@ -1,4 +1,5 @@
 import { Form, Formik } from "formik";
+import FormWarning from "../FormComponents/FormWarning";
 
 import { useDispatch } from "react-redux";
 import {
@@ -6,8 +7,8 @@ import {
   updateColleagueThunk,
 } from "../../redux/colleagues/operationsColleagues";
 
-import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
+import BackBtn from "../shared/BackBtn";
 import SubmitBtn from "../shared/SubmitBtn";
 
 import { validation } from "../../assets/utils/validationSchema";
@@ -91,20 +92,25 @@ const ColleagueForm = ({ colleague, status }) => {
               type="text"
               bsclass="mb-3"
             />
-            <label
-              htmlFor="photo"
-              className="form-label px-3 text-secondary fw-bold"
-            >
-              Photo
-            </label>
-            <input
-              className="form-control mb-3"
-              id="photo"
-              type="file"
-              onChange={(e) => {
-                props.setFieldValue("photo", e.target.files[0]);
-              }}
-            />
+            <div className="col-md-6 mb-3">
+              <label
+                htmlFor="photo"
+                className="form-label px-3 text-secondary fw-bold"
+              >
+                Photo
+              </label>
+              <input
+                className="form-control"
+                id="photo"
+                type="file"
+                onChange={(e) => {
+                  props.setFieldValue("photo", e.target.files[0]);
+                }}
+              />
+              {props.errors.photo && (
+                <FormWarning>{props.errors.photo}</FormWarning>
+              )}
+            </div>
             <div className="text-end mt-3">
               <div className="btn-group">
                 <BackBtn path="/colleagues">Cancel</BackBtn>

@@ -1,12 +1,13 @@
 import { FieldArray, Form, Formik } from "formik";
+import FormWarning from "../FormComponents/FormWarning";
 
 import { useDispatch } from "react-redux";
 import { addNewsThunk, updateNewsThunk } from "../../redux/news/operationsNews";
 
-import Badge from "../shared/Badge";
-import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
+import BackBtn from "../shared/BackBtn";
+import Badge from "../shared/Badge";
 import SubmitBtn from "../shared/SubmitBtn";
 
 import { validation } from "../../assets/utils/validationSchema";
@@ -79,20 +80,25 @@ const NewsForm = ({ newsItem, status }) => {
               rows="5"
             />
             <CustomInput label="Date" name="date" type="text" bsclass="mb-3" />
-            <label
-              htmlFor="image"
-              className="form-label px-3 text-secondary fw-bold"
-            >
-              Image
-            </label>
-            <input
-              className="form-control mb-3"
-              id="image"
-              type="file"
-              onChange={(e) => {
-                props.setFieldValue("image", e.target.files[0]);
-              }}
-            />
+            <div className="col-md-6 mb-3">
+              <label
+                htmlFor="image"
+                className="form-label px-3 text-secondary fw-bold"
+              >
+                Image
+              </label>
+              <input
+                className="form-control"
+                id="image"
+                type="file"
+                onChange={(e) => {
+                  props.setFieldValue("image", e.target.files[0]);
+                }}
+              />
+              {props.errors.image && (
+                <FormWarning>{props.errors.image}</FormWarning>
+              )}
+            </div>
             <div>
               <FieldArray name="links">
                 {(fieldArrayProps) => {

@@ -14,7 +14,7 @@ import Section from "../components/shared/Section";
 const requirementsList = [
   "Research title",
   "Description",
-  "Attachment ( illustration image )",
+  "Illustration image (max size: 1MB)",
   "Source",
   "Source URL",
 ];
