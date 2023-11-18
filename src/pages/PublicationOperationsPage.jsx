@@ -22,7 +22,8 @@ const requirementsList = [
   "Source",
   "SourceURL",
   "Author ( at least one )",
-  "Attachment ( required at least one, cover or abstract )",
+  "Abstract (max size: 1MB)",
+  "Cover (max size: 1MB)",
 ];
 
 const PublicationOperationsPage = ({ edit }) => {

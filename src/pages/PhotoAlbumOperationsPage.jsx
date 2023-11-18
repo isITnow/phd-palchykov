@@ -17,8 +17,8 @@ import Section from "../components/shared/Section";
 
 const requirementsList = [
   "Album title",
-  "Cover image",
-  "Photos (multiple select)",
+  "Cover image (max size: 1MB)",
+  "Photos (multiple select; max file size: 5MB)",
 ];
 
 const PhotoAlbumOperationsPage = ({ edit }) => {

@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { FieldArray, Form, Formik } from "formik";
+import FormWarning from "../FormComponents/FormWarning";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -151,13 +152,18 @@ const PublicationForm = ({ publication, status }) => {
                 Cover image
               </label>
               <input
-                className="form-control mb-3"
+                className="form-control"
                 id="formFile"
                 type="file"
                 onChange={(e) => {
                   props.setFieldValue("cover", e.target.files[0]);
                 }}
               />
+              {props.errors.cover && (
+                <FormWarning>{props.errors.cover}</FormWarning>
+              )}
+            </div>
+            <div className="col-md-6 mb-3">
               <label
                 htmlFor="formFile"
                 className="form-label px-3 text-secondary fw-bold"
@@ -171,6 +177,9 @@ const PublicationForm = ({ publication, status }) => {
                   props.setFieldValue("abstract", e.target.files[0]);
                 }}
               />
+              {props.errors.abstract && (
+                <FormWarning>{props.errors.abstract}</FormWarning>
+              )}
             </div>
             <div>
               <FieldArray name="authors">

@@ -16,7 +16,7 @@ const requirementsList = [
   "Name",
   "Position",
   "Email",
-  "Photo",
+  "Photo (max size: 1MB)",
   "Phone ( example: +380775554433 )",
 ];
 
