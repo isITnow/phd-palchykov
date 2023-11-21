@@ -21,13 +21,18 @@ const NewsForm = ({ newsItem, status }) => {
 
     const formData = new FormData();
     formData.append("news[title]", title.trim());
-    formData.append("news[body]", body.trim());
     formData.append("news[date]", date.trim());
+
+    if (body) {
+      formData.append("news[body]", body.trim());
+    }
+
     if (links.length) {
       links.forEach((element) => {
         formData.append("news[links][]", element.trim());
       });
     }
+
     if (image) {
       formData.append("news[image]", image);
     }
