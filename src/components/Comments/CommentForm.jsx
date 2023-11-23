@@ -1,4 +1,6 @@
 import { Form, Formik } from "formik";
+import FormWarning from "../FormComponents/FormWarning";
+
 import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -15,11 +17,15 @@ const CommentForm = () => {
   const currentUserName = useSelector(selectUserName) || null;
 
   const handleSubmit = async (values, actions) => {
-    const { body, author } = values;
+    const { body, author, commentImage } = values;
 
     const formData = new FormData();
     formData.append("comment[author]", author.trim());
     formData.append("comment[body]", body.trim());
+
+    if (commentImage) {
+      formData.append("comment[comment_image]", commentImage);
+    }
 
     dispatch(addCommentThunk({ post_id: id, comment: formData }));
     actions.resetForm();
@@ -30,6 +36,7 @@ const CommentForm = () => {
       initialValues={{
         author: currentUserName || "",
         body: "",
+        commentImage: "",
       }}
       validationSchema={validation.commentSchema}
       onSubmit={handleSubmit}
@@ -38,6 +45,25 @@ const CommentForm = () => {
         <Form>
           <CustomInput label="Name" name="author" type="text" bsclass="mb-3" />
           <CustomTextArea label="Comment" name="body" type="text" rows="3" />
+          <div className="col-md-6 mb-3">
+            <label
+              htmlFor="image"
+              className="form-label px-3 text-secondary fw-bold"
+            >
+              Image
+            </label>
+            <input
+              className="form-control"
+              id="commentImage"
+              type="file"
+              onChange={(e) => {
+                props.setFieldValue("commentImage", e.target.files[0]);
+              }}
+            />
+            {props.errors.commentImage && (
+              <FormWarning>{props.errors.commentImage}</FormWarning>
+            )}
+          </div>
           <div className="text-end">
             <button
               disabled={props.isSubmitting}
