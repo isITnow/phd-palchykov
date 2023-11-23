@@ -3,6 +3,7 @@ import * as yup from "yup";
 // TODO: attachments
 
 const MAX_IMAGE_SIZE = 1048576; //1MB
+const MAX_SMALL_IMAGE_SIZE = 512000; //500KB
 const MAX_PHOTO_SIZE = 5242880; //5MB
 
 const validFileExtensions = {
@@ -47,6 +48,14 @@ const commentSchema = yup.object().shape({
     .min(5, "Too short. Min 5 characters")
     .max(700, "Max 700 characters")
     .required("Text is required"),
+  commentImage: yup
+    .mixed()
+    .test("is-valid-type", "Not a valid image type", (value) =>
+      value ? isValidFileType(value.name.toLowerCase(), "image") : true
+    )
+    .test("is-valid-size", "Max allowed size is 500KB", (value) =>
+      value ? value.size <= MAX_SMALL_IMAGE_SIZE : true
+    ),
 });
 
 const loginSchema = yup.object().shape({

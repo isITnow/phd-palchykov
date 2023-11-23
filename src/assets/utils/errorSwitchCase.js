@@ -1,6 +1,8 @@
 const errorSwitchCase = (error) => {
   switch (error.response?.status) {
     case 401:
+      return error.response?.data || error.message;
+
     case 400:
     case 404:
     case 422:
