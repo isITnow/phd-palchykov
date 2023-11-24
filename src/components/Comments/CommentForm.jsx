@@ -4,11 +4,13 @@ import FormWarning from "../FormComponents/FormWarning";
 import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addCommentThunk } from "../../redux/comments/operationsComments";
 import { selectUserName } from "../../redux/auth/selectorAuth";
+import { addCommentThunk } from "../../redux/comments/operationsComments";
 
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
+import SubmitBtn from "../shared/SubmitBtn";
+
 import { validation } from "../../assets/utils/validationSchema";
 
 const CommentForm = () => {
@@ -65,13 +67,7 @@ const CommentForm = () => {
             )}
           </div>
           <div className="text-end">
-            <button
-              disabled={props.isSubmitting}
-              type="submit"
-              className="btn btn-primary"
-            >
-              Add comment
-            </button>
+            <SubmitBtn disabled={props.isSubmitting} text="Add comment" />
           </div>
         </Form>
       )}
