@@ -56,9 +56,7 @@ const PublicationOperationsPage = ({ edit }) => {
       return;
     }
     if (status === "fulfilled") {
-      const text = edit
-        ? "Publication updated successfully"
-        : "Publication created successfully";
+      const text = edit ? "Publication updated" : "Publication created";
       showAlert(text, "success");
       return;
     }

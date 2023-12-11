@@ -31,7 +31,7 @@ const ResearchOperationsPage = () => {
       return;
     }
     if (status === "fulfilled") {
-      const text = "Research created successfully";
+      const text = "Research created";
       showAlert(text, "success");
       return;
     }

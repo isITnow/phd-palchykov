@@ -37,11 +37,11 @@ const PostsPage = () => {
         break;
 
       case "fulfilled":
-        showAlert("Post created successfully", "success");
+        showAlert("Post created", "success");
         break;
 
       case "removed":
-        showAlert("Post deleted successfully", "success");
+        showAlert("Post deleted", "success");
         break;
       default:
         break;

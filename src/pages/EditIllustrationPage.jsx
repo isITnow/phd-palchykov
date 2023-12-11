@@ -71,7 +71,7 @@ const EditIllustrationPage = () => {
       return;
     }
     if (status === "updated") {
-      showAlert("Illustration updated successfully", "success");
+      showAlert("Illustration updated", "success");
       return;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

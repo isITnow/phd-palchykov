@@ -31,9 +31,7 @@ const NewsOperationsPage = ({ edit }) => {
       return;
     }
     if (status === "fulfilled") {
-      const text = edit
-        ? "Card updated successfully"
-        : "Card created successfully";
+      const text = edit ? "Card updated" : "Card created";
       showAlert(text, "success");
       return;
     }

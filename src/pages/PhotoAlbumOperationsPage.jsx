@@ -36,9 +36,7 @@ const PhotoAlbumOperationsPage = ({ edit }) => {
     }
 
     if (status === "fulfilled") {
-      const text = edit
-        ? "Photo album updated successfully"
-        : "Photo album created successfully";
+      const text = edit ? "Photo album updated" : "Photo album created";
       showAlert(text, "success");
       return;
     }

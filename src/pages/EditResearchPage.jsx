@@ -59,7 +59,7 @@ const EditResearchPage = () => {
       return;
     }
     if (status === "updated") {
-      showAlert("Research updated successfully", "success");
+      showAlert("Research updated", "success");
       return;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

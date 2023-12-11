@@ -60,7 +60,7 @@ const PostPage = () => {
         break;
 
       case "fulfilled":
-        showAlert("Post updated successfully", "success");
+        showAlert("Post updated", "success");
         setShowForm(false);
         break;
 
@@ -70,7 +70,7 @@ const PostPage = () => {
         break;
 
       case "comment added":
-        showAlert("Comment published successfully", "success");
+        showAlert("Comment published", "success");
         break;
 
       case "comment removed":

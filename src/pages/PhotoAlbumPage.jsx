@@ -55,7 +55,7 @@ const PhotoAlbumPage = () => {
         break;
 
       case "picture removed":
-        showAlert("Picture deleted successfully", "success");
+        showAlert("Picture deleted", "success");
         break;
 
       default:

@@ -38,7 +38,7 @@ const PublicationsPage = () => {
       return;
     }
     if (status === "removed") {
-      showAlert("Publication deleted successfully", "success");
+      showAlert("Publication deleted", "success");
       return;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
