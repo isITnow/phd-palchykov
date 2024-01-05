@@ -84,7 +84,6 @@ const PostPage = () => {
   }, [status]);
 
   const handleDelete = () => {
-    // window.alert("Are you sure you want to delete post?");
     dispatch(removePostThunk(id));
   };
 
@@ -134,9 +133,13 @@ const PostPage = () => {
                     </motion.button>
                   </AnimatePresence>
                 )}
-                <div className="btn btn-danger" onClick={handleDelete}>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={handleDelete}
+                >
                   delete
-                </div>
+                </button>
               </div>
             )}
           </div>
