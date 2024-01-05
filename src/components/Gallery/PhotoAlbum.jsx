@@ -17,7 +17,7 @@ const PhotoAlbum = ({ photoAlbum }) => {
 
   const isDisabled = status === "pending";
 
-  const handleClick = (id) => {
+  const handleDelete = (id) => {
     dispatch(removePictureThunk(id));
   };
 
@@ -57,7 +57,7 @@ const PhotoAlbum = ({ photoAlbum }) => {
                         translate-middle
                         top-0 start-100
                         "
-                        onClick={() => handleClick(id)}
+                        onClick={() => handleDelete(id)}
                       >
                         <CgClose size={"1rem"} color="white" />
                       </button>

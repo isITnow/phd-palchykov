@@ -35,7 +35,7 @@ const PhotoAlbumPage = () => {
 
   const isDisabled = status === "pending";
 
-  const handleClick = () => {
+  const handleDelete = () => {
     dispatch(removePhotoAlbumThunk(id));
     navigate("/gallery");
   };
@@ -89,7 +89,7 @@ const PhotoAlbumPage = () => {
                 type="button"
                 className="btn btn-danger"
                 disabled={isDisabled}
-                onClick={() => handleClick()}
+                onClick={handleDelete}
               >
                 delete
               </button>

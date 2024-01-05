@@ -29,8 +29,7 @@ const Publication = ({ publication }) => {
   const btnDisabled = status === "pending";
   const isYear = year !== "no data";
 
-  const handleClick = () => {
-    // alert("Are you sure you want to delete item?");
+  const handleDelete = () => {
     dispatch(
       removePublicationThunk({
         period_id: publication_period_id,
@@ -97,9 +96,7 @@ const Publication = ({ publication }) => {
                 disabled={btnDisabled}
                 type="button"
                 className="btn btn-sm btn-danger"
-                onClick={() => {
-                  handleClick();
-                }}
+                onClick={handleDelete}
               >
                 delete
               </button>

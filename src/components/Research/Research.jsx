@@ -17,8 +17,7 @@ const Research = ({ research, index }) => {
       ? "row row-cols-1 row-cols-md-2 row-cols-lg-3"
       : "row row-cols-1";
 
-  const handleClick = () => {
-    // alert("Are you sure you want to delete item?");
+  const handleDelete = () => {
     dispatch(removeResearchThunk(id));
   };
 
@@ -76,7 +75,7 @@ const Research = ({ research, index }) => {
               disabled={btnDisabled}
               type="button"
               className="btn btn-sm btn-danger"
-              onClick={handleClick}
+              onClick={handleDelete}
             >
               delete Research
             </button>
