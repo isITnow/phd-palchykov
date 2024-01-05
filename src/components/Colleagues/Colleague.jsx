@@ -15,8 +15,7 @@ const Colleague = ({ colleague }) => {
   const btnDisabled = status === "pending";
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    // alert("Are you sure you want to delete item?");
+  const handleDelete = () => {
     dispatch(removeColleagueThunk(id));
   };
 
@@ -52,8 +51,9 @@ const Colleague = ({ colleague }) => {
                   edit
                 </Link>
                 <button
+                  type="button"
                   disabled={btnDisabled}
-                  onClick={() => handleClick()}
+                  onClick={handleDelete}
                   className="btn btn-sm btn-danger"
                 >
                   delete
