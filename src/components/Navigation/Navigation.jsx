@@ -1,17 +1,19 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
 
 import s from "./navigation.module.css";
 
-const setActive = ({ isActive }) =>
-  isActive
-    ? `${s.nav_item} nav-link text-primary fw-bold`
-    : `${s.nav_item} nav-link fw-bold`;
+const setNavLinkClass = ({ isActive }) =>
+  `${s.nav_item} nav-link fw-bold ${isActive && "text-primary"}`;
 
 const Navigation = () => {
   const { periods } = useSelector(selectPeriods);
+  const { pathname } = useLocation();
+  const publicationsSpanClass = pathname.includes("publications")
+    ? "text-primary"
+    : "";
 
   return (
     <nav className="navbar navbar-expand-lg">
@@ -37,12 +39,12 @@ const Navigation = () => {
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink className={setActive} aria-current="page" to={"/"}>
+              <NavLink className={setNavLinkClass} aria-current="page" to={"/"}>
                 <span>Home</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={setActive} to={"researches"}>
+              <NavLink className={setNavLinkClass} to={"researches"}>
                 <span>Research</span>
               </NavLink>
             </li>
@@ -54,7 +56,7 @@ const Navigation = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <span>Publications</span>
+                <span className={publicationsSpanClass}>Publications</span>
               </NavLink>
               <ul className="dropdown-menu text-center overflow-hidden">
                 {periods.map(({ title, id }, index) => (
@@ -70,27 +72,27 @@ const Navigation = () => {
               </ul>
             </li>
             <li className="nav-item">
-              <NavLink className={setActive} to={"gallery"}>
+              <NavLink className={setNavLinkClass} to={"gallery"}>
                 <span>Gallery</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={setActive} to={"/news"}>
+              <NavLink className={setNavLinkClass} to={"/news"}>
                 <span>News</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={setActive} to={"colleagues"}>
+              <NavLink className={setNavLinkClass} to={"colleagues"}>
                 <span>Colleagues</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={setActive} to={"posts"}>
+              <NavLink className={setNavLinkClass} to={"posts"}>
                 <span>Blog</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={setActive} to={"contacts"}>
+              <NavLink className={setNavLinkClass} to={"contacts"}>
                 <span>Contacts</span>
               </NavLink>
             </li>
