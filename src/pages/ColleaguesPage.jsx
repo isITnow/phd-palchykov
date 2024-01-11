@@ -1,21 +1,19 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getColleaguesThunk } from "../redux/colleagues/operationsColleagues.js";
 import { selectColleagues } from "../redux/colleagues/selectorColleagues.js";
 
-import Alert from "../components/shared/Alert.jsx";
 import { useAlert } from "../assets/customHooks/useAlert.js";
+import Alert from "../components/shared/Alert.jsx";
 
-import Loader from "../components/shared/Loader";
 import ColleaguesList from "../components/Colleagues/ColleaguesList";
+import IsLoggedIn from "../components/shared/IsLoggedIn.jsx";
+import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section.jsx";
 
-import useSignInStatus from "../assets/customHooks/useSignInStatus.js";
-
 const ColleaguesPage = () => {
-  const isLoggedIn = useSignInStatus();
   const dispatch = useDispatch();
   const { colleagues, status, error } = useSelector(selectColleagues);
   const { alert, showAlert } = useAlert();
@@ -53,13 +51,13 @@ const ColleaguesPage = () => {
     <Section>
       <Alert state={alert} />
       <ColleaguesList colleagues={colleagues} />
-      {isLoggedIn && (
+      <IsLoggedIn>
         <div className="mt-3 text-end">
           <Link className="btn btn-primary" to={"/colleagues/new"}>
-            new Colleague
+            Add Colleague
           </Link>
         </div>
-      )}
+      </IsLoggedIn>
     </Section>
   );
 };

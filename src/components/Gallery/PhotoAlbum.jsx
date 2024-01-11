@@ -6,12 +6,11 @@ import "photoswipe/dist/photoswipe.css";
 import { CgClose } from "react-icons/cg";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
-import useSignInStatus from "../../assets/customHooks/useSignInStatus";
+import IsLoggedIn from "../shared/IsLoggedIn";
 import s from "./gallery.module.css";
 
 const PhotoAlbum = ({ photoAlbum }) => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSignInStatus();
   const status = useSelector(selectStatus);
   const { pictures_list } = photoAlbum;
 
@@ -43,7 +42,7 @@ const PhotoAlbum = ({ photoAlbum }) => {
                   <div
                     className={`rounded-1 shadow position-relative ${s.imgWrapper}`}
                   >
-                    {isLoggedIn && (
+                    <IsLoggedIn>
                       <button
                         disabled={isDisabled}
                         type="button"
@@ -61,7 +60,7 @@ const PhotoAlbum = ({ photoAlbum }) => {
                       >
                         <CgClose size={"1rem"} color="white" />
                       </button>
-                    )}
+                    </IsLoggedIn>
                     <img
                       ref={ref}
                       onClick={open}

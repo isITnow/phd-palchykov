@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,20 +7,19 @@ import {
   removePhotoAlbumThunk,
 } from "../redux/gallery/operationsGallery";
 import {
-  selectOnePhotoAlbum,
   selectError,
+  selectOnePhotoAlbum,
   selectStatus,
 } from "../redux/gallery/selectorGallery";
 
-import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/customHooks/useAlert";
+import Alert from "../components/shared/Alert";
 
-import BackBtn from "../components/shared/BackBtn";
-import Loader from "../components/shared/Loader";
 import PhotoAlbum from "../components/Gallery/PhotoAlbum";
+import BackBtn from "../components/shared/BackBtn";
+import IsLoggedIn from "../components/shared/IsLoggedIn";
+import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
-
-import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
 const PhotoAlbumPage = () => {
   const { id } = useParams();
@@ -31,7 +30,6 @@ const PhotoAlbumPage = () => {
   const photoAlbum = useSelector(selectOnePhotoAlbum);
   const status = useSelector(selectStatus);
   const { alert, showAlert } = useAlert();
-  const isLoggedIn = useSignInStatus();
 
   const isDisabled = status === "pending";
 
@@ -76,14 +74,14 @@ const PhotoAlbumPage = () => {
           {photoAlbum.title}
         </h4>
         <div className="text-end">
-          <BackBtn path="/gallery">Back to Gallery</BackBtn>
-          {isLoggedIn && (
+          <BackBtn path="/gallery">Back To Gallery</BackBtn>
+          <IsLoggedIn>
             <div className="btn-group ms-3">
               <Link
                 to={`/gallery/photo_albums/${photoAlbum.id}/edit`}
                 className="btn btn-primary"
               >
-                edit
+                Edit
               </Link>
               <button
                 type="button"
@@ -91,10 +89,10 @@ const PhotoAlbumPage = () => {
                 disabled={isDisabled}
                 onClick={handleDelete}
               >
-                delete
+                Delete
               </button>
             </div>
-          )}
+          </IsLoggedIn>
         </div>
       </div>
       <PhotoAlbum photoAlbum={photoAlbum} />

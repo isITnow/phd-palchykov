@@ -4,14 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeColleagueThunk } from "../../redux/colleagues/operationsColleagues";
 import { selectColleagues } from "../../redux/colleagues/selectorColleagues";
 
-import useSignInStatus from "../../assets/customHooks/useSignInStatus";
-
+import IsLoggedIn from "../shared/IsLoggedIn";
 import s from "./colleague.module.css";
 
 const Colleague = ({ colleague }) => {
   const { id, name, position, photo_url, phone, email } = colleague;
   const { status } = useSelector(selectColleagues);
-  const isLoggedIn = useSignInStatus();
   const btnDisabled = status === "pending";
   const dispatch = useDispatch();
 
@@ -41,14 +39,14 @@ const Colleague = ({ colleague }) => {
                 </a>
               </li>
             </ul>
-            {isLoggedIn && (
+            <IsLoggedIn>
               <div className="btn-group position-absolute bottom-0 end-0">
                 <Link
                   className="btn btn-sm btn-primary"
                   to={`/colleagues/${id}/edit`}
                   state={colleague}
                 >
-                  edit
+                  Edit
                 </Link>
                 <button
                   type="button"
@@ -56,10 +54,10 @@ const Colleague = ({ colleague }) => {
                   onClick={handleDelete}
                   className="btn btn-sm btn-danger"
                 >
-                  delete
+                  Delete
                 </button>
               </div>
-            )}
+            </IsLoggedIn>
           </div>
         </div>
       </div>

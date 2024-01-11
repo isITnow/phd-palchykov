@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removePublicationThunk } from "../../redux/publications/operationsPublications";
 import { selectPublications } from "../../redux/publications/selectorPublications";
 
-import useSignInStatus from "../../assets/customHooks/useSignInStatus";
-
+import IsLoggedIn from "../shared/IsLoggedIn";
 import s from "./publication.module.css";
 
 const Publication = ({ publication }) => {
@@ -23,7 +22,6 @@ const Publication = ({ publication }) => {
   } = publication;
 
   const { status } = useSelector(selectPublications);
-  const isLoggedIn = useSignInStatus();
   const dispatch = useDispatch();
 
   const btnDisabled = status === "pending";
@@ -84,13 +82,13 @@ const Publication = ({ publication }) => {
           {isYear && (
             <small className="fst-italic text-secondary">year: {year}</small>
           )}
-          {isLoggedIn && (
+          <IsLoggedIn>
             <div className="btn-group">
               <Link
                 className="btn btn-sm btn-primary"
                 to={`/periods/${publication_period_id}/publications/${id}/edit`}
               >
-                edit
+                Edit
               </Link>
               <button
                 disabled={btnDisabled}
@@ -98,10 +96,10 @@ const Publication = ({ publication }) => {
                 className="btn btn-sm btn-danger"
                 onClick={handleDelete}
               >
-                delete
+                Delete
               </button>
             </div>
-          )}
+          </IsLoggedIn>
         </div>
       </div>
     </div>

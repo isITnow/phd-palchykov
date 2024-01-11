@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import { removeResearchThunk } from "../../redux/researches/operationsResearches";
 import { selectResearches } from "../../redux/researches/selectorResearches";
 
-import useSignInStatus from "../../assets/customHooks/useSignInStatus";
+import IsLoggedIn from "../shared/IsLoggedIn";
 
 const Research = ({ research, index }) => {
   const { id, title, illustrations, sourceList } = research;
   const { status } = useSelector(selectResearches);
   const dispatch = useDispatch();
-  const isLoggedIn = useSignInStatus();
   const btnDisabled = status === "pending";
 
   const sourceListClass =
@@ -38,16 +38,16 @@ const Research = ({ research, index }) => {
           <div className="col-12 col-md-11 col-lg-9 mx-auto d-flex justify-content-center">
             <img className="img-fluid" src={schema_url} alt="schema" />
           </div>
-          {isLoggedIn && (
+          <IsLoggedIn>
             <div className="d-flex justify-content-end border-bottom border-2 py-3">
               <Link
                 className="btn btn-sm btn-primary"
                 to={`/researches/${research.id}/illustrations/${id}/edit`}
               >
-                edit Illustration
+                Edit Illustration
               </Link>
             </div>
-          )}
+          </IsLoggedIn>
         </div>
       ))}
       <div className="">
@@ -62,14 +62,14 @@ const Research = ({ research, index }) => {
           ))}
         </ul>
       </div>
-      {isLoggedIn && (
+      <IsLoggedIn>
         <div className="mt-3 d-flex justify-content-end">
           <div className="btn-group">
             <Link
               className="btn btn-sm btn-primary"
               to={`/researches/${id}/edit`}
             >
-              edit Research
+              Edit Research
             </Link>
             <button
               disabled={btnDisabled}
@@ -77,11 +77,11 @@ const Research = ({ research, index }) => {
               className="btn btn-sm btn-danger"
               onClick={handleDelete}
             >
-              delete Research
+              Delete Research
             </button>
           </div>
         </div>
-      )}
+      </IsLoggedIn>
     </div>
   );
 };

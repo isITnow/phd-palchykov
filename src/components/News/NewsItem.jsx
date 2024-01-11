@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeNewsThunk } from "../../redux/news/operationsNews";
 import { selectNews } from "../../redux/news/selectorNews";
 
-import useSignInStatus from "../../assets/customHooks/useSignInStatus";
+import IsLoggedIn from "../shared/IsLoggedIn";
 
 const NewsItem = ({ news }) => {
   const { id, title, body, image_url, date, links } = news;
-  const isLoggedIn = useSignInStatus();
   const { status } = useSelector(selectNews);
-  const btnDisabled = status === "pending";
   const dispatch = useDispatch();
+  const btnDisabled = status === "pending";
 
   const handleDelete = () => {
     dispatch(removeNewsThunk(id));
@@ -53,14 +52,14 @@ const NewsItem = ({ news }) => {
       <div className="card-footer text-body-secondary">
         <div className="d-flex justify-content-between">
           {date}
-          {isLoggedIn && (
+          <IsLoggedIn>
             <div className="btn-group">
               <Link
                 className="btn btn-sm btn-primary"
                 to={`/news/${id}/edit`}
                 state={news}
               >
-                edit
+                Edit
               </Link>
               <button
                 disabled={btnDisabled}
@@ -68,10 +67,10 @@ const NewsItem = ({ news }) => {
                 className="btn btn-sm btn-danger"
                 onClick={handleDelete}
               >
-                delete
+                Delete
               </button>
             </div>
-          )}
+          </IsLoggedIn>
         </div>
       </div>
     </div>

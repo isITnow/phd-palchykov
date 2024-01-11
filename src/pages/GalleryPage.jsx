@@ -12,9 +12,8 @@ import {
 import { useAlert } from "../assets/customHooks/useAlert";
 import Alert from "../components/shared/Alert";
 
-import useSignInStatus from "../assets/customHooks/useSignInStatus";
-
 import PhotoAlbumsList from "../components/Gallery/PhotoAlbumsList";
+import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
 
@@ -24,7 +23,6 @@ const GalleryPage = () => {
   const error = useSelector(selectError);
   const status = useSelector(selectStatus);
   const photoAlbums = useSelector(selectPhotoAlbums);
-  const isLoggedIn = useSignInStatus();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -58,13 +56,13 @@ const GalleryPage = () => {
     <Section>
       <Alert state={alert} />
       <PhotoAlbumsList photoAlbums={photoAlbums} />
-      {isLoggedIn && (
+      <IsLoggedIn>
         <div className="mt-3 text-end">
           <Link className="btn btn-primary" to={"/gallery/photo_albums/new"}>
-            new Photo album
+            Add Photo Album
           </Link>
         </div>
-      )}
+      </IsLoggedIn>
     </Section>
   );
 };

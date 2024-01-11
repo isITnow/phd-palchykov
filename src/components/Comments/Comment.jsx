@@ -5,8 +5,8 @@ import { removeCommentThunk } from "../../redux/comments/operationsComments";
 import "photoswipe/dist/photoswipe.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
-import useSignInStatus from "../../assets/customHooks/useSignInStatus";
 import formateDate from "../../assets/utils/formateDate";
+import IsLoggedIn from "../shared/IsLoggedIn";
 
 const Comment = ({ comment }) => {
   const { author, body, id: commentId, comment_image } = comment;
@@ -14,7 +14,6 @@ const Comment = ({ comment }) => {
   const { postedDate, _, __ } = formateDate(comment);
   const { id } = useParams();
   const dispatch = useDispatch();
-  const isLoggedIn = useSignInStatus();
 
   const handleDelete = () => {
     dispatch(removeCommentThunk({ post_id: id, comment_id: commentId }));
@@ -50,15 +49,15 @@ const Comment = ({ comment }) => {
       )}
       <div className="d-flex justify-content-between align-items-end">
         <small className="text-secondary">{postedDate}</small>
-        {isLoggedIn && (
+        <IsLoggedIn>
           <button
             type="button"
             className="btn btn-sm btn-danger"
             onClick={handleDelete}
           >
-            delete
+            Delete
           </button>
-        )}
+        </IsLoggedIn>
       </div>
     </div>
   );

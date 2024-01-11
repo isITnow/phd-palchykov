@@ -2,23 +2,21 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectResearches } from "../redux/researches/selectorResearches";
 import { getResearchesThunk } from "../redux/researches/operationsResearches";
+import { selectResearches } from "../redux/researches/selectorResearches";
 
-import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/customHooks/useAlert";
+import Alert from "../components/shared/Alert";
 
-import Loader from "../components/shared/Loader";
 import ResearchList from "../components/Research/ResearchList";
+import IsLoggedIn from "../components/shared/IsLoggedIn";
+import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
-
-import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
 const ResearchPage = () => {
   const dispatch = useDispatch();
   const { researches, status, error } = useSelector(selectResearches);
   const { alert, showAlert } = useAlert();
-  const isLoggedIn = useSignInStatus();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -47,13 +45,13 @@ const ResearchPage = () => {
     <Section>
       <Alert state={alert} />
       <ResearchList researches={researches} />
-      {isLoggedIn && (
+      <IsLoggedIn>
         <div className="text-end">
           <Link className="btn btn-primary" to={"/researches/new"}>
-            new Research
+            Add Research
           </Link>
         </div>
-      )}
+      </IsLoggedIn>
     </Section>
   );
 };

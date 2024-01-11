@@ -1,21 +1,19 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getNewsThunk } from "../redux/news/operationsNews";
 import { selectNews } from "../redux/news/selectorNews";
 
-import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/customHooks/useAlert";
+import Alert from "../components/shared/Alert";
 
-import Loader from "../components/shared/Loader";
 import NewsList from "../components/News/NewsList";
+import IsLoggedIn from "../components/shared/IsLoggedIn";
+import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
 
-import useSignInStatus from "../assets/customHooks/useSignInStatus";
-
 const NewsPage = () => {
-  const isLoggedIn = useSignInStatus();
   const dispatch = useDispatch();
   const { news, status, error } = useSelector(selectNews);
   const { alert, showAlert } = useAlert();
@@ -48,13 +46,13 @@ const NewsPage = () => {
     <Section>
       <Alert state={alert} />
       <NewsList news={news} />
-      {isLoggedIn && (
+      <IsLoggedIn>
         <div className="mt-3 text-end">
           <Link className="btn btn-primary" to={"/news/new"}>
-            new News
+            Add News
           </Link>
         </div>
-      )}
+      </IsLoggedIn>
     </Section>
   );
 };
