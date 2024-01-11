@@ -68,11 +68,11 @@ const NewsForm = ({ newsItem, status }) => {
     >
       {(props) => {
         const isDisabled = props.isSubmitting || status === "pending";
-        const submitBtnText = isNewItem ? "Create News" : "Update nNws";
+        const submitBtnText = isNewItem ? "Create News" : "Update News";
         return (
           <Form>
             <CustomInput
-              label="News title"
+              label="News Title"
               name="title"
               type="text"
               bsclass="mb-3"

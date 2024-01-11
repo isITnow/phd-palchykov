@@ -24,7 +24,7 @@ const ColleagueOperationsPage = ({ edit }) => {
   const { colleagues, error, status } = useSelector(selectColleagues);
   const { alert, showAlert } = useAlert();
   const { id } = useParams();
-  const title = edit ? "Edit colleague card" : "Create colleague card";
+  const title = edit ? "Edit Colleague Card" : "Create Colleague Card";
   let colleague = null;
 
   if (edit) {

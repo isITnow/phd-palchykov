@@ -38,12 +38,12 @@ const PostForm = ({ post, status }) => {
     >
       {(props) => {
         const isDisabled = props.isSubmitting || status === "pending";
-        const submitBtnText = isNewItem ? "Create Post" : "Update Post";
+        const submitBtnText = isNewItem ? "Add Post" : "Update Post";
 
         return (
           <Form>
             <CustomTextArea
-              label="Post text"
+              label="Post Text"
               name="body"
               type="text"
               rows="3"

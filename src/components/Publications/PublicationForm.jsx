@@ -149,7 +149,7 @@ const PublicationForm = ({ publication, status }) => {
                 htmlFor="formFile"
                 className="form-label px-3 text-secondary fw-bold"
               >
-                Cover image
+                Cover Image
               </label>
               <input
                 className="form-control"
@@ -168,7 +168,7 @@ const PublicationForm = ({ publication, status }) => {
                 htmlFor="formFile"
                 className="form-label px-3 text-secondary fw-bold"
               >
-                Abstract image
+                Abstract Image
               </label>
               <input
                 className="form-control"

@@ -27,7 +27,7 @@ const PhotoAlbumOperationsPage = ({ edit }) => {
   const photoAlbum = useSelector(selectOnePhotoAlbum);
   const status = useSelector(selectStatus);
 
-  const title = edit ? "Edit Photo album" : "Create Photo album";
+  const title = edit ? "Edit Photo Album" : "Create Photo Album";
 
   useEffect(() => {
     if (status === "rejected") {

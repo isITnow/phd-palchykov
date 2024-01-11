@@ -67,8 +67,8 @@ const PhotoAlbumForm = ({ photoAlbum, status }) => {
       {(props) => {
         const isDisabled = props.isSubmitting || status === "pending";
         const submitBtnText = isNewAlbum
-          ? "Create Photo album"
-          : "Update Photo album";
+          ? "Create Photo Album"
+          : "Update Photo Album";
         const backPath = isNewAlbum
           ? "/gallery"
           : `/gallery/photo_albums/${photoAlbum.id}`;
@@ -86,7 +86,7 @@ const PhotoAlbumForm = ({ photoAlbum, status }) => {
                 htmlFor="cover"
                 className="form-label px-3 text-secondary fw-bold"
               >
-                Cover image
+                Cover Image
               </label>
               <input
                 className="form-control"

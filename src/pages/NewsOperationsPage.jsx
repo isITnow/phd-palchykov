@@ -18,7 +18,7 @@ const NewsOperationsPage = ({ edit }) => {
   const { news, error, status } = useSelector(selectNews);
   const { alert, showAlert } = useAlert();
   const { id } = useParams();
-  const title = edit ? "Edit news card" : "Create news card";
+  const title = edit ? "Edit News Card" : "Create News Card";
   let newsItem = null;
 
   if (edit) {

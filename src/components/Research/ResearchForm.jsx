@@ -68,12 +68,11 @@ const ResearchForm = ({ status }) => {
       onSubmit={handleSubmit}
     >
       {(props) => {
-        // console.log("RESEARCH :", props);
         const isDisabled = props.isSubmitting || status === "pending";
         return (
           <Form>
             <CustomInput
-              label="Research title"
+              label="Research Title"
               name="title"
               type="text"
               bsclass="mb-3"
@@ -107,7 +106,7 @@ const ResearchForm = ({ status }) => {
                                   htmlFor="schema"
                                   className="form-label px-3 text-secondary fw-bold"
                                 >
-                                  Illustration image
+                                  Illustration Image
                                 </label>
                                 <input
                                   className="form-control"
@@ -120,7 +119,7 @@ const ResearchForm = ({ status }) => {
                                     );
                                   }}
                                 />
-                                {/* TODO: schema validation error message */}
+                                {/* //TODO: schema validation error message */}
                                 {/* {props.illustrationList && (
                                   <FormWarning>
                                     {props.errors.illustrationList}
@@ -266,7 +265,7 @@ const ResearchForm = ({ status }) => {
             <div className="text-end mt-3">
               <div className="btn-group">
                 <BackBtn path="/researches">Cancel</BackBtn>
-                <SubmitBtn text="Create Research card" disabled={isDisabled} />
+                <SubmitBtn text="Create Research Card" disabled={isDisabled} />
               </div>
             </div>
           </Form>

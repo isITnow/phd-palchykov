@@ -67,7 +67,7 @@ const CommentForm = () => {
             )}
           </div>
           <div className="text-end">
-            <SubmitBtn disabled={props.isSubmitting} text="Add comment" />
+            <SubmitBtn disabled={props.isSubmitting} text="Add Comment" />
           </div>
         </Form>
       )}

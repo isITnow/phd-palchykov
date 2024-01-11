@@ -38,8 +38,8 @@ const PublicationOperationsPage = ({ edit }) => {
   const currentPeriod = getCurrentPeriod(periods, currentPeriodId);
 
   const title = edit
-    ? `Edit publication [period: ${currentPeriod.title}]`
-    : `Create publication [period: ${currentPeriod.title}]`;
+    ? `Edit Publication [period: ${currentPeriod.title}]`
+    : `Create Publication [period: ${currentPeriod.title}]`;
   let publication = null;
 
   if (edit) {
