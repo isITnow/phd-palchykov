@@ -27,7 +27,15 @@ const GalleryPage = () => {
   const isLoggedIn = useSignInStatus();
 
   useEffect(() => {
-    dispatch(getPhotoAlbumsThunk());
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    dispatch(getPhotoAlbumsThunk(signal));
+
+    return () => {
+      // Abort the request when the component unmounts or when a dependency changes
+      controller.abort();
+    };
   }, [dispatch]);
 
   useEffect(() => {

@@ -20,7 +20,8 @@ const initPosts = {
 };
 
 const setError = (state, { payload }) => {
-  state.status = "rejected";
+  state.status =
+    payload === "canceled request" ? "canceled request" : "rejected";
   state.error = payload;
 };
 

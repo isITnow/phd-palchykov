@@ -6,9 +6,9 @@ import errorSwitchCase from "../../assets/utils/errorSwitchCase";
 export const getPublicationsThunk = createAsyncThunk(
   "publications/get",
 
-  async (id, { rejectWithValue }) => {
+  async ({ id, signal }, { rejectWithValue }) => {
     try {
-      const resp = await publicationsAPI.fetchPublications(id);
+      const resp = await publicationsAPI.fetchPublications({ id, signal });
 
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
@@ -16,7 +16,7 @@ export const getPublicationsThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("GET publications error: ", error);
+      // console.log("GET publications error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -38,7 +38,7 @@ export const addPublicationThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("POST publication error: ", error);
+      // console.log("POST publication error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -65,7 +65,7 @@ export const updatePublicationThunk = createAsyncThunk(
       dispatch(getPublicationsThunk(period_id));
       return resp.data;
     } catch (error) {
-      console.log("EDIT publication error: ", error);
+      // console.log("EDIT publication error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -87,7 +87,7 @@ export const removePublicationThunk = createAsyncThunk(
 
       return publication_id;
     } catch (error) {
-      console.log("DELETE publication error: ", error);
+      // console.log("DELETE publication error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }

@@ -6,9 +6,9 @@ import errorSwitchCase from "../../assets/utils/errorSwitchCase";
 export const getNewsThunk = createAsyncThunk(
   "news/get",
 
-  async (_, { rejectWithValue }) => {
+  async (signal, { rejectWithValue }) => {
     try {
-      const resp = await newsAPI.fetchNews();
+      const resp = await newsAPI.fetchNews(signal);
 
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
@@ -16,7 +16,7 @@ export const getNewsThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("GET news error: ", error);
+      // console.log("GET news error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -35,7 +35,7 @@ export const addNewsThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("POST news error: ", error);
+      // console.log("POST news error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -55,7 +55,7 @@ export const updateNewsThunk = createAsyncThunk(
       dispatch(getNewsThunk());
       return resp.data;
     } catch (error) {
-      console.log("EDIT news error: ", error);
+      // console.log("EDIT news error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -74,7 +74,7 @@ export const removeNewsThunk = createAsyncThunk(
 
       return id;
     } catch (error) {
-      console.log("DELETE news error: ", error);
+      // console.log("DELETE news error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }

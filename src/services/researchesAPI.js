@@ -1,17 +1,5 @@
 import { privateAPI, publicAPI } from "./http";
 
-const fetchResearches = async () => {
-  const data = await publicAPI.get("/researches");
-
-  return data;
-};
-
-const postResearch = async (body) => {
-  const data = await privateAPI.post("/researches", body);
-
-  return data;
-};
-
 const editResearch = async (id, body) => {
   const data = await privateAPI.patch(`/researches/${id}`, body);
 
@@ -24,9 +12,21 @@ const deleteResearch = async (id) => {
   return data;
 };
 
+const fetchResearches = async (signal) => {
+  const data = await publicAPI.get("/researches", { signal });
+
+  return data;
+};
+
+const postResearch = async (body) => {
+  const data = await privateAPI.post("/researches", body);
+
+  return data;
+};
+
 export const researchesAPI = {
-  fetchResearches,
-  postResearch,
   editResearch,
   deleteResearch,
+  fetchResearches,
+  postResearch,
 };

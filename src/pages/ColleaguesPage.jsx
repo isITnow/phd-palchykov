@@ -21,7 +21,15 @@ const ColleaguesPage = () => {
   const { alert, showAlert } = useAlert();
 
   useEffect(() => {
-    dispatch(getColleaguesThunk());
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    dispatch(getColleaguesThunk(signal));
+
+    return () => {
+      // Abort the request when the component unmounts or when a dependency changes
+      controller.abort();
+    };
   }, [dispatch]);
 
   useEffect(() => {

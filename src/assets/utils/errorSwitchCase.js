@@ -1,4 +1,8 @@
 const errorSwitchCase = (error) => {
+  if (error.name === "CanceledError") {
+    return "canceled request";
+  }
+
   switch (error.response?.status) {
     case 401:
       return error.response?.data || error.message;

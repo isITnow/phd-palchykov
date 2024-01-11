@@ -21,7 +21,15 @@ const NewsPage = () => {
   const { alert, showAlert } = useAlert();
 
   useEffect(() => {
-    dispatch(getNewsThunk());
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    dispatch(getNewsThunk(signal));
+
+    return () => {
+      // Abort the request when the component unmounts or when a dependency changes
+      controller.abort();
+    };
   }, [dispatch]);
 
   useEffect(() => {

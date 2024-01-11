@@ -24,8 +24,8 @@ const fetchOnePhotoAlbum = async (id) => {
   return data;
 };
 
-const fetchPhotoAlbums = async () => {
-  const data = await publicAPI.get("/photo_albums");
+const fetchPhotoAlbums = async (signal) => {
+  const data = await publicAPI.get("/photo_albums", { signal });
 
   return data;
 };

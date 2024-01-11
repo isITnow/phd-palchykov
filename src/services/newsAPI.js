@@ -1,17 +1,5 @@
 import { privateAPI, publicAPI } from "./http";
 
-const fetchNews = async () => {
-  const data = await publicAPI.get("/news");
-
-  return data;
-};
-
-const postNews = async (body) => {
-  const data = await privateAPI.post("/news", body);
-
-  return data;
-};
-
 const deleteNews = async (id) => {
   const data = await privateAPI.delete(`/news/${id}`);
 
@@ -23,10 +11,21 @@ const editNews = async (id, body) => {
 
   return data;
 };
+const fetchNews = async (signal) => {
+  const data = await publicAPI.get("/news", { signal });
+
+  return data;
+};
+
+const postNews = async (body) => {
+  const data = await privateAPI.post("/news", body);
+
+  return data;
+};
 
 export const newsAPI = {
-  fetchNews,
-  postNews,
   deleteNews,
   editNews,
+  fetchNews,
+  postNews,
 };

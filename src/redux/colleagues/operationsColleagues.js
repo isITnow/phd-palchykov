@@ -6,9 +6,9 @@ import errorSwitchCase from "../../assets/utils/errorSwitchCase";
 export const getColleaguesThunk = createAsyncThunk(
   "colleagues/get",
 
-  async (_, { rejectWithValue }) => {
+  async (signal, { rejectWithValue }) => {
     try {
-      const resp = await colleaguesAPI.fetchColleagues();
+      const resp = await colleaguesAPI.fetchColleagues(signal);
 
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
@@ -16,7 +16,7 @@ export const getColleaguesThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("GET colleagues error: ", error);
+      // console.log("GET colleagues error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -35,7 +35,7 @@ export const addColleagueThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("POST colleague error: ", error);
+      // console.log("POST colleague error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -55,7 +55,7 @@ export const updateColleagueThunk = createAsyncThunk(
       dispatch(getColleaguesThunk());
       return resp.data;
     } catch (error) {
-      console.log("EDIT colleague error: ", error);
+      // console.log("EDIT colleague error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -73,7 +73,7 @@ export const removeColleagueThunk = createAsyncThunk(
       }
       return id;
     } catch (error) {
-      console.log("DELETE colleague error: ", error);
+      // console.log("DELETE colleague error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }

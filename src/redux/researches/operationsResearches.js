@@ -7,9 +7,9 @@ import errorSwitchCase from "../../assets/utils/errorSwitchCase";
 export const getResearchesThunk = createAsyncThunk(
   "researches/get",
 
-  async (_, { rejectWithValue }) => {
+  async (signal, { rejectWithValue }) => {
     try {
-      const resp = await researchesAPI.fetchResearches();
+      const resp = await researchesAPI.fetchResearches(signal);
 
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
@@ -17,7 +17,7 @@ export const getResearchesThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("GET researches error: ", error);
+      // console.log("GET researches error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -52,7 +52,7 @@ export const addResearchThunk = createAsyncThunk(
         );
       }
     } catch (error) {
-      console.log("POST research error: ", error);
+      // console.log("POST research error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -72,7 +72,7 @@ export const updateResearchThunk = createAsyncThunk(
       dispatch(getResearchesThunk());
       return resp.data;
     } catch (error) {
-      console.log("EDIT research error: ", error);
+      // console.log("EDIT research error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -91,7 +91,7 @@ export const removeResearchThunk = createAsyncThunk(
 
       return id;
     } catch (error) {
-      console.log("DELETE research error: ", error);
+      // console.log("DELETE research error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }

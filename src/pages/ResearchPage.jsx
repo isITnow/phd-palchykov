@@ -21,7 +21,14 @@ const ResearchPage = () => {
   const isLoggedIn = useSignInStatus();
 
   useEffect(() => {
-    dispatch(getResearchesThunk());
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    dispatch(getResearchesThunk(signal));
+    return () => {
+      // Abort the request when the component unmounts or when a dependency changes
+      controller.abort();
+    };
   }, [dispatch]);
 
   useEffect(() => {

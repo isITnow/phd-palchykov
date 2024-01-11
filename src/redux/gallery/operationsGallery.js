@@ -6,9 +6,9 @@ import errorSwitchCase from "../../assets/utils/errorSwitchCase";
 export const getPhotoAlbumsThunk = createAsyncThunk(
   "gallery/get",
 
-  async (_, { rejectWithValue }) => {
+  async (signal, { rejectWithValue }) => {
     try {
-      const resp = await galleryAPI.fetchPhotoAlbums();
+      const resp = await galleryAPI.fetchPhotoAlbums(signal);
 
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
@@ -16,7 +16,7 @@ export const getPhotoAlbumsThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("GET gallery error: ", error);
+      // console.log("GET gallery error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -35,7 +35,7 @@ export const getOnePhotoAlbumThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("GET one album error: ", error);
+      // console.log("GET one album error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -54,7 +54,7 @@ export const addPhotoAlbumThunk = createAsyncThunk(
       dispatch(getPhotoAlbumsThunk);
       // return resp.data;
     } catch (error) {
-      console.log("POST photo album error: ", error);
+      // console.log("POST photo album error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -74,7 +74,7 @@ export const updatePhotoAlbumThunk = createAsyncThunk(
       dispatch(getPhotoAlbumsThunk());
       return resp.data;
     } catch (error) {
-      console.log("EDIT photo album error: ", error);
+      // console.log("EDIT photo album error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -94,7 +94,7 @@ export const removePhotoAlbumThunk = createAsyncThunk(
       dispatch(getPhotoAlbumsThunk());
       return id;
     } catch (error) {
-      console.log("DELETE photo album error: ", error);
+      // console.log("DELETE photo album error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -113,7 +113,7 @@ export const removePictureThunk = createAsyncThunk(
 
       return id;
     } catch (error) {
-      console.log("DELETE photo album error: ", error);
+      // console.log("DELETE photo album error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }

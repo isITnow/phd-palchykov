@@ -6,9 +6,9 @@ import errorSwitchCase from "../../assets/utils/errorSwitchCase";
 export const getPostsThunk = createAsyncThunk(
   "posts/get",
 
-  async (_, { rejectWithValue }) => {
+  async (signal, { rejectWithValue }) => {
     try {
-      const resp = await postsAPI.fetchPosts();
+      const resp = await postsAPI.fetchPosts(signal);
 
       if (resp.status !== 200) {
         throw new Error("Error occurred! Please contact your administrator.");
@@ -16,7 +16,7 @@ export const getPostsThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("GET posts error: ", error);
+      // console.log("GET posts error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -35,7 +35,7 @@ export const getOnePostThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("GET one post error: ", error);
+      // console.log("GET one post error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -54,7 +54,7 @@ export const addPostThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      console.log("POST post error: ", error);
+      // console.log("POST post error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -74,7 +74,7 @@ export const updatePostThunk = createAsyncThunk(
       dispatch(getPostsThunk());
       return resp.data;
     } catch (error) {
-      console.log("EDIT post error: ", error);
+      // console.log("EDIT post error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }
@@ -93,7 +93,7 @@ export const removePostThunk = createAsyncThunk(
 
       return id;
     } catch (error) {
-      console.log("DELETE post error: ", error);
+      // console.log("DELETE post error: ", error);
       return rejectWithValue(errorSwitchCase(error));
     }
   }

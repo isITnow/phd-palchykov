@@ -27,7 +27,15 @@ const PostsPage = () => {
   const isLoggedIn = useSignInStatus();
 
   useEffect(() => {
-    dispatch(getPostsThunk());
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    dispatch(getPostsThunk(signal));
+
+    return () => {
+      // Abort the request when the component unmounts or when a dependency changes
+      controller.abort();
+    };
   }, [dispatch]);
 
   useEffect(() => {

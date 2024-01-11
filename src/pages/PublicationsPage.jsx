@@ -25,11 +25,19 @@ const PublicationsPage = () => {
   const isLoggedIn = useSignInStatus();
 
   useEffect(() => {
-    dispatch(getPublicationsThunk(period_id));
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    dispatch(getPublicationsThunk({ id: period_id, signal }));
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+
+    return () => {
+      // Abort the request when the component unmounts or when a dependency changes
+      controller.abort();
+    };
   }, [dispatch, period_id]);
 
   useEffect(() => {

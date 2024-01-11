@@ -1,16 +1,8 @@
 import { privateAPI, publicAPI } from "./http";
 
-const fetchPublications = async (period_id) => {
-  const data = await publicAPI.get(
-    `/publication_periods/${period_id}/publications`
-  );
-
-  return data;
-};
-
-const postPublication = async (period_id, body) => {
-  const data = await privateAPI.post(
-    `/publication_periods/${period_id}/publications`,
+const editPublication = async (period_id, publication_id, body) => {
+  const data = await privateAPI.patch(
+    `/publication_periods/${period_id}/publications/${publication_id}`,
     body
   );
 
@@ -25,9 +17,17 @@ const deletePublication = async (period_id, publication_id) => {
   return data;
 };
 
-const editPublication = async (period_id, publication_id, body) => {
-  const data = await privateAPI.patch(
-    `/publication_periods/${period_id}/publications/${publication_id}`,
+const fetchPublications = async ({ id, signal }) => {
+  const data = await publicAPI.get(`/publication_periods/${id}/publications`, {
+    signal,
+  });
+
+  return data;
+};
+
+const postPublication = async (period_id, body) => {
+  const data = await privateAPI.post(
+    `/publication_periods/${period_id}/publications`,
     body
   );
 
@@ -35,8 +35,8 @@ const editPublication = async (period_id, publication_id, body) => {
 };
 
 export const publicationsAPI = {
+  editPublication,
+  deletePublication,
   fetchPublications,
   postPublication,
-  deletePublication,
-  editPublication,
 };
