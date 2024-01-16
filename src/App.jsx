@@ -9,6 +9,8 @@ import Layout from "./components/shared/Layout";
 import NotFoundPage from "./pages/NotFoundPage";
 import PrivateRoute from "./components/shared/PrivateRoute";
 
+import navTabs from "./assets/navTabs";
+
 const ColleaguesPage = lazy(() => import("./pages/ColleaguesPage"));
 const ColleagueOperationsPage = lazy(() =>
   import("./pages/ColleagueOperationsPage")
@@ -53,50 +55,68 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path={navTabs.root.path} element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="colleagues" element={<ColleaguesPage />} />
-        <Route path="contacts" element={<ContactsPage />} />
-        <Route path="gallery" element={<GalleryPage />} />
-        <Route path="gallery/photo_albums/:id" element={<PhotoAlbumPage />} />
-        <Route path="news" element={<NewsPage />} />
+        <Route path={navTabs.colleagues.path} element={<ColleaguesPage />} />
+        <Route path={navTabs.contacts.path} element={<ContactsPage />} />
+        <Route path={navTabs.gallery.path} element={<GalleryPage />} />
         <Route
-          path="periods/:period_id/publications"
+          path={navTabs.gallery.photoAlbumPath()}
+          element={<PhotoAlbumPage />}
+        />
+        <Route path={navTabs.news.path} element={<NewsPage />} />
+        <Route
+          path={navTabs.publications.path()}
           element={<PublicationsPage />}
         />
-        <Route path="posts" element={<PostsPage />} />
-        <Route path="posts/:id" element={<PostPage />} />
-        <Route path="researches" element={<ResearchPage />} />
+        <Route path={navTabs.posts.path} element={<PostsPage />} />
+        <Route path={navTabs.posts.postPath()} element={<PostPage />} />
+        <Route path={navTabs.researches.path} element={<ResearchPage />} />
 
         {/* PRIVATE ROUTES */}
-        <Route path="/" element={<PrivateRoute />}>
+        <Route path={navTabs.root.path} element={<PrivateRoute />}>
           <Route
-            path="periods/:period_id/publications/new"
+            path={navTabs.publications.createPath()}
             element={<PublicationOperationsPage />}
           />
           <Route
-            path="periods/:period_id/publications/:publication_id/edit"
+            path={navTabs.publications.editPath()}
             element={<PublicationOperationsPage edit />}
           />
           <Route
-            path="gallery/photo_albums/new"
+            path={navTabs.gallery.createPhotoAlbumPath}
             element={<PhotoAlbumOperationsPage />}
           />
           <Route
-            path="gallery/photo_albums/:id/edit"
+            path={navTabs.gallery.editPhotoAlbumPath()}
             element={<PhotoAlbumOperationsPage edit />}
           />
-          <Route path="researches/new" element={<ResearchOperationsPage />} />
-          <Route path="researches/:id/edit" element={<EditResearchPage />} />
           <Route
-            path="researches/:research_id/illustrations/:id/edit"
+            path={navTabs.researches.createPath}
+            element={<ResearchOperationsPage />}
+          />
+          <Route
+            path={navTabs.researches.editPath()}
+            element={<EditResearchPage />}
+          />
+          <Route
+            path={navTabs.researches.editIllustrationPath()}
             element={<EditIllustrationPage />}
           />
-          <Route path="news/new" element={<NewsOperationsPage />} />
-          <Route path="news/:id/edit" element={<NewsOperationsPage edit />} />
-          <Route path="colleagues/new" element={<ColleagueOperationsPage />} />
           <Route
-            path="colleagues/:id/edit"
+            path={navTabs.news.createPath}
+            element={<NewsOperationsPage />}
+          />
+          <Route
+            path={navTabs.news.editPath()}
+            element={<NewsOperationsPage edit />}
+          />
+          <Route
+            path={navTabs.colleagues.createPath}
+            element={<ColleagueOperationsPage />}
+          />
+          <Route
+            path={navTabs.colleagues.editPath()}
             element={<ColleagueOperationsPage edit />}
           />
         </Route>
