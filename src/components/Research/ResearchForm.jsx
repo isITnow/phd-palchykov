@@ -4,13 +4,14 @@ import { FieldArray, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { addResearchThunk } from "../../redux/researches/operationsResearches";
 
-import { validation } from "../../assets/utils/validationSchema";
-
-import Badge from "../shared/Badge";
-import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
+import BackBtn from "../shared/BackBtn";
+import Badge from "../shared/Badge";
 import SubmitBtn from "../shared/SubmitBtn";
+
+import navTabs from "../../assets/navTabs";
+import { validation } from "../../assets/utils/validationSchema";
 
 const ResearchForm = ({ status }) => {
   const dispatch = useDispatch();
@@ -141,7 +142,7 @@ const ResearchForm = ({ status }) => {
                                     className="btn btn-sm btn-outline-primary"
                                     onClick={() => remove(index)}
                                   >
-                                    remove the illustration
+                                    Remove Illustration
                                   </button>
                                   <button
                                     type="button"
@@ -154,7 +155,7 @@ const ResearchForm = ({ status }) => {
                                       })
                                     }
                                   >
-                                    add an illustration
+                                    Add Illustration
                                   </button>
                                 </div>
                               </div>
@@ -174,7 +175,7 @@ const ResearchForm = ({ status }) => {
                               })
                             }
                           >
-                            Add an illustration
+                            Add Illustrations
                           </button>
                         </div>
                       )}
@@ -221,7 +222,7 @@ const ResearchForm = ({ status }) => {
                                       className="btn btn-sm btn-outline-primary"
                                       onClick={() => remove(index)}
                                     >
-                                      remove the source
+                                      Remove Source
                                     </button>
                                     <button
                                       type="button"
@@ -233,7 +234,7 @@ const ResearchForm = ({ status }) => {
                                         })
                                       }
                                     >
-                                      add a source
+                                      Add Source
                                     </button>
                                   </div>
                                 </div>
@@ -253,7 +254,7 @@ const ResearchForm = ({ status }) => {
                               })
                             }
                           >
-                            Add a source
+                            Add Sources
                           </button>
                         </div>
                       )}
@@ -264,7 +265,7 @@ const ResearchForm = ({ status }) => {
             </div>
             <div className="text-end mt-3">
               <div className="btn-group">
-                <BackBtn path="/researches">Cancel</BackBtn>
+                <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
                 <SubmitBtn text="Create Research Card" disabled={isDisabled} />
               </div>
             </div>

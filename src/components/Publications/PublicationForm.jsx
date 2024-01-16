@@ -1,23 +1,24 @@
-import { useParams } from "react-router-dom";
 import { FieldArray, Form, Formik } from "formik";
+import { useParams } from "react-router-dom";
 import FormWarning from "../FormComponents/FormWarning";
 
 import { useDispatch, useSelector } from "react-redux";
+import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
 import {
   addPublicationThunk,
   updatePublicationThunk,
 } from "../../redux/publications/operationsPublications";
-import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
 
-import Badge from "../shared/Badge";
-import BackBtn from "../shared/BackBtn";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomSelect from "../FormComponents/CustomSelect";
+import BackBtn from "../shared/BackBtn";
+import Badge from "../shared/Badge";
 import SubmitBtn from "../shared/SubmitBtn";
 
-import { validation } from "../../assets/utils/validationSchema";
+import navTabs from "../../assets/navTabs";
 import getCurrentPeriod from "../../assets/utils/getCurrentEntity";
 import getYearsArray from "../../assets/utils/getYearsArray";
+import { validation } from "../../assets/utils/validationSchema";
 
 const PublicationForm = ({ publication, status }) => {
   const dispatch = useDispatch();
@@ -214,14 +215,14 @@ const PublicationForm = ({ publication, status }) => {
                                       className="btn btn-sm btn-outline-primary"
                                       onClick={() => remove(index)} // remove a friend from the list
                                     >
-                                      remove the author
+                                      Remove Author
                                     </button>
                                     <button
                                       type="button"
                                       className="btn btn-sm btn-outline-primary"
                                       onClick={() => push("")}
                                     >
-                                      add an author
+                                      Add Author
                                     </button>
                                   </div>
                                 </div>
@@ -236,7 +237,7 @@ const PublicationForm = ({ publication, status }) => {
                             className="btn btn-sm btn-outline-primary"
                             onClick={() => push("")}
                           >
-                            Add an author
+                            Add Authors
                           </button>
                         </div>
                       )}
@@ -247,7 +248,7 @@ const PublicationForm = ({ publication, status }) => {
             </div>
             <div className="text-end mt-3">
               <div className="btn-group">
-                <BackBtn path={`/periods/${period_id}/publications`}>
+                <BackBtn path={navTabs.publications.path(period_id)}>
                   Cancel
                 </BackBtn>
                 <SubmitBtn text={submitBtnText} disabled={isDisabled} />

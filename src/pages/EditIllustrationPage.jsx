@@ -1,22 +1,23 @@
 import { useEffect } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { selectResearches } from "../redux/researches/selectorResearches";
 import { updateIllustrationThunk } from "../redux/illustrations/operationsIllustrations";
+import { selectResearches } from "../redux/researches/selectorResearches";
 
 import { Form, Formik } from "formik";
 
-import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/customHooks/useAlert";
+import Alert from "../components/shared/Alert";
 
-import BackBtn from "../components/shared/BackBtn";
 import CustomInput from "../components/FormComponents/CustomInput";
 import CustomTextArea from "../components/FormComponents/CustomTextArea";
 import FormTitle from "../components/FormComponents/FormTitle";
+import BackBtn from "../components/shared/BackBtn";
 import Section from "../components/shared/Section";
 import SubmitBtn from "../components/shared/SubmitBtn";
 
+import navTabs from "../assets/navTabs";
 import { validation } from "../assets/utils/validationSchema";
 
 const EditIllustrationPage = () => {
@@ -82,7 +83,7 @@ const EditIllustrationPage = () => {
       <Section>
         <FormTitle>No Illustration to edit</FormTitle>
         <div className="d-flex justify-content-center">
-          <BackBtn path="/researches">Cancel</BackBtn>
+          <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
         </div>
       </Section>
     );
@@ -122,7 +123,7 @@ const EditIllustrationPage = () => {
                 htmlFor="formFile"
                 className="form-label px-3 text-secondary fw-bold"
               >
-                Illustration image
+                Illustration Image
               </label>
               <input
                 className="form-control mb-3"
@@ -134,7 +135,7 @@ const EditIllustrationPage = () => {
               />
               <div className="text-end mt-3">
                 <div className="btn-group">
-                  <BackBtn path={`/researches`}>Cancel</BackBtn>
+                  <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
                   <SubmitBtn text={submitBtnText} disabled={isDisabled} />
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import navTabs from "../assets/navTabs";
 
 const NotFoundPage = () => {
   return (
@@ -8,8 +8,8 @@ const NotFoundPage = () => {
         404
       </h1>
       <span className="text-uppercase fw-bold fs-2">page not found</span>
-      <Link className="btn btn-outline-secondary mt-3" to="/">
-        Home
+      <Link className="btn btn-outline-secondary mt-3" to={navTabs.root.path}>
+        {navTabs.root.title}
       </Link>
     </div>
   );

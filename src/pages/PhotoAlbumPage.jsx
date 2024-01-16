@@ -21,6 +21,8 @@ import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
 
+import navTabs from "../assets/navTabs";
+
 const PhotoAlbumPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -35,7 +37,7 @@ const PhotoAlbumPage = () => {
 
   const handleDelete = () => {
     dispatch(removePhotoAlbumThunk(id));
-    navigate("/gallery");
+    navigate(navTabs.gallery.path);
   };
 
   useEffect(() => {
@@ -74,11 +76,11 @@ const PhotoAlbumPage = () => {
           {photoAlbum.title}
         </h4>
         <div className="text-end">
-          <BackBtn path="/gallery">Back To Gallery</BackBtn>
+          <BackBtn path={navTabs.gallery.path}>Back To Gallery</BackBtn>
           <IsLoggedIn>
             <div className="btn-group ms-3">
               <Link
-                to={`/gallery/photo_albums/${photoAlbum.id}/edit`}
+                to={navTabs.gallery.editPhotoAlbumPath(photoAlbum.id)}
                 className="btn btn-primary"
               >
                 Edit

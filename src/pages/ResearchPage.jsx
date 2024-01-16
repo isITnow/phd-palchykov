@@ -13,6 +13,8 @@ import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
 
+import navTabs from "../assets/navTabs";
+
 const ResearchPage = () => {
   const dispatch = useDispatch();
   const { researches, status, error } = useSelector(selectResearches);
@@ -47,7 +49,7 @@ const ResearchPage = () => {
       <ResearchList researches={researches} />
       <IsLoggedIn>
         <div className="text-end">
-          <Link className="btn btn-primary" to={"/researches/new"}>
+          <Link className="btn btn-primary" to={navTabs.researches.createPath}>
             Add Research
           </Link>
         </div>

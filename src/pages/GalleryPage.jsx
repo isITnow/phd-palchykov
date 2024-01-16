@@ -17,6 +17,8 @@ import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
 
+import navTabs from "../assets/navTabs";
+
 const GalleryPage = () => {
   const dispatch = useDispatch();
   const { alert, showAlert } = useAlert();
@@ -58,7 +60,10 @@ const GalleryPage = () => {
       <PhotoAlbumsList photoAlbums={photoAlbums} />
       <IsLoggedIn>
         <div className="mt-3 text-end">
-          <Link className="btn btn-primary" to={"/gallery/photo_albums/new"}>
+          <Link
+            className="btn btn-primary"
+            to={navTabs.gallery.createPhotoAlbumPath}
+          >
             Add Photo Album
           </Link>
         </div>

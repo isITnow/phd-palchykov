@@ -11,6 +11,7 @@ import CustomInput from "../FormComponents/CustomInput";
 import BackBtn from "../shared/BackBtn";
 import SubmitBtn from "../shared/SubmitBtn";
 
+import navTabs from "../../assets/navTabs";
 import { validation } from "../../assets/utils/validationSchema";
 
 const ColleagueForm = ({ colleague, status }) => {
@@ -119,7 +120,7 @@ const ColleagueForm = ({ colleague, status }) => {
             </div>
             <div className="text-end mt-3">
               <div className="btn-group">
-                <BackBtn path="/colleagues">Cancel</BackBtn>
+                <BackBtn path={navTabs.colleagues.path}>Cancel</BackBtn>
                 <SubmitBtn text={submitBtnText} disabled={isDisabled} />
               </div>
             </div>

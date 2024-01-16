@@ -15,6 +15,8 @@ import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
 
+import navTabs from "../assets/navTabs";
+
 const PublicationsPage = () => {
   const { period_id } = useParams();
   const dispatch = useDispatch();
@@ -68,7 +70,7 @@ const PublicationsPage = () => {
           <IsLoggedIn>
             <Link
               className="btn btn-primary"
-              to={`/periods/${period_id}/publications/new`}
+              to={navTabs.publications.createPath(period_id)}
             >
               Add Publication
             </Link>

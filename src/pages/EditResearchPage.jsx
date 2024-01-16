@@ -1,22 +1,23 @@
 import { useEffect } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { selectResearches } from "../redux/researches/selectorResearches";
 import { updateResearchThunk } from "../redux/researches/operationsResearches";
+import { selectResearches } from "../redux/researches/selectorResearches";
 
 import { FieldArray, Form, Formik } from "formik";
 
-import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/customHooks/useAlert";
+import Alert from "../components/shared/Alert";
 
-import Badge from "../components/shared/Badge";
-import BackBtn from "../components/shared/BackBtn";
 import CustomInput from "../components/FormComponents/CustomInput";
 import FormTitle from "../components/FormComponents/FormTitle";
+import BackBtn from "../components/shared/BackBtn";
+import Badge from "../components/shared/Badge";
 import Section from "../components/shared/Section";
 import SubmitBtn from "../components/shared/SubmitBtn";
 
+import navTabs from "../assets/navTabs";
 import { validation } from "../assets/utils/validationSchema";
 
 const EditResearchPage = () => {
@@ -68,9 +69,9 @@ const EditResearchPage = () => {
   if (!research) {
     return (
       <Section>
-        <FormTitle>No Research to edit</FormTitle>
+        <FormTitle>No Research To Edit</FormTitle>
         <div className="d-flex justify-content-center">
-          <BackBtn path="/researches">Cancel</BackBtn>
+          <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
         </div>
       </Section>
     );
@@ -138,7 +139,7 @@ const EditResearchPage = () => {
                                         className="btn btn-sm btn-outline-primary"
                                         onClick={() => remove(index)}
                                       >
-                                        remove the source
+                                        Remove Source
                                       </button>
                                       <button
                                         type="button"
@@ -150,7 +151,7 @@ const EditResearchPage = () => {
                                           })
                                         }
                                       >
-                                        add a source
+                                        Add Source
                                       </button>
                                     </div>
                                   </div>
@@ -170,7 +171,7 @@ const EditResearchPage = () => {
                                 })
                               }
                             >
-                              Add a source
+                              Add Sources
                             </button>
                           </div>
                         )}
@@ -181,7 +182,7 @@ const EditResearchPage = () => {
               </div>
               <div className="text-end mt-3">
                 <div className="btn-group">
-                  <BackBtn path="/researches">Cancel</BackBtn>
+                  <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
                   <SubmitBtn text={submitBtnText} disabled={isDisabled} />
                 </div>
               </div>

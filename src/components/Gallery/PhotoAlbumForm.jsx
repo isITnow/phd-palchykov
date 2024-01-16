@@ -7,12 +7,14 @@ import {
   updatePhotoAlbumThunk,
 } from "../../redux/gallery/operationsGallery";
 
-import { validation } from "../../assets/utils/validationSchema";
 import CustomInput from "../FormComponents/CustomInput";
 import BackBtn from "../shared/BackBtn";
 import SubmitBtn from "../shared/SubmitBtn";
 
-// Allows to get unique message from array of messages
+import navTabs from "../../assets/navTabs";
+import { validation } from "../../assets/utils/validationSchema";
+
+//* Creates unique error message from array of error messages
 const getValidationMessage = (errors) => {
   const values = Object.values(errors).filter((value) => value);
   const validationMessage = Array.from(new Set(values)).join(", ");
@@ -70,8 +72,8 @@ const PhotoAlbumForm = ({ photoAlbum, status }) => {
           ? "Create Photo Album"
           : "Update Photo Album";
         const backPath = isNewAlbum
-          ? "/gallery"
-          : `/gallery/photo_albums/${photoAlbum.id}`;
+          ? navTabs.gallery.path
+          : navTabs.gallery.photoAlbumPath(photoAlbum.id);
         return (
           <Form>
             <CustomInput

@@ -13,6 +13,8 @@ import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
 
+import navTabs from "../assets/navTabs";
+
 const NewsPage = () => {
   const dispatch = useDispatch();
   const { news, status, error } = useSelector(selectNews);
@@ -48,7 +50,7 @@ const NewsPage = () => {
       <NewsList news={news} />
       <IsLoggedIn>
         <div className="mt-3 text-end">
-          <Link className="btn btn-primary" to={"/news/new"}>
+          <Link className="btn btn-primary" to={navTabs.news.createPath}>
             Add News
           </Link>
         </div>

@@ -27,6 +27,8 @@ import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
 
+import navTabs from "../assets/navTabs";
+
 const fadeInOut = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
@@ -64,7 +66,7 @@ const PostPage = () => {
 
       case "removed":
         setShowForm(false);
-        navigate("/posts");
+        navigate(navTabs.posts.path);
         break;
 
       case "comment added":
@@ -97,7 +99,7 @@ const PostPage = () => {
           <Post post={post} single />
           {/* BUTTONS */}
           <div className="mt-3 text-end">
-            <BackBtn path="/posts">Go Back</BackBtn>
+            <BackBtn path={navTabs.posts.path}>Go Back</BackBtn>
             <IsLoggedIn>
               <div className="btn-group ms-3">
                 {showForm ? (

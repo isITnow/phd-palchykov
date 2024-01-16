@@ -10,6 +10,7 @@ import BackBtn from "../shared/BackBtn";
 import Badge from "../shared/Badge";
 import SubmitBtn from "../shared/SubmitBtn";
 
+import navTabs from "../../assets/navTabs";
 import { validation } from "../../assets/utils/validationSchema";
 
 const NewsForm = ({ newsItem, status }) => {
@@ -137,14 +138,14 @@ const NewsForm = ({ newsItem, status }) => {
                                       className="btn btn-sm btn-outline-primary"
                                       onClick={() => remove(index)}
                                     >
-                                      remove the link
+                                      Remove Link
                                     </button>
                                     <button
                                       type="button"
                                       className="btn btn-sm btn-outline-primary"
                                       onClick={() => push("")}
                                     >
-                                      add a link
+                                      Add Link
                                     </button>
                                   </div>
                                 </div>
@@ -159,7 +160,7 @@ const NewsForm = ({ newsItem, status }) => {
                             className="btn btn-sm btn-outline-primary"
                             onClick={() => push("")}
                           >
-                            Add a link
+                            Add Links
                           </button>
                         </div>
                       )}
@@ -170,7 +171,7 @@ const NewsForm = ({ newsItem, status }) => {
             </div>
             <div className="text-end mt-3">
               <div className="btn-group">
-                <BackBtn path="/news">Cancel</BackBtn>
+                <BackBtn path={navTabs.news.path}>Cancel</BackBtn>
                 <SubmitBtn text={submitBtnText} disabled={isDisabled} />
               </div>
             </div>

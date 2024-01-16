@@ -13,6 +13,8 @@ import IsLoggedIn from "../components/shared/IsLoggedIn.jsx";
 import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section.jsx";
 
+import navTabs from "../assets/navTabs.js";
+
 const ColleaguesPage = () => {
   const dispatch = useDispatch();
   const { colleagues, status, error } = useSelector(selectColleagues);
@@ -53,7 +55,7 @@ const ColleaguesPage = () => {
       <ColleaguesList colleagues={colleagues} />
       <IsLoggedIn>
         <div className="mt-3 text-end">
-          <Link className="btn btn-primary" to={"/colleagues/new"}>
+          <Link className="btn btn-primary" to={navTabs.colleagues.createPath}>
             Add Colleague
           </Link>
         </div>
