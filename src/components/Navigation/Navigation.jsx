@@ -1,17 +1,13 @@
-import BlogNav from "./BlogNav";
-import ColleaguesNav from "./ColleaguesNav";
-import ContactsNav from "./ContactsNav";
-import GalleryNav from "./GalleryNav";
-import HomeNav from "./HomeNav";
 import NameNav from "./NameNav";
-import NewsNav from "./NewsNav";
+import NavItem from "./NavItem";
 import PublicationsDropdownNav from "./PublicationsDropdownNav";
-import ResearchNav from "./ResearchNav";
 
+import navTabs from "../../assets/navTabs";
 import s from "./navigation.module.css";
 
 const setNavLinkClass = ({ isActive }) =>
   `${s.nav_item} nav-link fw-bold ${isActive && "text-primary"}`;
+const navItems = Object.values(navTabs).sort((a, b) => a.id - b.id);
 
 const Navigation = () => {
   return (
@@ -34,14 +30,22 @@ const Navigation = () => {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <HomeNav setNavLinkClass={setNavLinkClass} />
-            <ResearchNav setNavLinkClass={setNavLinkClass} />
-            <PublicationsDropdownNav />
-            <GalleryNav setNavLinkClass={setNavLinkClass} />
-            <NewsNav setNavLinkClass={setNavLinkClass} />
-            <ColleaguesNav setNavLinkClass={setNavLinkClass} />
-            <BlogNav setNavLinkClass={setNavLinkClass} />
-            <ContactsNav setNavLinkClass={setNavLinkClass} />
+            {navItems.map(({ id, path, title }) => {
+              return title === "Publications" ? (
+                <PublicationsDropdownNav
+                  key={id}
+                  menuTitle={title}
+                  path={path}
+                />
+              ) : (
+                <NavItem
+                  key={id}
+                  menuTitle={title}
+                  path={path}
+                  setNavLinkClass={setNavLinkClass}
+                />
+              );
+            })}
           </ul>
         </div>
       </div>

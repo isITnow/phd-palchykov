@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
 import s from "./navigation.module.css";
 
-const PublicationsDropdownNav = () => {
+const PublicationsDropdownNav = ({ menuTitle, path }) => {
   const { periods } = useSelector(selectPeriods);
   const { pathname } = useLocation();
   const publicationsSpanClass = pathname.includes("publications")
@@ -20,12 +20,12 @@ const PublicationsDropdownNav = () => {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <span className={publicationsSpanClass}>Publications</span>
+        <span className={publicationsSpanClass}>{menuTitle}</span>
       </NavLink>
       <ul className="dropdown-menu text-center overflow-hidden">
-        {periods.map(({ title, id }, index) => (
-          <li key={index}>
-            <Link className="dropdown-item" to={`periods/${id}/publications`}>
+        {periods.map(({ title, id }) => (
+          <li key={id}>
+            <Link className="dropdown-item" to={path(id)}>
               {title}
             </Link>
           </li>
