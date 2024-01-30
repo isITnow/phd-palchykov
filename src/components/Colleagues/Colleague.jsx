@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeColleagueThunk } from "../../redux/colleagues/operationsColleagues";
 import { selectColleagues } from "../../redux/colleagues/selectorColleagues";
 
+import confirmationDialog from "../../assets/utils/confirmationDialog";
 import IsLoggedIn from "../shared/IsLoggedIn";
 import s from "./colleague.module.css";
 
@@ -14,7 +15,10 @@ const Colleague = ({ colleague }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(removeColleagueThunk(id));
+    confirmationDialog(
+      () => dispatch(removeColleagueThunk(id)),
+      "Are you sure you want to delete?"
+    );
   };
 
   return (

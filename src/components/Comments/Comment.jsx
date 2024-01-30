@@ -5,6 +5,7 @@ import { removeCommentThunk } from "../../redux/comments/operationsComments";
 import "photoswipe/dist/photoswipe.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
+import confirmationDialog from "../../assets/utils/confirmationDialog";
 import formateDate from "../../assets/utils/formateDate";
 import IsLoggedIn from "../shared/IsLoggedIn";
 
@@ -16,7 +17,11 @@ const Comment = ({ comment }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(removeCommentThunk({ post_id: id, comment_id: commentId }));
+    confirmationDialog(
+      () =>
+        dispatch(removeCommentThunk({ post_id: id, comment_id: commentId })),
+      "Are you sure you want to delete?"
+    );
   };
 
   return (

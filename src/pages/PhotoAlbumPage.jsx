@@ -22,6 +22,7 @@ import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
+import confirmationDialog from "../assets/utils/confirmationDialog";
 
 const PhotoAlbumPage = () => {
   const { id } = useParams();
@@ -36,8 +37,10 @@ const PhotoAlbumPage = () => {
   const isDisabled = status === "pending";
 
   const handleDelete = () => {
-    dispatch(removePhotoAlbumThunk(id));
-    navigate(navTabs.gallery.path);
+    confirmationDialog(() => {
+      dispatch(removePhotoAlbumThunk(id));
+      navigate(navTabs.gallery.path);
+    }, "Are you sure you want to delete?");
   };
 
   useEffect(() => {

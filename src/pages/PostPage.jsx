@@ -28,6 +28,7 @@ import Loader from "../components/shared/Loader";
 import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
+import confirmationDialog from "../assets/utils/confirmationDialog";
 
 const fadeInOut = {
   initial: { opacity: 0 },
@@ -84,7 +85,10 @@ const PostPage = () => {
   }, [status]);
 
   const handleDelete = () => {
-    dispatch(removePostThunk(id));
+    confirmationDialog(
+      () => dispatch(removePostThunk(id)),
+      "Are you sure you want to delete?"
+    );
   };
 
   if (status === "loading") {

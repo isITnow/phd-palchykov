@@ -5,6 +5,8 @@ import { removePublicationThunk } from "../../redux/publications/operationsPubli
 import { selectPublications } from "../../redux/publications/selectorPublications";
 
 import IsLoggedIn from "../shared/IsLoggedIn";
+
+import confirmationDialog from "../../assets/utils/confirmationDialog";
 import s from "./publication.module.css";
 
 const Publication = ({ publication }) => {
@@ -28,11 +30,15 @@ const Publication = ({ publication }) => {
   const isYear = year !== "no data";
 
   const handleDelete = () => {
-    dispatch(
-      removePublicationThunk({
-        period_id: publication_period_id,
-        publication_id: id,
-      })
+    confirmationDialog(
+      () =>
+        dispatch(
+          removePublicationThunk({
+            period_id: publication_period_id,
+            publication_id: id,
+          })
+        ),
+      "Are you sure you want to delete?"
     );
   };
 

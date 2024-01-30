@@ -5,6 +5,7 @@ import { removeResearchThunk } from "../../redux/researches/operationsResearches
 import { selectResearches } from "../../redux/researches/selectorResearches";
 
 import IsLoggedIn from "../shared/IsLoggedIn";
+import confirmationDialog from "../../assets/utils/confirmationDialog";
 
 const Research = ({ research, index }) => {
   const { id, title, illustrations, sourceList } = research;
@@ -18,7 +19,10 @@ const Research = ({ research, index }) => {
       : "row row-cols-1";
 
   const handleDelete = () => {
-    dispatch(removeResearchThunk(id));
+    confirmationDialog(
+      () => dispatch(removeResearchThunk(id)),
+      "Are you sure you want to delete?"
+    );
   };
 
   return (

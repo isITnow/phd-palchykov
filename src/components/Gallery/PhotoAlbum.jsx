@@ -7,6 +7,8 @@ import { CgClose } from "react-icons/cg";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
 import IsLoggedIn from "../shared/IsLoggedIn";
+
+import confirmationDialog from "../../assets/utils/confirmationDialog";
 import s from "./gallery.module.css";
 
 const PhotoAlbum = ({ photoAlbum }) => {
@@ -17,7 +19,10 @@ const PhotoAlbum = ({ photoAlbum }) => {
   const isDisabled = status === "pending";
 
   const handleDelete = (id) => {
-    dispatch(removePictureThunk(id));
+    confirmationDialog(
+      () => dispatch(removePictureThunk(id)),
+      "Are you sure you want to delete?"
+    );
   };
 
   return (

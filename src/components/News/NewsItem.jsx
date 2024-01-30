@@ -6,6 +6,8 @@ import { selectNews } from "../../redux/news/selectorNews";
 
 import IsLoggedIn from "../shared/IsLoggedIn";
 
+import confirmationDialog from "../../assets/utils/confirmationDialog";
+
 const NewsItem = ({ news }) => {
   const { id, title, body, image_url, date, links } = news;
   const { status } = useSelector(selectNews);
@@ -13,7 +15,10 @@ const NewsItem = ({ news }) => {
   const btnDisabled = status === "pending";
 
   const handleDelete = () => {
-    dispatch(removeNewsThunk(id));
+    confirmationDialog(
+      () => dispatch(removeNewsThunk(id)),
+      "Are you sure you want to delete?"
+    );
   };
 
   return (
