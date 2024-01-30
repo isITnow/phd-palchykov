@@ -64,7 +64,7 @@ const colleaguesSlice = createSlice({
       state.error = null;
     });
     builder.addCase(removeColleagueThunk.fulfilled, (state, { payload }) => {
-      state.status = "fulfilled";
+      state.status = "removed";
       state.colleagues = state.colleagues.filter(
         (colleague) => colleague.id !== payload
       );
