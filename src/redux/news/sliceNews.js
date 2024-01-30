@@ -59,7 +59,7 @@ const newsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(removeNewsThunk.fulfilled, (state, { payload }) => {
-      state.status = "fulfilled";
+      state.status = "removed";
       state.news = state.news.filter((colleague) => colleague.id !== payload);
     });
     builder.addCase(removeNewsThunk.rejected, setError);
