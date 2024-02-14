@@ -3,10 +3,11 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectResearches } from "../redux/researches/selectorResearches";
 
-import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/customHooks/useAlert";
+import Alert from "../components/shared/Alert";
 
-import FormTitle from "../components/FormComponents/FormTitle";
+import { Col } from "react-bootstrap";
+import FormCard from "../components/FormComponents/FormCard";
 import FormRequirements from "../components/FormComponents/FormRequirements";
 import ResearchForm from "../components/Research/ResearchForm";
 import Section from "../components/shared/Section";
@@ -23,7 +24,7 @@ const ResearchOperationsPage = () => {
   const { status, error } = useSelector(selectResearches);
   const { alert, showAlert } = useAlert();
 
-  const title = "Create research";
+  const title = "Create Research";
 
   useEffect(() => {
     if (status === "rejected") {
@@ -40,10 +41,18 @@ const ResearchOperationsPage = () => {
 
   return (
     <Section>
-      <Alert state={alert} />
-      <FormTitle>{title}</FormTitle>
-      <FormRequirements requirementsList={requirementsList} />
-      <ResearchForm status={status} />
+      <Col lg="8" className="mx-auto">
+        <Alert state={alert} />
+        <FormCard
+          title={title}
+          body={
+            <>
+              <FormRequirements requirementsList={requirementsList} />
+              <ResearchForm status={status} />
+            </>
+          }
+        />
+      </Col>
     </Section>
   );
 };

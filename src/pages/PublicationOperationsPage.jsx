@@ -1,19 +1,20 @@
 import { useEffect } from "react";
 
-import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectPublications } from "../redux/publications/selectorPublications";
+import { useParams } from "react-router-dom";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
+import { selectPublications } from "../redux/publications/selectorPublications";
 
-import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/customHooks/useAlert";
+import Alert from "../components/shared/Alert";
 
-import FormTitle from "../components/FormComponents/FormTitle";
 import FormRequirements from "../components/FormComponents/FormRequirements";
 import PublicationForm from "../components/Publications/PublicationForm";
 import Section from "../components/shared/Section";
 
+import { Col } from "react-bootstrap";
 import getCurrentPeriod from "../assets/utils/getCurrentEntity";
+import FormCard from "../components/FormComponents/FormCard";
 
 const requirementsList = [
   "Publication year",
@@ -65,13 +66,21 @@ const PublicationOperationsPage = ({ edit }) => {
 
   return (
     <Section>
-      <Alert state={alert} />
-      <FormTitle>{title}</FormTitle>
-      <FormRequirements requirementsList={requirementsList} />
-      <PublicationForm
-        publication={edit ? publication : null}
-        status={status}
-      />
+      <Col lg="8" className="mx-auto">
+        <Alert state={alert} />
+        <FormCard
+          title={title}
+          body={
+            <>
+              <FormRequirements requirementsList={requirementsList} />
+              <PublicationForm
+                publication={edit ? publication : null}
+                status={status}
+              />
+            </>
+          }
+        />
+      </Col>
     </Section>
   );
 };

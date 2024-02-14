@@ -10,7 +10,9 @@ import { FieldArray, Form, Formik } from "formik";
 import { useAlert } from "../assets/customHooks/useAlert";
 import Alert from "../components/shared/Alert";
 
+import { Col } from "react-bootstrap";
 import CustomInput from "../components/FormComponents/CustomInput";
+import FormCard from "../components/FormComponents/FormCard";
 import FormTitle from "../components/FormComponents/FormTitle";
 import BackBtn from "../components/shared/BackBtn";
 import Badge from "../components/shared/Badge";
@@ -70,7 +72,7 @@ const EditResearchPage = () => {
     return (
       <Section>
         <FormTitle>No Research To Edit</FormTitle>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center mt-3">
           <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
         </div>
       </Section>
@@ -79,117 +81,129 @@ const EditResearchPage = () => {
 
   return (
     <Section>
-      <Alert state={alert} />
-      <FormTitle>Edit Research</FormTitle>
-      <Formik
-        initialValues={{
-          title: researchParsed.title,
-          sourceList: researchParsed.sourceList,
-        }}
-        validationSchema={validation.editResearchSchema}
-        onSubmit={handleSubmit}
-      >
-        {(props) => {
-          const isDisabled = props.isSubmitting || status === "pending";
-          const submitBtnText = "Update Research";
-          return (
-            <Form>
-              <CustomInput
-                label="Research title"
-                name="title"
-                type="text"
-                bsclass="mb-3"
-                autoFocus
-              />
-              <div className="mt-3">
-                <FieldArray name="sourceList">
-                  {({ push, insert, remove, form }) => {
-                    const { values } = form;
-                    const { sourceList } = values;
-                    const sourceListClass =
-                      sourceList.length > 1
-                        ? "row row-cols-1 row-cols-md-2"
-                        : "row row-cols-1";
-                    return (
-                      <>
-                        {sourceList && sourceList.length > 0 ? (
-                          <ul className={sourceListClass}>
-                            {sourceList.map((item, index) => (
-                              <li className="col mb-3" key={index}>
-                                <div className="p-2 border border-2 rounded">
-                                  {sourceList.length > 1 && (
-                                    <Badge index={index} text={"resource"} />
-                                  )}
-                                  <CustomInput
-                                    type="text"
-                                    label="Source"
-                                    name={`sourceList.${index}.source`}
-                                    bsclass="mb-3"
-                                  />
-                                  <CustomInput
-                                    type="text"
-                                    label="Source URL"
-                                    name={`sourceList.${index}.source_url`}
-                                    bsclass="mb-3"
-                                  />
-                                  <div className="text-end">
-                                    <div className="btn-group" role="group">
-                                      <button
-                                        type="button"
-                                        className="btn btn-sm btn-outline-primary"
-                                        onClick={() => remove(index)}
-                                      >
-                                        Remove Source
-                                      </button>
-                                      <button
-                                        type="button"
-                                        className="btn btn-sm btn-outline-primary"
-                                        onClick={() =>
-                                          insert(index, {
-                                            source: "",
-                                            source_url: "",
-                                          })
-                                        }
-                                      >
-                                        Add Source
-                                      </button>
-                                    </div>
-                                  </div>
+      <Col lg="8" className="mx-auto">
+        <Alert state={alert} />
+        <FormCard
+          title="Edit Research"
+          body={
+            <Formik
+              initialValues={{
+                title: researchParsed.title,
+                sourceList: researchParsed.sourceList,
+              }}
+              validationSchema={validation.editResearchSchema}
+              onSubmit={handleSubmit}
+            >
+              {(props) => {
+                const isDisabled = props.isSubmitting || status === "pending";
+                const submitBtnText = "Update Research";
+                return (
+                  <Form>
+                    <CustomInput
+                      label="Research title"
+                      name="title"
+                      type="text"
+                      bsclass="mb-3"
+                      autoFocus
+                    />
+                    <div className="mt-3">
+                      <FieldArray name="sourceList">
+                        {({ push, insert, remove, form }) => {
+                          const { values } = form;
+                          const { sourceList } = values;
+                          const sourceListClass =
+                            sourceList.length > 1
+                              ? "row row-cols-1 row-cols-md-2"
+                              : "row row-cols-1";
+                          return (
+                            <>
+                              {sourceList && sourceList.length > 0 ? (
+                                <ul className={sourceListClass}>
+                                  {sourceList.map((item, index) => (
+                                    <li className="col mb-3" key={index}>
+                                      <div className="p-2 border border-2 rounded">
+                                        {sourceList.length > 1 && (
+                                          <Badge
+                                            index={index}
+                                            text={"resource"}
+                                          />
+                                        )}
+                                        <CustomInput
+                                          type="text"
+                                          label="Source"
+                                          name={`sourceList.${index}.source`}
+                                          bsclass="mb-3"
+                                        />
+                                        <CustomInput
+                                          type="text"
+                                          label="Source URL"
+                                          name={`sourceList.${index}.source_url`}
+                                          bsclass="mb-3"
+                                        />
+                                        <div className="text-end">
+                                          <div
+                                            className="btn-group"
+                                            role="group"
+                                          >
+                                            <button
+                                              type="button"
+                                              className="btn btn-sm btn-outline-primary"
+                                              onClick={() => remove(index)}
+                                            >
+                                              Remove Source
+                                            </button>
+                                            <button
+                                              type="button"
+                                              className="btn btn-sm btn-outline-primary"
+                                              onClick={() =>
+                                                insert(index, {
+                                                  source: "",
+                                                  source_url: "",
+                                                })
+                                              }
+                                            >
+                                              Add Source
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <div className="text-end">
+                                  <button
+                                    type="button"
+                                    className="btn  btn-outline-primary"
+                                    onClick={() =>
+                                      push({
+                                        source: "",
+                                        source_url: "",
+                                      })
+                                    }
+                                  >
+                                    Add Sources
+                                  </button>
                                 </div>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <div className="text-end">
-                            <button
-                              type="button"
-                              className="btn  btn-outline-primary"
-                              onClick={() =>
-                                push({
-                                  source: "",
-                                  source_url: "",
-                                })
-                              }
-                            >
-                              Add Sources
-                            </button>
-                          </div>
-                        )}
-                      </>
-                    );
-                  }}
-                </FieldArray>
-              </div>
-              <div className="text-end mt-3">
-                <div className="btn-group">
-                  <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
-                  <SubmitBtn text={submitBtnText} disabled={isDisabled} />
-                </div>
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
+                              )}
+                            </>
+                          );
+                        }}
+                      </FieldArray>
+                    </div>
+                    <div className="text-end mt-3">
+                      <div className="btn-group">
+                        <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
+                        <SubmitBtn text={submitBtnText} disabled={isDisabled} />
+                      </div>
+                    </div>
+                  </Form>
+                );
+              }}
+            </Formik>
+          }
+        />
+      </Col>
     </Section>
   );
 };

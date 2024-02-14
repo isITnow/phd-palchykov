@@ -10,8 +10,9 @@ import {
 import { useAlert } from "../assets/customHooks/useAlert";
 import Alert from "../components/shared/Alert";
 
+import { Col } from "react-bootstrap";
+import FormCard from "../components/FormComponents/FormCard";
 import FormRequirements from "../components/FormComponents/FormRequirements";
-import FormTitle from "../components/FormComponents/FormTitle";
 import PhotoAlbumForm from "../components/Gallery/PhotoAlbumForm";
 import Section from "../components/shared/Section";
 
@@ -45,10 +46,21 @@ const PhotoAlbumOperationsPage = ({ edit }) => {
 
   return (
     <Section>
-      <Alert state={alert} />
-      <FormTitle>{title}</FormTitle>
-      <FormRequirements requirementsList={requirementsList} />
-      <PhotoAlbumForm photoAlbum={edit ? photoAlbum : null} status={status} />
+      <Col lg="8" className="mx-auto">
+        <Alert state={alert} />
+        <FormCard
+          title={title}
+          body={
+            <>
+              <FormRequirements requirementsList={requirementsList} />
+              <PhotoAlbumForm
+                photoAlbum={edit ? photoAlbum : null}
+                status={status}
+              />
+            </>
+          }
+        />
+      </Col>
     </Section>
   );
 };

@@ -4,10 +4,11 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectNews } from "../redux/news/selectorNews";
 
-import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/customHooks/useAlert";
+import Alert from "../components/shared/Alert";
 
-import FormTitle from "../components/FormComponents/FormTitle";
+import { Col } from "react-bootstrap";
+import FormCard from "../components/FormComponents/FormCard";
 import FormRequirements from "../components/FormComponents/FormRequirements";
 import NewsForm from "../components/News/NewsForm";
 import Section from "../components/shared/Section";
@@ -40,10 +41,18 @@ const NewsOperationsPage = ({ edit }) => {
 
   return (
     <Section>
-      <Alert state={alert} />
-      <FormTitle>{title}</FormTitle>
-      <FormRequirements requirementsList={requirementsList} />
-      <NewsForm newsItem={edit ? newsItem : null} status={status} />
+      <Col lg="8" className="mx-auto">
+        <Alert state={alert} />
+        <FormCard
+          title={title}
+          body={
+            <>
+              <FormRequirements requirementsList={requirementsList} />
+              <NewsForm newsItem={edit ? newsItem : null} status={status} />
+            </>
+          }
+        />
+      </Col>
     </Section>
   );
 };

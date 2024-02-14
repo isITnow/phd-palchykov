@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 
-import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { selectColleagues } from "../redux/colleagues/selectorColleagues";
 
-import Alert from "../components/shared/Alert";
 import { useAlert } from "../assets/customHooks/useAlert";
+import Alert from "../components/shared/Alert";
 
+import { Col } from "react-bootstrap";
 import ColleagueForm from "../components/Colleagues/ColleagueForm";
-import FormTitle from "../components/FormComponents/FormTitle";
+import FormCard from "../components/FormComponents/FormCard";
 import FormRequirements from "../components/FormComponents/FormRequirements";
 import Section from "../components/shared/Section";
 
@@ -46,10 +47,21 @@ const ColleagueOperationsPage = ({ edit }) => {
 
   return (
     <Section>
-      <Alert state={alert} />
-      <FormTitle>{title}</FormTitle>
-      <FormRequirements requirementsList={requirementsList} />
-      <ColleagueForm colleague={edit ? colleague : null} status={status} />
+      <Col lg="8" className="mx-auto">
+        <Alert state={alert} />
+        <FormCard
+          title={title}
+          body={
+            <>
+              <FormRequirements requirementsList={requirementsList} />
+              <ColleagueForm
+                colleague={edit ? colleague : null}
+                status={status}
+              />
+            </>
+          }
+        />
+      </Col>
     </Section>
   );
 };
