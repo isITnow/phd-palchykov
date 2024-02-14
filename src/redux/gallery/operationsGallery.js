@@ -63,7 +63,7 @@ export const addPhotoAlbumThunk = createAsyncThunk(
 export const updatePhotoAlbumThunk = createAsyncThunk(
   "gallery/update",
 
-  async ({ id, photoAlbum }, { dispatch, rejectWithValue }) => {
+  async ({ id, photoAlbum }, { rejectWithValue }) => {
     try {
       const resp = await galleryAPI.editPhotoAlbum(id, photoAlbum);
 
@@ -71,7 +71,6 @@ export const updatePhotoAlbumThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
-      dispatch(getPhotoAlbumsThunk());
       return resp.data;
     } catch (error) {
       // console.log("EDIT photo album error: ", error);
@@ -103,7 +102,7 @@ export const removePhotoAlbumThunk = createAsyncThunk(
 export const removePictureThunk = createAsyncThunk(
   "gallery/deletePicture",
 
-  async (id, { dispatch, rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
       const resp = await galleryAPI.deletePicture(id);
 

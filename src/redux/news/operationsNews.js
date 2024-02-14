@@ -44,7 +44,7 @@ export const addNewsThunk = createAsyncThunk(
 export const updateNewsThunk = createAsyncThunk(
   "news/update",
 
-  async ({ id, news }, { dispatch, rejectWithValue }) => {
+  async ({ id, news }, { rejectWithValue }) => {
     try {
       const resp = await newsAPI.editNews(id, news);
 
@@ -52,7 +52,6 @@ export const updateNewsThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
-      dispatch(getNewsThunk());
       return resp.data;
     } catch (error) {
       // console.log("EDIT news error: ", error);

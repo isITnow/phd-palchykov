@@ -44,7 +44,7 @@ export const addColleagueThunk = createAsyncThunk(
 export const updateColleagueThunk = createAsyncThunk(
   "colleagues/update",
 
-  async ({ id, colleague }, { dispatch, rejectWithValue }) => {
+  async ({ id, colleague }, { rejectWithValue }) => {
     try {
       const resp = await colleaguesAPI.editColleague(id, colleague);
 
@@ -52,7 +52,6 @@ export const updateColleagueThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
-      dispatch(getColleaguesThunk());
       return resp.data;
     } catch (error) {
       // console.log("EDIT colleague error: ", error);
@@ -64,7 +63,7 @@ export const updateColleagueThunk = createAsyncThunk(
 export const removeColleagueThunk = createAsyncThunk(
   "colleagues/delete",
 
-  async (id, { dispatch, rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
       const resp = await colleaguesAPI.deleteColleague(id);
 

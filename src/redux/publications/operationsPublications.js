@@ -47,10 +47,7 @@ export const addPublicationThunk = createAsyncThunk(
 export const updatePublicationThunk = createAsyncThunk(
   "publications/update",
 
-  async (
-    { period_id, publication_id, publication },
-    { dispatch, rejectWithValue }
-  ) => {
+  async ({ period_id, publication_id, publication }, { rejectWithValue }) => {
     try {
       const resp = await publicationsAPI.editPublication(
         period_id,
@@ -62,7 +59,6 @@ export const updatePublicationThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
-      dispatch(getPublicationsThunk(period_id));
       return resp.data;
     } catch (error) {
       // console.log("EDIT publication error: ", error);
@@ -74,7 +70,7 @@ export const updatePublicationThunk = createAsyncThunk(
 export const removePublicationThunk = createAsyncThunk(
   "publications/delete",
 
-  async ({ period_id, publication_id }, { dispatch, rejectWithValue }) => {
+  async ({ period_id, publication_id }, { rejectWithValue }) => {
     try {
       const resp = await publicationsAPI.deletePublication(
         period_id,

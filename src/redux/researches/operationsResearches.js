@@ -61,7 +61,7 @@ export const addResearchThunk = createAsyncThunk(
 export const updateResearchThunk = createAsyncThunk(
   "researches/update",
 
-  async ({ id, research }, { dispatch, rejectWithValue }) => {
+  async ({ id, research }, { rejectWithValue }) => {
     try {
       const resp = await researchesAPI.editResearch(id, research);
 
@@ -69,7 +69,6 @@ export const updateResearchThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
-      dispatch(getResearchesThunk());
       return resp.data;
     } catch (error) {
       // console.log("EDIT research error: ", error);

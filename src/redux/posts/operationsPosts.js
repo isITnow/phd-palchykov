@@ -63,7 +63,7 @@ export const addPostThunk = createAsyncThunk(
 export const updatePostThunk = createAsyncThunk(
   "posts/update",
 
-  async ({ id, post }, { dispatch, rejectWithValue }) => {
+  async ({ id, post }, { rejectWithValue }) => {
     try {
       const resp = await postsAPI.editPost(id, post);
 
@@ -71,7 +71,6 @@ export const updatePostThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
-      dispatch(getPostsThunk());
       return resp.data;
     } catch (error) {
       // console.log("EDIT post error: ", error);
@@ -83,7 +82,7 @@ export const updatePostThunk = createAsyncThunk(
 export const removePostThunk = createAsyncThunk(
   "posts/delete",
 
-  async (id, { dispatch, rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
       const resp = await postsAPI.deletePost(id);
 

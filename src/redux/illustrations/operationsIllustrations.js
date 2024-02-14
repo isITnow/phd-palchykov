@@ -30,7 +30,7 @@ export const updateIllustrationThunk = createAsyncThunk(
 
   async (
     { research_id, illustration_id, illustration },
-    { dispatch, rejectWithValue }
+    { rejectWithValue }
   ) => {
     try {
       const resp = await illustrationsAPI.editIllustration(
@@ -43,7 +43,6 @@ export const updateIllustrationThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
-      dispatch(getResearchesThunk());
       return resp.data;
     } catch (error) {
       console.log("UPDATE illustration error: ", error);
@@ -52,7 +51,7 @@ export const updateIllustrationThunk = createAsyncThunk(
   }
 );
 
-//* Remove thunk doesn't implemented in the app
+//* Remove thunk isn't implemented in the server app
 
 export const removeIllustrationThunk = createAsyncThunk(
   "illustrations/delete",
