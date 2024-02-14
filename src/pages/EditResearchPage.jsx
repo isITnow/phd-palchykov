@@ -13,9 +13,9 @@ import Alert from "../components/shared/Alert";
 import { Col } from "react-bootstrap";
 import CustomInput from "../components/FormComponents/CustomInput";
 import FormCard from "../components/FormComponents/FormCard";
-import FormTitle from "../components/FormComponents/FormTitle";
 import BackBtn from "../components/shared/BackBtn";
 import Badge from "../components/shared/Badge";
+import NoItemToEdit from "../components/shared/NoItemToEdit";
 import Section from "../components/shared/Section";
 import SubmitBtn from "../components/shared/SubmitBtn";
 
@@ -69,14 +69,7 @@ const EditResearchPage = () => {
   }, [status]);
 
   if (!research) {
-    return (
-      <Section>
-        <FormTitle>No Research To Edit</FormTitle>
-        <div className="d-flex justify-content-center mt-3">
-          <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
-        </div>
-      </Section>
-    );
+    return <NoItemToEdit backPath={navTabs.researches.path} item="Research" />;
   }
 
   return (

@@ -11,7 +11,10 @@ import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
 import FormRequirements from "../components/FormComponents/FormRequirements";
 import NewsForm from "../components/News/NewsForm";
+import NoItemToEdit from "../components/shared/NoItemToEdit";
 import Section from "../components/shared/Section";
+
+import navTabs from "../assets/navTabs";
 
 const requirementsList = ["News title", "Date ( example: April 1, 2023 )"];
 
@@ -38,6 +41,10 @@ const NewsOperationsPage = ({ edit }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
+
+  if (edit && !newsItem) {
+    return <NoItemToEdit backPath={navTabs.researches.path} item="News" />;
+  }
 
   return (
     <Section>

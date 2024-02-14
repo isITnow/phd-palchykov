@@ -8,13 +8,15 @@ import { selectPublications } from "../redux/publications/selectorPublications";
 import { useAlert } from "../assets/customHooks/useAlert";
 import Alert from "../components/shared/Alert";
 
+import { Col } from "react-bootstrap";
+import FormCard from "../components/FormComponents/FormCard";
 import FormRequirements from "../components/FormComponents/FormRequirements";
 import PublicationForm from "../components/Publications/PublicationForm";
+import NoItemToEdit from "../components/shared/NoItemToEdit";
 import Section from "../components/shared/Section";
 
-import { Col } from "react-bootstrap";
+import navTabs from "../assets/navTabs";
 import getCurrentPeriod from "../assets/utils/getCurrentEntity";
-import FormCard from "../components/FormComponents/FormCard";
 
 const requirementsList = [
   "Publication year",
@@ -63,6 +65,15 @@ const PublicationOperationsPage = ({ edit }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
+
+  if (edit && !publication) {
+    return (
+      <NoItemToEdit
+        backPath={navTabs.publications.path(period_id)}
+        item="Publication"
+      />
+    );
+  }
 
   return (
     <Section>

@@ -14,7 +14,10 @@ import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
 import FormRequirements from "../components/FormComponents/FormRequirements";
 import PhotoAlbumForm from "../components/Gallery/PhotoAlbumForm";
+import NoItemToEdit from "../components/shared/NoItemToEdit";
 import Section from "../components/shared/Section";
+
+import navTabs from "../assets/navTabs";
 
 const requirementsList = [
   "Album title",
@@ -43,6 +46,10 @@ const PhotoAlbumOperationsPage = ({ edit }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
+
+  if (edit && !photoAlbum) {
+    return <NoItemToEdit backPath={navTabs.gallery.path} item="Photo Album" />;
+  }
 
   return (
     <Section>

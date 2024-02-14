@@ -10,17 +10,17 @@ import { Form, Formik } from "formik";
 import { useAlert } from "../assets/customHooks/useAlert";
 import Alert from "../components/shared/Alert";
 
+import { Col } from "react-bootstrap";
 import CustomInput from "../components/FormComponents/CustomInput";
 import CustomTextArea from "../components/FormComponents/CustomTextArea";
-import FormTitle from "../components/FormComponents/FormTitle";
+import FormCard from "../components/FormComponents/FormCard";
 import BackBtn from "../components/shared/BackBtn";
+import NoItemToEdit from "../components/shared/NoItemToEdit";
 import Section from "../components/shared/Section";
 import SubmitBtn from "../components/shared/SubmitBtn";
 
-import { Col } from "react-bootstrap";
 import navTabs from "../assets/navTabs";
 import { validation } from "../assets/utils/validationSchema";
-import FormCard from "../components/FormComponents/FormCard";
 
 const EditIllustrationPage = () => {
   const dispatch = useDispatch();
@@ -82,12 +82,7 @@ const EditIllustrationPage = () => {
 
   if (!research || !illustration) {
     return (
-      <Section>
-        <FormTitle>No Illustration To Edit</FormTitle>
-        <div className="d-flex justify-content-center mt-3">
-          <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
-        </div>
-      </Section>
+      <NoItemToEdit backPath={navTabs.researches.path} item="Illustration" />
     );
   }
 

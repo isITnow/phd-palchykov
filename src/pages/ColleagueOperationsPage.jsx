@@ -11,7 +11,10 @@ import { Col } from "react-bootstrap";
 import ColleagueForm from "../components/Colleagues/ColleagueForm";
 import FormCard from "../components/FormComponents/FormCard";
 import FormRequirements from "../components/FormComponents/FormRequirements";
+import NoItemToEdit from "../components/shared/NoItemToEdit";
 import Section from "../components/shared/Section";
+
+import navTabs from "../assets/navTabs";
 
 const requirementsList = [
   "Name",
@@ -44,6 +47,10 @@ const ColleagueOperationsPage = ({ edit }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
+
+  if (edit && !colleague) {
+    return <NoItemToEdit backPath={navTabs.colleagues.path} item="Colleague" />;
+  }
 
   return (
     <Section>
