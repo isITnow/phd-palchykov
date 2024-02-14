@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { illustrationsAPI } from "../../services/illustrationsAPI";
-import { getResearchesThunk } from "../researches/operationsResearches";
 
 import errorSwitchCase from "../../assets/utils/errorSwitchCase";
 
