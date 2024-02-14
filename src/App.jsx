@@ -34,9 +34,7 @@ const PublicationOperationsPage = lazy(() =>
 );
 
 const ResearchPage = lazy(() => import("./pages/ResearchPage"));
-const ResearchOperationsPage = lazy(() =>
-  import("./pages/ResearchOperationsPage")
-);
+const CreateResearchPage = lazy(() => import("./pages/CreateResearchPage"));
 const EditResearchPage = lazy(() => import("./pages/EditResearchPage"));
 const EditIllustrationPage = lazy(() => import("./pages/EditIllustrationPage"));
 
@@ -93,7 +91,7 @@ const App = () => {
           />
           <Route
             path={navTabs.researches.createPath}
-            element={<ResearchOperationsPage />}
+            element={<CreateResearchPage />}
           />
           <Route
             path={navTabs.researches.editPath()}

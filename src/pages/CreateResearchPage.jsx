@@ -20,7 +20,7 @@ const requirementsList = [
   "Source URL",
 ];
 
-const ResearchOperationsPage = () => {
+const CreateResearchPage = () => {
   const { status, error } = useSelector(selectResearches);
   const { alert, showAlert } = useAlert();
 
@@ -57,4 +57,4 @@ const ResearchOperationsPage = () => {
   );
 };
 
-export default ResearchOperationsPage;
+export default CreateResearchPage;
