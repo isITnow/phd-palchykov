@@ -17,6 +17,7 @@ import {
 import { useAlert } from "../assets/customHooks/useAlert";
 import Alert from "../components/shared/Alert";
 
+import { Col } from "react-bootstrap";
 import CommentForm from "../components/Comments/CommentForm";
 import CommentsList from "../components/Comments/CommentsList";
 import CommentsListTitle from "../components/Comments/CommentsListTitle";
@@ -97,83 +98,85 @@ const PostPage = () => {
 
   return (
     <Section>
-      <Alert state={alert} />
-      {post && (
-        <>
-          <Post post={post} single />
-          {/* BUTTONS */}
-          <div className="mt-3 text-end">
-            <BackBtn path={navTabs.posts.path}>Go Back</BackBtn>
-            <IsLoggedIn>
-              <div className="btn-group ms-3">
-                {showForm ? (
-                  <AnimatePresence>
-                    <motion.button
-                      type="button"
-                      key="child"
-                      initial="initial"
-                      animate="animate"
-                      exit="exit"
-                      variants={fadeInOut}
-                      className="btn btn-outline-secondary"
-                      onClick={() => setShowForm(false)}
-                    >
-                      Cancel Update
-                    </motion.button>
-                  </AnimatePresence>
-                ) : (
-                  <AnimatePresence>
-                    <motion.button
-                      type="button"
-                      key="child"
-                      initial="initial"
-                      animate="animate"
-                      exit="exit"
-                      variants={fadeInOut}
-                      className="btn btn-primary"
-                      onClick={() => setShowForm(true)}
-                    >
-                      Edit
-                    </motion.button>
-                  </AnimatePresence>
-                )}
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={handleDelete}
-                >
-                  Delete
-                </button>
-              </div>
-            </IsLoggedIn>
-          </div>
-          {/* POST FORM */}
-          <AnimatePresence>
-            {showForm && (
-              <motion.div
-                key="child"
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                variants={fadeInOut}
-                className="mt-3"
-              >
-                <PostForm post={post} status={status} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          {/* COMMENTS */}
-          <CommentForm />
-          <div className="mt-3">
-            <div className="mb-3">
-              <CommentsListTitle
-                text={anyComments ? "Comments" : "No Comments"}
-              />
+      <Col lg="8" className="mx-auto">
+        <Alert state={alert} />
+        {post && (
+          <>
+            <Post post={post} single />
+            {/* BUTTONS */}
+            <div className="mt-3 text-end">
+              <BackBtn path={navTabs.posts.path}>Go Back</BackBtn>
+              <IsLoggedIn>
+                <div className="btn-group ms-3">
+                  {showForm ? (
+                    <AnimatePresence>
+                      <motion.button
+                        type="button"
+                        key="child"
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        variants={fadeInOut}
+                        className="btn btn-outline-secondary"
+                        onClick={() => setShowForm(false)}
+                      >
+                        Cancel Update
+                      </motion.button>
+                    </AnimatePresence>
+                  ) : (
+                    <AnimatePresence>
+                      <motion.button
+                        type="button"
+                        key="child"
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        variants={fadeInOut}
+                        className="btn btn-primary"
+                        onClick={() => setShowForm(true)}
+                      >
+                        Edit
+                      </motion.button>
+                    </AnimatePresence>
+                  )}
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </IsLoggedIn>
             </div>
-            {anyComments && <CommentsList comments={comments} />}
-          </div>
-        </>
-      )}
+            {/* POST FORM */}
+            <AnimatePresence>
+              {showForm && (
+                <motion.div
+                  key="child"
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  variants={fadeInOut}
+                  className="mt-3"
+                >
+                  <PostForm post={post} status={status} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            {/* COMMENTS */}
+            <CommentForm />
+            <div className="mt-3">
+              <div className="mb-3">
+                <CommentsListTitle
+                  text={anyComments ? "Comments" : "No Comments"}
+                />
+              </div>
+              {anyComments && <CommentsList comments={comments} />}
+            </div>
+          </>
+        )}
+      </Col>
     </Section>
   );
 };
