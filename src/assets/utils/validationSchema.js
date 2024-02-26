@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-// TODO: attachments
+// TODO: validate illustration attachments
 
 const MAX_IMAGE_SIZE = 1048576; //1MB
 const MAX_SMALL_IMAGE_SIZE = 512000; //500KB
