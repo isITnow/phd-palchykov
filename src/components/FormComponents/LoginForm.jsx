@@ -39,7 +39,7 @@ const LoginForm = ({ status }) => {
               name="email"
               type="email"
               bsclass="mb-3"
-              autoFocus
+              // autoFocus
             />
             <CustomInput
               label="Password"

@@ -77,7 +77,7 @@ const ResearchForm = ({ status }) => {
               name="title"
               type="text"
               bsclass="mb-3"
-              autoFocus
+              // autoFocus
             />
             <div>
               <FieldArray name="illustrationList">

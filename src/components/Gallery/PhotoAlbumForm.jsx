@@ -81,7 +81,7 @@ const PhotoAlbumForm = ({ photoAlbum, status }) => {
               name="title"
               type="text"
               bsclass="mb-3"
-              autoFocus
+              // autoFocus
             />
             <div className="col-md-6 mb-3">
               <label

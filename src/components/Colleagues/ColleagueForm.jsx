@@ -79,7 +79,7 @@ const ColleagueForm = ({ colleague, status }) => {
               name="name"
               type="text"
               bsclass="mb-3"
-              autoFocus
+              // autoFocus
             />
             <CustomInput
               label="Position"

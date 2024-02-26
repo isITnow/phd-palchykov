@@ -77,7 +77,7 @@ const NewsForm = ({ newsItem, status }) => {
               name="title"
               type="text"
               bsclass="mb-3"
-              autoFocus
+              // autoFocus
             />
             <CustomTextArea
               label="Description"

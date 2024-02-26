@@ -131,7 +131,7 @@ const PublicationForm = ({ publication, status }) => {
               name="title"
               type="text"
               bsclass="mb-3"
-              autoFocus
+              // autoFocus
             />
             <CustomInput
               label="Source"

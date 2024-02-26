@@ -97,7 +97,7 @@ const EditResearchPage = () => {
                       name="title"
                       type="text"
                       bsclass="mb-3"
-                      autoFocus
+                      // autoFocus
                     />
                     <div className="mt-3">
                       <FieldArray name="sourceList">
