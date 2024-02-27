@@ -40,7 +40,7 @@ const LoginForm = ({ status }) => {
               type="email"
               bsclass="mb-3"
               autoComplete="on"
-              // autoFocus
+              autoFocus
             />
             <CustomInput
               label="Password"
