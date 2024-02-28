@@ -11,6 +11,7 @@ import {
 
 import CustomInput from "../FormComponents/CustomInput";
 import CustomSelect from "../FormComponents/CustomSelect";
+import CustomTextArea from "../FormComponents/CustomTextArea";
 import BackBtn from "../shared/BackBtn";
 import Badge from "../shared/Badge";
 import SubmitBtn from "../shared/SubmitBtn";
@@ -35,23 +36,23 @@ const PublicationForm = ({ publication, status }) => {
 
   const handleSubmit = async (values, actions) => {
     const {
-      title,
-      year,
+      abstract,
+      authors,
+      cover,
       sequence_number,
       source_url,
       source,
-      cover,
-      abstract,
-      authors,
+      title,
+      year,
     } = values;
 
     const formData = new FormData();
+    formData.append("publication[sequence_number]", sequence_number);
+    formData.append("publication[source_url]", source_url.trim());
+    formData.append("publication[source]", source.trim());
+    formData.append("publication[title]", title.trim());
     formData.append("publication[title]", title.trim());
     formData.append("publication[year]", year);
-    formData.append("publication[sequence_number]", sequence_number);
-    formData.append("publication[title]", title.trim());
-    formData.append("publication[source]", source.trim());
-    formData.append("publication[source_url]", source_url.trim());
     if (authors.length) {
       authors.forEach((item) => {
         formData.append("publication[authors][]", item.trim());
@@ -88,14 +89,14 @@ const PublicationForm = ({ publication, status }) => {
       initialValues={
         isNewItem
           ? {
-              title: "",
-              year: "",
+              abstract: "",
+              authors: [""],
+              cover: "",
               sequence_number: 0,
               source_url: "",
               source: "",
-              cover: "",
-              abstract: "",
-              authors: [""],
+              title: "",
+              year: "",
             }
           : publication
       }
@@ -112,43 +113,44 @@ const PublicationForm = ({ publication, status }) => {
             <div className="row">
               <div className="col-6 col-md-8">
                 <CustomSelect
+                  items={periodYears}
                   label="Publication Year"
                   name="year"
-                  items={periodYears}
                 />
               </div>
               <div className="col-6 col-md-4">
                 <CustomInput
+                  bsclass="mb-3"
                   label="Sequence Num"
                   name="sequence_number"
                   type="number"
-                  bsclass="mb-3"
                 />
               </div>
             </div>
-            <CustomInput
+            <CustomTextArea
+              bsclass="mb-3"
               label="Publication Title"
               name="title"
+              rows="2"
               type="text"
-              bsclass="mb-3"
               // autoFocus
             />
             <CustomInput
+              bsclass="mb-3"
               label="Source"
               name="source"
               type="text"
-              bsclass="mb-3"
             />
             <CustomInput
+              bsclass="mb-3"
               label="Source URL"
               name="source_url"
               type="text"
-              bsclass="mb-3"
             />
             <div className="col-md-6 mb-3">
               <label
-                htmlFor="formFile"
                 className="form-label px-3 text-secondary fw-bold"
+                htmlFor="formFile"
               >
                 Cover Image
               </label>
@@ -166,8 +168,8 @@ const PublicationForm = ({ publication, status }) => {
             </div>
             <div className="col-md-6 mb-3">
               <label
-                htmlFor="formFile"
                 className="form-label px-3 text-secondary fw-bold"
+                htmlFor="formFile"
               >
                 Abstract Image
               </label>
@@ -203,23 +205,23 @@ const PublicationForm = ({ publication, status }) => {
                                   <Badge index={index} text={"author"} />
                                 )}
                                 <CustomInput
-                                  type="text"
+                                  bsclass="mb-3"
                                   label="Author"
                                   name={`authors.${index}`}
-                                  bsclass="mb-3"
+                                  type="text"
                                 />
                                 <div className="text-end">
                                   <div className="btn-group" role="group">
                                     <button
-                                      type="button"
                                       className="btn btn-sm btn-outline-primary"
+                                      type="button"
                                       onClick={() => remove(index)} // remove a friend from the list
                                     >
                                       Remove Author
                                     </button>
                                     <button
-                                      type="button"
                                       className="btn btn-sm btn-outline-primary"
+                                      type="button"
                                       onClick={() => push("")}
                                     >
                                       Add Author
@@ -233,8 +235,8 @@ const PublicationForm = ({ publication, status }) => {
                       ) : (
                         <div className="text-end">
                           <button
-                            type="button"
                             className="btn btn-sm btn-outline-primary"
+                            type="button"
                             onClick={() => push("")}
                           >
                             Add Authors
