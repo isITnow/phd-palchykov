@@ -13,6 +13,7 @@ import SubmitBtn from "../shared/SubmitBtn";
 
 import navTabs from "../../assets/navTabs";
 import { validation } from "../../assets/utils/validationSchema";
+import RequiredBadge from "../shared/RequiredBadge";
 
 //* Creates unique error message from array of error messages
 const getValidationMessage = (errors) => {
@@ -59,9 +60,9 @@ const PhotoAlbumForm = ({ photoAlbum, status }) => {
   return (
     <Formik
       initialValues={{
-        title: isNewAlbum ? "" : photoAlbum.title,
         cover: "",
         photos: [],
+        title: isNewAlbum ? "" : photoAlbum.title,
       }}
       validationSchema={validation.photoAlbumSchema}
       onSubmit={handleSubmit}
@@ -77,11 +78,12 @@ const PhotoAlbumForm = ({ photoAlbum, status }) => {
         return (
           <Form>
             <CustomInput
+              // autoFocus
+              bsclass="mb-3"
               label="Title"
               name="title"
+              required
               type="text"
-              bsclass="mb-3"
-              // autoFocus
             />
             <div className="col-md-6 mb-3">
               <label
@@ -89,6 +91,7 @@ const PhotoAlbumForm = ({ photoAlbum, status }) => {
                 className="form-label px-3 text-secondary fw-bold"
               >
                 Cover Image
+                {isNewAlbum && <RequiredBadge />}
               </label>
               <input
                 className="form-control"

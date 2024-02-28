@@ -14,6 +14,7 @@ import CustomSelect from "../FormComponents/CustomSelect";
 import CustomTextArea from "../FormComponents/CustomTextArea";
 import BackBtn from "../shared/BackBtn";
 import Badge from "../shared/Badge";
+import RequiredBadge from "../shared/RequiredBadge";
 import SubmitBtn from "../shared/SubmitBtn";
 
 import navTabs from "../../assets/navTabs";
@@ -116,6 +117,7 @@ const PublicationForm = ({ publication, status }) => {
                   items={periodYears}
                   label="Publication Year"
                   name="year"
+                  required
                 />
               </div>
               <div className="col-6 col-md-4">
@@ -123,28 +125,32 @@ const PublicationForm = ({ publication, status }) => {
                   bsclass="mb-3"
                   label="Sequence Num"
                   name="sequence_number"
+                  required
                   type="number"
                 />
               </div>
             </div>
             <CustomTextArea
+              // autoFocus
               bsclass="mb-3"
               label="Publication Title"
               name="title"
+              required
               rows="2"
               type="text"
-              // autoFocus
             />
             <CustomInput
               bsclass="mb-3"
               label="Source"
               name="source"
+              required
               type="text"
             />
             <CustomInput
               bsclass="mb-3"
               label="Source URL"
               name="source_url"
+              required
               type="text"
             />
             <div className="col-md-6 mb-3">
@@ -153,6 +159,7 @@ const PublicationForm = ({ publication, status }) => {
                 htmlFor="formFile"
               >
                 Cover Image
+                {isNewItem && <RequiredBadge />}
               </label>
               <input
                 className="form-control"
@@ -172,6 +179,7 @@ const PublicationForm = ({ publication, status }) => {
                 htmlFor="formFile"
               >
                 Abstract Image
+                {isNewItem && <RequiredBadge />}
               </label>
               <input
                 className="form-control"
@@ -200,7 +208,7 @@ const PublicationForm = ({ publication, status }) => {
                         <ul className={authorsListClass}>
                           {authors.map((author, index) => (
                             <li className="col mb-3" key={index}>
-                              <div className="p-2 border border-2 rounded">
+                              <div className="p-2 border border-1 rounded">
                                 {authors.length > 1 && (
                                   <Badge index={index} text={"author"} />
                                 )}
@@ -208,6 +216,7 @@ const PublicationForm = ({ publication, status }) => {
                                   bsclass="mb-3"
                                   label="Author"
                                   name={`authors.${index}`}
+                                  required
                                   type="text"
                                 />
                                 <div className="text-end">

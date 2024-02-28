@@ -12,6 +12,7 @@ import SubmitBtn from "../shared/SubmitBtn";
 
 import navTabs from "../../assets/navTabs";
 import { validation } from "../../assets/utils/validationSchema";
+import RequiredBadge from "../shared/RequiredBadge";
 
 const ResearchForm = ({ status }) => {
   const dispatch = useDispatch();
@@ -23,15 +24,15 @@ const ResearchForm = ({ status }) => {
     illustrationList.forEach(({ schema, description, sequence_number }) => {
       const formData = new FormData();
       formData.append("illustration[description]", description.trim());
-      formData.append("illustration[sequence_number]", sequence_number);
       formData.append("illustration[schema]", schema);
+      formData.append("illustration[sequence_number]", sequence_number);
       illustrationsData.push(formData);
     });
 
     const researchFormData = new FormData();
     const payload = {
-      title,
       sourceList,
+      title,
     };
     researchFormData.append("research[payload]", JSON.stringify(payload));
 
@@ -40,8 +41,8 @@ const ResearchForm = ({ status }) => {
     );
 
     window.scrollTo({
-      top: 0,
       behavior: "smooth",
+      top: 0,
     });
 
     actions.resetForm();
@@ -73,11 +74,12 @@ const ResearchForm = ({ status }) => {
         return (
           <Form>
             <CustomInput
+              // autoFocus
+              bsclass="mb-3"
               label="Research Title"
               name="title"
+              required
               type="text"
-              bsclass="mb-3"
-              // autoFocus
             />
             <div>
               <FieldArray name="illustrationList">
@@ -90,7 +92,7 @@ const ResearchForm = ({ status }) => {
                         <ul className="list-group">
                           {illustrationList.map((item, index) => (
                             <li
-                              className="list-group-item border-2 mb-2"
+                              className="list-group-item border-1 mb-2"
                               key={index}
                             >
                               {illustrationList.length > 1 && (
@@ -98,16 +100,18 @@ const ResearchForm = ({ status }) => {
                               )}
                               <CustomTextArea
                                 label="Description"
-                                type="text-area"
-                                rows="5"
                                 name={`illustrationList.${index}.description`}
+                                required
+                                rows="5"
+                                type="text-area"
                               />
                               <div className="col-md-6 mb-3">
                                 <label
-                                  htmlFor="schema"
                                   className="form-label px-3 text-secondary fw-bold"
+                                  htmlFor="schema"
                                 >
                                   Illustration Image
+                                  <RequiredBadge />
                                 </label>
                                 <input
                                   className="form-control"
@@ -130,23 +134,24 @@ const ResearchForm = ({ status }) => {
                               <div className="d-flex flex-column flex-md-row justify-content-md-between align-items-md-end">
                                 <CustomInput
                                   label="Sequence Num"
-                                  type="number"
                                   name={`illustrationList.${index}.sequence_number`}
+                                  required
+                                  type="number"
                                 />
                                 <div
                                   className="btn-group mt-3 mt-md-0"
                                   role="group"
                                 >
                                   <button
-                                    type="button"
                                     className="btn btn-sm btn-outline-primary"
                                     onClick={() => remove(index)}
+                                    type="button"
                                   >
                                     Remove Illustration
                                   </button>
                                   <button
-                                    type="button"
                                     className="btn btn-sm btn-outline-primary"
+                                    type="button"
                                     onClick={() =>
                                       push({
                                         description: "",
@@ -165,8 +170,8 @@ const ResearchForm = ({ status }) => {
                       ) : (
                         <div className="text-end">
                           <button
-                            type="button"
                             className="btn btn-sm btn-outline-primary"
+                            type="button"
                             onClick={() =>
                               push({
                                 description: "",
@@ -199,34 +204,36 @@ const ResearchForm = ({ status }) => {
                         <ul className={sourceListClass}>
                           {sourceList.map((item, index) => (
                             <li className="col mb-3" key={index}>
-                              <div className="p-2 border border-2 rounded">
+                              <div className="p-2 border border-1 rounded">
                                 {sourceList.length > 1 && (
                                   <Badge index={index} text={"resource"} />
                                 )}
                                 <CustomInput
-                                  type="text"
+                                  bsclass="mb-3"
                                   label="Source"
                                   name={`sourceList.${index}.source`}
-                                  bsclass="mb-3"
+                                  required
+                                  type="text"
                                 />
                                 <CustomInput
-                                  type="text"
+                                  bsclass="mb-3"
                                   label="Source URL"
                                   name={`sourceList.${index}.source_url`}
-                                  bsclass="mb-3"
+                                  required
+                                  type="text"
                                 />
                                 <div className="text-end">
                                   <div className="btn-group" role="group">
                                     <button
-                                      type="button"
                                       className="btn btn-sm btn-outline-primary"
+                                      type="button"
                                       onClick={() => remove(index)}
                                     >
                                       Remove Source
                                     </button>
                                     <button
-                                      type="button"
                                       className="btn btn-sm btn-outline-primary"
+                                      type="button"
                                       onClick={() =>
                                         insert(index, {
                                           source: "",
@@ -245,8 +252,8 @@ const ResearchForm = ({ status }) => {
                       ) : (
                         <div className="text-end">
                           <button
-                            type="button"
                             className="btn  btn-outline-primary"
+                            type="button"
                             onClick={() =>
                               push({
                                 source: "",

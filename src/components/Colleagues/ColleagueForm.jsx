@@ -9,6 +9,7 @@ import {
 
 import CustomInput from "../FormComponents/CustomInput";
 import BackBtn from "../shared/BackBtn";
+import RequiredBadge from "../shared/RequiredBadge";
 import SubmitBtn from "../shared/SubmitBtn";
 
 import navTabs from "../../assets/navTabs";
@@ -56,11 +57,11 @@ const ColleagueForm = ({ colleague, status }) => {
       initialValues={
         isNewItem
           ? {
-              name: "",
-              position: "",
               email: "",
+              name: "",
               phone: "",
               photo: "",
+              position: "",
             }
           : colleague
       }
@@ -75,36 +76,40 @@ const ColleagueForm = ({ colleague, status }) => {
         return (
           <Form>
             <CustomInput
+              // autoFocus
+              bsclass="mb-3"
               label="Name"
               name="name"
+              required
               type="text"
-              bsclass="mb-3"
-              // autoFocus
             />
             <CustomInput
+              bsclass="mb-3"
               label="Position"
               name="position"
+              required
               type="text"
-              bsclass="mb-3"
             />
             <CustomInput
+              bsclass="mb-3"
               label="Email"
               name="email"
+              required
               type="email"
-              bsclass="mb-3"
             />
             <CustomInput
+              bsclass="mb-3"
               label="Phone"
               name="phone"
               type="text"
-              bsclass="mb-3"
             />
             <div className="col-md-6 mb-3">
               <label
-                htmlFor="photo"
                 className="form-label px-3 text-secondary fw-bold"
+                htmlFor="photo"
               >
                 Photo
+                {isNewItem && <RequiredBadge />}
               </label>
               <input
                 className="form-control"

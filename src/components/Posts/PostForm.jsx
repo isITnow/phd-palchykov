@@ -45,8 +45,9 @@ const PostForm = ({ post, status }) => {
             <CustomTextArea
               label="Post Text"
               name="body"
-              type="text"
+              required
               rows="3"
+              type="text"
             />
             <div className="text-end">
               <SubmitBtn text={submitBtnText} disabled={isDisabled} />

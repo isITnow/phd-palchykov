@@ -24,9 +24,9 @@ import { validation } from "../assets/utils/validationSchema";
 
 const EditIllustrationPage = () => {
   const dispatch = useDispatch();
+  const { alert, showAlert } = useAlert();
   const { research_id, id } = useParams();
   const { researches, status, error } = useSelector(selectResearches);
-  const { alert, showAlert } = useAlert();
 
   const research = researches.find(
     (research) => research.id === parseInt(research_id)
@@ -54,15 +54,15 @@ const EditIllustrationPage = () => {
 
     dispatch(
       updateIllustrationThunk({
-        research_id,
         illustration_id: illustration.id,
         illustration: illustrationFormData,
+        research_id,
       })
     );
 
     window.scrollTo({
-      top: 0,
       behavior: "smooth",
+      top: 0,
     });
 
     actions.setSubmitting(false);
@@ -107,17 +107,21 @@ const EditIllustrationPage = () => {
                 const submitBtnText = "Update Illustration";
                 return (
                   <Form>
-                    <CustomInput
-                      label="Sequence Num"
-                      type="number"
-                      name="sequence_number"
-                      bsclass="mb-3"
-                    />
+                    <Col lg="3">
+                      <CustomInput
+                        bsclass="mb-3"
+                        label="Sequence Num"
+                        name="sequence_number"
+                        required
+                        type="number"
+                      />
+                    </Col>
                     <CustomTextArea
                       label="Description"
-                      type="text-area"
-                      rows="5"
                       name="description"
+                      required
+                      rows="5"
+                      type="text-area"
                     />
                     <label
                       htmlFor="formFile"

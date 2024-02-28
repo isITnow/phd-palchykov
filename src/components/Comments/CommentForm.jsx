@@ -46,11 +46,17 @@ const CommentForm = () => {
       {(props) => (
         <Form>
           <CustomInput label="Name" name="author" type="text" bsclass="mb-3" />
-          <CustomTextArea label="Comment" name="body" type="text" rows="3" />
+          <CustomTextArea
+            label="Comment"
+            name="body"
+            required
+            rows="3"
+            type="text"
+          />
           <div className="col-md-6 mb-3">
             <label
-              htmlFor="image"
               className="form-label px-3 text-secondary fw-bold"
+              htmlFor="image"
             >
               Image
             </label>

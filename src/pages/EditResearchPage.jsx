@@ -93,11 +93,12 @@ const EditResearchPage = () => {
                 return (
                   <Form>
                     <CustomInput
-                      label="Research title"
-                      name="title"
-                      type="text"
-                      bsclass="mb-3"
                       // autoFocus
+                      bsclass="mb-3"
+                      label="Research Title"
+                      name="title"
+                      required
+                      type="text"
                     />
                     <div className="mt-3">
                       <FieldArray name="sourceList">
@@ -114,7 +115,7 @@ const EditResearchPage = () => {
                                 <ul className={sourceListClass}>
                                   {sourceList.map((item, index) => (
                                     <li className="col mb-3" key={index}>
-                                      <div className="p-2 border border-2 rounded">
+                                      <div className="p-2 border border-1 rounded">
                                         {sourceList.length > 1 && (
                                           <Badge
                                             index={index}
@@ -122,16 +123,18 @@ const EditResearchPage = () => {
                                           />
                                         )}
                                         <CustomInput
-                                          type="text"
+                                          bsclass="mb-3"
                                           label="Source"
                                           name={`sourceList.${index}.source`}
-                                          bsclass="mb-3"
+                                          required
+                                          type="text"
                                         />
                                         <CustomInput
-                                          type="text"
+                                          bsclass="mb-3"
                                           label="Source URL"
                                           name={`sourceList.${index}.source_url`}
-                                          bsclass="mb-3"
+                                          required
+                                          type="text"
                                         />
                                         <div className="text-end">
                                           <div

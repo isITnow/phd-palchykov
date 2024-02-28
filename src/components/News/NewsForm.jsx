@@ -75,6 +75,7 @@ const NewsForm = ({ newsItem, status }) => {
             <CustomInput
               label="News Title"
               name="title"
+              required
               type="text"
               bsclass="mb-3"
               // autoFocus
@@ -85,7 +86,13 @@ const NewsForm = ({ newsItem, status }) => {
               type="text-area"
               rows="5"
             />
-            <CustomInput label="Date" name="date" type="text" bsclass="mb-3" />
+            <CustomInput
+              label="Date"
+              name="date"
+              required
+              type="text"
+              bsclass="mb-3"
+            />
             <div className="col-md-6 mb-3">
               <label
                 htmlFor="image"
