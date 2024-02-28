@@ -9,14 +9,11 @@ import Alert from "../components/shared/Alert";
 
 import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
-import FormRequirements from "../components/FormComponents/FormRequirements";
 import NewsForm from "../components/News/NewsForm";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
 import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
-
-const requirementsList = ["News title", "Date ( example: April 1, 2023 )"];
 
 const NewsOperationsPage = ({ edit }) => {
   const { news, error, status } = useSelector(selectNews);
@@ -52,12 +49,7 @@ const NewsOperationsPage = ({ edit }) => {
         <Alert state={alert} />
         <FormCard
           title={title}
-          body={
-            <>
-              <FormRequirements requirementsList={requirementsList} />
-              <NewsForm newsItem={edit ? newsItem : null} status={status} />
-            </>
-          }
+          body={<NewsForm newsItem={edit ? newsItem : null} status={status} />}
         />
       </Col>
     </Section>

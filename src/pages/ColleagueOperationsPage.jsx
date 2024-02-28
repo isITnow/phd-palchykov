@@ -10,19 +10,10 @@ import Alert from "../components/shared/Alert";
 import { Col } from "react-bootstrap";
 import ColleagueForm from "../components/Colleagues/ColleagueForm";
 import FormCard from "../components/FormComponents/FormCard";
-import FormRequirements from "../components/FormComponents/FormRequirements";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
 import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
-
-const requirementsList = [
-  "Name",
-  "Position",
-  "Email",
-  "Photo (max size: 1MB)",
-  "Phone ( example: +380775554433 )",
-];
 
 const ColleagueOperationsPage = ({ edit }) => {
   const { colleagues, error, status } = useSelector(selectColleagues);
@@ -59,13 +50,10 @@ const ColleagueOperationsPage = ({ edit }) => {
         <FormCard
           title={title}
           body={
-            <>
-              <FormRequirements requirementsList={requirementsList} />
-              <ColleagueForm
-                colleague={edit ? colleague : null}
-                status={status}
-              />
-            </>
+            <ColleagueForm
+              colleague={edit ? colleague : null}
+              status={status}
+            />
           }
         />
       </Col>

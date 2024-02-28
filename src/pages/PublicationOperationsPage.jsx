@@ -10,24 +10,12 @@ import Alert from "../components/shared/Alert";
 
 import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
-import FormRequirements from "../components/FormComponents/FormRequirements";
 import PublicationForm from "../components/Publications/PublicationForm";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
 import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
 import getCurrentPeriod from "../assets/utils/getCurrentEntity";
-
-const requirementsList = [
-  "Publication year",
-  "Sequence number",
-  "Publication title",
-  "Source",
-  "SourceURL",
-  "Author ( at least one )",
-  "Abstract (max size: 1MB)",
-  "Cover (max size: 1MB)",
-];
 
 const PublicationOperationsPage = ({ edit }) => {
   const { alert, showAlert } = useAlert();
@@ -82,13 +70,10 @@ const PublicationOperationsPage = ({ edit }) => {
         <FormCard
           title={title}
           body={
-            <>
-              <FormRequirements requirementsList={requirementsList} />
-              <PublicationForm
-                publication={edit ? publication : null}
-                status={status}
-              />
-            </>
+            <PublicationForm
+              publication={edit ? publication : null}
+              status={status}
+            />
           }
         />
       </Col>

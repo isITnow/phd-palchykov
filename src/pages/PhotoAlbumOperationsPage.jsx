@@ -12,18 +12,11 @@ import Alert from "../components/shared/Alert";
 
 import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
-import FormRequirements from "../components/FormComponents/FormRequirements";
 import PhotoAlbumForm from "../components/Gallery/PhotoAlbumForm";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
 import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
-
-const requirementsList = [
-  "Album title",
-  "Cover image (max size: 1MB)",
-  "Photos (multiple select; max file size: 5MB)",
-];
 
 const PhotoAlbumOperationsPage = ({ edit }) => {
   const { alert, showAlert } = useAlert();
@@ -58,13 +51,10 @@ const PhotoAlbumOperationsPage = ({ edit }) => {
         <FormCard
           title={title}
           body={
-            <>
-              <FormRequirements requirementsList={requirementsList} />
-              <PhotoAlbumForm
-                photoAlbum={edit ? photoAlbum : null}
-                status={status}
-              />
-            </>
+            <PhotoAlbumForm
+              photoAlbum={edit ? photoAlbum : null}
+              status={status}
+            />
           }
         />
       </Col>

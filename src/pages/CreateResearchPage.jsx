@@ -8,17 +8,8 @@ import Alert from "../components/shared/Alert";
 
 import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
-import FormRequirements from "../components/FormComponents/FormRequirements";
 import ResearchForm from "../components/Research/ResearchForm";
 import Section from "../components/shared/Section";
-
-const requirementsList = [
-  "Research title",
-  "Description",
-  "Illustration image (max size: 1MB)",
-  "Source",
-  "Source URL",
-];
 
 const CreateResearchPage = () => {
   const { status, error } = useSelector(selectResearches);
@@ -43,15 +34,7 @@ const CreateResearchPage = () => {
     <Section>
       <Col lg="8" className="mx-auto">
         <Alert state={alert} />
-        <FormCard
-          title={title}
-          body={
-            <>
-              <FormRequirements requirementsList={requirementsList} />
-              <ResearchForm status={status} />
-            </>
-          }
-        />
+        <FormCard title={title} body={<ResearchForm status={status} />} />
       </Col>
     </Section>
   );
