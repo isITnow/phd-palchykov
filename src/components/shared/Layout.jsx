@@ -2,12 +2,13 @@ import { Suspense, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
 import { getPeriodsThunk } from "../../redux/publicationPeriods/operationsPublicationPeriods";
+import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
 
 import Footer from "../Footer/Footer";
-import Loader from "./Loader";
 import Navigation from "../Navigation/Navigation";
+import Loader from "./Loader";
+import Section from "./Section";
 
 import setPageTitle from "../../assets/utils/setPageTitle";
 
@@ -35,9 +36,11 @@ const Layout = () => {
         </div>
       </header>
       <main className="container">
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
+        <Section>
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </Section>
       </main>
       <Footer />
     </>
