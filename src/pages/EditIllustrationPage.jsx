@@ -16,7 +16,6 @@ import CustomTextArea from "../components/FormComponents/CustomTextArea";
 import FormCard from "../components/FormComponents/FormCard";
 import BackBtn from "../components/shared/BackBtn";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
-import Section from "../components/shared/Section";
 import SubmitBtn from "../components/shared/SubmitBtn";
 
 import navTabs from "../assets/navTabs";
@@ -87,70 +86,68 @@ const EditIllustrationPage = () => {
   }
 
   return (
-    <Section>
-      <Col lg="8" className="mx-auto">
-        <Alert state={alert} />
-        <FormCard
-          title="Edit Illustration"
-          body={
-            <Formik
-              initialValues={{
-                description: illustration.description,
-                schema: "",
-                sequence_number: illustration.sequence_number,
-              }}
-              validationSchema={validation.editIllustrationSchema}
-              onSubmit={handleSubmit}
-            >
-              {(props) => {
-                const isDisabled = props.isSubmitting || status === "pending";
-                const submitBtnText = "Update Illustration";
-                return (
-                  <Form>
-                    <Col lg="3">
-                      <CustomInput
-                        bsclass="mb-3"
-                        label="Sequence Num"
-                        name="sequence_number"
-                        required
-                        type="number"
-                      />
-                    </Col>
-                    <CustomTextArea
-                      label="Description"
-                      name="description"
+    <Col lg="8" className="mx-auto">
+      <Alert state={alert} />
+      <FormCard
+        title="Edit Illustration"
+        body={
+          <Formik
+            initialValues={{
+              description: illustration.description,
+              schema: "",
+              sequence_number: illustration.sequence_number,
+            }}
+            validationSchema={validation.editIllustrationSchema}
+            onSubmit={handleSubmit}
+          >
+            {(props) => {
+              const isDisabled = props.isSubmitting || status === "pending";
+              const submitBtnText = "Update Illustration";
+              return (
+                <Form>
+                  <Col lg="3">
+                    <CustomInput
+                      bsclass="mb-3"
+                      label="Sequence Num"
+                      name="sequence_number"
                       required
-                      rows="5"
-                      type="text-area"
+                      type="number"
                     />
-                    <label
-                      htmlFor="formFile"
-                      className="form-label px-3 text-secondary fw-bold"
-                    >
-                      Illustration Image
-                    </label>
-                    <input
-                      className="form-control mb-3"
-                      id="formFile"
-                      type="file"
-                      onChange={(e) => {
-                        props.setFieldValue("schema", e.target.files[0]);
-                      }}
-                    />
-                    <div className="text-end mt-3">
-                      <div className="btn-group">
-                        <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
-                        <SubmitBtn text={submitBtnText} disabled={isDisabled} />
-                      </div>
+                  </Col>
+                  <CustomTextArea
+                    label="Description"
+                    name="description"
+                    required
+                    rows="5"
+                    type="text-area"
+                  />
+                  <label
+                    htmlFor="formFile"
+                    className="form-label px-3 text-secondary fw-bold"
+                  >
+                    Illustration Image
+                  </label>
+                  <input
+                    className="form-control mb-3"
+                    id="formFile"
+                    type="file"
+                    onChange={(e) => {
+                      props.setFieldValue("schema", e.target.files[0]);
+                    }}
+                  />
+                  <div className="text-end mt-3">
+                    <div className="btn-group">
+                      <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
+                      <SubmitBtn text={submitBtnText} disabled={isDisabled} />
                     </div>
-                  </Form>
-                );
-              }}
-            </Formik>
-          }
-        />
-      </Col>
-    </Section>
+                  </div>
+                </Form>
+              );
+            }}
+          </Formik>
+        }
+      />
+    </Col>
   );
 };
 

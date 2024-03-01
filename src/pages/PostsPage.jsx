@@ -15,7 +15,6 @@ import { Col } from "react-bootstrap";
 import PostForm from "../components/Posts/PostForm";
 import PostsList from "../components/Posts/PostsList";
 import Loader from "../components/shared/Loader";
-import Section from "../components/shared/Section";
 
 import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
@@ -63,26 +62,24 @@ const PostsPage = () => {
   }
 
   return (
-    <Section>
-      <Col lg="8" className="mx-auto">
-        <Alert state={alert} />
-        {isLoggedIn ? (
-          <div className="mb-4">
-            <PostForm />
-          </div>
-        ) : (
-          <div className="mb-4">
-            <h3 className="text-center text-primary fw-bold">
-              Welcome to my personal Blog
-            </h3>
-            <h4 className="text-center text-secondary fw-bold">
-              Feel free to leave your comments
-            </h4>
-          </div>
-        )}
-        <PostsList posts={posts} />
-      </Col>
-    </Section>
+    <Col lg="8" className="mx-auto">
+      <Alert state={alert} />
+      {isLoggedIn ? (
+        <div className="mb-4">
+          <PostForm />
+        </div>
+      ) : (
+        <div className="mb-4">
+          <h3 className="text-center text-primary fw-bold">
+            Welcome to my personal Blog
+          </h3>
+          <h4 className="text-center text-secondary fw-bold">
+            Feel free to leave your comments
+          </h4>
+        </div>
+      )}
+      <PostsList posts={posts} />
+    </Col>
   );
 };
 

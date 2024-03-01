@@ -11,7 +11,6 @@ import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
 import NewsForm from "../components/News/NewsForm";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
-import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
 
@@ -44,15 +43,13 @@ const NewsOperationsPage = ({ edit }) => {
   }
 
   return (
-    <Section>
-      <Col lg="8" className="mx-auto">
-        <Alert state={alert} />
-        <FormCard
-          title={title}
-          body={<NewsForm newsItem={edit ? newsItem : null} status={status} />}
-        />
-      </Col>
-    </Section>
+    <Col lg="8" className="mx-auto">
+      <Alert state={alert} />
+      <FormCard
+        title={title}
+        body={<NewsForm newsItem={edit ? newsItem : null} status={status} />}
+      />
+    </Col>
   );
 };
 

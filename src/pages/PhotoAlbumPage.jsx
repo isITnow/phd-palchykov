@@ -19,7 +19,6 @@ import PhotoAlbum from "../components/Gallery/PhotoAlbum";
 import BackBtn from "../components/shared/BackBtn";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
-import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
 import confirmationDialog from "../assets/utils/confirmationDialog";
@@ -72,7 +71,7 @@ const PhotoAlbumPage = () => {
   }
 
   return (
-    <Section>
+    <>
       <Alert state={alert} />
       <div className="d-flex flex-column flex-lg-row justify-content-lg-between align-items-center mb-4">
         <h4 className="text-secondary fw-bold mb-3 mb-lg-0">
@@ -101,7 +100,7 @@ const PhotoAlbumPage = () => {
         </div>
       </div>
       <PhotoAlbum photoAlbum={photoAlbum} />
-    </Section>
+    </>
   );
 };
 

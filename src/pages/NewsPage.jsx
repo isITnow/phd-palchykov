@@ -11,7 +11,6 @@ import Alert from "../components/shared/Alert";
 import NewsList from "../components/News/NewsList";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
-import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
 
@@ -50,7 +49,7 @@ const NewsPage = () => {
   }
 
   return (
-    <Section>
+    <>
       <Alert state={alert} />
       <NewsList news={news} />
       <IsLoggedIn>
@@ -60,7 +59,7 @@ const NewsPage = () => {
           </Link>
         </div>
       </IsLoggedIn>
-    </Section>
+    </>
   );
 };
 

@@ -12,7 +12,6 @@ import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
 import PublicationForm from "../components/Publications/PublicationForm";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
-import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
 import getCurrentPeriod from "../assets/utils/getCurrentEntity";
@@ -64,20 +63,18 @@ const PublicationOperationsPage = ({ edit }) => {
   }
 
   return (
-    <Section>
-      <Col lg="8" className="mx-auto">
-        <Alert state={alert} />
-        <FormCard
-          title={title}
-          body={
-            <PublicationForm
-              publication={edit ? publication : null}
-              status={status}
-            />
-          }
-        />
-      </Col>
-    </Section>
+    <Col lg="8" className="mx-auto">
+      <Alert state={alert} />
+      <FormCard
+        title={title}
+        body={
+          <PublicationForm
+            publication={edit ? publication : null}
+            status={status}
+          />
+        }
+      />
+    </Col>
   );
 };
 

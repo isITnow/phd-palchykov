@@ -9,7 +9,6 @@ import Alert from "../components/shared/Alert";
 import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
 import ResearchForm from "../components/Research/ResearchForm";
-import Section from "../components/shared/Section";
 
 const CreateResearchPage = () => {
   const { status, error } = useSelector(selectResearches);
@@ -31,12 +30,10 @@ const CreateResearchPage = () => {
   }, [status]);
 
   return (
-    <Section>
-      <Col lg="8" className="mx-auto">
-        <Alert state={alert} />
-        <FormCard title={title} body={<ResearchForm status={status} />} />
-      </Col>
-    </Section>
+    <Col lg="8" className="mx-auto">
+      <Alert state={alert} />
+      <FormCard title={title} body={<ResearchForm status={status} />} />
+    </Col>
   );
 };
 

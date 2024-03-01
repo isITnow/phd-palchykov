@@ -11,7 +11,6 @@ import Alert from "../components/shared/Alert.jsx";
 import ColleaguesList from "../components/Colleagues/ColleaguesList";
 import IsLoggedIn from "../components/shared/IsLoggedIn.jsx";
 import Loader from "../components/shared/Loader";
-import Section from "../components/shared/Section.jsx";
 
 import navTabs from "../assets/navTabs.js";
 
@@ -50,7 +49,7 @@ const ColleaguesPage = () => {
   }
 
   return (
-    <Section>
+    <>
       <Alert state={alert} />
       <ColleaguesList colleagues={colleagues} />
       <IsLoggedIn>
@@ -60,7 +59,7 @@ const ColleaguesPage = () => {
           </Link>
         </div>
       </IsLoggedIn>
-    </Section>
+    </>
   );
 };
 

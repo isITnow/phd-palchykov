@@ -15,7 +15,6 @@ import Alert from "../components/shared/Alert";
 import PhotoAlbumsList from "../components/Gallery/PhotoAlbumsList";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
-import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
 
@@ -55,7 +54,7 @@ const GalleryPage = () => {
   }
 
   return (
-    <Section>
+    <>
       <Alert state={alert} />
       <PhotoAlbumsList photoAlbums={photoAlbums} />
       <IsLoggedIn>
@@ -68,7 +67,7 @@ const GalleryPage = () => {
           </Link>
         </div>
       </IsLoggedIn>
-    </Section>
+    </>
   );
 };
 

@@ -11,7 +11,6 @@ import Alert from "../components/shared/Alert";
 import ResearchList from "../components/Research/ResearchList";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
-import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
 
@@ -44,7 +43,7 @@ const ResearchPage = () => {
   }
 
   return (
-    <Section>
+    <>
       <Alert state={alert} />
       <ResearchList researches={researches} />
       <IsLoggedIn>
@@ -54,7 +53,7 @@ const ResearchPage = () => {
           </Link>
         </div>
       </IsLoggedIn>
-    </Section>
+    </>
   );
 };
 

@@ -14,7 +14,6 @@ import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
 import PhotoAlbumForm from "../components/Gallery/PhotoAlbumForm";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
-import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
 
@@ -45,20 +44,18 @@ const PhotoAlbumOperationsPage = ({ edit }) => {
   }
 
   return (
-    <Section>
-      <Col lg="8" className="mx-auto">
-        <Alert state={alert} />
-        <FormCard
-          title={title}
-          body={
-            <PhotoAlbumForm
-              photoAlbum={edit ? photoAlbum : null}
-              status={status}
-            />
-          }
-        />
-      </Col>
-    </Section>
+    <Col lg="8" className="mx-auto">
+      <Alert state={alert} />
+      <FormCard
+        title={title}
+        body={
+          <PhotoAlbumForm
+            photoAlbum={edit ? photoAlbum : null}
+            status={status}
+          />
+        }
+      />
+    </Col>
   );
 };
 

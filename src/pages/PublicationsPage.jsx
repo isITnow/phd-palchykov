@@ -13,7 +13,6 @@ import PagesNav from "../components/PagesNav/PagesNav";
 import PublicationsList from "../components/Publications/PublicationsList";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
-import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
 
@@ -57,7 +56,7 @@ const PublicationsPage = () => {
   }
 
   return (
-    <Section>
+    <>
       <Alert state={alert} />
       <PagesNav
         margin={"mb-3"}
@@ -80,7 +79,7 @@ const PublicationsPage = () => {
           <PagesNav periods={periods} currentPeriodId={parseInt(period_id)} />
         )}
       </div>
-    </Section>
+    </>
   );
 };
 

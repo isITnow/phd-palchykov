@@ -11,7 +11,6 @@ import { Col } from "react-bootstrap";
 import ColleagueForm from "../components/Colleagues/ColleagueForm";
 import FormCard from "../components/FormComponents/FormCard";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
-import Section from "../components/shared/Section";
 
 import navTabs from "../assets/navTabs";
 
@@ -44,20 +43,15 @@ const ColleagueOperationsPage = ({ edit }) => {
   }
 
   return (
-    <Section>
-      <Col lg="8" className="mx-auto">
-        <Alert state={alert} />
-        <FormCard
-          title={title}
-          body={
-            <ColleagueForm
-              colleague={edit ? colleague : null}
-              status={status}
-            />
-          }
-        />
-      </Col>
-    </Section>
+    <Col lg="8" className="mx-auto">
+      <Alert state={alert} />
+      <FormCard
+        title={title}
+        body={
+          <ColleagueForm colleague={edit ? colleague : null} status={status} />
+        }
+      />
+    </Col>
   );
 };
 
