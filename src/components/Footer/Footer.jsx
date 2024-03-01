@@ -2,7 +2,7 @@ import Auth from "../Auth/Auth";
 
 const Footer = () => {
   return (
-    <div className="p-4 bg-secondary bg-gradient mt-auto">
+    <footer className="p-4 bg-secondary bg-gradient mt-auto">
       <div className="d-flex container">
         <div className="flex-grow-1 text-center text-light">
           <span className="me-2">© 2023. Developed by</span>
@@ -17,7 +17,7 @@ const Footer = () => {
         </div>
         <Auth />
       </div>
-    </div>
+    </footer>
   );
 };
 
