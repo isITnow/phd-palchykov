@@ -11,6 +11,7 @@ import Loader from "./Loader";
 import Section from "./Section";
 
 import setPageTitle from "../../assets/utils/setPageTitle";
+import ScrollToTop from "./ScrollToTop";
 
 const Layout = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const Layout = () => {
       </header>
       <main className="container">
         <Section>
+          <ScrollToTop />
           <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
