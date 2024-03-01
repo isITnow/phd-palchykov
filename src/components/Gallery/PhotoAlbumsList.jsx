@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import listItemMotionOptions from "../../assets/utils/motionOptions";
+import motionOptions from "../../assets/motionOptions";
 import s from "./gallery.module.css";
 
 const PhotoAlbumsList = ({ photoAlbums }) => {
@@ -14,7 +14,7 @@ const PhotoAlbumsList = ({ photoAlbums }) => {
           animate="animate"
           transition="transition"
           exit="exit"
-          variants={listItemMotionOptions}
+          variants={motionOptions.listItemMotion}
         >
           <Link to={`/gallery/photo_albums/${id}`}>
             <div className={`card overflow-hidden ${s.hoverEffect}`}>

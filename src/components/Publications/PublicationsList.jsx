@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import listItemMotionOptions from "../../assets/utils/motionOptions";
+import motionOptions from "../../assets/motionOptions";
 import Publication from "./Publication";
 
 const PublicationsList = ({ publications }) => {
@@ -13,7 +13,7 @@ const PublicationsList = ({ publications }) => {
           animate="animate"
           transition="transition"
           exit="exit"
-          variants={listItemMotionOptions}
+          variants={motionOptions.listItemMotion}
         >
           <Publication publication={publication} />
         </motion.li>

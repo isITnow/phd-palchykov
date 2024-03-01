@@ -1,10 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
-
-const fadeInOut = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
-};
+import { AnimatePresence, motion } from "framer-motion";
+import motionOptions from "../../assets/motionOptions";
 
 const Alert = ({ state }) => {
   const { text, type, isVisible } = state;
@@ -16,7 +11,7 @@ const Alert = ({ state }) => {
           initial="initial"
           animate="animate"
           exit="exit"
-          variants={fadeInOut}
+          variants={motionOptions.fadeInOut}
           className={`text-center text-light fw-bold alert bg-gradient bg-${type}`}
           role="alert"
         >

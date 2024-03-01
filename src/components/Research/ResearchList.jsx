@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import listItemMotionOptions from "../../assets/utils/motionOptions";
+import motionOptions from "../../assets/motionOptions";
 import Research from "./Research";
 import s from "./research.module.css";
 
@@ -39,7 +39,7 @@ const ResearchList = ({ researches }) => {
               animate="animate"
               transition="transition"
               exit="exit"
-              variants={listItemMotionOptions}
+              variants={motionOptions.listItemMotion}
             >
               <Research research={research} index={index + 1} />
             </motion.li>

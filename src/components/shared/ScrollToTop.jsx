@@ -1,12 +1,8 @@
-import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { FaAngleUp } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
 
-const fadeInOut = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
-};
+import motionOptions from "../../assets/motionOptions";
 
 const ScrollToTop = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -37,7 +33,7 @@ const ScrollToTop = () => {
           initial="initial"
           key="child"
           type="button"
-          variants={fadeInOut}
+          variants={motionOptions.fadeInOut}
           style={{
             bottom: "45px",
             left: "20px",
