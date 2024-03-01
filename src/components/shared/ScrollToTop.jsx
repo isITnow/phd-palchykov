@@ -37,6 +37,7 @@ const ScrollToTop = () => {
           style={{
             bottom: "45px",
             left: "20px",
+            zIndex: "10",
           }}
           className="bg-dark 
                       bg-gradient 
