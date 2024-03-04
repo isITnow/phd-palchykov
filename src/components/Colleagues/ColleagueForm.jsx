@@ -102,7 +102,7 @@ const ColleagueForm = ({ colleague, status }) => {
               label="Phone"
               name="phone"
               placeholder="+380775554433"
-              type="text"
+              type="tel"
             />
             <div className="col-md-6 mb-3">
               <label
