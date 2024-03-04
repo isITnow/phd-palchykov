@@ -11,6 +11,7 @@ import Badge from "../shared/Badge";
 import SubmitBtn from "../shared/SubmitBtn";
 
 import navTabs from "../../assets/navTabs";
+import { currentDate } from "../../assets/utils/dateHelper";
 import { validation } from "../../assets/utils/validationSchema";
 
 const NewsForm = ({ newsItem, status }) => {
@@ -92,6 +93,7 @@ const NewsForm = ({ newsItem, status }) => {
               required
               type="text"
               bsclass="mb-3"
+              placeholder={currentDate()}
             />
             <div className="col-md-6 mb-3">
               <label
