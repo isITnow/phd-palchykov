@@ -6,7 +6,7 @@ import "photoswipe/dist/photoswipe.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
 import confirmationDialog from "../../assets/utils/confirmationDialog";
-import formateDate from "../../assets/utils/formateDate";
+import { formateDate } from "../../assets/utils/dateHelper";
 import IsLoggedIn from "../shared/IsLoggedIn";
 
 const Comment = ({ comment }) => {

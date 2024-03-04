@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import formateDate from "../../assets/utils/formateDate";
+import { formateDate } from "../../assets/utils/dateHelper";
 
 import s from "./post.module.css";
 
