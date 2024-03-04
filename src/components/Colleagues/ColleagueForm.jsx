@@ -101,6 +101,7 @@ const ColleagueForm = ({ colleague, status }) => {
               bsclass="mb-3"
               label="Phone"
               name="phone"
+              placeholder="+380775554433"
               type="text"
             />
             <div className="col-md-6 mb-3">
