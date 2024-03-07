@@ -26,8 +26,7 @@ const CreateResearchPage = () => {
       showAlert(text, "success");
       return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [error, showAlert, status]);
 
   return (
     <Col lg="8" className="mx-auto">

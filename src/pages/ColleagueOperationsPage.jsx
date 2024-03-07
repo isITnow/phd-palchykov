@@ -35,8 +35,7 @@ const ColleagueOperationsPage = ({ edit }) => {
       showAlert(text, "success");
       return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [edit, error, status, showAlert]);
 
   if (edit && !colleague) {
     return <NoItemToEdit backPath={navTabs.colleagues.path} item="Colleague" />;

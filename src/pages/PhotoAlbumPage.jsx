@@ -24,14 +24,14 @@ import navTabs from "../assets/navTabs";
 import confirmationDialog from "../assets/utils/confirmationDialog";
 
 const PhotoAlbumPage = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const { alert, showAlert } = useAlert();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [isLoaded, setIsLoaded] = useState(false);
   const error = useSelector(selectError);
+  const navigate = useNavigate();
   const photoAlbum = useSelector(selectOnePhotoAlbum);
   const status = useSelector(selectStatus);
-  const { alert, showAlert } = useAlert();
 
   const isDisabled = status === "pending";
 
@@ -63,8 +63,7 @@ const PhotoAlbumPage = () => {
       default:
         break;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [error, showAlert, status]);
 
   if (!isLoaded) {
     return <Loader />;
@@ -82,15 +81,15 @@ const PhotoAlbumPage = () => {
           <IsLoggedIn>
             <div className="btn-group ms-3">
               <Link
-                to={navTabs.gallery.editPhotoAlbumPath(photoAlbum.id)}
                 className="btn btn-primary"
+                to={navTabs.gallery.editPhotoAlbumPath(photoAlbum.id)}
               >
                 Edit
               </Link>
               <button
-                type="button"
                 className="btn btn-danger"
                 disabled={isDisabled}
+                type="button"
                 onClick={handleDelete}
               >
                 Delete

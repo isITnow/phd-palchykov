@@ -27,28 +27,22 @@ import BackBtn from "../components/shared/BackBtn";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 
+import motionOptions from "../assets/motionOptions";
 import navTabs from "../assets/navTabs";
 import confirmationDialog from "../assets/utils/confirmationDialog";
 
-const fadeInOut = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
-};
-
 const PostPage = () => {
-  const { id } = useParams();
   const [showForm, setShowForm] = useState(false);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const error = useSelector(selectError);
+  const { alert, showAlert } = useAlert();
+  const { id } = useParams();
   const comments = useSelector(selectComments);
-  const anyComments = !!comments?.length;
+  const dispatch = useDispatch();
+  const error = useSelector(selectError);
+  const navigate = useNavigate();
   const post = useSelector(selectOnePost);
   const status = useSelector(selectStatus);
 
-  const { alert, showAlert } = useAlert();
+  const anyComments = !!comments?.length;
 
   useEffect(() => {
     dispatch(getOnePostThunk(id));
@@ -60,7 +54,7 @@ const PostPage = () => {
         showAlert(error, "danger");
         break;
 
-      case "fulfilled":
+      case "updated":
         showAlert("Post updated", "success");
         setShowForm(false);
         break;
@@ -81,8 +75,7 @@ const PostPage = () => {
       default:
         break;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [error, navigate, showAlert, status]);
 
   const handleDelete = () => {
     confirmationDialog(
@@ -109,13 +102,13 @@ const PostPage = () => {
                 {showForm ? (
                   <AnimatePresence>
                     <motion.button
-                      type="button"
-                      key="child"
-                      initial="initial"
                       animate="animate"
-                      exit="exit"
-                      variants={fadeInOut}
                       className="btn btn-outline-secondary"
+                      exit="exit"
+                      initial="initial"
+                      key="child"
+                      type="button"
+                      variants={motionOptions.fadeInOut}
                       onClick={() => setShowForm(false)}
                     >
                       Cancel Update
@@ -124,13 +117,13 @@ const PostPage = () => {
                 ) : (
                   <AnimatePresence>
                     <motion.button
-                      type="button"
-                      key="child"
-                      initial="initial"
                       animate="animate"
-                      exit="exit"
-                      variants={fadeInOut}
                       className="btn btn-primary"
+                      exit="exit"
+                      initial="initial"
+                      key="child"
+                      type="button"
+                      variants={motionOptions.fadeInOut}
                       onClick={() => setShowForm(true)}
                     >
                       Edit
@@ -138,8 +131,8 @@ const PostPage = () => {
                   </AnimatePresence>
                 )}
                 <button
-                  type="button"
                   className="btn btn-danger"
+                  type="button"
                   onClick={handleDelete}
                 >
                   Delete
@@ -151,12 +144,12 @@ const PostPage = () => {
           <AnimatePresence>
             {showForm && (
               <motion.div
-                key="child"
-                initial="initial"
                 animate="animate"
-                exit="exit"
-                variants={fadeInOut}
                 className="mt-3"
+                exit="exit"
+                initial="initial"
+                key="child"
+                variants={motionOptions.fadeInOut}
               >
                 <PostForm post={post} status={status} />
               </motion.div>

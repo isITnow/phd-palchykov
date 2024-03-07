@@ -17,11 +17,11 @@ import Loader from "../components/shared/Loader";
 import navTabs from "../assets/navTabs";
 
 const PublicationsPage = () => {
+  const { alert, showAlert } = useAlert();
   const { period_id } = useParams();
-  const dispatch = useDispatch();
   const { periods } = useSelector(selectPeriods);
   const { publications, status, error } = useSelector(selectPublications);
-  const { alert, showAlert } = useAlert();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -48,8 +48,7 @@ const PublicationsPage = () => {
       showAlert("Publication deleted", "success");
       return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [error, showAlert, status]);
 
   if (status === "loading") {
     return <Loader />;
@@ -59,9 +58,9 @@ const PublicationsPage = () => {
     <>
       <Alert state={alert} />
       <PagesNav
+        currentPeriodId={parseInt(period_id)}
         margin={"mb-3"}
         periods={periods}
-        currentPeriodId={parseInt(period_id)}
       />
       <PublicationsList publications={publications} />
       <div className="d-flex justify-content-between mt-3">

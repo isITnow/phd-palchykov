@@ -19,12 +19,12 @@ import Loader from "../components/shared/Loader";
 import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
 const PostsPage = () => {
-  const dispatch = useDispatch(getPostsThunk());
-  const posts = useSelector(selectPostsList);
-  const error = useSelector(selectError);
-  const status = useSelector(selectStatus);
   const { alert, showAlert } = useAlert();
+  const dispatch = useDispatch(getPostsThunk());
+  const error = useSelector(selectError);
   const isLoggedIn = useSignInStatus();
+  const posts = useSelector(selectPostsList);
+  const status = useSelector(selectStatus);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -44,7 +44,7 @@ const PostsPage = () => {
         showAlert(`${error}. Please contact your administrator!`, "danger");
         break;
 
-      case "fulfilled":
+      case "created":
         showAlert("Post created", "success");
         break;
 
@@ -54,8 +54,7 @@ const PostsPage = () => {
       default:
         break;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [error, showAlert, status]);
 
   if (status === "loading") {
     return <Loader />;

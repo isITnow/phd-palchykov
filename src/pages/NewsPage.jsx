@@ -41,8 +41,7 @@ const NewsPage = () => {
       showAlert("Card deleted", "success");
       return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [error, showAlert, status]);
 
   if (status === "loading") {
     return <Loader />;

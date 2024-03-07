@@ -15,9 +15,9 @@ import Loader from "../components/shared/Loader";
 import navTabs from "../assets/navTabs";
 
 const ResearchPage = () => {
-  const dispatch = useDispatch();
-  const { researches, status, error } = useSelector(selectResearches);
   const { alert, showAlert } = useAlert();
+  const { researches, status, error } = useSelector(selectResearches);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -35,8 +35,7 @@ const ResearchPage = () => {
       showAlert(`${error}. Please contact your administrator!`, "danger");
       return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [error, showAlert, status]);
 
   if (status === "loading") {
     return <Loader />;

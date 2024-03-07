@@ -15,9 +15,10 @@ import NoItemToEdit from "../components/shared/NoItemToEdit";
 import navTabs from "../assets/navTabs";
 
 const NewsOperationsPage = ({ edit }) => {
-  const { news, error, status } = useSelector(selectNews);
   const { alert, showAlert } = useAlert();
   const { id } = useParams();
+  const { news, error, status } = useSelector(selectNews);
+
   const title = edit ? "Edit News Card" : "Create News Card";
   let newsItem = null;
 
@@ -35,8 +36,7 @@ const NewsOperationsPage = ({ edit }) => {
       showAlert(text, "success");
       return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [edit, error, showAlert, status]);
 
   if (edit && !newsItem) {
     return <NoItemToEdit backPath={navTabs.researches.path} item="News" />;

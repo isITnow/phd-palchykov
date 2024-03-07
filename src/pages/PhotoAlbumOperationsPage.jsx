@@ -36,8 +36,7 @@ const PhotoAlbumOperationsPage = ({ edit }) => {
       showAlert(text, "success");
       return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [edit, error, showAlert, status]);
 
   if (edit && !photoAlbum) {
     return <NoItemToEdit backPath={navTabs.gallery.path} item="Photo Album" />;

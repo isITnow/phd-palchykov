@@ -19,11 +19,11 @@ import Loader from "../components/shared/Loader";
 import navTabs from "../assets/navTabs";
 
 const GalleryPage = () => {
-  const dispatch = useDispatch();
   const { alert, showAlert } = useAlert();
+  const dispatch = useDispatch();
   const error = useSelector(selectError);
-  const status = useSelector(selectStatus);
   const photoAlbums = useSelector(selectPhotoAlbums);
+  const status = useSelector(selectStatus);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -46,8 +46,7 @@ const GalleryPage = () => {
       showAlert("Photo album deleted", "success");
       return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [error, showAlert, status]);
 
   if (status === "loading") {
     return <Loader />;

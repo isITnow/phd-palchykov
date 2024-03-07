@@ -18,11 +18,10 @@ import getCurrentPeriod from "../assets/utils/getCurrentEntity";
 
 const PublicationOperationsPage = ({ edit }) => {
   const { alert, showAlert } = useAlert();
-
-  const { publications, error, status } = useSelector(selectPublications);
-  const { periods } = useSelector(selectPeriods);
-
   const { period_id, publication_id } = useParams();
+  const { periods } = useSelector(selectPeriods);
+  const { publications, error, status } = useSelector(selectPublications);
+
   const currentPeriodId = parseInt(period_id);
   const currentPublicationId = parseInt(publication_id);
   const currentPeriod = getCurrentPeriod(periods, currentPeriodId);
@@ -50,8 +49,7 @@ const PublicationOperationsPage = ({ edit }) => {
       showAlert(text, "success");
       return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [edit, error, showAlert, status]);
 
   if (edit && !publication) {
     return (

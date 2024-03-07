@@ -76,8 +76,7 @@ const EditIllustrationPage = () => {
       showAlert("Illustration updated", "success");
       return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [error, showAlert, status]);
 
   if (!research || !illustration) {
     return (
