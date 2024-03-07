@@ -13,10 +13,10 @@ import {
 } from "../comments/operationsComments";
 
 const initPosts = {
-  postsList: [],
-  onePost: null,
-  status: null,
   error: null,
+  onePost: null,
+  postsList: [],
+  status: null,
 };
 
 const setError = (state, { payload }) => {
@@ -60,7 +60,7 @@ const postsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(addPostThunk.fulfilled, (state, { payload }) => {
-      state.status = "fulfilled";
+      state.status = "created";
       state.postsList.unshift(payload);
     });
     builder.addCase(addPostThunk.rejected, setError);
@@ -71,7 +71,7 @@ const postsSlice = createSlice({
       state.error = null;
     });
     builder.addCase(updatePostThunk.fulfilled, (state, { payload }) => {
-      state.status = "fulfilled";
+      state.status = "updated";
       state.onePost = payload;
     });
     builder.addCase(updatePostThunk.rejected, setError);
