@@ -17,7 +17,7 @@ import navTabs from "../assets/navTabs";
 const NewsPage = () => {
   const dispatch = useDispatch();
   const { news, status, error } = useSelector(selectNews);
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -49,7 +49,7 @@ const NewsPage = () => {
 
   return (
     <>
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <NewsList news={news} />
       <IsLoggedIn>
         <div className="mt-3 text-end">

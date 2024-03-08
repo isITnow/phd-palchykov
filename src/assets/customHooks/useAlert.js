@@ -3,7 +3,7 @@ import { useState, useCallback } from "react";
 const initState = { text: "", type: "", isVisible: false };
 
 export const useAlert = () => {
-  const [alert, setAlert] = useState(initState);
+  const [alertState, setAlert] = useState(initState);
 
   const showAlert = useCallback(
     (text, type) => {
@@ -15,5 +15,5 @@ export const useAlert = () => {
     [setAlert]
   );
 
-  return { alert, showAlert };
+  return { alertState, showAlert };
 };

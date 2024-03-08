@@ -16,7 +16,7 @@ import navTabs from "../assets/navTabs";
 
 const ColleagueOperationsPage = ({ edit }) => {
   const { colleagues, error, status } = useSelector(selectColleagues);
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const { id } = useParams();
   const title = edit ? "Edit Colleague Card" : "Create Colleague Card";
   let colleague = null;
@@ -43,7 +43,7 @@ const ColleagueOperationsPage = ({ edit }) => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <FormCard
         title={title}
         body={

@@ -18,7 +18,7 @@ import NoItemToEdit from "../components/shared/NoItemToEdit";
 import navTabs from "../assets/navTabs";
 
 const PhotoAlbumOperationsPage = ({ edit }) => {
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const error = useSelector(selectError);
   const photoAlbum = useSelector(selectOnePhotoAlbum);
   const status = useSelector(selectStatus);
@@ -44,7 +44,7 @@ const PhotoAlbumOperationsPage = ({ edit }) => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <FormCard
         title={title}
         body={

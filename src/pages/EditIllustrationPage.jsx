@@ -23,7 +23,7 @@ import { validation } from "../assets/utils/validationSchema";
 
 const EditIllustrationPage = () => {
   const dispatch = useDispatch();
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const { research_id, id } = useParams();
   const { researches, status, error } = useSelector(selectResearches);
 
@@ -86,7 +86,7 @@ const EditIllustrationPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <FormCard
         title="Edit Illustration"
         body={

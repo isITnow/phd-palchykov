@@ -33,7 +33,7 @@ import confirmationDialog from "../assets/utils/confirmationDialog";
 
 const PostPage = () => {
   const [showForm, setShowForm] = useState(false);
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const { id } = useParams();
   const comments = useSelector(selectComments);
   const dispatch = useDispatch();
@@ -90,7 +90,7 @@ const PostPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alert} />
+      <Alert state={alertState} />
       {post && (
         <>
           <Post post={post} single />

@@ -12,7 +12,7 @@ import ResearchForm from "../components/Research/ResearchForm";
 
 const CreateResearchPage = () => {
   const { status, error } = useSelector(selectResearches);
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
 
   const title = "Create Research";
 
@@ -30,7 +30,7 @@ const CreateResearchPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <FormCard title={title} body={<ResearchForm status={status} />} />
     </Col>
   );

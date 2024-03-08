@@ -26,7 +26,7 @@ const EditResearchPage = () => {
   const { id } = useParams();
   const { researches, status, error } = useSelector(selectResearches);
 
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
 
   const research = researches.find((research) => research.id === parseInt(id));
   const researchParsed = research && JSON.parse(research.payload);
@@ -72,7 +72,7 @@ const EditResearchPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <FormCard
         title="Edit Research"
         body={

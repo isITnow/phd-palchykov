@@ -19,7 +19,7 @@ import Loader from "../components/shared/Loader";
 import navTabs from "../assets/navTabs";
 
 const GalleryPage = () => {
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const dispatch = useDispatch();
   const error = useSelector(selectError);
   const photoAlbums = useSelector(selectPhotoAlbums);
@@ -54,7 +54,7 @@ const GalleryPage = () => {
 
   return (
     <>
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <PhotoAlbumsList photoAlbums={photoAlbums} />
       <IsLoggedIn>
         <div className="mt-3 text-end">

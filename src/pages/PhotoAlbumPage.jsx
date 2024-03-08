@@ -25,7 +25,7 @@ import confirmationDialog from "../assets/utils/confirmationDialog";
 
 const PhotoAlbumPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const { id } = useParams();
   const dispatch = useDispatch();
   const error = useSelector(selectError);
@@ -71,7 +71,7 @@ const PhotoAlbumPage = () => {
 
   return (
     <>
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <div className="d-flex flex-column flex-lg-row justify-content-lg-between align-items-center mb-4">
         <h4 className="text-secondary fw-bold mb-3 mb-lg-0">
           {photoAlbum.title}

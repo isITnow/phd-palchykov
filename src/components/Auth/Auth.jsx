@@ -16,7 +16,7 @@ const Auth = () => {
   const isLoggedIn = useSignInStatus();
   const dispatch = useDispatch(logoutThunk);
 
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const error = useSelector(selectError);
   const status = useSelector(selectStatus);
 
@@ -58,7 +58,7 @@ const Auth = () => {
         />
       )}
       <AuthModal show={modalShow} onHide={() => setModalShow(false)}>
-        <Alert state={alert} />
+        <Alert state={alertState} />
         <LoginForm status={status} />
       </AuthModal>
     </>

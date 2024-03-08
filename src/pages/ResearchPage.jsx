@@ -15,7 +15,7 @@ import Loader from "../components/shared/Loader";
 import navTabs from "../assets/navTabs";
 
 const ResearchPage = () => {
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const { researches, status, error } = useSelector(selectResearches);
   const dispatch = useDispatch();
 
@@ -43,7 +43,7 @@ const ResearchPage = () => {
 
   return (
     <>
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <ResearchList researches={researches} />
       <IsLoggedIn>
         <div className="text-end">

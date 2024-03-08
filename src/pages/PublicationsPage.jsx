@@ -17,7 +17,7 @@ import Loader from "../components/shared/Loader";
 import navTabs from "../assets/navTabs";
 
 const PublicationsPage = () => {
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const { period_id } = useParams();
   const { periods } = useSelector(selectPeriods);
   const { publications, status, error } = useSelector(selectPublications);
@@ -56,7 +56,7 @@ const PublicationsPage = () => {
 
   return (
     <>
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <PagesNav
         currentPeriodId={parseInt(period_id)}
         margin={"mb-3"}

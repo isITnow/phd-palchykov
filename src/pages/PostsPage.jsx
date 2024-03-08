@@ -19,7 +19,7 @@ import Loader from "../components/shared/Loader";
 import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
 const PostsPage = () => {
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const dispatch = useDispatch(getPostsThunk());
   const error = useSelector(selectError);
   const isLoggedIn = useSignInStatus();
@@ -62,7 +62,7 @@ const PostsPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alert} />
+      <Alert state={alertState} />
       {isLoggedIn ? (
         <div className="mb-4">
           <PostForm />

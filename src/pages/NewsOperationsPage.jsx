@@ -15,7 +15,7 @@ import NoItemToEdit from "../components/shared/NoItemToEdit";
 import navTabs from "../assets/navTabs";
 
 const NewsOperationsPage = ({ edit }) => {
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const { id } = useParams();
   const { news, error, status } = useSelector(selectNews);
 
@@ -44,7 +44,7 @@ const NewsOperationsPage = ({ edit }) => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <FormCard
         title={title}
         body={<NewsForm newsItem={edit ? newsItem : null} status={status} />}

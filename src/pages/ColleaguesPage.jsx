@@ -17,7 +17,7 @@ import navTabs from "../assets/navTabs.js";
 const ColleaguesPage = () => {
   const dispatch = useDispatch();
   const { colleagues, status, error } = useSelector(selectColleagues);
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -49,7 +49,7 @@ const ColleaguesPage = () => {
 
   return (
     <>
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <ColleaguesList colleagues={colleagues} />
       <IsLoggedIn>
         <div className="mt-3 text-end">

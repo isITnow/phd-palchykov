@@ -17,7 +17,7 @@ import navTabs from "../assets/navTabs";
 import getCurrentPeriod from "../assets/utils/getCurrentEntity";
 
 const PublicationOperationsPage = ({ edit }) => {
-  const { alert, showAlert } = useAlert();
+  const { alertState, showAlert } = useAlert();
   const { period_id, publication_id } = useParams();
   const { periods } = useSelector(selectPeriods);
   const { publications, error, status } = useSelector(selectPublications);
@@ -62,7 +62,7 @@ const PublicationOperationsPage = ({ edit }) => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alert} />
+      <Alert state={alertState} />
       <FormCard
         title={title}
         body={
