@@ -6,11 +6,12 @@ import {
   removePostThunk,
   updatePostThunk,
 } from "./operationsPosts";
-
 import {
   addCommentThunk,
   removeCommentThunk,
 } from "../comments/operationsComments";
+
+import setError from "../../assets/utils/setSliceError";
 
 const initPosts = {
   error: null,
@@ -19,19 +20,13 @@ const initPosts = {
   status: null,
 };
 
-const setError = (state, { payload }) => {
-  state.status =
-    payload === "canceled request" ? "canceled request" : "rejected";
-  state.error = payload;
-};
-
 const postsSlice = createSlice({
   name: "posts",
   initialState: initPosts,
   reducers: {},
 
   extraReducers: (builder) => {
-    // FETCH ALL POSTS
+    //* FETCH ALL POSTS
     builder.addCase(getPostsThunk.pending, (state) => {
       state.status = "loading";
       state.error = null;
@@ -43,7 +38,7 @@ const postsSlice = createSlice({
     });
     builder.addCase(getPostsThunk.rejected, setError);
 
-    // FETCH ONE POST
+    //* FETCH ONE POST
     builder.addCase(getOnePostThunk.pending, (state) => {
       state.status = "loading";
       state.error = null;
@@ -54,7 +49,7 @@ const postsSlice = createSlice({
     });
     builder.addCase(getOnePostThunk.rejected, setError);
 
-    // CREATE POST
+    //* CREATE POST
     builder.addCase(addPostThunk.pending, (state) => {
       state.status = "pending";
       state.error = null;
@@ -65,7 +60,7 @@ const postsSlice = createSlice({
     });
     builder.addCase(addPostThunk.rejected, setError);
 
-    // UPDATE POST
+    //* UPDATE POST
     builder.addCase(updatePostThunk.pending, (state) => {
       state.status = "pending";
       state.error = null;
@@ -76,20 +71,20 @@ const postsSlice = createSlice({
     });
     builder.addCase(updatePostThunk.rejected, setError);
 
-    // REMOVE POST
+    //* REMOVE POST
     builder.addCase(removePostThunk.pending, (state, { payload }) => {
       state.status = "pending";
       state.error = null;
     });
     builder.addCase(removePostThunk.fulfilled, (state, { payload }) => {
-      state.status = "removed";
+      state.status = "deleted";
       state.postsList = state.postsList.filter((post) => post.id !== payload);
     });
     builder.addCase(removePostThunk.rejected, setError);
 
-    //// COMMENTS ACTIONS /////
+    ////* COMMENTS ACTIONS /////
 
-    // CREATE COMMENT
+    //* CREATE COMMENT
     builder.addCase(addCommentThunk.pending, (state) => {
       state.status = "pending";
       state.error = null;
@@ -100,13 +95,13 @@ const postsSlice = createSlice({
     });
     builder.addCase(addCommentThunk.rejected, setError);
 
-    // REMOVE COMMENT
+    //* REMOVE COMMENT
     builder.addCase(removeCommentThunk.pending, (state, { payload }) => {
       state.status = "pending";
       state.error = null;
     });
     builder.addCase(removeCommentThunk.fulfilled, (state, { payload }) => {
-      state.status = "comment removed";
+      state.status = "comment deleted";
       state.onePost.comments = state.onePost.comments.filter(
         (comment) => comment.id !== payload
       );
