@@ -1,14 +1,13 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getResearchesThunk } from "../redux/researches/operationsResearches";
 import { selectResearches } from "../redux/researches/selectorResearches";
 
 import { useAlert } from "../assets/customHooks/useAlert";
-import Alert from "../components/shared/Alert";
 
 import ResearchList from "../components/Research/ResearchList";
+import Alert from "../components/shared/Alert";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 
@@ -32,7 +31,7 @@ const ResearchPage = () => {
 
   useEffect(() => {
     if (status === "rejected") {
-      showAlert(`${error}. Please contact your administrator!`, "danger");
+      showAlert(error, "danger");
       return;
     }
   }, [error, showAlert, status]);

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { getPostsThunk } from "../redux/posts/operationsPosts";
 import {
@@ -9,14 +8,13 @@ import {
 } from "../redux/posts/selectorPosts";
 
 import { useAlert } from "../assets/customHooks/useAlert";
-import Alert from "../components/shared/Alert";
+import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
 import { Col } from "react-bootstrap";
 import PostForm from "../components/Posts/PostForm";
 import PostsList from "../components/Posts/PostsList";
+import Alert from "../components/shared/Alert";
 import Loader from "../components/shared/Loader";
-
-import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
 const PostsPage = () => {
   const { alertState, showAlert } = useAlert();
@@ -41,14 +39,14 @@ const PostsPage = () => {
   useEffect(() => {
     switch (status) {
       case "rejected":
-        showAlert(`${error}. Please contact your administrator!`, "danger");
+        showAlert(error, "danger");
         break;
 
       case "created":
         showAlert("Post created", "success");
         break;
 
-      case "removed":
+      case "deleted":
         showAlert("Post deleted", "success");
         break;
       default:
