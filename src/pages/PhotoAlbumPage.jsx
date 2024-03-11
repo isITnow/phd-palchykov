@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   getOnePhotoAlbumThunk,
   removePhotoAlbumThunk,
@@ -13,9 +12,9 @@ import {
 } from "../redux/gallery/selectorGallery";
 
 import { useAlert } from "../assets/customHooks/useAlert";
-import Alert from "../components/shared/Alert";
 
 import PhotoAlbum from "../components/Gallery/PhotoAlbum";
+import Alert from "../components/shared/Alert";
 import BackBtn from "../components/shared/BackBtn";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
@@ -56,7 +55,7 @@ const PhotoAlbumPage = () => {
         setIsLoaded(true);
         break;
 
-      case "picture removed":
+      case "picture deleted":
         showAlert("Picture deleted", "success");
         break;
 

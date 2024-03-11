@@ -59,7 +59,7 @@ const PostPage = () => {
         setShowForm(false);
         break;
 
-      case "removed":
+      case "deleted":
         setShowForm(false);
         navigate(navTabs.posts.path);
         break;
@@ -68,7 +68,7 @@ const PostPage = () => {
         showAlert("Comment published", "success");
         break;
 
-      case "comment removed":
+      case "comment deleted":
         setShowForm(false);
         showAlert("Comment deleted", "success");
         break;
