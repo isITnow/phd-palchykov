@@ -1,26 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  getResearchesThunk,
+  // removeIllustrationThunk,
+  updateIllustrationThunk,
+} from "../illustrations/operationsIllustrations";
+import {
   addResearchThunk,
-  updateResearchThunk,
+  getResearchesThunk,
   removeResearchThunk,
+  updateResearchThunk,
 } from "./operationsResearches";
 
-import {
-  updateIllustrationThunk,
-  removeIllustrationThunk,
-} from "../illustrations/operationsIllustrations";
+import setError from "../../assets/utils/setSliceError";
 
 const initResearch = {
+  error: null,
   researches: [],
   status: null,
-  error: null,
-};
-
-const setError = (state, { payload }) => {
-  state.status =
-    payload === "canceled request" ? "canceled request" : "rejected";
-  state.error = payload;
 };
 
 const researchesSlice = createSlice({
@@ -46,7 +41,7 @@ const researchesSlice = createSlice({
       state.error = null;
     });
     builder.addCase(addResearchThunk.fulfilled, (state) => {
-      state.status = "fulfilled";
+      state.status = "created";
     });
     builder.addCase(addResearchThunk.rejected, setError);
 
@@ -66,7 +61,7 @@ const researchesSlice = createSlice({
       state.error = null;
     });
     builder.addCase(removeResearchThunk.fulfilled, (state, { payload }) => {
-      state.status = "fulfilled";
+      state.status = "deleted";
       state.researches = state.researches.filter(
         (research) => research.id !== payload
       );
@@ -86,15 +81,15 @@ const researchesSlice = createSlice({
     });
     builder.addCase(updateIllustrationThunk.rejected, setError);
 
-    //* REMOVE ILLUSTRATION doesn't implemented in the app
-    builder.addCase(removeIllustrationThunk.pending, (state) => {
-      state.status = "pending";
-      state.error = null;
-    });
-    builder.addCase(removeIllustrationThunk.fulfilled, (state) => {
-      state.status = "fulfilled";
-    });
-    builder.addCase(removeIllustrationThunk.rejected, setError);
+    //! REMOVE ILLUSTRATION doesn't implemented in the API app
+    // builder.addCase(removeIllustrationThunk.pending, (state) => {
+    //   state.status = "pending";
+    //   state.error = null;
+    // });
+    // builder.addCase(removeIllustrationThunk.fulfilled, (state) => {
+    //   state.status = "deleted";
+    // });
+    // builder.addCase(removeIllustrationThunk.rejected, setError);
   },
 });
 

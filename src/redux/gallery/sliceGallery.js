@@ -8,17 +8,13 @@ import {
   updatePhotoAlbumThunk,
 } from "./operationsGallery";
 
-const initGallery = {
-  photoAlbums: [],
-  onePhotoAlbum: null,
-  status: null,
-  error: null,
-};
+import setError from "../../assets/utils/setSliceError";
 
-const setError = (state, { payload }) => {
-  state.status =
-    payload === "canceled request" ? "canceled request" : "rejected";
-  state.error = payload;
+const initGallery = {
+  error: null,
+  onePhotoAlbum: null,
+  photoAlbums: [],
+  status: null,
 };
 
 const gallerySlice = createSlice({
@@ -27,7 +23,7 @@ const gallerySlice = createSlice({
   reducers: {},
 
   extraReducers: (builder) => {
-    // FETCH ALL PHOTO ALBUMS
+    //* FETCH ALL PHOTO ALBUMS
     builder.addCase(getPhotoAlbumsThunk.pending, (state) => {
       state.status = "loading";
       state.error = null;
@@ -38,7 +34,7 @@ const gallerySlice = createSlice({
     });
     builder.addCase(getPhotoAlbumsThunk.rejected, setError);
 
-    // FETCH ONE PHOTO ALBUM
+    //* FETCH ONE PHOTO ALBUM
     builder.addCase(getOnePhotoAlbumThunk.pending, (state) => {
       state.status = "loading";
       state.error = null;
@@ -49,34 +45,34 @@ const gallerySlice = createSlice({
     });
     builder.addCase(getOnePhotoAlbumThunk.rejected, setError);
 
-    // CREATE PHOTO ALBUM
+    //* CREATE PHOTO ALBUM
     builder.addCase(addPhotoAlbumThunk.pending, (state) => {
       state.status = "pending";
       state.error = null;
     });
     builder.addCase(addPhotoAlbumThunk.fulfilled, (state) => {
-      state.status = "fulfilled";
+      state.status = "created";
       // state.photoAlbums.push(payload);
     });
     builder.addCase(addPhotoAlbumThunk.rejected, setError);
 
-    // UPDATE PHOTO ALBUM
+    //* UPDATE PHOTO ALBUM
     builder.addCase(updatePhotoAlbumThunk.pending, (state) => {
       state.status = "pending";
       state.error = null;
     });
     builder.addCase(updatePhotoAlbumThunk.fulfilled, (state) => {
-      state.status = "fulfilled";
+      state.status = "updated";
     });
     builder.addCase(updatePhotoAlbumThunk.rejected, setError);
 
-    // REMOVE PHOTO ALBUM
+    //* REMOVE PHOTO ALBUM
     builder.addCase(removePhotoAlbumThunk.pending, (state) => {
       state.status = "pending";
       state.error = null;
     });
     builder.addCase(removePhotoAlbumThunk.fulfilled, (state, { payload }) => {
-      state.status = "removed";
+      state.status = "deleted";
       state.error = null;
       // state.photoAlbums = state.photoAlbums.filter(
       //   (photoAlbum) => photoAlbum.id !== payload
@@ -84,13 +80,13 @@ const gallerySlice = createSlice({
     });
     builder.addCase(removePhotoAlbumThunk.rejected, setError);
 
-    // REMOVE PICTURE
+    //* REMOVE PICTURE
     builder.addCase(removePictureThunk.pending, (state) => {
       state.status = "pending";
       state.error = null;
     });
     builder.addCase(removePictureThunk.fulfilled, (state, { payload }) => {
-      state.status = "picture removed";
+      state.status = "picture deleted";
       state.error = null;
       state.onePhotoAlbum.pictures_list =
         state.onePhotoAlbum.pictures_list.filter(
