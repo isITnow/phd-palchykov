@@ -1,16 +1,16 @@
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
 import { getPublicationsThunk } from "../redux/publications/operationsPublications";
 import { selectPublications } from "../redux/publications/selectorPublications";
 
 import { useAlert } from "../assets/customHooks/useAlert";
-import Alert from "../components/shared/Alert";
+import useRejectedDeletedAlertEffect from "../assets/customHooks/alertHooks/useRejectedDeletedAlertEffect";
 
 import PagesNav from "../components/PagesNav/PagesNav";
 import PublicationsList from "../components/Publications/PublicationsList";
+import Alert from "../components/shared/Alert";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 
@@ -39,16 +39,7 @@ const PublicationsPage = () => {
     };
   }, [dispatch, period_id]);
 
-  useEffect(() => {
-    if (status === "rejected") {
-      showAlert(`${error}. Please contact your administrator!`, "danger");
-      return;
-    }
-    if (status === "removed") {
-      showAlert("Publication deleted", "success");
-      return;
-    }
-  }, [error, showAlert, status]);
+  useRejectedDeletedAlertEffect(error, status, showAlert, "Publication");
 
   if (status === "loading") {
     return <Loader />;

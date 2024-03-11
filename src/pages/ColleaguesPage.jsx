@@ -1,14 +1,14 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getColleaguesThunk } from "../redux/colleagues/operationsColleagues.js";
 import { selectColleagues } from "../redux/colleagues/selectorColleagues.js";
 
 import { useAlert } from "../assets/customHooks/useAlert.js";
-import Alert from "../components/shared/Alert.jsx";
+import useRejectedDeletedAlertEffect from "../assets/customHooks/alertHooks/useRejectedDeletedAlertEffect.js";
 
 import ColleaguesList from "../components/Colleagues/ColleaguesList";
+import Alert from "../components/shared/Alert.jsx";
 import IsLoggedIn from "../components/shared/IsLoggedIn.jsx";
 import Loader from "../components/shared/Loader";
 
@@ -31,17 +31,7 @@ const ColleaguesPage = () => {
     };
   }, [dispatch]);
 
-  useEffect(() => {
-    if (status === "rejected") {
-      showAlert(`${error}. Please contact your administrator!`, "danger");
-      return;
-    }
-
-    if (status === "removed") {
-      showAlert("Card deleted", "success");
-      return;
-    }
-  }, [error, showAlert, status]);
+  useRejectedDeletedAlertEffect(error, status, showAlert);
 
   if (status === "loading") {
     return <Loader />;

@@ -1,14 +1,14 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getNewsThunk } from "../redux/news/operationsNews";
 import { selectNews } from "../redux/news/selectorNews";
 
 import { useAlert } from "../assets/customHooks/useAlert";
-import Alert from "../components/shared/Alert";
+import useRejectedDeletedAlertEffect from "../assets/customHooks/alertHooks/useRejectedDeletedAlertEffect";
 
 import NewsList from "../components/News/NewsList";
+import Alert from "../components/shared/Alert";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 
@@ -31,17 +31,7 @@ const NewsPage = () => {
     };
   }, [dispatch]);
 
-  useEffect(() => {
-    if (status === "rejected") {
-      showAlert(`${error}. Please contact your administrator!`, "danger");
-      return;
-    }
-
-    if (status === "removed") {
-      showAlert("Card deleted", "success");
-      return;
-    }
-  }, [error, showAlert, status]);
+  useRejectedDeletedAlertEffect(error, status, showAlert, "News");
 
   if (status === "loading") {
     return <Loader />;
