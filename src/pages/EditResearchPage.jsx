@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { updateResearchThunk } from "../redux/researches/operationsResearches";
@@ -8,11 +6,12 @@ import { selectResearches } from "../redux/researches/selectorResearches";
 import { FieldArray, Form, Formik } from "formik";
 
 import { useAlert } from "../assets/customHooks/useAlert";
-import Alert from "../components/shared/Alert";
+import useCreatedUpdatedRejectedAlertEffect from "../assets/customHooks/alertHooks/useCreatedUpdatedRejectedAlertEffect";
 
 import { Col } from "react-bootstrap";
 import CustomInput from "../components/FormComponents/CustomInput";
 import FormCard from "../components/FormComponents/FormCard";
+import Alert from "../components/shared/Alert";
 import BackBtn from "../components/shared/BackBtn";
 import Badge from "../components/shared/Badge";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
@@ -55,16 +54,7 @@ const EditResearchPage = () => {
     actions.setSubmitting(false);
   };
 
-  useEffect(() => {
-    if (status === "rejected") {
-      showAlert(error, "danger");
-      return;
-    }
-    if (status === "updated") {
-      showAlert("Research updated", "success");
-      return;
-    }
-  }, [error, showAlert, status]);
+  useCreatedUpdatedRejectedAlertEffect(error, status, showAlert, "Research");
 
   if (!research) {
     return <NoItemToEdit backPath={navTabs.researches.path} item="Research" />;

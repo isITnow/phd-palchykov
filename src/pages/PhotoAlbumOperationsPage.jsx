@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { useSelector } from "react-redux";
 import {
   selectError,
@@ -8,11 +6,12 @@ import {
 } from "../redux/gallery/selectorGallery";
 
 import { useAlert } from "../assets/customHooks/useAlert";
-import Alert from "../components/shared/Alert";
+import useCreatedUpdatedRejectedAlertEffect from "../assets/customHooks/alertHooks/useCreatedUpdatedRejectedAlertEffect";
 
 import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
 import PhotoAlbumForm from "../components/Gallery/PhotoAlbumForm";
+import Alert from "../components/shared/Alert";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
 
 import navTabs from "../assets/navTabs";
@@ -25,18 +24,7 @@ const PhotoAlbumOperationsPage = ({ edit }) => {
 
   const title = edit ? "Edit Photo Album" : "Create Photo Album";
 
-  useEffect(() => {
-    if (status === "rejected") {
-      showAlert(error, "danger");
-      return;
-    }
-
-    if (status === "fulfilled") {
-      const text = edit ? "Photo album updated" : "Photo album created";
-      showAlert(text, "success");
-      return;
-    }
-  }, [edit, error, showAlert, status]);
+  useCreatedUpdatedRejectedAlertEffect(error, status, showAlert, "Photo album");
 
   if (edit && !photoAlbum) {
     return <NoItemToEdit backPath={navTabs.gallery.path} item="Photo Album" />;

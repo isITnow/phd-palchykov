@@ -1,16 +1,15 @@
-import { useEffect } from "react";
-
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
 import { selectPublications } from "../redux/publications/selectorPublications";
 
 import { useAlert } from "../assets/customHooks/useAlert";
-import Alert from "../components/shared/Alert";
+import useCreatedUpdatedRejectedAlertEffect from "../assets/customHooks/alertHooks/useCreatedUpdatedRejectedAlertEffect";
 
 import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
 import PublicationForm from "../components/Publications/PublicationForm";
+import Alert from "../components/shared/Alert";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
 
 import navTabs from "../assets/navTabs";
@@ -39,17 +38,7 @@ const PublicationOperationsPage = ({ edit }) => {
     );
   }
 
-  useEffect(() => {
-    if (status === "rejected") {
-      showAlert(error, "danger");
-      return;
-    }
-    if (status === "fulfilled") {
-      const text = edit ? "Publication updated" : "Publication created";
-      showAlert(text, "success");
-      return;
-    }
-  }, [edit, error, showAlert, status]);
+  useCreatedUpdatedRejectedAlertEffect(error, status, showAlert, "Publication");
 
   if (edit && !publication) {
     return (
