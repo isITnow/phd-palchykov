@@ -1,17 +1,17 @@
 import { Suspense, useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
+import { Outlet, useLocation } from "react-router-dom";
 import { getPeriodsThunk } from "../../redux/publicationPeriods/operationsPublicationPeriods";
 import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
 
+import { Bounce, ToastContainer } from "react-toastify";
 import Footer from "../Footer/Footer";
 import Navigation from "../Navigation/Navigation";
 import Loader from "./Loader";
+import ScrollToTop from "./ScrollToTop";
 import Section from "./Section";
 
 import setPageTitle from "../../assets/utils/setPageTitle";
-import ScrollToTop from "./ScrollToTop";
 
 const Layout = () => {
   const dispatch = useDispatch();
@@ -31,6 +31,19 @@ const Layout = () => {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
       <header className="shadow-sm py-3 bg-light bg-gradient">
         <div className="container">
           <Navigation />
