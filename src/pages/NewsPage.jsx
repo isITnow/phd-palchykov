@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { getNewsThunk } from "../redux/news/operationsNews";
 import { selectNews } from "../redux/news/selectorNews";
 
-import useRejectedDeletedAlertEffect from "../assets/customHooks/alertHooks/useRejectedDeletedAlertEffect";
-
 import NewsList from "../components/News/NewsList";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
@@ -14,7 +12,7 @@ import navTabs from "../assets/navTabs";
 
 const NewsPage = () => {
   const dispatch = useDispatch();
-  const { news, status, error } = useSelector(selectNews);
+  const { news, status } = useSelector(selectNews);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -27,8 +25,6 @@ const NewsPage = () => {
       controller.abort();
     };
   }, [dispatch]);
-
-  useRejectedDeletedAlertEffect(error, status, "News");
 
   if (status === "loading") {
     return <Loader />;

@@ -2,8 +2,6 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectNews } from "../redux/news/selectorNews";
 
-import useCreatedUpdatedRejectedAlertEffect from "../assets/customHooks/alertHooks/useCreatedUpdatedRejectedAlertEffect";
-
 import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
 import NewsForm from "../components/News/NewsForm";
@@ -13,7 +11,7 @@ import navTabs from "../assets/navTabs";
 
 const NewsOperationsPage = ({ edit }) => {
   const { id } = useParams();
-  const { news, error, status } = useSelector(selectNews);
+  const { news, status } = useSelector(selectNews);
 
   const title = edit ? "Edit News Card" : "Create News Card";
   let newsItem = null;
@@ -21,8 +19,6 @@ const NewsOperationsPage = ({ edit }) => {
   if (edit) {
     newsItem = news.find((item) => item.id === parseInt(id));
   }
-
-  useCreatedUpdatedRejectedAlertEffect(error, status, "News");
 
   if (edit && !newsItem) {
     return <NoItemToEdit backPath={navTabs.researches.path} item="News" />;

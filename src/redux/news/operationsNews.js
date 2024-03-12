@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { newsAPI } from "../../services/newsAPI";
 
-import getErrorMessage from "../../assets/utils/getErrorMessage";
+import { fireToastNotification } from "../../assets/utils/fireToastNotification";
+import operationsErrorHandler from "../../assets/utils/operationsErrorHandler";
 
 export const getNewsThunk = createAsyncThunk(
   "news/get",
@@ -16,8 +17,7 @@ export const getNewsThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      // console.log("GET news error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -33,10 +33,10 @@ export const addNewsThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 201, "News created");
       return resp.data;
     } catch (error) {
-      // console.log("POST news error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -52,10 +52,10 @@ export const updateNewsThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 202, "News updated");
       return resp.data;
     } catch (error) {
-      // console.log("EDIT news error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -71,10 +71,10 @@ export const removeNewsThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 204, "News deleted");
       return id;
     } catch (error) {
-      // console.log("DELETE news error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
