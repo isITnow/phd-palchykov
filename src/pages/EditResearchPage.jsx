@@ -5,13 +5,11 @@ import { selectResearches } from "../redux/researches/selectorResearches";
 
 import { FieldArray, Form, Formik } from "formik";
 
-import { useAlert } from "../assets/customHooks/useAlert";
 import useCreatedUpdatedRejectedAlertEffect from "../assets/customHooks/alertHooks/useCreatedUpdatedRejectedAlertEffect";
 
 import { Col } from "react-bootstrap";
 import CustomInput from "../components/FormComponents/CustomInput";
 import FormCard from "../components/FormComponents/FormCard";
-import Alert from "../components/shared/Alert";
 import BackBtn from "../components/shared/BackBtn";
 import Badge from "../components/shared/Badge";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
@@ -24,8 +22,6 @@ const EditResearchPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { researches, status, error } = useSelector(selectResearches);
-
-  const { alertState, showAlert } = useAlert();
 
   const research = researches.find((research) => research.id === parseInt(id));
   const researchParsed = research && JSON.parse(research.payload);
@@ -54,7 +50,7 @@ const EditResearchPage = () => {
     actions.setSubmitting(false);
   };
 
-  useCreatedUpdatedRejectedAlertEffect(error, status, showAlert, "Research");
+  useCreatedUpdatedRejectedAlertEffect(error, status, "Research");
 
   if (!research) {
     return <NoItemToEdit backPath={navTabs.researches.path} item="Research" />;
@@ -62,7 +58,6 @@ const EditResearchPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alertState} />
       <FormCard
         title="Edit Research"
         body={

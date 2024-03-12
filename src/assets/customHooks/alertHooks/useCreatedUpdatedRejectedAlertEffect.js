@@ -1,24 +1,24 @@
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 import getLastWordIfMoreThanOne from "../../utils/getLastWordIfMoreThanOne";
 
 const useCreatedUpdatedRejectedAlertEffect = (
   error,
   status,
-  showAlert,
   cardName = "Card"
 ) => {
   useEffect(() => {
     if (status === "rejected") {
-      showAlert(error, "danger");
+      toast.error(error);
       return;
     }
     if (status === "created" || status === "updated") {
       const text = `${cardName} ${getLastWordIfMoreThanOne(status)}`;
-      showAlert(text, "success");
+      toast.success(text);
       return;
     }
-  }, [error, status, showAlert, cardName]);
+  }, [error, status, cardName]);
 };
 
 export default useCreatedUpdatedRejectedAlertEffect;

@@ -3,20 +3,17 @@ import { useParams } from "react-router-dom";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
 import { selectPublications } from "../redux/publications/selectorPublications";
 
-import { useAlert } from "../assets/customHooks/useAlert";
 import useCreatedUpdatedRejectedAlertEffect from "../assets/customHooks/alertHooks/useCreatedUpdatedRejectedAlertEffect";
 
 import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
 import PublicationForm from "../components/Publications/PublicationForm";
-import Alert from "../components/shared/Alert";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
 
 import navTabs from "../assets/navTabs";
 import getCurrentPeriod from "../assets/utils/getCurrentEntity";
 
 const PublicationOperationsPage = ({ edit }) => {
-  const { alertState, showAlert } = useAlert();
   const { period_id, publication_id } = useParams();
   const { periods } = useSelector(selectPeriods);
   const { publications, error, status } = useSelector(selectPublications);
@@ -38,7 +35,7 @@ const PublicationOperationsPage = ({ edit }) => {
     );
   }
 
-  useCreatedUpdatedRejectedAlertEffect(error, status, showAlert, "Publication");
+  useCreatedUpdatedRejectedAlertEffect(error, status, "Publication");
 
   if (edit && !publication) {
     return (
@@ -51,7 +48,6 @@ const PublicationOperationsPage = ({ edit }) => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alertState} />
       <FormCard
         title={title}
         body={

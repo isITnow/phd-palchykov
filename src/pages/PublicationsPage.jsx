@@ -5,19 +5,16 @@ import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPe
 import { getPublicationsThunk } from "../redux/publications/operationsPublications";
 import { selectPublications } from "../redux/publications/selectorPublications";
 
-import { useAlert } from "../assets/customHooks/useAlert";
 import useRejectedDeletedAlertEffect from "../assets/customHooks/alertHooks/useRejectedDeletedAlertEffect";
 
 import PagesNav from "../components/PagesNav/PagesNav";
 import PublicationsList from "../components/Publications/PublicationsList";
-import Alert from "../components/shared/Alert";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 
 import navTabs from "../assets/navTabs";
 
 const PublicationsPage = () => {
-  const { alertState, showAlert } = useAlert();
   const { period_id } = useParams();
   const { periods } = useSelector(selectPeriods);
   const { publications, status, error } = useSelector(selectPublications);
@@ -39,7 +36,7 @@ const PublicationsPage = () => {
     };
   }, [dispatch, period_id]);
 
-  useRejectedDeletedAlertEffect(error, status, showAlert, "Publication");
+  useRejectedDeletedAlertEffect(error, status, "Publication");
 
   if (status === "loading") {
     return <Loader />;
@@ -47,7 +44,6 @@ const PublicationsPage = () => {
 
   return (
     <>
-      <Alert state={alertState} />
       <PagesNav
         currentPeriodId={parseInt(period_id)}
         margin={"mb-3"}

@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 import { getColleaguesThunk } from "../redux/colleagues/operationsColleagues.js";
 import { selectColleagues } from "../redux/colleagues/selectorColleagues.js";
 
-import { useAlert } from "../assets/customHooks/useAlert.js";
 import useRejectedDeletedAlertEffect from "../assets/customHooks/alertHooks/useRejectedDeletedAlertEffect.js";
 
 import ColleaguesList from "../components/Colleagues/ColleaguesList";
-import Alert from "../components/shared/Alert.jsx";
 import IsLoggedIn from "../components/shared/IsLoggedIn.jsx";
 import Loader from "../components/shared/Loader";
 
@@ -17,7 +15,6 @@ import navTabs from "../assets/navTabs.js";
 const ColleaguesPage = () => {
   const dispatch = useDispatch();
   const { colleagues, status, error } = useSelector(selectColleagues);
-  const { alertState, showAlert } = useAlert();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -31,7 +28,7 @@ const ColleaguesPage = () => {
     };
   }, [dispatch]);
 
-  useRejectedDeletedAlertEffect(error, status, showAlert);
+  useRejectedDeletedAlertEffect(error, status);
 
   if (status === "loading") {
     return <Loader />;
@@ -39,7 +36,6 @@ const ColleaguesPage = () => {
 
   return (
     <>
-      <Alert state={alertState} />
       <ColleaguesList colleagues={colleagues} />
       <IsLoggedIn>
         <div className="mt-3 text-end">

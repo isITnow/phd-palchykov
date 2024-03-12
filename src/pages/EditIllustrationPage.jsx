@@ -5,14 +5,12 @@ import { selectResearches } from "../redux/researches/selectorResearches";
 
 import { Form, Formik } from "formik";
 
-import { useAlert } from "../assets/customHooks/useAlert";
 import useCreatedUpdatedRejectedAlertEffect from "../assets/customHooks/alertHooks/useCreatedUpdatedRejectedAlertEffect";
 
 import { Col } from "react-bootstrap";
 import CustomInput from "../components/FormComponents/CustomInput";
 import CustomTextArea from "../components/FormComponents/CustomTextArea";
 import FormCard from "../components/FormComponents/FormCard";
-import Alert from "../components/shared/Alert";
 import BackBtn from "../components/shared/BackBtn";
 import NoItemToEdit from "../components/shared/NoItemToEdit";
 import SubmitBtn from "../components/shared/SubmitBtn";
@@ -22,7 +20,6 @@ import { validation } from "../assets/utils/validationSchema";
 
 const EditIllustrationPage = () => {
   const dispatch = useDispatch();
-  const { alertState, showAlert } = useAlert();
   const { research_id, id } = useParams();
   const { researches, status, error } = useSelector(selectResearches);
 
@@ -66,12 +63,7 @@ const EditIllustrationPage = () => {
     actions.setSubmitting(false);
   };
 
-  useCreatedUpdatedRejectedAlertEffect(
-    error,
-    status,
-    showAlert,
-    "Illustration"
-  );
+  useCreatedUpdatedRejectedAlertEffect(error, status, "Illustration");
 
   if (!research || !illustration) {
     return (
@@ -81,7 +73,6 @@ const EditIllustrationPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alertState} />
       <FormCard
         title="Edit Illustration"
         body={

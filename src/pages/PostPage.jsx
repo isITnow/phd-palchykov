@@ -1,7 +1,5 @@
-import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import {
   getOnePostThunk,
@@ -14,8 +12,8 @@ import {
   selectStatus,
 } from "../redux/posts/selectorPosts";
 
-import { useAlert } from "../assets/customHooks/useAlert";
-import Alert from "../components/shared/Alert";
+import { AnimatePresence, motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 import { Col } from "react-bootstrap";
 import CommentForm from "../components/Comments/CommentForm";
@@ -33,7 +31,6 @@ import confirmationDialog from "../assets/utils/confirmationDialog";
 
 const PostPage = () => {
   const [showForm, setShowForm] = useState(false);
-  const { alertState, showAlert } = useAlert();
   const { id } = useParams();
   const comments = useSelector(selectComments);
   const dispatch = useDispatch();
@@ -51,11 +48,11 @@ const PostPage = () => {
   useEffect(() => {
     switch (status) {
       case "rejected":
-        showAlert(error, "danger");
+        toast.error(error);
         break;
 
       case "updated":
-        showAlert("Post updated", "success");
+        toast.success("Post updated");
         setShowForm(false);
         break;
 
@@ -65,17 +62,17 @@ const PostPage = () => {
         break;
 
       case "comment added":
-        showAlert("Comment published", "success");
+        toast.success("Comment published");
         break;
 
       case "comment deleted":
         setShowForm(false);
-        showAlert("Comment deleted", "success");
+        toast.success("Comment deleted");
         break;
       default:
         break;
     }
-  }, [error, navigate, showAlert, status]);
+  }, [error, navigate, status]);
 
   const handleDelete = () => {
     confirmationDialog(
@@ -90,7 +87,6 @@ const PostPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alertState} />
       {post && (
         <>
           <Post post={post} single />

@@ -4,17 +4,15 @@ import { Link } from "react-router-dom";
 import { getResearchesThunk } from "../redux/researches/operationsResearches";
 import { selectResearches } from "../redux/researches/selectorResearches";
 
-import { useAlert } from "../assets/customHooks/useAlert";
+import { toast } from "react-toastify";
 
 import ResearchList from "../components/Research/ResearchList";
-import Alert from "../components/shared/Alert";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 
 import navTabs from "../assets/navTabs";
 
 const ResearchPage = () => {
-  const { alertState, showAlert } = useAlert();
   const { researches, status, error } = useSelector(selectResearches);
   const dispatch = useDispatch();
 
@@ -31,10 +29,10 @@ const ResearchPage = () => {
 
   useEffect(() => {
     if (status === "rejected") {
-      showAlert(error, "danger");
+      toast.error(error);
       return;
     }
-  }, [error, showAlert, status]);
+  }, [error, status]);
 
   if (status === "loading") {
     return <Loader />;
@@ -42,7 +40,6 @@ const ResearchPage = () => {
 
   return (
     <>
-      <Alert state={alertState} />
       <ResearchList researches={researches} />
       <IsLoggedIn>
         <div className="text-end">

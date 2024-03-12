@@ -11,20 +11,18 @@ import {
   selectStatus,
 } from "../redux/gallery/selectorGallery";
 
-import { useAlert } from "../assets/customHooks/useAlert";
-
 import PhotoAlbum from "../components/Gallery/PhotoAlbum";
-import Alert from "../components/shared/Alert";
 import BackBtn from "../components/shared/BackBtn";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
+
+import { toast } from "react-toastify";
 
 import navTabs from "../assets/navTabs";
 import confirmationDialog from "../assets/utils/confirmationDialog";
 
 const PhotoAlbumPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const { alertState, showAlert } = useAlert();
   const { id } = useParams();
   const dispatch = useDispatch();
   const error = useSelector(selectError);
@@ -48,7 +46,7 @@ const PhotoAlbumPage = () => {
   useEffect(() => {
     switch (status) {
       case "rejected":
-        showAlert(error, "danger");
+        toast.error(error);
         break;
 
       case "album loaded":
@@ -56,13 +54,13 @@ const PhotoAlbumPage = () => {
         break;
 
       case "picture deleted":
-        showAlert("Picture deleted", "success");
+        toast.success("Picture deleted");
         break;
 
       default:
         break;
     }
-  }, [error, showAlert, status]);
+  }, [error, status]);
 
   if (!isLoaded) {
     return <Loader />;
@@ -70,7 +68,6 @@ const PhotoAlbumPage = () => {
 
   return (
     <>
-      <Alert state={alertState} />
       <div className="d-flex flex-column flex-lg-row justify-content-lg-between align-items-center mb-4">
         <h4 className="text-secondary fw-bold mb-3 mb-lg-0">
           {photoAlbum.title}

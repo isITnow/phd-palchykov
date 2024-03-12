@@ -7,17 +7,15 @@ import {
   selectStatus,
 } from "../redux/posts/selectorPosts";
 
-import { useAlert } from "../assets/customHooks/useAlert";
 import useSignInStatus from "../assets/customHooks/useSignInStatus";
 
 import { Col } from "react-bootstrap";
 import PostForm from "../components/Posts/PostForm";
 import PostsList from "../components/Posts/PostsList";
-import Alert from "../components/shared/Alert";
 import Loader from "../components/shared/Loader";
+import { toast } from "react-toastify";
 
 const PostsPage = () => {
-  const { alertState, showAlert } = useAlert();
   const dispatch = useDispatch(getPostsThunk());
   const error = useSelector(selectError);
   const isLoggedIn = useSignInStatus();
@@ -39,20 +37,21 @@ const PostsPage = () => {
   useEffect(() => {
     switch (status) {
       case "rejected":
-        showAlert(error, "danger");
+        toast.error(error);
         break;
 
       case "created":
-        showAlert("Post created", "success");
+        toast.success("Post created");
         break;
 
       case "deleted":
-        showAlert("Post deleted", "success");
+        //! Fix. Toast shoots twice
+        toast.success("Post deleted");
         break;
       default:
         break;
     }
-  }, [error, showAlert, status]);
+  }, [error, status]);
 
   if (status === "loading") {
     return <Loader />;
@@ -60,7 +59,6 @@ const PostsPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <Alert state={alertState} />
       {isLoggedIn ? (
         <div className="mb-4">
           <PostForm />

@@ -8,18 +8,15 @@ import {
   selectStatus,
 } from "../redux/gallery/selectorGallery";
 
-import { useAlert } from "../assets/customHooks/useAlert";
 import useRejectedDeletedAlertEffect from "../assets/customHooks/alertHooks/useRejectedDeletedAlertEffect";
 
 import PhotoAlbumsList from "../components/Gallery/PhotoAlbumsList";
-import Alert from "../components/shared/Alert";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 
 import navTabs from "../assets/navTabs";
 
 const GalleryPage = () => {
-  const { alertState, showAlert } = useAlert();
   const dispatch = useDispatch();
   const error = useSelector(selectError);
   const photoAlbums = useSelector(selectPhotoAlbums);
@@ -37,7 +34,7 @@ const GalleryPage = () => {
     };
   }, [dispatch]);
 
-  useRejectedDeletedAlertEffect(error, status, showAlert, "Photo album");
+  useRejectedDeletedAlertEffect(error, status, "Photo album");
 
   if (status === "loading") {
     return <Loader />;
@@ -45,7 +42,6 @@ const GalleryPage = () => {
 
   return (
     <>
-      <Alert state={alertState} />
       <PhotoAlbumsList photoAlbums={photoAlbums} />
       <IsLoggedIn>
         <div className="mt-3 text-end">
