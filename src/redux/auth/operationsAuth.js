@@ -2,12 +2,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authAPI } from "../../services/authAPI";
 import { tokenOperations } from "../../services/http";
 
-import getErrorMessage from "../../assets/utils/getErrorMessage";
+import { toast } from "react-toastify";
+
 import checkTokenStatus from "../../assets/utils/checkTokenStatus";
+import getErrorMessage from "../../assets/utils/getErrorMessage";
 
 export const loginThunk = createAsyncThunk(
   "auth/login",
-
   async (loginData, { rejectWithValue }) => {
     try {
       const resp = await authAPI.loginUser(loginData);
@@ -15,9 +16,10 @@ export const loginThunk = createAsyncThunk(
       const user = resp.data.data;
 
       tokenOperations.set(token);
+      toast.info(`Welcome back, ${user.username}!`);
       return { token, user };
     } catch (error) {
-      console.log("Sign In error: ", error);
+      toast.error(getErrorMessage(error));
       return rejectWithValue(getErrorMessage(error));
     }
   }
@@ -55,7 +57,7 @@ export const refreshUserThunk = createAsyncThunk(
       }
       return;
     } catch (error) {
-      console.log("Refresh User Error: ", error);
+      toast.error(getErrorMessage(error));
       return rejectWithValue(getErrorMessage(error));
     }
   }

@@ -1,40 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { CiLogin, CiLogout } from "react-icons/ci";
-
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutThunk } from "../../redux/auth/operationsAuth";
-import { selectError, selectStatus } from "../../redux/auth/selectorAuth";
+import { selectStatus } from "../../redux/auth/selectorAuth";
 
-import { useAlert } from "../../assets/customHooks/useAlert";
 import useSignInStatus from "../../assets/customHooks/useSignInStatus";
+
+import { CiLogin, CiLogout } from "react-icons/ci";
 import LoginForm from "../FormComponents/LoginForm";
-import Alert from "../shared/Alert";
 import AuthModal from "./AuthModal";
 
 const Auth = () => {
   const [modalShow, setModalShow] = useState(false);
-  const isLoggedIn = useSignInStatus();
   const dispatch = useDispatch(logoutThunk);
+  const isLoggedIn = useSignInStatus();
 
-  const { alertState, showAlert } = useAlert();
-  const error = useSelector(selectError);
   const status = useSelector(selectStatus);
 
   useEffect(() => {
-    if (error) {
-      showAlert(error, "danger");
-      return;
-    }
-
     if (isLoggedIn) {
-      showAlert("Welcome back!", "success");
-      setTimeout(() => {
-        setModalShow(false);
-      }, 1000);
-
+      setModalShow(false);
       return;
     }
-  }, [error, isLoggedIn, showAlert]);
+  }, [isLoggedIn]);
 
   const handleLogout = () => {
     dispatch(logoutThunk());
@@ -58,7 +45,6 @@ const Auth = () => {
         />
       )}
       <AuthModal show={modalShow} onHide={() => setModalShow(false)}>
-        <Alert state={alertState} />
         <LoginForm status={status} />
       </AuthModal>
     </>
