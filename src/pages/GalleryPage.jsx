@@ -3,12 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getPhotoAlbumsThunk } from "../redux/gallery/operationsGallery";
 import {
-  selectError,
   selectPhotoAlbums,
   selectStatus,
 } from "../redux/gallery/selectorGallery";
-
-import useRejectedDeletedAlertEffect from "../assets/customHooks/alertHooks/useRejectedDeletedAlertEffect";
 
 import PhotoAlbumsList from "../components/Gallery/PhotoAlbumsList";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
@@ -18,7 +15,6 @@ import navTabs from "../assets/navTabs";
 
 const GalleryPage = () => {
   const dispatch = useDispatch();
-  const error = useSelector(selectError);
   const photoAlbums = useSelector(selectPhotoAlbums);
   const status = useSelector(selectStatus);
 
@@ -33,8 +29,6 @@ const GalleryPage = () => {
       controller.abort();
     };
   }, [dispatch]);
-
-  useRejectedDeletedAlertEffect(error, status, "Photo album");
 
   if (status === "loading") {
     return <Loader />;

@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { galleryAPI } from "../../services/galleryAPI";
 
-import getErrorMessage from "../../assets/utils/getErrorMessage";
+import { fireToastNotification } from "../../assets/utils/fireToastNotification";
+import operationsErrorHandler from "../../assets/utils/operationsErrorHandler";
 
 export const getPhotoAlbumsThunk = createAsyncThunk(
   "gallery/get",
@@ -16,8 +17,7 @@ export const getPhotoAlbumsThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      // console.log("GET gallery error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -35,8 +35,7 @@ export const getOnePhotoAlbumThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      // console.log("GET one album error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -51,11 +50,10 @@ export const addPhotoAlbumThunk = createAsyncThunk(
       if (resp.status !== 201) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+      fireToastNotification.success(resp, 201, "Photo album created");
       dispatch(getPhotoAlbumsThunk);
-      // return resp.data;
     } catch (error) {
-      // console.log("POST photo album error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -71,10 +69,10 @@ export const updatePhotoAlbumThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 202, "Photo album updated");
       return resp.data;
     } catch (error) {
-      // console.log("EDIT photo album error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -91,10 +89,10 @@ export const removePhotoAlbumThunk = createAsyncThunk(
       }
 
       dispatch(getPhotoAlbumsThunk());
+      fireToastNotification.success(resp, 204, "Photo album deleted");
       return id;
     } catch (error) {
-      // console.log("DELETE photo album error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -110,10 +108,10 @@ export const removePictureThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 204, "Picture deleted");
       return id;
     } catch (error) {
-      // console.log("DELETE photo album error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );

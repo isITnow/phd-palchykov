@@ -16,8 +16,6 @@ import BackBtn from "../components/shared/BackBtn";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 
-import { toast } from "react-toastify";
-
 import navTabs from "../assets/navTabs";
 import confirmationDialog from "../assets/utils/confirmationDialog";
 
@@ -44,21 +42,8 @@ const PhotoAlbumPage = () => {
   }, [dispatch, id]);
 
   useEffect(() => {
-    switch (status) {
-      case "rejected":
-        toast.error(error);
-        break;
-
-      case "album loaded":
-        setIsLoaded(true);
-        break;
-
-      case "picture deleted":
-        toast.success("Picture deleted");
-        break;
-
-      default:
-        break;
+    if (status === "album loaded") {
+      setIsLoaded(true);
     }
   }, [error, status]);
 
