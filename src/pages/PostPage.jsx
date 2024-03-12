@@ -13,7 +13,6 @@ import {
 } from "../redux/posts/selectorPosts";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { toast } from "react-toastify";
 
 import { Col } from "react-bootstrap";
 import CommentForm from "../components/Comments/CommentForm";
@@ -46,13 +45,10 @@ const PostPage = () => {
   }, [dispatch, id]);
 
   useEffect(() => {
+    if (status === "deleted") {
+    }
     switch (status) {
-      case "rejected":
-        toast.error(error);
-        break;
-
       case "updated":
-        toast.success("Post updated");
         setShowForm(false);
         break;
 
@@ -61,13 +57,8 @@ const PostPage = () => {
         navigate(navTabs.posts.path);
         break;
 
-      case "comment added":
-        toast.success("Comment published");
-        break;
-
       case "comment deleted":
         setShowForm(false);
-        toast.success("Comment deleted");
         break;
       default:
         break;

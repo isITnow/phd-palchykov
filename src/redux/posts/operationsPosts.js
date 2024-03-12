@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { postsAPI } from "../../services/postsAPI";
 
-import getErrorMessage from "../../assets/utils/getErrorMessage";
+import { fireToastNotification } from "../../assets/utils/fireToastNotification";
+import operationsErrorHandler from "../../assets/utils/operationsErrorHandler";
 
 export const getPostsThunk = createAsyncThunk(
   "posts/get",
@@ -16,8 +17,7 @@ export const getPostsThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      // console.log("GET posts error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -35,8 +35,7 @@ export const getOnePostThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      // console.log("GET one post error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -52,10 +51,10 @@ export const addPostThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 201, "Post created");
       return resp.data;
     } catch (error) {
-      // console.log("POST post error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -71,10 +70,10 @@ export const updatePostThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 202, "Post updated");
       return resp.data;
     } catch (error) {
-      // console.log("EDIT post error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -90,10 +89,10 @@ export const removePostThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 204, "Post deleted");
       return id;
     } catch (error) {
-      // console.log("DELETE post error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
