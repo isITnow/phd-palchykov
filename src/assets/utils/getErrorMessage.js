@@ -1,4 +1,4 @@
-const errorSwitchCase = (error) => {
+const getErrorMessage = (error) => {
   if (error.name === "CanceledError") {
     return "canceled request";
   }
@@ -17,4 +17,4 @@ const errorSwitchCase = (error) => {
   }
 };
 
-export default errorSwitchCase;
+export default getErrorMessage;

@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authAPI } from "../../services/authAPI";
 import { tokenOperations } from "../../services/http";
 
-import errorSwitchCase from "../../assets/utils/errorSwitchCase";
+import getErrorMessage from "../../assets/utils/getErrorMessage";
 import checkTokenStatus from "../../assets/utils/checkTokenStatus";
 
 export const loginThunk = createAsyncThunk(
@@ -18,7 +18,7 @@ export const loginThunk = createAsyncThunk(
       return { token, user };
     } catch (error) {
       console.log("Sign In error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -31,7 +31,7 @@ export const logoutThunk = createAsyncThunk(
       tokenOperations.unset();
     } catch (error) {
       console.log("Logout Error: ", error);
-      // return rejectWithValue(errorSwitchCase(error));
+      // return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -56,7 +56,7 @@ export const refreshUserThunk = createAsyncThunk(
       return;
     } catch (error) {
       console.log("Refresh User Error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );

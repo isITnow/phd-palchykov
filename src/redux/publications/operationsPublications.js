@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { publicationsAPI } from "../../services/publicationsAPI";
 
-import errorSwitchCase from "../../assets/utils/errorSwitchCase";
+import getErrorMessage from "../../assets/utils/getErrorMessage";
 
 export const getPublicationsThunk = createAsyncThunk(
   "publications/get",
@@ -17,7 +17,7 @@ export const getPublicationsThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("GET publications error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -39,7 +39,7 @@ export const addPublicationThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("POST publication error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -62,7 +62,7 @@ export const updatePublicationThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("EDIT publication error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -84,7 +84,7 @@ export const removePublicationThunk = createAsyncThunk(
       return publication_id;
     } catch (error) {
       // console.log("DELETE publication error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );

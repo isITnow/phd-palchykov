@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { galleryAPI } from "../../services/galleryAPI";
 
-import errorSwitchCase from "../../assets/utils/errorSwitchCase";
+import getErrorMessage from "../../assets/utils/getErrorMessage";
 
 export const getPhotoAlbumsThunk = createAsyncThunk(
   "gallery/get",
@@ -17,7 +17,7 @@ export const getPhotoAlbumsThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("GET gallery error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -36,7 +36,7 @@ export const getOnePhotoAlbumThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("GET one album error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -55,7 +55,7 @@ export const addPhotoAlbumThunk = createAsyncThunk(
       // return resp.data;
     } catch (error) {
       // console.log("POST photo album error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -74,7 +74,7 @@ export const updatePhotoAlbumThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("EDIT photo album error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -94,7 +94,7 @@ export const removePhotoAlbumThunk = createAsyncThunk(
       return id;
     } catch (error) {
       // console.log("DELETE photo album error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -113,7 +113,7 @@ export const removePictureThunk = createAsyncThunk(
       return id;
     } catch (error) {
       // console.log("DELETE photo album error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );

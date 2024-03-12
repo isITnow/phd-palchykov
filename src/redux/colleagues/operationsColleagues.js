@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { colleaguesAPI } from "../../services/colleaguesAPI";
 
-import errorSwitchCase from "../../assets/utils/errorSwitchCase";
+import getErrorMessage from "../../assets/utils/getErrorMessage";
 
 export const getColleaguesThunk = createAsyncThunk(
   "colleagues/get",
@@ -17,7 +17,7 @@ export const getColleaguesThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("GET colleagues error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -36,7 +36,7 @@ export const addColleagueThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("POST colleague error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -55,7 +55,7 @@ export const updateColleagueThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("EDIT colleague error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -73,7 +73,7 @@ export const removeColleagueThunk = createAsyncThunk(
       return id;
     } catch (error) {
       // console.log("DELETE colleague error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );

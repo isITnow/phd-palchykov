@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { newsAPI } from "../../services/newsAPI";
 
-import errorSwitchCase from "../../assets/utils/errorSwitchCase";
+import getErrorMessage from "../../assets/utils/getErrorMessage";
 
 export const getNewsThunk = createAsyncThunk(
   "news/get",
@@ -17,7 +17,7 @@ export const getNewsThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("GET news error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -36,7 +36,7 @@ export const addNewsThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("POST news error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -55,7 +55,7 @@ export const updateNewsThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("EDIT news error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -74,7 +74,7 @@ export const removeNewsThunk = createAsyncThunk(
       return id;
     } catch (error) {
       // console.log("DELETE news error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );

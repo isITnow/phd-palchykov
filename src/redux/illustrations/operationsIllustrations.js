@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { illustrationsAPI } from "../../services/illustrationsAPI";
 
-import errorSwitchCase from "../../assets/utils/errorSwitchCase";
+import getErrorMessage from "../../assets/utils/getErrorMessage";
 
 export const addIllustrationThunk = createAsyncThunk(
   "illustrations/post",
@@ -19,7 +19,7 @@ export const addIllustrationThunk = createAsyncThunk(
       // return resp.data;
     } catch (error) {
       console.log("POST illustration error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -45,7 +45,7 @@ export const updateIllustrationThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       console.log("UPDATE illustration error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );

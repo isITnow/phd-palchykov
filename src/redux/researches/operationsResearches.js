@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { researchesAPI } from "../../services/researchesAPI";
 import { illustrationsAPI } from "../../services/illustrationsAPI";
 
-import errorSwitchCase from "../../assets/utils/errorSwitchCase";
+import getErrorMessage from "../../assets/utils/getErrorMessage";
 
 export const getResearchesThunk = createAsyncThunk(
   "researches/get",
@@ -18,7 +18,7 @@ export const getResearchesThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("GET researches error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -53,7 +53,7 @@ export const addResearchThunk = createAsyncThunk(
       }
     } catch (error) {
       // console.log("POST research error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -72,7 +72,7 @@ export const updateResearchThunk = createAsyncThunk(
       return resp.data;
     } catch (error) {
       // console.log("EDIT research error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
@@ -91,7 +91,7 @@ export const removeResearchThunk = createAsyncThunk(
       return id;
     } catch (error) {
       // console.log("DELETE research error: ", error);
-      return rejectWithValue(errorSwitchCase(error));
+      return rejectWithValue(getErrorMessage(error));
     }
   }
 );
