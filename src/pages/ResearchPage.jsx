@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { getResearchesThunk } from "../redux/researches/operationsResearches";
 import { selectResearches } from "../redux/researches/selectorResearches";
 
-import { toast } from "react-toastify";
-
 import ResearchList from "../components/Research/ResearchList";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
@@ -13,7 +11,7 @@ import Loader from "../components/shared/Loader";
 import navTabs from "../assets/navTabs";
 
 const ResearchPage = () => {
-  const { researches, status, error } = useSelector(selectResearches);
+  const { researches, status } = useSelector(selectResearches);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,13 +24,6 @@ const ResearchPage = () => {
       controller.abort();
     };
   }, [dispatch]);
-
-  useEffect(() => {
-    if (status === "rejected") {
-      toast.error(error);
-      return;
-    }
-  }, [error, status]);
 
   if (status === "loading") {
     return <Loader />;

@@ -2,7 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { researchesAPI } from "../../services/researchesAPI";
 import { illustrationsAPI } from "../../services/illustrationsAPI";
 
-import getErrorMessage from "../../assets/utils/getErrorMessage";
+import { fireToastNotification } from "../../assets/utils/fireToastNotification";
+import operationsErrorHandler from "../../assets/utils/operationsErrorHandler";
 
 export const getResearchesThunk = createAsyncThunk(
   "researches/get",
@@ -17,8 +18,7 @@ export const getResearchesThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      // console.log("GET researches error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -44,7 +44,7 @@ export const addResearchThunk = createAsyncThunk(
             );
           }
         });
-
+        fireToastNotification.success(researchResp, 201, "Card created");
         getResearchesThunk();
       } else {
         throw new Error(
@@ -52,8 +52,7 @@ export const addResearchThunk = createAsyncThunk(
         );
       }
     } catch (error) {
-      // console.log("POST research error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -69,10 +68,10 @@ export const updateResearchThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 202, "Card updated");
       return resp.data;
     } catch (error) {
-      // console.log("EDIT research error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -88,10 +87,10 @@ export const removeResearchThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 204, "Card deleted");
       return id;
     } catch (error) {
-      // console.log("DELETE research error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );

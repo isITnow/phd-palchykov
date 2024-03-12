@@ -5,8 +5,6 @@ import { selectResearches } from "../redux/researches/selectorResearches";
 
 import { FieldArray, Form, Formik } from "formik";
 
-import useCreatedUpdatedRejectedAlertEffect from "../assets/customHooks/alertHooks/useCreatedUpdatedRejectedAlertEffect";
-
 import { Col } from "react-bootstrap";
 import CustomInput from "../components/FormComponents/CustomInput";
 import FormCard from "../components/FormComponents/FormCard";
@@ -21,7 +19,7 @@ import { validation } from "../assets/utils/validationSchema";
 const EditResearchPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { researches, status, error } = useSelector(selectResearches);
+  const { researches, status } = useSelector(selectResearches);
 
   const research = researches.find((research) => research.id === parseInt(id));
   const researchParsed = research && JSON.parse(research.payload);
@@ -49,8 +47,6 @@ const EditResearchPage = () => {
 
     actions.setSubmitting(false);
   };
-
-  useCreatedUpdatedRejectedAlertEffect(error, status, "Research");
 
   if (!research) {
     return <NoItemToEdit backPath={navTabs.researches.path} item="Research" />;
