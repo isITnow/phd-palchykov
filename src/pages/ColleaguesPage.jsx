@@ -9,19 +9,16 @@ import IsLoggedIn from "../components/shared/IsLoggedIn.jsx";
 import Loader from "../components/shared/Loader";
 
 import navTabs from "../assets/navTabs.js";
+import { controller, signal } from "../assets/utils/getControllerAndSignal";
 
 const ColleaguesPage = () => {
   const dispatch = useDispatch();
   const { colleagues, status } = useSelector(selectColleagues);
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
     dispatch(getColleaguesThunk(signal));
 
     return () => {
-      // Abort the request when the component unmounts or when a dependency changes
       controller.abort();
     };
   }, [dispatch]);

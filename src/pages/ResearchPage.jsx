@@ -9,18 +9,15 @@ import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 
 import navTabs from "../assets/navTabs";
+import { controller, signal } from "../assets/utils/getControllerAndSignal";
 
 const ResearchPage = () => {
   const { researches, status } = useSelector(selectResearches);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
     dispatch(getResearchesThunk(signal));
     return () => {
-      // Abort the request when the component unmounts or when a dependency changes
       controller.abort();
     };
   }, [dispatch]);

@@ -10,6 +10,8 @@ import PostForm from "../components/Posts/PostForm";
 import PostsList from "../components/Posts/PostsList";
 import Loader from "../components/shared/Loader";
 
+import { controller, signal } from "../assets/utils/getControllerAndSignal";
+
 const PostsPage = () => {
   const dispatch = useDispatch(getPostsThunk());
   const isLoggedIn = useSignInStatus();
@@ -17,13 +19,9 @@ const PostsPage = () => {
   const status = useSelector(selectStatus);
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
     dispatch(getPostsThunk(signal));
 
     return () => {
-      // Abort the request when the component unmounts or when a dependency changes
       controller.abort();
     };
   }, [dispatch]);
