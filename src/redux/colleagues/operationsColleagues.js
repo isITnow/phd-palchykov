@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { colleaguesAPI } from "../../services/colleaguesAPI";
 
-import getErrorMessage from "../../assets/utils/getErrorMessage";
+import { fireToastNotification } from "../../assets/utils/fireToastNotification";
+import operationsErrorHandler from "../../assets/utils/operationsErrorHandler";
 
 export const getColleaguesThunk = createAsyncThunk(
   "colleagues/get",
@@ -16,8 +17,7 @@ export const getColleaguesThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      // console.log("GET colleagues error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -32,11 +32,10 @@ export const addColleagueThunk = createAsyncThunk(
       if (resp.status !== 201) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
-
+      fireToastNotification.success(resp, 201, "Card created");
       return resp.data;
     } catch (error) {
-      // console.log("POST colleague error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -52,10 +51,10 @@ export const updateColleagueThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 202, "Card updated");
       return resp.data;
     } catch (error) {
-      // console.log("EDIT colleague error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -70,10 +69,11 @@ export const removeColleagueThunk = createAsyncThunk(
       if (resp.status !== 204) {
         throw new Error("Error occurred! Please contact your administrator.");
       }
+
+      fireToastNotification.success(resp, 204, "Card deleted");
       return id;
     } catch (error) {
-      // console.log("DELETE colleague error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );

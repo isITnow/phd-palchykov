@@ -2,8 +2,6 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectColleagues } from "../redux/colleagues/selectorColleagues";
 
-import useCreatedUpdatedRejectedAlertEffect from "../assets/customHooks/alertHooks/useCreatedUpdatedRejectedAlertEffect";
-
 import { Col } from "react-bootstrap";
 import ColleagueForm from "../components/Colleagues/ColleagueForm";
 import FormCard from "../components/FormComponents/FormCard";
@@ -12,7 +10,7 @@ import NoItemToEdit from "../components/shared/NoItemToEdit";
 import navTabs from "../assets/navTabs";
 
 const ColleagueOperationsPage = ({ edit }) => {
-  const { colleagues, error, status } = useSelector(selectColleagues);
+  const { colleagues, status } = useSelector(selectColleagues);
   const { id } = useParams();
 
   const title = edit ? "Edit Colleague Card" : "Create Colleague Card";
@@ -21,8 +19,6 @@ const ColleagueOperationsPage = ({ edit }) => {
   if (edit) {
     colleague = colleagues.find((colleague) => colleague.id === parseInt(id));
   }
-
-  useCreatedUpdatedRejectedAlertEffect(error, status, "Colleague");
 
   if (edit && !colleague) {
     return <NoItemToEdit backPath={navTabs.colleagues.path} item="Colleague" />;
