@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
 import { selectPublications } from "../redux/publications/selectorPublications";
 
-import useCreatedUpdatedRejectedAlertEffect from "../assets/customHooks/alertHooks/useCreatedUpdatedRejectedAlertEffect";
-
 import { Col } from "react-bootstrap";
 import FormCard from "../components/FormComponents/FormCard";
 import PublicationForm from "../components/Publications/PublicationForm";
@@ -16,7 +14,7 @@ import getCurrentPeriod from "../assets/utils/getCurrentEntity";
 const PublicationOperationsPage = ({ edit }) => {
   const { period_id, publication_id } = useParams();
   const { periods } = useSelector(selectPeriods);
-  const { publications, error, status } = useSelector(selectPublications);
+  const { publications, status } = useSelector(selectPublications);
 
   const currentPeriodId = parseInt(period_id);
   const currentPublicationId = parseInt(publication_id);
@@ -34,8 +32,6 @@ const PublicationOperationsPage = ({ edit }) => {
         publication.id === currentPublicationId
     );
   }
-
-  useCreatedUpdatedRejectedAlertEffect(error, status, "Publication");
 
   if (edit && !publication) {
     return (

@@ -5,8 +5,6 @@ import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPe
 import { getPublicationsThunk } from "../redux/publications/operationsPublications";
 import { selectPublications } from "../redux/publications/selectorPublications";
 
-import useRejectedDeletedAlertEffect from "../assets/customHooks/alertHooks/useRejectedDeletedAlertEffect";
-
 import PagesNav from "../components/PagesNav/PagesNav";
 import PublicationsList from "../components/Publications/PublicationsList";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
@@ -17,7 +15,7 @@ import navTabs from "../assets/navTabs";
 const PublicationsPage = () => {
   const { period_id } = useParams();
   const { periods } = useSelector(selectPeriods);
-  const { publications, status, error } = useSelector(selectPublications);
+  const { publications, status } = useSelector(selectPublications);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,8 +33,6 @@ const PublicationsPage = () => {
       controller.abort();
     };
   }, [dispatch, period_id]);
-
-  useRejectedDeletedAlertEffect(error, status, "Publication");
 
   if (status === "loading") {
     return <Loader />;

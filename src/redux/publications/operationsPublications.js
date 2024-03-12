@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { publicationsAPI } from "../../services/publicationsAPI";
 
-import getErrorMessage from "../../assets/utils/getErrorMessage";
+import { fireToastNotification } from "../../assets/utils/fireToastNotification";
+import operationsErrorHandler from "../../assets/utils/operationsErrorHandler";
 
 export const getPublicationsThunk = createAsyncThunk(
   "publications/get",
@@ -16,8 +17,7 @@ export const getPublicationsThunk = createAsyncThunk(
 
       return resp.data;
     } catch (error) {
-      // console.log("GET publications error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -36,10 +36,10 @@ export const addPublicationThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 201, "Publication created");
       return resp.data;
     } catch (error) {
-      // console.log("POST publication error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -59,10 +59,10 @@ export const updatePublicationThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 202, "Publication updated");
       return resp.data;
     } catch (error) {
-      // console.log("EDIT publication error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -81,10 +81,10 @@ export const removePublicationThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 204, "Publication deleted");
       return publication_id;
     } catch (error) {
-      // console.log("DELETE publication error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
