@@ -5,8 +5,6 @@ import { selectResearches } from "../redux/researches/selectorResearches";
 
 import { Form, Formik } from "formik";
 
-import useCreatedUpdatedRejectedAlertEffect from "../assets/customHooks/alertHooks/useCreatedUpdatedRejectedAlertEffect";
-
 import { Col } from "react-bootstrap";
 import CustomInput from "../components/FormComponents/CustomInput";
 import CustomTextArea from "../components/FormComponents/CustomTextArea";
@@ -21,7 +19,7 @@ import { validation } from "../assets/utils/validationSchema";
 const EditIllustrationPage = () => {
   const dispatch = useDispatch();
   const { research_id, id } = useParams();
-  const { researches, status, error } = useSelector(selectResearches);
+  const { researches, status } = useSelector(selectResearches);
 
   const research = researches.find(
     (research) => research.id === parseInt(research_id)
@@ -62,8 +60,6 @@ const EditIllustrationPage = () => {
 
     actions.setSubmitting(false);
   };
-
-  useCreatedUpdatedRejectedAlertEffect(error, status, "Illustration");
 
   if (!research || !illustration) {
     return (

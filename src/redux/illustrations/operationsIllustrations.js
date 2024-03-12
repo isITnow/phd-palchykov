@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { illustrationsAPI } from "../../services/illustrationsAPI";
 
-import getErrorMessage from "../../assets/utils/getErrorMessage";
+import { fireToastNotification } from "../../assets/utils/fireToastNotification";
+import operationsErrorHandler from "../../assets/utils/operationsErrorHandler";
 
 export const addIllustrationThunk = createAsyncThunk(
   "illustrations/post",
@@ -18,8 +19,7 @@ export const addIllustrationThunk = createAsyncThunk(
       }
       // return resp.data;
     } catch (error) {
-      console.log("POST illustration error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
@@ -42,10 +42,10 @@ export const updateIllustrationThunk = createAsyncThunk(
         throw new Error("Error occurred! Please contact your administrator.");
       }
 
+      fireToastNotification.success(resp, 202, "Illustration updated");
       return resp.data;
     } catch (error) {
-      console.log("UPDATE illustration error: ", error);
-      return rejectWithValue(getErrorMessage(error));
+      return operationsErrorHandler(rejectWithValue, error);
     }
   }
 );
