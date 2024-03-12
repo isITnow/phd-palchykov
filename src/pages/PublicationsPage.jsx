@@ -11,7 +11,6 @@ import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 
 import navTabs from "../assets/navTabs";
-import { controller, signal } from "../assets/utils/getControllerAndSignal";
 
 const PublicationsPage = () => {
   const { period_id } = useParams();
@@ -20,6 +19,9 @@ const PublicationsPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     dispatch(getPublicationsThunk({ id: period_id, signal }));
     window.scrollTo({
       top: 0,

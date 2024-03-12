@@ -9,13 +9,15 @@ import IsLoggedIn from "../components/shared/IsLoggedIn";
 import Loader from "../components/shared/Loader";
 
 import navTabs from "../assets/navTabs";
-import { controller, signal } from "../assets/utils/getControllerAndSignal";
 
 const NewsPage = () => {
   const dispatch = useDispatch();
   const { news, status } = useSelector(selectNews);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     dispatch(getNewsThunk(signal));
 
     return () => {
