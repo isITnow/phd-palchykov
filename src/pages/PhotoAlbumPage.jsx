@@ -57,7 +57,7 @@ const PhotoAlbumPage = () => {
         <h4 className="text-secondary fw-bold mb-3 mb-lg-0">
           {photoAlbum.title}
         </h4>
-        <div className="text-end">
+        <div className="d-flex flex-row-reverse">
           <BackBtn path={navTabs.gallery.path}>Back To Gallery</BackBtn>
           <IsLoggedIn>
             <div className="btn-group ms-3">

@@ -37,7 +37,7 @@ const GalleryPage = () => {
     <>
       <PhotoAlbumsList photoAlbums={photoAlbums} />
       <IsLoggedIn>
-        <div className="mt-3 text-end">
+        <div className="d-flex flex-row-reverse mt-3">
           <Link
             className="btn btn-primary"
             to={navTabs.gallery.createPhotoAlbumPath}

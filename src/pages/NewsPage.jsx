@@ -33,7 +33,7 @@ const NewsPage = () => {
     <>
       <NewsList news={news} />
       <IsLoggedIn>
-        <div className="mt-3 text-end">
+        <div className="d-flex flex-row-reverse mt-3">
           <Link className="btn btn-primary" to={navTabs.news.createPath}>
             Add News
           </Link>

@@ -32,7 +32,7 @@ const ResearchPage = () => {
     <>
       <ResearchList researches={researches} />
       <IsLoggedIn>
-        <div className="text-end">
+        <div className="d-flex flex-row-reverse">
           <Link className="btn btn-primary" to={navTabs.researches.createPath}>
             Add Research
           </Link>

@@ -82,7 +82,7 @@ const PostPage = () => {
         <>
           <Post post={post} single />
           {/* BUTTONS */}
-          <div className="mt-3 text-end">
+          <div className="d-flex flex-row-reverse mt-3">
             <BackBtn path={navTabs.posts.path}>Go Back</BackBtn>
             <IsLoggedIn>
               <div className="btn-group ms-3">
