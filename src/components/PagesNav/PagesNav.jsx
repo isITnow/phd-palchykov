@@ -8,7 +8,7 @@ const PagesNav = ({ currentPeriodId, periods, margin = "my-0" }) => {
       ? "mb-3 text-danger fw-bold"
       : `mb-3 text-secondary fw-bold ${s.hoverEffect}`;
   return (
-    <ul className={`text-end ${margin}`}>
+    <ul className={`d-flex flex-column align-items-end ${margin}`}>
       {periods.map(({ title, id }) => (
         <li key={id}>
           <Link
