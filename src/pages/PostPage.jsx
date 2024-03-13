@@ -83,7 +83,6 @@ const PostPage = () => {
           <Post post={post} single />
           {/* BUTTONS */}
           <div className="d-flex flex-row-reverse mt-3">
-            <BackBtn path={navTabs.posts.path}>Go Back</BackBtn>
             <IsLoggedIn>
               <div className="btn-group ms-3">
                 {showForm ? (
@@ -126,6 +125,7 @@ const PostPage = () => {
                 </button>
               </div>
             </IsLoggedIn>
+            <BackBtn path={navTabs.posts.path}>Go Back</BackBtn>
           </div>
           {/* POST FORM */}
           <AnimatePresence>
