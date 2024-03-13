@@ -21,7 +21,7 @@ const NewsOperationsPage = ({ edit }) => {
   }
 
   if (edit && !newsItem) {
-    return <NoItemToEdit backPath={navTabs.researches.path} item="News" />;
+    return <NoItemToEdit backPath={navTabs.news.path} item="News" />;
   }
 
   return (
