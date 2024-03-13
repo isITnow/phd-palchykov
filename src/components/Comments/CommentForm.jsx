@@ -1,14 +1,14 @@
-import { Form, Formik } from "formik";
-import FormWarning from "../FormComponents/FormWarning";
-
-import { useParams } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { selectUserName } from "../../redux/auth/selectorAuth";
 import { addCommentThunk } from "../../redux/comments/operationsComments";
 
+import { Form, Formik } from "formik";
+import { Col, FormControl, FormGroup, FormLabel } from "react-bootstrap";
+
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
+import FormWarning from "../FormComponents/FormWarning";
 import SubmitBtn from "../shared/SubmitBtn";
 
 import { validation } from "../../assets/utils/validationSchema";
@@ -53,26 +53,23 @@ const CommentForm = () => {
             rows="3"
             type="text"
           />
-          <div className="col-md-6 mb-3">
-            <label
-              className="form-label px-3 text-secondary fw-bold"
-              htmlFor="image"
-            >
-              Image
-            </label>
-            <input
-              className="form-control"
-              id="commentImage"
-              type="file"
-              onChange={(e) => {
-                props.setFieldValue("commentImage", e.target.files[0]);
-              }}
-            />
-            {props.errors.commentImage && (
-              <FormWarning>{props.errors.commentImage}</FormWarning>
-            )}
-          </div>
-          <div className="text-end">
+          <Col md="6" className="mb-3">
+            <FormGroup controlId="image">
+              <FormLabel className="px-3 text-secondary fw-bold">
+                Image
+              </FormLabel>
+              <FormControl
+                type="file"
+                onChange={(e) => {
+                  props.setFieldValue("commentImage", e.target.files[0]);
+                }}
+              />
+              {props.errors.commentImage && (
+                <FormWarning>{props.errors.commentImage}</FormWarning>
+              )}
+            </FormGroup>
+          </Col>
+          <div className="d-flex flex-row-reverse">
             <SubmitBtn disabled={props.isSubmitting} text="Add Comment" />
           </div>
         </Form>

@@ -1,10 +1,11 @@
+import { Button } from "react-bootstrap";
 import SpinnerThreeDots from "./SpinnerThreeDots";
 
 const SubmitBtn = ({ text, disabled }) => {
   return (
-    <button disabled={disabled} type="submit" className="btn btn-primary">
+    <Button disabled={disabled} type="submit" variant="primary">
       {disabled ? <SpinnerThreeDots /> : text}
-    </button>
+    </Button>
   );
 };
 

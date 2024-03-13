@@ -1,16 +1,17 @@
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const BackBtn = ({ path, children }) => {
   const navigate = useNavigate();
 
   return (
-    <button
+    <Button
       type="button"
-      className="btn btn-outline-secondary"
+      variant="outline-secondary"
       onClick={() => navigate(path)}
     >
       {children}
-    </button>
+    </Button>
   );
 };
 

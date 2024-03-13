@@ -1,9 +1,20 @@
-import { FieldArray, Form, Formik } from "formik";
-// import FormWarning from "../FormComponents/FormWarning";
-
 import { useDispatch } from "react-redux";
 import { addResearchThunk } from "../../redux/researches/operationsResearches";
 
+import { FieldArray, Form, Formik } from "formik";
+import {
+  Button,
+  ButtonGroup,
+  Col,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  ListGroup,
+  ListGroupItem,
+  Row,
+} from "react-bootstrap";
+
+// import FormWarning from "../FormComponents/FormWarning";
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
 import BackBtn from "../shared/BackBtn";
@@ -74,7 +85,6 @@ const ResearchForm = ({ status }) => {
         return (
           <Form>
             <CustomInput
-              // autoFocus
               bsclass="mb-3"
               label="Research Title"
               name="title"
@@ -89,10 +99,10 @@ const ResearchForm = ({ status }) => {
                   return (
                     <>
                       {illustrationList && illustrationList.length > 0 ? (
-                        <ul className="list-group">
+                        <ListGroup>
                           {illustrationList.map((item, index) => (
-                            <li
-                              className="list-group-item border-1 mb-2"
+                            <ListGroupItem
+                              className="border-1 mb-2"
                               key={index}
                             >
                               {illustrationList.length > 1 && (
@@ -105,32 +115,29 @@ const ResearchForm = ({ status }) => {
                                 rows="5"
                                 type="text-area"
                               />
-                              <div className="col-md-6 mb-3">
-                                <label
-                                  className="form-label px-3 text-secondary fw-bold"
-                                  htmlFor="schema"
-                                >
-                                  Illustration Image
-                                  <RequiredBadge />
-                                </label>
-                                <input
-                                  className="form-control"
-                                  id="schema"
-                                  type="file"
-                                  onChange={(e) => {
-                                    props.setFieldValue(
-                                      `illustrationList.${index}.schema`,
-                                      e.target.files[0]
-                                    );
-                                  }}
-                                />
-                                {/* //TODO: schema validation error message */}
-                                {/* {props.illustrationList && (
-                                  <FormWarning>
-                                    {props.errors.illustrationList}
-                                  </FormWarning>
-                                )} */}
-                              </div>
+                              <Col md={6} className="mb-3">
+                                <FormGroup controlId="illustrationImage">
+                                  <FormLabel className="px-3 text-secondary fw-bold">
+                                    Illustration Image
+                                    <RequiredBadge />
+                                  </FormLabel>
+                                  <FormControl
+                                    type="file"
+                                    onChange={(e) => {
+                                      props.setFieldValue(
+                                        `illustrationList.${index}.schema`,
+                                        e.target.files[0]
+                                      );
+                                    }}
+                                  />
+                                  {/* //TODO: schema validation error message */}
+                                  {/* {props.illustrationList && (
+                                    <FormWarning>
+                                      {props.errors.illustrationList}
+                                    </FormWarning>
+                                  )} */}
+                                </FormGroup>
+                              </Col>
                               <div className="d-flex flex-column flex-md-row justify-content-md-between align-items-md-end">
                                 <CustomInput
                                   label="Sequence Num"
@@ -138,19 +145,18 @@ const ResearchForm = ({ status }) => {
                                   required
                                   type="number"
                                 />
-                                <div
-                                  className="btn-group mt-3 mt-md-0"
-                                  role="group"
-                                >
-                                  <button
-                                    className="btn btn-sm btn-outline-primary"
-                                    onClick={() => remove(index)}
+                                <ButtonGroup className="mt-3 mt-md-0">
+                                  <Button
+                                    size="sm"
                                     type="button"
+                                    variant="outline-danger"
+                                    onClick={() => remove(index)}
                                   >
                                     Remove Illustration
-                                  </button>
-                                  <button
-                                    className="btn btn-sm btn-outline-primary"
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    variant="outline-primary"
                                     type="button"
                                     onClick={() =>
                                       push({
@@ -161,17 +167,18 @@ const ResearchForm = ({ status }) => {
                                     }
                                   >
                                     Add Illustration
-                                  </button>
-                                </div>
+                                  </Button>
+                                </ButtonGroup>
                               </div>
-                            </li>
+                            </ListGroupItem>
                           ))}
-                        </ul>
+                        </ListGroup>
                       ) : (
-                        <div className="text-end">
-                          <button
-                            className="btn btn-sm btn-outline-primary"
+                        <div className="d-flex flex-row-reverse">
+                          <Button
+                            size="sm"
                             type="button"
+                            variant="outline-primary"
                             onClick={() =>
                               push({
                                 description: "",
@@ -181,7 +188,7 @@ const ResearchForm = ({ status }) => {
                             }
                           >
                             Add Illustrations
-                          </button>
+                          </Button>
                         </div>
                       )}
                     </>
@@ -196,14 +203,14 @@ const ResearchForm = ({ status }) => {
                   const { sourceList } = values;
                   const sourceListClass =
                     sourceList.length > 1
-                      ? "row row-cols-1 row-cols-md-2"
-                      : "row row-cols-1";
+                      ? "row-cols-1 row-cols-md-2"
+                      : "row-cols-1";
                   return (
                     <>
                       {sourceList && sourceList.length > 0 ? (
-                        <ul className={sourceListClass}>
+                        <Row as={"ul"} className={sourceListClass}>
                           {sourceList.map((item, index) => (
-                            <li className="col mb-3" key={index}>
+                            <Col className="mb-3" key={index}>
                               <div className="p-2 border border-1 rounded">
                                 {sourceList.length > 1 && (
                                   <Badge index={index} text={"resource"} />
@@ -222,18 +229,20 @@ const ResearchForm = ({ status }) => {
                                   required
                                   type="text"
                                 />
-                                <div className="text-end">
-                                  <div className="btn-group" role="group">
-                                    <button
-                                      className="btn btn-sm btn-outline-primary"
+                                <div className="d-flex flex-row-reverse">
+                                  <ButtonGroup>
+                                    <Button
+                                      size="sm"
                                       type="button"
+                                      variant="outline-danger"
                                       onClick={() => remove(index)}
                                     >
                                       Remove Source
-                                    </button>
-                                    <button
-                                      className="btn btn-sm btn-outline-primary"
+                                    </Button>
+                                    <Button
+                                      size="sm"
                                       type="button"
+                                      variant="outline-primary"
                                       onClick={() =>
                                         insert(index, {
                                           source: "",
@@ -242,18 +251,18 @@ const ResearchForm = ({ status }) => {
                                       }
                                     >
                                       Add Source
-                                    </button>
-                                  </div>
+                                    </Button>
+                                  </ButtonGroup>
                                 </div>
                               </div>
-                            </li>
+                            </Col>
                           ))}
-                        </ul>
+                        </Row>
                       ) : (
-                        <div className="text-end">
-                          <button
-                            className="btn  btn-outline-primary"
+                        <div className="d-flex flex-row-reverse">
+                          <Button
                             type="button"
+                            variant="outline-primary"
                             onClick={() =>
                               push({
                                 source: "",
@@ -262,7 +271,7 @@ const ResearchForm = ({ status }) => {
                             }
                           >
                             Add Sources
-                          </button>
+                          </Button>
                         </div>
                       )}
                     </>
@@ -270,11 +279,11 @@ const ResearchForm = ({ status }) => {
                 }}
               </FieldArray>
             </div>
-            <div className="text-end mt-3">
-              <div className="btn-group">
+            <div className="d-flex flex-row-reverse mt-3">
+              <ButtonGroup>
                 <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
                 <SubmitBtn text="Create Research Card" disabled={isDisabled} />
-              </div>
+              </ButtonGroup>
             </div>
           </Form>
         );

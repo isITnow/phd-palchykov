@@ -1,6 +1,11 @@
 import { Form, Formik } from "formik";
-import FormWarning from "../FormComponents/FormWarning";
-
+import {
+  ButtonGroup,
+  Col,
+  FormControl,
+  FormGroup,
+  FormLabel,
+} from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import {
   addColleagueThunk,
@@ -8,6 +13,7 @@ import {
 } from "../../redux/colleagues/operationsColleagues";
 
 import CustomInput from "../FormComponents/CustomInput";
+import FormWarning from "../FormComponents/FormWarning";
 import BackBtn from "../shared/BackBtn";
 import RequiredBadge from "../shared/RequiredBadge";
 import SubmitBtn from "../shared/SubmitBtn";
@@ -76,7 +82,6 @@ const ColleagueForm = ({ colleague, status }) => {
         return (
           <Form>
             <CustomInput
-              // autoFocus
               bsclass="mb-3"
               label="Name"
               name="name"
@@ -104,31 +109,28 @@ const ColleagueForm = ({ colleague, status }) => {
               placeholder="+380775554433"
               type="tel"
             />
-            <div className="col-md-6 mb-3">
-              <label
-                className="form-label px-3 text-secondary fw-bold"
-                htmlFor="photo"
-              >
-                Photo
-                {isNewItem && <RequiredBadge />}
-              </label>
-              <input
-                className="form-control"
-                id="photo"
-                type="file"
-                onChange={(e) => {
-                  props.setFieldValue("photo", e.target.files[0]);
-                }}
-              />
-              {props.errors.photo && (
-                <FormWarning>{props.errors.photo}</FormWarning>
-              )}
-            </div>
-            <div className="text-end mt-3">
-              <div className="btn-group">
+            <Col md="6" className="mb-3">
+              <FormGroup controlId="photo">
+                <FormLabel className="px-3 text-secondary fw-bold">
+                  Photo
+                  {isNewItem && <RequiredBadge />}
+                </FormLabel>
+                <FormControl
+                  type="file"
+                  onChange={(e) => {
+                    props.setFieldValue("photo", e.target.files[0]);
+                  }}
+                />
+                {props.errors.photo && (
+                  <FormWarning>{props.errors.photo}</FormWarning>
+                )}
+              </FormGroup>
+            </Col>
+            <div className="d-flex flex-row-reverse mt-3">
+              <ButtonGroup>
                 <BackBtn path={navTabs.colleagues.path}>Cancel</BackBtn>
                 <SubmitBtn text={submitBtnText} disabled={isDisabled} />
-              </div>
+              </ButtonGroup>
             </div>
           </Form>
         );

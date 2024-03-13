@@ -1,17 +1,26 @@
-import { FieldArray, Form, Formik } from "formik";
-import { useParams } from "react-router-dom";
-import FormWarning from "../FormComponents/FormWarning";
-
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
 import {
   addPublicationThunk,
   updatePublicationThunk,
 } from "../../redux/publications/operationsPublications";
 
+import { FieldArray, Form, Formik } from "formik";
+import {
+  Button,
+  ButtonGroup,
+  Col,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  Row,
+} from "react-bootstrap";
+
 import CustomInput from "../FormComponents/CustomInput";
 import CustomSelect from "../FormComponents/CustomSelect";
 import CustomTextArea from "../FormComponents/CustomTextArea";
+import FormWarning from "../FormComponents/FormWarning";
 import BackBtn from "../shared/BackBtn";
 import Badge from "../shared/Badge";
 import RequiredBadge from "../shared/RequiredBadge";
@@ -131,7 +140,6 @@ const PublicationForm = ({ publication, status }) => {
               </div>
             </div>
             <CustomTextArea
-              // autoFocus
               bsclass="mb-3"
               label="Publication Title"
               name="title"
@@ -153,45 +161,40 @@ const PublicationForm = ({ publication, status }) => {
               required
               type="text"
             />
-            <div className="col-md-6 mb-3">
-              <label
-                className="form-label px-3 text-secondary fw-bold"
-                htmlFor="formFile"
-              >
-                Cover Image
-                {isNewItem && <RequiredBadge />}
-              </label>
-              <input
-                className="form-control"
-                id="formFile"
-                type="file"
-                onChange={(e) => {
-                  props.setFieldValue("cover", e.target.files[0]);
-                }}
-              />
-              {props.errors.cover && (
-                <FormWarning>{props.errors.cover}</FormWarning>
-              )}
-            </div>
-            <div className="col-md-6 mb-3">
-              <label
-                className="form-label px-3 text-secondary fw-bold"
-                htmlFor="formFile"
-              >
-                Abstract Image
-                {isNewItem && <RequiredBadge />}
-              </label>
-              <input
-                className="form-control"
-                type="file"
-                onChange={(e) => {
-                  props.setFieldValue("abstract", e.target.files[0]);
-                }}
-              />
-              {props.errors.abstract && (
-                <FormWarning>{props.errors.abstract}</FormWarning>
-              )}
-            </div>
+            <Col md="6" className="mb-3">
+              <FormGroup controlId="coverImage">
+                <FormLabel className="px-3 text-secondary fw-bold">
+                  Cover Image
+                  {isNewItem && <RequiredBadge />}
+                </FormLabel>
+                <FormControl
+                  type="file"
+                  onChange={(e) => {
+                    props.setFieldValue("cover", e.target.files[0]);
+                  }}
+                />
+                {props.errors.cover && (
+                  <FormWarning>{props.errors.cover}</FormWarning>
+                )}
+              </FormGroup>
+            </Col>
+            <Col md="6" className="mb-3">
+              <FormGroup controlId="abstractImage">
+                <FormLabel className="px-3 text-secondary fw-bold">
+                  Abstract Image
+                  {isNewItem && <RequiredBadge />}
+                </FormLabel>
+                <FormControl
+                  type="file"
+                  onChange={(e) => {
+                    props.setFieldValue("abstract", e.target.files[0]);
+                  }}
+                />
+                {props.errors.abstract && (
+                  <FormWarning>{props.errors.abstract}</FormWarning>
+                )}
+              </FormGroup>
+            </Col>
             <div>
               <FieldArray name="authors">
                 {(fieldArrayProps) => {
@@ -200,14 +203,14 @@ const PublicationForm = ({ publication, status }) => {
                   const { authors } = values;
                   const authorsListClass =
                     authors.length > 1
-                      ? "row row-cols-1 row-cols-md-2"
-                      : "row row-cols-1";
+                      ? "row-cols-1 row-cols-md-2"
+                      : "row-cols-1";
                   return (
                     <>
                       {authors && authors.length > 0 ? (
-                        <ul className={authorsListClass}>
+                        <Row as={"ul"} className={authorsListClass}>
                           {authors.map((author, index) => (
-                            <li className="col mb-3" key={index}>
+                            <Col as={"li"} className="mb-3" key={index}>
                               <div className="p-2 border border-1 rounded">
                                 {authors.length > 1 && (
                                   <Badge index={index} text={"author"} />
@@ -219,37 +222,40 @@ const PublicationForm = ({ publication, status }) => {
                                   required
                                   type="text"
                                 />
-                                <div className="text-end">
-                                  <div className="btn-group" role="group">
-                                    <button
-                                      className="btn btn-sm btn-outline-primary"
+                                <div className="d-flex flex-row-reverse">
+                                  <ButtonGroup>
+                                    <Button
+                                      size="sm"
                                       type="button"
+                                      variant="outline-danger"
                                       onClick={() => remove(index)} // remove a friend from the list
                                     >
                                       Remove Author
-                                    </button>
-                                    <button
-                                      className="btn btn-sm btn-outline-primary"
+                                    </Button>
+                                    <Button
+                                      size="sm"
                                       type="button"
+                                      variant="outline-primary"
                                       onClick={() => push("")}
                                     >
                                       Add Author
-                                    </button>
-                                  </div>
+                                    </Button>
+                                  </ButtonGroup>
                                 </div>
                               </div>
-                            </li>
+                            </Col>
                           ))}
-                        </ul>
+                        </Row>
                       ) : (
-                        <div className="text-end">
-                          <button
-                            className="btn btn-sm btn-outline-primary"
+                        <div className="d-flex flex-row-reverse">
+                          <Button
+                            size="sm"
                             type="button"
+                            variant="outline-primary"
                             onClick={() => push("")}
                           >
                             Add Authors
-                          </button>
+                          </Button>
                         </div>
                       )}
                     </>
@@ -257,13 +263,13 @@ const PublicationForm = ({ publication, status }) => {
                 }}
               </FieldArray>
             </div>
-            <div className="text-end mt-3">
-              <div className="btn-group">
+            <div className="d-flex flex-row-reverse mt-3">
+              <ButtonGroup>
                 <BackBtn path={navTabs.publications.path(period_id)}>
                   Cancel
                 </BackBtn>
                 <SubmitBtn text={submitBtnText} disabled={isDisabled} />
-              </div>
+              </ButtonGroup>
             </div>
           </Form>
         );

@@ -1,11 +1,20 @@
-import { FieldArray, Form, Formik } from "formik";
-import FormWarning from "../FormComponents/FormWarning";
-
 import { useDispatch } from "react-redux";
 import { addNewsThunk, updateNewsThunk } from "../../redux/news/operationsNews";
 
+import { FieldArray, Form, Formik } from "formik";
+import {
+  Button,
+  ButtonGroup,
+  Col,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  Row,
+} from "react-bootstrap";
+
 import CustomInput from "../FormComponents/CustomInput";
 import CustomTextArea from "../FormComponents/CustomTextArea";
+import FormWarning from "../FormComponents/FormWarning";
 import BackBtn from "../shared/BackBtn";
 import Badge from "../shared/Badge";
 import SubmitBtn from "../shared/SubmitBtn";
@@ -57,11 +66,11 @@ const NewsForm = ({ newsItem, status }) => {
       initialValues={
         isNewItem
           ? {
-              title: "",
               body: "",
               date: "",
-              links: [],
               image: "",
+              links: [],
+              title: "",
             }
           : newsItem
       }
@@ -74,46 +83,42 @@ const NewsForm = ({ newsItem, status }) => {
         return (
           <Form>
             <CustomInput
+              bsclass="mb-3"
               label="News Title"
               name="title"
               required
               type="text"
-              bsclass="mb-3"
-              // autoFocus
             />
             <CustomTextArea
               label="Description"
               name="body"
-              type="text-area"
               rows="5"
+              type="text-area"
             />
             <CustomInput
+              bsclass="mb-3"
               label="Date"
               name="date"
+              placeholder={currentDate()}
               required
               type="text"
-              bsclass="mb-3"
-              placeholder={currentDate()}
             />
-            <div className="col-md-6 mb-3">
-              <label
-                htmlFor="image"
-                className="form-label px-3 text-secondary fw-bold"
-              >
-                Image
-              </label>
-              <input
-                className="form-control"
-                id="image"
-                type="file"
-                onChange={(e) => {
-                  props.setFieldValue("image", e.target.files[0]);
-                }}
-              />
-              {props.errors.image && (
-                <FormWarning>{props.errors.image}</FormWarning>
-              )}
-            </div>
+            <Col md="6" className="mb-3">
+              <FormGroup controlId="image">
+                <FormLabel className="px-3 text-secondary fw-bold">
+                  Image
+                </FormLabel>
+                <FormControl
+                  type="file"
+                  onChange={(e) => {
+                    props.setFieldValue("image", e.target.files[0]);
+                  }}
+                />
+                {props.errors.image && (
+                  <FormWarning>{props.errors.image}</FormWarning>
+                )}
+              </FormGroup>
+            </Col>
             <div>
               <FieldArray name="links">
                 {(fieldArrayProps) => {
@@ -122,55 +127,58 @@ const NewsForm = ({ newsItem, status }) => {
                   const { links } = values;
                   const linksListClass =
                     links.length > 1
-                      ? "row row-cols-1 row-cols-md-2"
-                      : "row row-cols-1";
+                      ? "row-cols-1 row-cols-md-2"
+                      : "row-cols-1";
                   return (
                     <>
                       {links && links.length > 0 ? (
-                        <ul className={linksListClass}>
+                        <Row as={"ul"} className={linksListClass}>
                           {links.map((link, index) => (
-                            <li className="col mb-3" key={index}>
+                            <Col as={"li"} className="mb-3" key={index}>
                               <div className="p-2 border border-2 rounded">
                                 {links.length > 1 && (
                                   <Badge index={index} text={"link"} />
                                 )}
                                 <CustomInput
-                                  type="text"
+                                  bsclass="mb-3"
                                   label="Link"
                                   name={`links.${index}`}
-                                  bsclass="mb-3"
+                                  type="text"
                                 />
-                                <div className="text-end">
-                                  <div className="btn-group" role="group">
-                                    <button
+                                <div className="d-flex flex-row-reverse">
+                                  <ButtonGroup>
+                                    <Button
+                                      size="sm"
                                       type="button"
-                                      className="btn btn-sm btn-outline-primary"
+                                      variant="outline-danger"
                                       onClick={() => remove(index)}
                                     >
                                       Remove Link
-                                    </button>
-                                    <button
+                                    </Button>
+                                    <Button
+                                      size="sm"
                                       type="button"
-                                      className="btn btn-sm btn-outline-primary"
+                                      variant="outline-primary"
                                       onClick={() => push("")}
                                     >
                                       Add Link
-                                    </button>
-                                  </div>
+                                    </Button>
+                                  </ButtonGroup>
                                 </div>
                               </div>
-                            </li>
+                            </Col>
                           ))}
-                        </ul>
+                        </Row>
                       ) : (
-                        <div className="text-end">
-                          <button
+                        <div className="d-flex flex-row-reverse">
+                          <Button
+                            size="sm"
                             type="button"
-                            className="btn btn-sm btn-outline-primary"
+                            variant="outline-primary"
                             onClick={() => push("")}
                           >
                             Add Links
-                          </button>
+                          </Button>
                         </div>
                       )}
                     </>
@@ -178,11 +186,11 @@ const NewsForm = ({ newsItem, status }) => {
                 }}
               </FieldArray>
             </div>
-            <div className="text-end mt-3">
-              <div className="btn-group">
+            <div className="d-flex flex-row-reverse mt-3">
+              <ButtonGroup>
                 <BackBtn path={navTabs.news.path}>Cancel</BackBtn>
                 <SubmitBtn text={submitBtnText} disabled={isDisabled} />
-              </div>
+              </ButtonGroup>
             </div>
           </Form>
         );

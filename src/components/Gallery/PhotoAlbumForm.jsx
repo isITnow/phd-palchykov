@@ -1,19 +1,26 @@
-import { Form, Formik } from "formik";
-import FormWarning from "../FormComponents/FormWarning";
-
 import { useDispatch } from "react-redux";
 import {
   addPhotoAlbumThunk,
   updatePhotoAlbumThunk,
 } from "../../redux/gallery/operationsGallery";
 
+import { Form, Formik } from "formik";
+import {
+  ButtonGroup,
+  Col,
+  FormControl,
+  FormGroup,
+  FormLabel,
+} from "react-bootstrap";
+
 import CustomInput from "../FormComponents/CustomInput";
+import FormWarning from "../FormComponents/FormWarning";
 import BackBtn from "../shared/BackBtn";
+import RequiredBadge from "../shared/RequiredBadge";
 import SubmitBtn from "../shared/SubmitBtn";
 
 import navTabs from "../../assets/navTabs";
 import { validation } from "../../assets/utils/validationSchema";
-import RequiredBadge from "../shared/RequiredBadge";
 
 //* Creates unique error message from array of error messages
 const getValidationMessage = (errors) => {
@@ -78,60 +85,53 @@ const PhotoAlbumForm = ({ photoAlbum, status }) => {
         return (
           <Form>
             <CustomInput
-              // autoFocus
               bsclass="mb-3"
               label="Title"
               name="title"
               required
               type="text"
             />
-            <div className="col-md-6 mb-3">
-              <label
-                htmlFor="cover"
-                className="form-label px-3 text-secondary fw-bold"
-              >
-                Cover Image
-                {isNewAlbum && <RequiredBadge />}
-              </label>
-              <input
-                className="form-control"
-                id="cover"
-                type="file"
-                onChange={(e) => {
-                  props.setFieldValue("cover", e.target.files[0]);
-                }}
-              />
-              {props.errors.cover && (
-                <FormWarning>{props.errors.cover}</FormWarning>
-              )}
-            </div>
-            <div className="col-md-6 mb-3">
-              <label
-                htmlFor="photo"
-                className="form-label px-3 text-secondary fw-bold"
-              >
-                Photos
-              </label>
-              <input
-                className="form-control"
-                id="photo"
-                type="file"
-                multiple
-                onChange={(e) => {
-                  props.setFieldValue("photos", [...e.target.files]);
-                }}
-              />
-              {props.errors.photos && (
-                <FormWarning>
-                  {getValidationMessage(props.errors.photos)}
-                </FormWarning>
-              )}
-            </div>
-            <div className="text-end mt-3">
-              <div className="btn-group">
+            <Col md="6" className="mb-3">
+              <FormGroup controlId="coverImage">
+                <FormLabel className="px-3 text-secondary fw-bold">
+                  Cover Image
+                  {isNewAlbum && <RequiredBadge />}
+                </FormLabel>
+                <FormControl
+                  type="file"
+                  onChange={(e) => {
+                    props.setFieldValue("cover", e.target.files[0]);
+                  }}
+                />
+                {props.errors.cover && (
+                  <FormWarning>{props.errors.cover}</FormWarning>
+                )}
+              </FormGroup>
+            </Col>
+            <Col md="6" className="mb-3">
+              <FormGroup controlId="photo">
+                <FormLabel className="px-3 text-secondary fw-bold">
+                  Photos
+                </FormLabel>
+                <FormControl
+                  type="file"
+                  multiple
+                  onChange={(e) => {
+                    props.setFieldValue("photos", [...e.target.files]);
+                  }}
+                />
+                {props.errors.photos && (
+                  <FormWarning>
+                    {getValidationMessage(props.errors.photos)}
+                  </FormWarning>
+                )}
+              </FormGroup>
+            </Col>
+            <div className="d-flex flex-row-reverse mt-3">
+              <ButtonGroup>
                 <BackBtn path={backPath}>Cancel</BackBtn>
                 <SubmitBtn text={submitBtnText} disabled={isDisabled} />
-              </div>
+              </ButtonGroup>
             </div>
           </Form>
         );

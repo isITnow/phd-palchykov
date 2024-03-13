@@ -49,7 +49,7 @@ const PostForm = ({ post, status }) => {
               rows="3"
               type="text"
             />
-            <div className="text-end">
+            <div className="d-flex flex-row-reverse">
               <SubmitBtn text={submitBtnText} disabled={isDisabled} />
             </div>
           </Form>
