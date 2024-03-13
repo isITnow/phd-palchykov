@@ -4,8 +4,8 @@ import { updateResearchThunk } from "../redux/researches/operationsResearches";
 import { selectResearches } from "../redux/researches/selectorResearches";
 
 import { FieldArray, Form, Formik } from "formik";
+import { Button, ButtonGroup, Col, Row } from "react-bootstrap";
 
-import { Col } from "react-bootstrap";
 import CustomInput from "../components/FormComponents/CustomInput";
 import FormCard from "../components/FormComponents/FormCard";
 import BackBtn from "../components/shared/BackBtn";
@@ -71,7 +71,6 @@ const EditResearchPage = () => {
               return (
                 <Form>
                   <CustomInput
-                    // autoFocus
                     bsclass="mb-3"
                     label="Research Title"
                     name="title"
@@ -80,19 +79,19 @@ const EditResearchPage = () => {
                   />
                   <div className="mt-3">
                     <FieldArray name="sourceList">
-                      {({ push, insert, remove, form }) => {
+                      {({ push, remove, form }) => {
                         const { values } = form;
                         const { sourceList } = values;
                         const sourceListClass =
                           sourceList.length > 1
-                            ? "row row-cols-1 row-cols-md-2"
-                            : "row row-cols-1";
+                            ? "row-cols-1 row-cols-md-2"
+                            : "row-cols-1";
                         return (
                           <>
                             {sourceList && sourceList.length > 0 ? (
-                              <ul className={sourceListClass}>
+                              <Row as={"ul"} className={sourceListClass}>
                                 {sourceList.map((item, index) => (
-                                  <li className="col mb-3" key={index}>
+                                  <Col as={"li"} className="mb-3" key={index}>
                                     <div className="p-2 border border-1 rounded">
                                       {sourceList.length > 1 && (
                                         <Badge
@@ -114,38 +113,40 @@ const EditResearchPage = () => {
                                         required
                                         type="text"
                                       />
-                                      <div className="text-end">
-                                        <div className="btn-group" role="group">
-                                          <button
+                                      <div className="d-flex flex-row-reverse">
+                                        <ButtonGroup>
+                                          <Button
+                                            size="sm"
                                             type="button"
-                                            className="btn btn-sm btn-outline-primary"
+                                            variant="outline-danger"
                                             onClick={() => remove(index)}
                                           >
                                             Remove Source
-                                          </button>
-                                          <button
+                                          </Button>
+                                          <Button
+                                            size="sm"
                                             type="button"
-                                            className="btn btn-sm btn-outline-primary"
+                                            variant="outline-primary"
                                             onClick={() =>
-                                              insert(index, {
+                                              push(index, {
                                                 source: "",
                                                 source_url: "",
                                               })
                                             }
                                           >
                                             Add Source
-                                          </button>
-                                        </div>
+                                          </Button>
+                                        </ButtonGroup>
                                       </div>
                                     </div>
-                                  </li>
+                                  </Col>
                                 ))}
-                              </ul>
+                              </Row>
                             ) : (
-                              <div className="text-end">
-                                <button
+                              <div className="d-flex flex-row-reverse">
+                                <Button
                                   type="button"
-                                  className="btn  btn-outline-primary"
+                                  variant="outline-primary"
                                   onClick={() =>
                                     push({
                                       source: "",
@@ -154,7 +155,7 @@ const EditResearchPage = () => {
                                   }
                                 >
                                   Add Sources
-                                </button>
+                                </Button>
                               </div>
                             )}
                           </>
@@ -162,11 +163,11 @@ const EditResearchPage = () => {
                       }}
                     </FieldArray>
                   </div>
-                  <div className="text-end mt-3">
-                    <div className="btn-group">
+                  <div className="d-flex flex-row-reverse mt-3">
+                    <ButtonGroup>
                       <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
                       <SubmitBtn text={submitBtnText} disabled={isDisabled} />
-                    </div>
+                    </ButtonGroup>
                   </div>
                 </Form>
               );

@@ -4,8 +4,14 @@ import { updateIllustrationThunk } from "../redux/illustrations/operationsIllust
 import { selectResearches } from "../redux/researches/selectorResearches";
 
 import { Form, Formik } from "formik";
+import {
+  ButtonGroup,
+  Col,
+  FormControl,
+  FormGroup,
+  FormLabel,
+} from "react-bootstrap";
 
-import { Col } from "react-bootstrap";
 import CustomInput from "../components/FormComponents/CustomInput";
 import CustomTextArea from "../components/FormComponents/CustomTextArea";
 import FormCard from "../components/FormComponents/FormCard";
@@ -102,25 +108,23 @@ const EditIllustrationPage = () => {
                     rows="5"
                     type="text-area"
                   />
-                  <label
-                    htmlFor="formFile"
-                    className="form-label px-3 text-secondary fw-bold"
-                  >
-                    Illustration Image
-                  </label>
-                  <input
-                    className="form-control mb-3"
-                    id="formFile"
-                    type="file"
-                    onChange={(e) => {
-                      props.setFieldValue("schema", e.target.files[0]);
-                    }}
-                  />
-                  <div className="text-end mt-3">
-                    <div className="btn-group">
+                  <FormGroup controlId="illustrationImage">
+                    <FormLabel className="px-3 text-secondary fw-bold">
+                      Illustration Image
+                    </FormLabel>
+                    <FormControl
+                      className="mb-3"
+                      type="file"
+                      onChange={(e) => {
+                        props.setFieldValue("schema", e.target.files[0]);
+                      }}
+                    />
+                  </FormGroup>
+                  <div className="d-flex flex-row-reverse mt-3">
+                    <ButtonGroup>
                       <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
                       <SubmitBtn text={submitBtnText} disabled={isDisabled} />
-                    </div>
+                    </ButtonGroup>
                   </div>
                 </Form>
               );
