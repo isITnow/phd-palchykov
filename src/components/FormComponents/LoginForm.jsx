@@ -48,7 +48,7 @@ const LoginForm = ({ status }) => {
               type="password"
               bsclass="mb-3"
             />
-            <div className="text-end">
+            <div className="d-flex flex-row-reverse">
               <SubmitBtn text="Log In" disabled={isDisabled} />
             </div>
           </Form>
