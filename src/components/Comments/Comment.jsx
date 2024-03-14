@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { removeCommentThunk } from "../../redux/comments/operationsComments";
 
 import "photoswipe/dist/photoswipe.css";
+import { Button, Col, Row } from "react-bootstrap";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
 import confirmationDialog from "../../assets/utils/confirmationDialog";
@@ -29,39 +30,40 @@ const Comment = ({ comment }) => {
       <span className="fw-bold text-primary">{author}</span>
       <p className="mt-2 text-break">{body}</p>
       {comment_image && (
-        <div className="row mb-2">
-          <div className="col-md-6 col-lg-3">
+        <Row className="my-2">
+          <Col md={6} lg={3}>
             <Gallery>
               <Item
+                height={comment_image.metadata.height}
                 original={comment_image.image_url}
                 thumbnail={comment_image.comment_image_url}
                 width={comment_image.metadata.width}
-                height={comment_image.metadata.height}
               >
                 {({ ref, open }) => (
                   <img
-                    className="img-fluid rounded-1"
                     alt=""
-                    ref={ref}
+                    className="img-fluid rounded-1"
                     onClick={open}
+                    ref={ref}
                     src={comment_image.image_url}
                   />
                 )}
               </Item>
             </Gallery>
-          </div>
-        </div>
+          </Col>
+        </Row>
       )}
       <div className="d-flex justify-content-between align-items-end">
         <small className="text-secondary">{postedDate}</small>
         <IsLoggedIn>
-          <button
+          <Button
+            size="sm"
             type="button"
-            className="btn btn-sm btn-danger"
+            variant="danger"
             onClick={handleDelete}
           >
             Delete
-          </button>
+          </Button>
         </IsLoggedIn>
       </div>
     </div>

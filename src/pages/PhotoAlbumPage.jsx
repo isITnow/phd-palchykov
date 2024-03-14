@@ -11,6 +11,8 @@ import {
   selectStatus,
 } from "../redux/gallery/selectorGallery";
 
+import { Button, ButtonGroup } from "react-bootstrap";
+
 import PhotoAlbum from "../components/Gallery/PhotoAlbum";
 import BackBtn from "../components/shared/BackBtn";
 import IsLoggedIn from "../components/shared/IsLoggedIn";
@@ -58,25 +60,25 @@ const PhotoAlbumPage = () => {
           {photoAlbum.title}
         </h4>
         <div className="d-flex flex-row-reverse">
-          <BackBtn path={navTabs.gallery.path}>Back To Gallery</BackBtn>
           <IsLoggedIn>
-            <div className="btn-group ms-3">
+            <ButtonGroup className="ms-3">
               <Link
                 className="btn btn-primary"
                 to={navTabs.gallery.editPhotoAlbumPath(photoAlbum.id)}
               >
                 Edit
               </Link>
-              <button
-                className="btn btn-danger"
-                disabled={isDisabled}
+              <Button
                 type="button"
+                variant="danger"
+                disabled={isDisabled}
                 onClick={handleDelete}
               >
                 Delete
-              </button>
-            </div>
+              </Button>
+            </ButtonGroup>
           </IsLoggedIn>
+          <BackBtn path={navTabs.gallery.path}>Back To Gallery</BackBtn>
         </div>
       </div>
       <PhotoAlbum photoAlbum={photoAlbum} />

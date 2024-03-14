@@ -14,7 +14,7 @@ import {
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import { Col } from "react-bootstrap";
+import { Button, ButtonGroup, Col } from "react-bootstrap";
 import CommentForm from "../components/Comments/CommentForm";
 import CommentsList from "../components/Comments/CommentsList";
 import CommentsListTitle from "../components/Comments/CommentsListTitle";
@@ -45,8 +45,6 @@ const PostPage = () => {
   }, [dispatch, id]);
 
   useEffect(() => {
-    if (status === "deleted") {
-    }
     switch (status) {
       case "updated":
         setShowForm(false);
@@ -77,14 +75,14 @@ const PostPage = () => {
   }
 
   return (
-    <Col lg="8" className="mx-auto">
+    <Col lg={8} className="mx-auto">
       {post && (
         <>
           <Post post={post} single />
           {/* BUTTONS */}
           <div className="d-flex flex-row-reverse mt-3">
             <IsLoggedIn>
-              <div className="btn-group ms-3">
+              <ButtonGroup className="ms-3">
                 {showForm ? (
                   <AnimatePresence>
                     <motion.button
@@ -116,14 +114,10 @@ const PostPage = () => {
                     </motion.button>
                   </AnimatePresence>
                 )}
-                <button
-                  className="btn btn-danger"
-                  type="button"
-                  onClick={handleDelete}
-                >
+                <Button type="button" variant="danger" onClick={handleDelete}>
                   Delete
-                </button>
-              </div>
+                </Button>
+              </ButtonGroup>
             </IsLoggedIn>
             <BackBtn path={navTabs.posts.path}>Go Back</BackBtn>
           </div>

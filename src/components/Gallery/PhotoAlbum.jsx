@@ -2,8 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { removePictureThunk } from "../../redux/gallery/operationsGallery";
 import { selectStatus } from "../../redux/gallery/selectorGallery";
 
-import "photoswipe/dist/photoswipe.css";
+import { Button, Col, Row } from "react-bootstrap";
 import { CgClose } from "react-icons/cg";
+
+import "photoswipe/dist/photoswipe.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
 import IsLoggedIn from "../shared/IsLoggedIn";
@@ -27,32 +29,32 @@ const PhotoAlbum = ({ photoAlbum }) => {
 
   return (
     <Gallery withCaption>
-      <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 align-items-center mb-0">
+      <Row xs={2} md={3} lg={4} className="align-items-center mb-0">
         {pictures_list.map((picture) => {
           const {
-            id,
             filename,
-            picture_url,
+            id,
             metadata: { width, height },
+            picture_url,
           } = picture;
           return (
-            <div key={id} className="col mb-3">
+            <Col key={id} className="mb-3">
               <Item
+                height={height}
                 original={picture_url}
                 thumbnail={picture_url}
                 width={width}
-                height={height}
               >
                 {({ ref, open }) => (
                   <div
                     className={`rounded-1 shadow position-relative ${s.imgWrapper}`}
                   >
                     <IsLoggedIn>
-                      <button
+                      <Button
                         disabled={isDisabled}
                         type="button"
+                        variant="danger"
                         className="
-                        btn btn-danger
                         d-flex
                         justify-content-center
                         rounded-circle
@@ -64,22 +66,22 @@ const PhotoAlbum = ({ photoAlbum }) => {
                         onClick={() => handleDelete(id)}
                       >
                         <CgClose size={"1rem"} color="white" />
-                      </button>
+                      </Button>
                     </IsLoggedIn>
                     <img
-                      ref={ref}
-                      onClick={open}
-                      src={picture_url}
                       alt={filename}
                       className={`rounded-1 ${s.img}`}
+                      onClick={open}
+                      ref={ref}
+                      src={picture_url}
                     />
                   </div>
                 )}
               </Item>
-            </div>
+            </Col>
           );
         })}
-      </div>
+      </Row>
     </Gallery>
   );
 };

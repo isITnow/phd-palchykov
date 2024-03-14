@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { removeColleagueThunk } from "../../redux/colleagues/operationsColleagues";
 import { selectColleagues } from "../../redux/colleagues/selectorColleagues";
 
-import confirmationDialog from "../../assets/utils/confirmationDialog";
+import { Button, ButtonGroup } from "react-bootstrap";
 import IsLoggedIn from "../shared/IsLoggedIn";
+
+import confirmationDialog from "../../assets/utils/confirmationDialog";
 import s from "./colleague.module.css";
 
 const Colleague = ({ colleague }) => {
@@ -44,7 +45,7 @@ const Colleague = ({ colleague }) => {
               </li>
             </ul>
             <IsLoggedIn>
-              <div className="btn-group position-absolute bottom-0 end-0">
+              <ButtonGroup className="position-absolute bottom-0 end-0">
                 <Link
                   className="btn btn-sm btn-primary"
                   to={`/colleagues/${id}/edit`}
@@ -52,15 +53,16 @@ const Colleague = ({ colleague }) => {
                 >
                   Edit
                 </Link>
-                <button
+                <Button
+                  size="sm"
                   type="button"
+                  variant="danger"
                   disabled={btnDisabled}
                   onClick={handleDelete}
-                  className="btn btn-sm btn-danger"
                 >
                   Delete
-                </button>
-              </div>
+                </Button>
+              </ButtonGroup>
             </IsLoggedIn>
           </div>
         </div>

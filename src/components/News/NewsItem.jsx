@@ -1,9 +1,18 @@
-import { Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { removeNewsThunk } from "../../redux/news/operationsNews";
 import { selectNews } from "../../redux/news/selectorNews";
 
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  CardText,
+  CardTitle,
+} from "react-bootstrap";
 import IsLoggedIn from "../shared/IsLoggedIn";
 
 import confirmationDialog from "../../assets/utils/confirmationDialog";
@@ -22,18 +31,14 @@ const NewsItem = ({ news }) => {
   };
 
   return (
-    <div className="card text-center">
-      <div className="card-header">
-        <h5 className="card-title text-danger mb-0">{title}</h5>
-      </div>
-      <div className="card-body">
-        {body && (
-          <p className="card-text" style={{ textAlign: "justify" }}>
-            {body}
-          </p>
-        )}
+    <Card className="text-center">
+      <CardHeader>
+        <CardTitle className="text-danger mb-0">{title}</CardTitle>
+      </CardHeader>
+      <CardBody>
+        {body && <CardText style={{ textAlign: "justify" }}>{body}</CardText>}
         {image_url && (
-          <div className="">
+          <div className="mt-2">
             <img className="img-fluid" src={image_url} alt="..." />
           </div>
         )}
@@ -44,8 +49,8 @@ const NewsItem = ({ news }) => {
                 <a
                   className="mb-3"
                   href={url}
-                  target="_blank"
                   rel="noreferrer noopener"
+                  target="_blank"
                 >
                   {url}
                 </a>
@@ -53,12 +58,12 @@ const NewsItem = ({ news }) => {
             ))}
           </ul>
         )}
-      </div>
-      <div className="card-footer text-body-secondary">
+      </CardBody>
+      <CardFooter className="text-body-secondary">
         <div className="d-flex justify-content-between">
           {date}
           <IsLoggedIn>
-            <div className="btn-group">
+            <ButtonGroup>
               <Link
                 className="btn btn-sm btn-primary"
                 to={`/news/${id}/edit`}
@@ -66,19 +71,20 @@ const NewsItem = ({ news }) => {
               >
                 Edit
               </Link>
-              <button
+              <Button
                 disabled={btnDisabled}
+                size="sm"
                 type="button"
-                className="btn btn-sm btn-danger"
+                variant="danger"
                 onClick={handleDelete}
               >
                 Delete
-              </button>
-            </div>
+              </Button>
+            </ButtonGroup>
           </IsLoggedIn>
         </div>
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
   );
 };
 
