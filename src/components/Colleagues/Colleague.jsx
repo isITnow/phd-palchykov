@@ -3,17 +3,25 @@ import { Link } from "react-router-dom";
 import { removeColleagueThunk } from "../../redux/colleagues/operationsColleagues";
 import { selectColleagues } from "../../redux/colleagues/selectorColleagues";
 
-import { Button, ButtonGroup } from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardBody,
+  CardImg,
+  CardText,
+  CardTitle,
+} from "react-bootstrap";
 import IsLoggedIn from "../shared/IsLoggedIn";
 
 import confirmationDialog from "../../assets/utils/confirmationDialog";
-import s from "./colleague.module.css";
 
 const Colleague = ({ colleague }) => {
   const { id, name, position, photo_url, phone, email } = colleague;
   const { status } = useSelector(selectColleagues);
-  const btnDisabled = status === "pending";
   const dispatch = useDispatch();
+
+  const btnDisabled = status === "pending";
 
   const handleDelete = () => {
     confirmationDialog(
@@ -23,51 +31,51 @@ const Colleague = ({ colleague }) => {
   };
 
   return (
-    <div className="card h-100 overflow-hidden shadow-sm">
-      <div className="row g-0 h-100">
-        <div className="col-4">
-          <img src={photo_url} className={s.img} alt={name} />
-        </div>
-        <div className="col-8">
-          <div className="card-body">
-            <h5 className="card-title">{name}</h5>
-            <p className="card-text">{position}</p>
-            <ul className="mb-3">
+    <Card className="h-100 shadow-sm">
+      <CardImg variant="top" src={photo_url} />
+      <CardBody className="text-center">
+        <CardTitle className="fw-bold">{name}</CardTitle>
+        <CardText className="fw-semibold text-muted">{position}</CardText>
+        {(email || phone) && (
+          <ul className="mt-3">
+            {email && (
               <li className="mb-2">
                 <a className="py-2" href={`mailto:${email}`}>
                   {email}
                 </a>
               </li>
+            )}
+            {phone && (
               <li>
                 <a className="py-2" href={`tel:${phone}`}>
                   {phone}
                 </a>
               </li>
-            </ul>
-            <IsLoggedIn>
-              <ButtonGroup className="position-absolute bottom-0 end-0">
-                <Link
-                  className="btn btn-sm btn-primary"
-                  to={`/colleagues/${id}/edit`}
-                  state={colleague}
-                >
-                  Edit
-                </Link>
-                <Button
-                  size="sm"
-                  type="button"
-                  variant="danger"
-                  disabled={btnDisabled}
-                  onClick={handleDelete}
-                >
-                  Delete
-                </Button>
-              </ButtonGroup>
-            </IsLoggedIn>
-          </div>
-        </div>
-      </div>
-    </div>
+            )}
+          </ul>
+        )}
+        <IsLoggedIn>
+          <ButtonGroup className="mt-3">
+            <Link
+              className="btn btn-sm btn-primary"
+              to={`/colleagues/${id}/edit`}
+              state={colleague}
+            >
+              Edit
+            </Link>
+            <Button
+              size="sm"
+              type="button"
+              variant="danger"
+              disabled={btnDisabled}
+              onClick={handleDelete}
+            >
+              Delete
+            </Button>
+          </ButtonGroup>
+        </IsLoggedIn>
+      </CardBody>
+    </Card>
   );
 };
 
