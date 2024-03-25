@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
@@ -6,7 +6,6 @@ import {
   removePhotoAlbumThunk,
 } from "../redux/gallery/operationsGallery";
 import {
-  selectError,
   selectOnePhotoAlbum,
   selectStatus,
 } from "../redux/gallery/selectorGallery";
@@ -22,10 +21,8 @@ import navTabs from "../assets/navTabs";
 import confirmationDialog from "../assets/utils/confirmationDialog";
 
 const PhotoAlbumPage = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
-  const error = useSelector(selectError);
   const navigate = useNavigate();
   const photoAlbum = useSelector(selectOnePhotoAlbum);
   const status = useSelector(selectStatus);
@@ -43,13 +40,7 @@ const PhotoAlbumPage = () => {
     dispatch(getOnePhotoAlbumThunk(id));
   }, [dispatch, id]);
 
-  useEffect(() => {
-    if (status === "album loaded") {
-      setIsLoaded(true);
-    }
-  }, [error, status]);
-
-  if (!isLoaded) {
+  if (status === "pending") {
     return <Loader />;
   }
 
@@ -57,31 +48,33 @@ const PhotoAlbumPage = () => {
     <>
       <div className="d-flex flex-column flex-lg-row justify-content-lg-between align-items-center mb-4">
         <h4 className="text-secondary fw-bold mb-3 mb-lg-0">
-          {photoAlbum.title}
+          {photoAlbum ? photoAlbum.title : "No Album Found"}
         </h4>
         <div className="d-flex flex-row-reverse">
-          <IsLoggedIn>
-            <ButtonGroup className="ms-3">
-              <Link
-                className="btn btn-primary"
-                to={navTabs.gallery.editPhotoAlbumPath(photoAlbum.id)}
-              >
-                Edit
-              </Link>
-              <Button
-                type="button"
-                variant="danger"
-                disabled={isDisabled}
-                onClick={handleDelete}
-              >
-                Delete
-              </Button>
-            </ButtonGroup>
-          </IsLoggedIn>
+          {photoAlbum && (
+            <IsLoggedIn>
+              <ButtonGroup className="ms-3">
+                <Link
+                  className="btn btn-primary"
+                  to={navTabs.gallery.editPhotoAlbumPath(photoAlbum.id)}
+                >
+                  Edit
+                </Link>
+                <Button
+                  type="button"
+                  variant="danger"
+                  disabled={isDisabled}
+                  onClick={handleDelete}
+                >
+                  Delete
+                </Button>
+              </ButtonGroup>
+            </IsLoggedIn>
+          )}
           <BackBtn path={navTabs.gallery.path}>Back To Gallery</BackBtn>
         </div>
       </div>
-      <PhotoAlbum photoAlbum={photoAlbum} />
+      {photoAlbum && <PhotoAlbum photoAlbum={photoAlbum} />}
     </>
   );
 };
