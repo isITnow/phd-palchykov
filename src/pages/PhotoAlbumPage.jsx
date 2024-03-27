@@ -40,7 +40,7 @@ const PhotoAlbumPage = () => {
     dispatch(getOnePhotoAlbumThunk(id));
   }, [dispatch, id]);
 
-  if (status === "pending") {
+  if (status === "pending" && !photoAlbum) {
     return <Loader />;
   }
 
