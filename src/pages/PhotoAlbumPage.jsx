@@ -36,11 +36,14 @@ const PhotoAlbumPage = () => {
     }, "Are you sure you want to delete?");
   };
 
+  //* the case when there is an old album in store but the current page hasn't gotten a new album yet
+  const sameId = parseInt(id) === photoAlbum?.id;
+
   useEffect(() => {
     dispatch(getOnePhotoAlbumThunk(id));
   }, [dispatch, id]);
 
-  if (status === "pending" && !photoAlbum) {
+  if ((status === "pending" && !photoAlbum) || (!sameId && photoAlbum)) {
     return <Loader />;
   }
 
