@@ -88,9 +88,9 @@ const Publication = ({ publication }) => {
           )}
           <div className="mt-3">
             <ResearchImage
-              url={abstract_data.abstract_url || cover_data.cover_url}
-              alt={abstract_data.filename || cover_data.filename}
-              metadata={abstract_data.metadata || cover_data.metadata}
+              url={abstract_data?.abstract_url || cover_data?.cover_url}
+              alt={abstract_data?.filename || cover_data?.filename}
+              metadata={abstract_data?.metadata || cover_data?.metadata}
             />
           </div>
         </div>
