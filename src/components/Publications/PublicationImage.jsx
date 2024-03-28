@@ -6,11 +6,14 @@ import s from "./publication.module.css";
 const PublicationImage = ({ url, alt, metadata: { height, width } }) => {
   const { imageIsLoaded, handleImageLoad } = useImageLoading();
   return (
-    <div style={{ minHeight: "120px", position: "relative" }}>
+    <div
+      className="shadow rounded overflow-hidden"
+      style={{ minHeight: "120px", position: "relative" }}
+    >
       {!imageIsLoaded && <ImageLoadingSpinner />}
       <img
         alt={alt}
-        className={`shadow rounded ${s.img}`}
+        className={s.img}
         src={url}
         onLoad={handleImageLoad}
         onError={handleImageLoad}
