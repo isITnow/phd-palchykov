@@ -5,15 +5,17 @@ import { selectResearches } from "../../redux/researches/selectorResearches";
 
 import { Button, ButtonGroup, CardTitle, Col } from "react-bootstrap";
 import IsLoggedIn from "../shared/IsLoggedIn";
+import Illustration from "./Illustration";
 
 import confirmationDialog from "../../assets/utils/confirmationDialog";
 
 const Research = ({ research, index }) => {
   const { id, title, illustrations, sourceList } = research;
+
   const { status } = useSelector(selectResearches);
   const dispatch = useDispatch();
-  const btnDisabled = status === "pending";
 
+  const btnDisabled = status === "pending";
   const sourceListClass =
     sourceList.length > 8
       ? "row row-cols-1 row-cols-md-2 row-cols-lg-3"
@@ -32,33 +34,12 @@ const Research = ({ research, index }) => {
         <span className="me-2 text-secondary fs-5 lh-sm">{index}.</span>
         <CardTitle className="text-danger">{title}</CardTitle>
       </div>
-      {illustrations.map(({ id, schema_url, description }) => (
-        <div key={id} className="mb-2">
-          <p
-            className="mb-1"
-            style={{ textIndent: "2rem", textAlign: "justify" }}
-          >
-            {description}
-          </p>
-          <Col
-            xs={12}
-            md={11}
-            lg={9}
-            className="mx-auto d-flex justify-content-center"
-          >
-            <img className="img-fluid" src={schema_url} alt="schema" />
-          </Col>
-          <IsLoggedIn>
-            <div className="d-flex justify-content-end border-bottom border-2 py-3">
-              <Link
-                className="btn btn-sm btn-primary"
-                to={`/researches/${research.id}/illustrations/${id}/edit`}
-              >
-                Edit Illustration
-              </Link>
-            </div>
-          </IsLoggedIn>
-        </div>
+      {illustrations.map((illustration) => (
+        <Illustration
+          key={illustration.id}
+          researchId={research.id}
+          {...illustration}
+        />
       ))}
       <div className="">
         <p className="mb-2">Our relevant works:</p>

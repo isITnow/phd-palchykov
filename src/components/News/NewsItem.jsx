@@ -20,7 +20,7 @@ import useImageLoading from "../../assets/customHooks/useImageLoading";
 import confirmationDialog from "../../assets/utils/confirmationDialog";
 
 const NewsItem = ({ news }) => {
-  const { id, title, body, image_url, date, links } = news;
+  const { id, title, body, date, links, image_data } = news;
 
   const { status } = useSelector(selectNews);
   const dispatch = useDispatch();
@@ -41,13 +41,16 @@ const NewsItem = ({ news }) => {
       </CardHeader>
       <CardBody>
         {body && <CardText style={{ textAlign: "justify" }}>{body}</CardText>}
-        {image_url && (
-          <div className="mt-2" style={{ minHeight: "200px" }}>
+        {image_data && (
+          <div
+            className="mt-2"
+            style={{ minHeight: image_data?.metadata?.height }}
+          >
             {!imageIsLoaded && <ImageLoadingSpinner />}
             <img
               className="img-fluid"
-              src={image_url}
-              alt="news cover"
+              src={image_data?.image_url}
+              alt={image_data?.filename}
               onLoad={handleImageLoad}
               onError={handleImageLoad}
             />

@@ -13,15 +13,15 @@ import {
   Row,
 } from "react-bootstrap";
 import IsLoggedIn from "../shared/IsLoggedIn";
+import ResearchImage from "./ResearchImage";
 
 import confirmationDialog from "../../assets/utils/confirmationDialog";
-import s from "./publication.module.css";
 
 const Publication = ({ publication }) => {
   const {
-    abstract_url,
+    abstract_data,
     authors,
-    cover_url,
+    cover_data,
     id,
     publication_period_id,
     sequence_number,
@@ -60,13 +60,13 @@ const Publication = ({ publication }) => {
             </span>
             <h5 className="card-title text-danger">{title}</h5>
           </div>
-          {cover_url && abstract_url ? (
+          {cover_data.cover_url && abstract_data.abstract_url ? (
             <Row md={2} className="mt-2">
               <Col>
-                <img
-                  alt={cover_url}
-                  className={`shadow rounded ${s.img}`}
-                  src={cover_url}
+                <ResearchImage
+                  url={cover_data.cover_url}
+                  alt={cover_data.filename}
+                  metadata={cover_data.metadata}
                 />
               </Col>
               <Col>
@@ -87,10 +87,10 @@ const Publication = ({ publication }) => {
             </div>
           )}
           <div className="mt-3">
-            <img
-              alt={abstract_url || cover_url}
-              className={`shadow  rounded ${s.img}`}
-              src={abstract_url || cover_url}
+            <ResearchImage
+              url={abstract_data.abstract_url || cover_data.cover_url}
+              alt={abstract_data.filename || cover_data.filename}
+              metadata={abstract_data.metadata || cover_data.metadata}
             />
           </div>
         </div>
