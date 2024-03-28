@@ -13,7 +13,7 @@ import {
   Row,
 } from "react-bootstrap";
 import IsLoggedIn from "../shared/IsLoggedIn";
-import ResearchImage from "./ResearchImage";
+import PublicationImage from "./PublicationImage";
 
 import confirmationDialog from "../../assets/utils/confirmationDialog";
 
@@ -63,7 +63,7 @@ const Publication = ({ publication }) => {
           {cover_data && abstract_data ? (
             <Row md={2} className="mt-2">
               <Col>
-                <ResearchImage
+                <PublicationImage
                   url={cover_data.cover_url}
                   alt={cover_data.filename}
                   metadata={cover_data.metadata}
@@ -87,7 +87,7 @@ const Publication = ({ publication }) => {
             </div>
           )}
           <div className="mt-3">
-            <ResearchImage
+            <PublicationImage
               url={abstract_data?.abstract_url || cover_data?.cover_url}
               alt={abstract_data?.filename || cover_data?.filename}
               metadata={abstract_data?.metadata || cover_data?.metadata}

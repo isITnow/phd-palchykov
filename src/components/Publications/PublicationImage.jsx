@@ -3,10 +3,10 @@ import ImageLoadingSpinner from "../shared/ImageLoadingSpinner";
 
 import s from "./publication.module.css";
 
-const ResearchImage = ({ url, alt, metadata: { height, width } }) => {
+const PublicationImage = ({ url, alt, metadata: { height, width } }) => {
   const { imageIsLoaded, handleImageLoad } = useImageLoading();
   return (
-    <div style={{ minHeight: "200px", position: "relative" }}>
+    <div style={{ minHeight: "120px", position: "relative" }}>
       {!imageIsLoaded && <ImageLoadingSpinner />}
       <img
         alt={alt}
@@ -19,4 +19,4 @@ const ResearchImage = ({ url, alt, metadata: { height, width } }) => {
   );
 };
 
-export default ResearchImage;
+export default PublicationImage;
