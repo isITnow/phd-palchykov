@@ -42,10 +42,7 @@ const NewsItem = ({ news }) => {
       <CardBody>
         {body && <CardText style={{ textAlign: "justify" }}>{body}</CardText>}
         {image_data && (
-          <div
-            className="mt-2"
-            style={{ minHeight: image_data?.metadata?.height / 2 }}
-          >
+          <div className="mt-2" style={{ minHeight: "100px" }}>
             {!imageIsLoaded && <ImageLoadingSpinner />}
             <img
               className="img-fluid"

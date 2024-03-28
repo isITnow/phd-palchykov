@@ -28,7 +28,7 @@ const Illustration = ({
         md={11}
         lg={9}
         className="mx-auto d-flex justify-content-center"
-        style={{ minHeight: height / 2, position: "relative" }}
+        style={{ minHeight: "100px", position: "relative" }}
       >
         {!imageIsLoaded && <ImageLoadingSpinner />}
         <img
