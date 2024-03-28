@@ -17,7 +17,20 @@ import IsLoggedIn from "../shared/IsLoggedIn";
 import confirmationDialog from "../../assets/utils/confirmationDialog";
 
 const Colleague = ({ colleague }) => {
-  const { id, name, position, photo_url, phone, email } = colleague;
+  const {
+    id,
+    name,
+    position,
+    photo_data: {
+      filename,
+      // metadata: { width, height },
+      // photo_id,
+      photo_url,
+    },
+    phone,
+    email,
+  } = colleague;
+
   const { status } = useSelector(selectColleagues);
   const dispatch = useDispatch();
 
@@ -30,9 +43,16 @@ const Colleague = ({ colleague }) => {
     );
   };
 
+  // TODO: implement spinner while photo is loading
+
   return (
     <Card className="h-100 shadow-sm">
-      <CardImg variant="top" src={photo_url} />
+      <CardImg
+        variant="top"
+        src={photo_url}
+        alt={filename}
+        // style={{ minHeight: "50px" }}
+      />
       <CardBody className="text-center">
         <CardTitle className="fw-bold">{name}</CardTitle>
         <CardText className="fw-semibold text-muted">{position}</CardText>
