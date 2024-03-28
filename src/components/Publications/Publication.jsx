@@ -60,7 +60,7 @@ const Publication = ({ publication }) => {
             </span>
             <h5 className="card-title text-danger">{title}</h5>
           </div>
-          {cover_data.cover_url && abstract_data.abstract_url ? (
+          {cover_data && abstract_data ? (
             <Row md={2} className="mt-2">
               <Col>
                 <ResearchImage
