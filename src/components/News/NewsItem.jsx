@@ -13,14 +13,18 @@ import {
   CardText,
   CardTitle,
 } from "react-bootstrap";
+import ImageLoadingSpinner from "../shared/ImageLoadingSpinner";
 import IsLoggedIn from "../shared/IsLoggedIn";
 
+import useImageLoading from "../../assets/customHooks/useImageLoading";
 import confirmationDialog from "../../assets/utils/confirmationDialog";
 
 const NewsItem = ({ news }) => {
   const { id, title, body, image_url, date, links } = news;
+
   const { status } = useSelector(selectNews);
   const dispatch = useDispatch();
+  const { imageIsLoaded, handleImageLoad } = useImageLoading();
   const btnDisabled = status === "pending";
 
   const handleDelete = () => {
@@ -38,8 +42,15 @@ const NewsItem = ({ news }) => {
       <CardBody>
         {body && <CardText style={{ textAlign: "justify" }}>{body}</CardText>}
         {image_url && (
-          <div className="mt-2">
-            <img className="img-fluid" src={image_url} alt="..." />
+          <div className="mt-2" style={{ minHeight: "200px" }}>
+            {!imageIsLoaded && <ImageLoadingSpinner />}
+            <img
+              className="img-fluid"
+              src={image_url}
+              alt="news cover"
+              onLoad={handleImageLoad}
+              onError={handleImageLoad}
+            />
           </div>
         )}
         {links?.length > 0 && (
