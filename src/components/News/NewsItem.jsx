@@ -44,7 +44,7 @@ const NewsItem = ({ news }) => {
         {image_data && (
           <div
             className="mt-2"
-            style={{ minHeight: image_data?.metadata?.height }}
+            style={{ minHeight: image_data?.metadata?.height / 2 }}
           >
             {!imageIsLoaded && <ImageLoadingSpinner />}
             <img
