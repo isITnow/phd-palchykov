@@ -69,7 +69,7 @@ const NewsForm = ({ newsItem, status }) => {
               links: [],
               title: "",
             }
-          : newsItem
+          : { ...newsItem, body: newsItem.body || "" }
       }
       validationSchema={validation.newsSchema}
       onSubmit={handleSubmit}
