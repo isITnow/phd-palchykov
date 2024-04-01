@@ -69,7 +69,13 @@ const newsSchema = yup.object().shape({
     .min(5, "Too short. Min 5 characters")
     .required("Title is required"),
   body: yup.string().min(10, "Too short. Min 10 characters"),
-  date: yup.string().required("Date is required"),
+  date: yup
+    .string()
+    .required("Date is required")
+    .matches(
+      /^(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2},\s\d{4}$/,
+      "Invalid date format. Format should be Month Day, Year"
+    ),
   links: yup.array().of(yup.string().min(5, "Too short. Min 5 characters")),
   image: yup
     .mixed()
