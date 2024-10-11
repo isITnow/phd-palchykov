@@ -1,7 +1,7 @@
 const navTabs = {
   colleagues: {
     id: 6,
-    title: "Colleagues",
+    title: "Collaborations",
     path: "/colleagues",
     createPath: "/colleagues/new",
     editPath: (id = ":id") => `/colleagues/${id}/edit`,
