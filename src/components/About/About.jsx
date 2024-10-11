@@ -52,6 +52,11 @@ const About = () => {
         </li>
         <li>
           <p className="mb-2">
+            <strong className="me-2">2024</strong>Visiting Professor in Prof. van Gemmeren group, University of Kiel, Germany
+          </p>
+        </li>
+        <li>
+          <p className="mb-2">
             <strong className="me-2">2023</strong>Visiting Researcher in Prof.
             Ishida group, Kyoto University, Japan
           </p>
@@ -119,8 +124,7 @@ const About = () => {
       <ul>
         <li>
           <p className="mb-2">
-            <strong className="me-2">2022</strong>Full Professor's Certificate
-            (Ministry of Education and Science of Ukraine){" "}
+            <strong className="me-2">2024</strong>"Talents for Ukraine" award from the Kyiv School of Economics (KSE) Foundation
           </p>
         </li>
         <li>
