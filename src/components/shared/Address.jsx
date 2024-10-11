@@ -16,7 +16,7 @@ const Address = () => {
             target="_blank"
             rel="noreferrer noopener"
           >
-            Gagarina Av. 72, Dnipro, 49010, UKRAINE
+            Nauky Av. 72, Dnipro, 49045, UKRAINE
           </a>
         </li>
         <li className="mb-2">
