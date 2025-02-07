@@ -1,25 +1,13 @@
 import { Form, Formik } from "formik";
 
-import { useDispatch } from "react-redux";
-import { loginThunk } from "../../redux/auth/operationsAuth";
-
 import CustomInput from "../FormComponents/CustomInput";
 import SubmitBtn from "../shared/SubmitBtn";
+
 import { validation } from "../../assets/utils/validationSchema";
+import useAuthForm from "./hooks/useAuthForm";
 
-const LoginForm = ({ status }) => {
-  const dispatch = useDispatch();
-
-  const handleSubmit = async (values, actions) => {
-    const { email, password } = values;
-
-    const formData = new FormData();
-    formData.append("user[email]", email.trim().toLowerCase());
-    formData.append("user[password]", password.trim());
-
-    dispatch(loginThunk(formData));
-    actions.resetForm();
-  };
+const AuthForm = ({ closeModal }) => {
+  const { handleSubmit, isPending } = useAuthForm(closeModal);
 
   return (
     <Formik
@@ -31,7 +19,7 @@ const LoginForm = ({ status }) => {
       onSubmit={handleSubmit}
     >
       {(props) => {
-        const isDisabled = props.isSubmitting || status === "pending";
+        const isDisabled = props.isSubmitting || isPending;
         return (
           <Form>
             <CustomInput
@@ -58,4 +46,4 @@ const LoginForm = ({ status }) => {
   );
 };
 
-export default LoginForm;
+export default AuthForm;

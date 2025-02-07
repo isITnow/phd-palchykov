@@ -1,15 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import { lazy, useEffect } from "react";
-
-import { useSelector, useDispatch } from "react-redux";
-import { selectToken } from "./redux/auth/selectorAuth";
-import { refreshUserThunk } from "./redux/auth/operationsAuth";
+import { lazy } from "react";
 
 import Layout from "./components/shared/Layout";
 import NotFoundPage from "./pages/NotFoundPage";
 import PrivateRoute from "./components/shared/PrivateRoute";
 
 import navTabs from "./assets/navTabs";
+import useRefreshAuth from "./hooks/useRefreshAuth";
 
 const ColleaguesPage = lazy(() => import("./pages/ColleaguesPage"));
 const ColleagueOperationsPage = lazy(() =>
@@ -42,14 +39,7 @@ const ContactsPage = lazy(() => import("./pages/ContactsPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 
 const App = () => {
-  const token = useSelector(selectToken);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (token) {
-      dispatch(refreshUserThunk());
-    }
-  }, [dispatch, token]);
+  useRefreshAuth();
 
   return (
     <Routes>

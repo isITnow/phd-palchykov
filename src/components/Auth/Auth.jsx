@@ -1,51 +1,36 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { logoutThunk } from "../../redux/auth/operationsAuth";
-import { selectStatus } from "../../redux/auth/selectorAuth";
-
-import useSignInStatus from "../../assets/customHooks/useSignInStatus";
-
 import { CiLogin, CiLogout } from "react-icons/ci";
-import LoginForm from "../FormComponents/LoginForm";
+
+import useAuth from "./hooks/useAuth";
+import useIsLoggedIn from "../../hooks/useIsLoggedIn";
+
+import AuthForm from "./AuthForm";
 import AuthModal from "./AuthModal";
 
 const Auth = () => {
-  const [modalShow, setModalShow] = useState(false);
-  const dispatch = useDispatch(logoutThunk);
-  const isLoggedIn = useSignInStatus();
-
-  const status = useSelector(selectStatus);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      setModalShow(false);
-      return;
-    }
-  }, [isLoggedIn]);
-
-  const handleLogout = () => {
-    dispatch(logoutThunk());
-  };
+  const { modalShow, mutateLogout, setModalShow } = useAuth();
+  const isLoggedIn = useIsLoggedIn();
 
   return (
     <>
       {isLoggedIn ? (
         <CiLogout
           className="text-light"
+          onClick={mutateLogout}
           size="22"
           style={{ cursor: "pointer" }}
-          onClick={handleLogout}
+          title="Log Out"
         />
       ) : (
         <CiLogin
           className="text-light"
+          onClick={() => setModalShow(true)}
           size="22"
           style={{ cursor: "pointer" }}
-          onClick={() => setModalShow(true)}
+          title="Log In"
         />
       )}
       <AuthModal show={modalShow} onHide={() => setModalShow(false)}>
-        <LoginForm status={status} />
+        <AuthForm closeModal={() => setModalShow(false)} />
       </AuthModal>
     </>
   );
