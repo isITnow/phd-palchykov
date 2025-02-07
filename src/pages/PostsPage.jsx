@@ -2,8 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostsThunk } from "../redux/posts/operationsPosts";
 import { selectPostsList, selectStatus } from "../redux/posts/selectorPosts";
-
-import useSignInStatus from "../assets/customHooks/useSignInStatus";
+import useIsLoggedIn from "../hooks/useIsLoggedIn";
 
 import { Col } from "react-bootstrap";
 import PostForm from "../components/Posts/PostForm";
@@ -12,7 +11,7 @@ import Loader from "../components/shared/Loader";
 
 const PostsPage = () => {
   const dispatch = useDispatch(getPostsThunk());
-  const isLoggedIn = useSignInStatus();
+  const isLoggedIn = useIsLoggedIn();
   const posts = useSelector(selectPostsList);
   const status = useSelector(selectStatus);
 

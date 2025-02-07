@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectUserName } from "../../redux/auth/selectorAuth";
 import { addCommentThunk } from "../../redux/comments/operationsComments";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 import { Form, Formik } from "formik";
 import { Col, FormControl, FormGroup, FormLabel } from "react-bootstrap";
@@ -16,7 +16,10 @@ import { validation } from "../../assets/utils/validationSchema";
 const CommentForm = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const currentUserName = useSelector(selectUserName) || null;
+  const { getItem } = useLocalStorage("auth");
+
+  const authData = getItem();
+  const currentUserName = authData?.user.username || null;
 
   const handleSubmit = async (values, actions) => {
     const { body, author, commentImage } = values;

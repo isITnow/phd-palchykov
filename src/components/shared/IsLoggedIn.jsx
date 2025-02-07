@@ -1,9 +1,9 @@
-import useSignInStatus from "../../assets/customHooks/useSignInStatus";
+import useIsLoggedIn from "../../hooks/useIsLoggedIn";
 
 const IsLoggedIn = ({ children }) => {
-  const isLoggedIn = useSignInStatus();
+  const isLoggedIn = useIsLoggedIn();
 
-  return <>{isLoggedIn && children}</>;
+  return isLoggedIn && children;
 };
 
 export default IsLoggedIn;
