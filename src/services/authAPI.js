@@ -8,13 +8,7 @@ const logoutUser = async () => {
   await privateAPI.delete(`/logout`);
 };
 
-// const getCurrentUser = async () => {
-//   const { data } = await privateAPI.get("/users/tokens/info");
-//   return data;
-// };
-
-export const authAPI = {
+export const authApi = {
   loginUser,
   logoutUser,
-  // getCurrentUser,
 };
