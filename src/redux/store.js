@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import {
   persistStore,
@@ -9,27 +9,25 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import colleaguesReducer from "./colleagues/sliceColleagues";
-import galleryReducer from "./gallery/sliceGallery";
-import newsReducer from "./news/sliceNews";
-import postsReducer from "./posts/slicePosts";
-import publicationsReducer from "./publications/slicePublications";
-import publicationPeriodsReducer from "./publicationPeriods/slicePublicationPeriods";
-import researchesReducer from "./researches/sliceResearches";
+import colleaguesReducer from './colleagues/sliceColleagues';
+import galleryReducer from './gallery/sliceGallery';
+import postsReducer from './posts/slicePosts';
+import publicationsReducer from './publications/slicePublications';
+import publicationPeriodsReducer from './publicationPeriods/slicePublicationPeriods';
+import researchesReducer from './researches/sliceResearches';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage,
-  whitelist: ["periods", "user"],
+  whitelist: ['periods', 'user'],
 };
 
 const rootReducer = combineReducers({
   colleagues: colleaguesReducer,
   gallery: galleryReducer,
-  news: newsReducer,
   periods: publicationPeriodsReducer,
   posts: postsReducer,
   publications: publicationsReducer,

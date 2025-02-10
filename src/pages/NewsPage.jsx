@@ -1,37 +1,26 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getNewsThunk } from "../redux/news/operationsNews";
-import { selectNews } from "../redux/news/selectorNews";
+import { Link } from 'react-router-dom';
+import { newsApi } from '../services/newsApi';
+import { useQuery } from '@tanstack/react-query';
 
-import NewsList from "../components/News/NewsList";
-import IsLoggedIn from "../components/shared/IsLoggedIn";
-import Loader from "../components/shared/Loader";
+import NewsList from '../components/News/NewsList';
+import IsLoggedIn from '../components/shared/IsLoggedIn';
+import Loader from '../components/shared/Loader';
 
-import navTabs from "../assets/navTabs";
+import navTabs from '../assets/navTabs';
 
 const NewsPage = () => {
-  const dispatch = useDispatch();
-  const { news, status } = useSelector(selectNews);
+  const { data: news, isLoading } = useQuery({
+    queryKey: ['news'],
+    queryFn: (meta) => newsApi.fetchNews(meta),
+  });
 
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    dispatch(getNewsThunk(signal));
-
-    return () => {
-      controller.abort();
-    };
-  }, [dispatch]);
-
-  if (status === "loading") {
+  if (isLoading) {
     return <Loader />;
   }
 
   return (
     <>
-      <NewsList news={news} />
+      <NewsList news={news.data} />
       <IsLoggedIn>
         <div className="d-flex flex-row-reverse mt-3">
           <Link className="btn btn-primary" to={navTabs.news.createPath}>

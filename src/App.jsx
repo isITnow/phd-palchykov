@@ -1,42 +1,42 @@
-import { Routes, Route } from "react-router-dom";
-import { lazy } from "react";
+import { Routes, Route } from 'react-router-dom';
+import { lazy } from 'react';
 
-import Layout from "./components/shared/Layout";
-import NotFoundPage from "./pages/NotFoundPage";
-import PrivateRoute from "./components/shared/PrivateRoute";
+import Layout from './components/shared/Layout';
+import NotFoundPage from './pages/NotFoundPage';
+import PrivateRoute from './components/shared/PrivateRoute';
 
-import navTabs from "./assets/navTabs";
-import useRefreshAuth from "./hooks/useRefreshAuth";
+import navTabs from './assets/navTabs';
+import useRefreshAuth from './hooks/useRefreshAuth';
 
-const ColleaguesPage = lazy(() => import("./pages/ColleaguesPage"));
+const ColleaguesPage = lazy(() => import('./pages/ColleaguesPage'));
 const ColleagueOperationsPage = lazy(() =>
-  import("./pages/ColleagueOperationsPage")
+  import('./pages/ColleagueOperationsPage')
 );
 
-const GalleryPage = lazy(() => import("./pages/GalleryPage"));
-const PhotoAlbumPage = lazy(() => import("./pages/PhotoAlbumPage"));
+const GalleryPage = lazy(() => import('./pages/GalleryPage'));
+const PhotoAlbumPage = lazy(() => import('./pages/PhotoAlbumPage'));
 const PhotoAlbumOperationsPage = lazy(() =>
-  import("./pages/PhotoAlbumOperationsPage")
+  import('./pages/PhotoAlbumOperationsPage')
 );
 
-const NewsPage = lazy(() => import("./pages/NewsPage"));
-const NewsOperationsPage = lazy(() => import("./pages/NewsOperationsPage"));
+const NewsPage = lazy(() => import('./pages/NewsPage'));
+const NewsOperationsPage = lazy(() => import('./pages/NewsOperationsPage'));
 
-const PostsPage = lazy(() => import("./pages/PostsPage"));
-const PostPage = lazy(() => import("./pages/PostPage"));
+const PostsPage = lazy(() => import('./pages/PostsPage'));
+const PostPage = lazy(() => import('./pages/PostPage'));
 
-const PublicationsPage = lazy(() => import("./pages/PublicationsPage"));
+const PublicationsPage = lazy(() => import('./pages/PublicationsPage'));
 const PublicationOperationsPage = lazy(() =>
-  import("./pages/PublicationOperationsPage")
+  import('./pages/PublicationOperationsPage')
 );
 
-const ResearchPage = lazy(() => import("./pages/ResearchPage"));
-const CreateResearchPage = lazy(() => import("./pages/CreateResearchPage"));
-const EditResearchPage = lazy(() => import("./pages/EditResearchPage"));
-const EditIllustrationPage = lazy(() => import("./pages/EditIllustrationPage"));
+const ResearchPage = lazy(() => import('./pages/ResearchPage'));
+const CreateResearchPage = lazy(() => import('./pages/CreateResearchPage'));
+const EditResearchPage = lazy(() => import('./pages/EditResearchPage'));
+const EditIllustrationPage = lazy(() => import('./pages/EditIllustrationPage'));
 
-const ContactsPage = lazy(() => import("./pages/ContactsPage"));
-const HomePage = lazy(() => import("./pages/HomePage"));
+const ContactsPage = lazy(() => import('./pages/ContactsPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
 
 const App = () => {
   useRefreshAuth();
@@ -97,7 +97,7 @@ const App = () => {
           />
           <Route
             path={navTabs.news.editPath()}
-            element={<NewsOperationsPage edit />}
+            element={<NewsOperationsPage />}
           />
           <Route
             path={navTabs.colleagues.createPath}

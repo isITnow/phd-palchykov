@@ -1,26 +1,34 @@
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { selectNews } from "../redux/news/selectorNews";
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
-import { Col } from "react-bootstrap";
-import FormCard from "../components/FormComponents/FormCard";
-import NewsForm from "../components/News/NewsForm";
-import NoItemToEdit from "../components/shared/NoItemToEdit";
+import { Col } from 'react-bootstrap';
+import FormCard from '../components/FormComponents/FormCard';
+import NewsForm from '../components/News/NewsForm';
+import NoItemToEdit from '../components/shared/NoItemToEdit';
 
-import navTabs from "../assets/navTabs";
+import { newsApi } from '../services/newsApi';
+import Loader from '../components/shared/Loader';
+import navTabs from '../assets/navTabs';
 
-const NewsOperationsPage = ({ edit }) => {
+const NewsOperationsPage = () => {
   const { id } = useParams();
-  const { news, status } = useSelector(selectNews);
+  const isEditAction = !!id;
 
-  const title = edit ? "Edit News Card" : "Create News Card";
-  let newsItem = null;
+  const { data, isLoading } = useQuery({
+    queryKey: ['single-news', id],
+    queryFn: (meta) => newsApi.fetchNewsById({ id }, meta),
+    enabled: isEditAction,
+  });
 
-  if (edit) {
-    newsItem = news.find((item) => item.id === parseInt(id));
+  const news = data?.data;
+
+  if (isLoading) {
+    return <Loader />;
   }
 
-  if (edit && !newsItem) {
+  const title = isEditAction ? 'Edit News Card' : 'Create News Card';
+
+  if (isEditAction && !news) {
     return <NoItemToEdit backPath={navTabs.news.path} item="News" />;
   }
 
@@ -28,7 +36,7 @@ const NewsOperationsPage = ({ edit }) => {
     <Col lg="8" className="mx-auto">
       <FormCard
         title={title}
-        body={<NewsForm newsItem={edit ? newsItem : null} status={status} />}
+        body={<NewsForm newsItem={isEditAction ? news : null} />}
       />
     </Col>
   );

@@ -1,7 +1,4 @@
-import { useDispatch } from "react-redux";
-import { addNewsThunk, updateNewsThunk } from "../../redux/news/operationsNews";
-
-import { FieldArray, Form, Formik } from "formik";
+import { FieldArray, Form, Formik } from 'formik';
 import {
   Button,
   ButtonGroup,
@@ -10,73 +7,44 @@ import {
   FormGroup,
   FormLabel,
   Row,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
-import CustomInput from "../FormComponents/CustomInput";
-import CustomTextArea from "../FormComponents/CustomTextArea";
-import FormWarning from "../FormComponents/FormWarning";
-import BackBtn from "../shared/BackBtn";
-import Badge from "../shared/Badge";
-import SubmitBtn from "../shared/SubmitBtn";
+import CustomInput from '../FormComponents/CustomInput';
+import CustomTextArea from '../FormComponents/CustomTextArea';
+import FormWarning from '../FormComponents/FormWarning';
+import BackBtn from '../shared/BackBtn';
+import Badge from '../shared/Badge';
+import SubmitBtn from '../shared/SubmitBtn';
 
-import navTabs from "../../assets/navTabs";
-import { currentDate } from "../../assets/utils/dateHelper";
-import { validation } from "../../assets/utils/validationSchema";
+import useNewsForm from './hooks/useNewsForm';
+import navTabs from '../../assets/navTabs';
+import { currentDate } from '../../assets/utils/dateHelper';
+import { validation } from '../../assets/utils/validationSchema';
 
-const NewsForm = ({ newsItem, status }) => {
-  const dispatch = useDispatch();
+const NewsForm = ({ newsItem }) => {
   const isNewItem = !newsItem;
-
-  const handleSubmit = async (values, actions) => {
-    const { title, body, date, image, links } = values;
-
-    const formData = new FormData();
-    formData.append("news[body]", body.trim());
-    formData.append("news[date]", date.trim());
-    formData.append("news[title]", title.trim());
-
-    if (links.length) {
-      links.forEach((element) => {
-        formData.append("news[links][]", element.trim());
-      });
-    }
-
-    if (image) {
-      formData.append("news[image]", image);
-    }
-
-    if (isNewItem) {
-      dispatch(addNewsThunk(formData));
-      actions.resetForm();
-    } else {
-      dispatch(updateNewsThunk({ id: newsItem.id, news: formData }));
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const newsId = newsItem?.id;
+  const { handleSubmit, isPending } = useNewsForm(newsId);
 
   return (
     <Formik
       initialValues={
         isNewItem
           ? {
-              body: "",
-              date: "",
-              image: "",
+              body: '',
+              date: '',
+              image: '',
               links: [],
-              title: "",
+              title: '',
             }
-          : { ...newsItem, body: newsItem.body || "" }
+          : { ...newsItem, body: newsItem.body || '' }
       }
-      validationSchema={validation.newsSchema}
+      validationSchemas={validation.newsSchema}
       onSubmit={handleSubmit}
     >
       {(props) => {
-        const isDisabled = props.isSubmitting || status === "pending";
-        const submitBtnText = isNewItem ? "Create News" : "Update News";
+        const isDisabled = isPending;
+        const submitBtnText = isNewItem ? 'Create News' : 'Update News';
         return (
           <Form>
             <CustomInput
@@ -108,7 +76,7 @@ const NewsForm = ({ newsItem, status }) => {
                 <FormControl
                   type="file"
                   onChange={(e) => {
-                    props.setFieldValue("image", e.target.files[0]);
+                    props.setFieldValue('image', e.target.files[0]);
                   }}
                 />
                 {props.errors.image && (
@@ -124,17 +92,17 @@ const NewsForm = ({ newsItem, status }) => {
                   const { links } = values;
                   const linksListClass =
                     links.length > 1
-                      ? "row-cols-1 row-cols-md-2"
-                      : "row-cols-1";
+                      ? 'row-cols-1 row-cols-md-2'
+                      : 'row-cols-1';
                   return (
                     <>
                       {links && links.length > 0 ? (
-                        <Row as={"ul"} className={linksListClass}>
+                        <Row as={'ul'} className={linksListClass}>
                           {links.map((link, index) => (
-                            <Col as={"li"} className="mb-3" key={index}>
+                            <Col as={'li'} className="mb-3" key={index}>
                               <div className="p-2 border border-2 rounded">
                                 {links.length > 1 && (
-                                  <Badge index={index} text={"link"} />
+                                  <Badge index={index} text={'link'} />
                                 )}
                                 <CustomInput
                                   bsclass="mb-3"
@@ -156,7 +124,7 @@ const NewsForm = ({ newsItem, status }) => {
                                       size="sm"
                                       type="button"
                                       variant="outline-primary"
-                                      onClick={() => push("")}
+                                      onClick={() => push('')}
                                     >
                                       Add Link
                                     </Button>
@@ -172,7 +140,7 @@ const NewsForm = ({ newsItem, status }) => {
                             size="sm"
                             type="button"
                             variant="outline-primary"
-                            onClick={() => push("")}
+                            onClick={() => push('')}
                           >
                             Add Links
                           </Button>
