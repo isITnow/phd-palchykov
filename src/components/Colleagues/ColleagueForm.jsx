@@ -1,73 +1,37 @@
-import { Form, Formik } from "formik";
+import { Form, Formik } from 'formik';
 import {
   ButtonGroup,
   Col,
   FormControl,
   FormGroup,
   FormLabel,
-} from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import {
-  addColleagueThunk,
-  updateColleagueThunk,
-} from "../../redux/colleagues/operationsColleagues";
+} from 'react-bootstrap';
 
-import CustomInput from "../FormComponents/CustomInput";
-import FormWarning from "../FormComponents/FormWarning";
-import BackBtn from "../shared/BackBtn";
-import RequiredBadge from "../shared/RequiredBadge";
-import SubmitBtn from "../shared/SubmitBtn";
+import BackBtn from '../shared/BackBtn';
+import CustomInput from '../FormComponents/CustomInput';
+import FormWarning from '../FormComponents/FormWarning';
+import RequiredBadge from '../shared/RequiredBadge';
+import SubmitBtn from '../shared/SubmitBtn';
 
-import navTabs from "../../assets/navTabs";
-import { validation } from "../../assets/utils/validationSchema";
+import { validation } from '../../assets/utils/validationSchema';
+import navTabs from '../../assets/navTabs';
+import useColleaguesForm from './hooks/useColleaguesForm';
 
-const ColleagueForm = ({ colleague, status }) => {
-  const dispatch = useDispatch();
-
+const ColleagueForm = ({ colleague }) => {
   const isNewItem = !colleague;
-
-  const handleSubmit = async (values, actions) => {
-    const { name, position, phone, email, photo } = values;
-
-    const formData = new FormData();
-    formData.append("colleague[name]", name.trim());
-    formData.append("colleague[position]", position.trim());
-
-    if (phone) {
-      formData.append("colleague[phone]", phone.trim());
-    }
-
-    if (email) {
-      formData.append("colleague[email]", email.trim().toLowerCase());
-    }
-
-    if (photo) {
-      formData.append("colleague[photo]", photo);
-    }
-
-    if (isNewItem) {
-      dispatch(addColleagueThunk(formData));
-      actions.resetForm();
-    } else {
-      dispatch(updateColleagueThunk({ id: colleague.id, colleague: formData }));
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const colleagueId = colleague?.id;
+  const { handleSubmit, isPending } = useColleaguesForm(colleagueId);
 
   return (
     <Formik
       initialValues={
         isNewItem
           ? {
-              email: "",
-              name: "",
-              phone: "",
-              photo: "",
-              position: "",
+              email: '',
+              name: '',
+              phone: '',
+              photo: '',
+              position: '',
             }
           : colleague
       }
@@ -75,10 +39,10 @@ const ColleagueForm = ({ colleague, status }) => {
       onSubmit={handleSubmit}
     >
       {(props) => {
-        const isDisabled = props.isSubmitting || status === "pending";
+        console.log('props: ', props);
         const submitBtnText = isNewItem
-          ? "Create Colleague"
-          : "Update Colleague";
+          ? 'Create Colleague'
+          : 'Update Colleague';
         return (
           <Form>
             <CustomInput
@@ -99,7 +63,6 @@ const ColleagueForm = ({ colleague, status }) => {
               bsclass="mb-3"
               label="Email"
               name="email"
-              required
               type="email"
             />
             <CustomInput
@@ -118,7 +81,7 @@ const ColleagueForm = ({ colleague, status }) => {
                 <FormControl
                   type="file"
                   onChange={(e) => {
-                    props.setFieldValue("photo", e.target.files[0]);
+                    props.setFieldValue('photo', e.target.files[0]);
                   }}
                 />
                 {props.errors.photo && (
@@ -129,7 +92,7 @@ const ColleagueForm = ({ colleague, status }) => {
             <div className="d-flex flex-row-reverse mt-3">
               <ButtonGroup>
                 <BackBtn path={navTabs.colleagues.path}>Cancel</BackBtn>
-                <SubmitBtn text={submitBtnText} disabled={isDisabled} />
+                <SubmitBtn text={submitBtnText} disabled={isPending} />
               </ButtonGroup>
             </div>
           </Form>

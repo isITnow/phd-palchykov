@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { removeColleagueThunk } from "../../redux/colleagues/operationsColleagues";
-import { selectColleagues } from "../../redux/colleagues/selectorColleagues";
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import {
   Button,
@@ -11,35 +10,37 @@ import {
   CardImg,
   CardText,
   CardTitle,
-} from "react-bootstrap";
-import IsLoggedIn from "../shared/IsLoggedIn";
+} from 'react-bootstrap';
+import IsLoggedIn from '../shared/IsLoggedIn';
 
-import confirmationDialog from "../../assets/utils/confirmationDialog";
+import { colleaguesApi } from '../../services/colleaguesApi';
+import confirmationDialog from '../../assets/utils/confirmationDialog';
 
 const Colleague = ({ colleague }) => {
+  const queryClient = useQueryClient();
+
+  const { mutateAsync: mutateDeleteColleague, isPending } = useMutation({
+    mutationFn: colleaguesApi.deleteColleague,
+    onSuccess: () => {
+      toast.success('Colleague card deleted successfully');
+      queryClient.invalidateQueries(['colleagues']);
+    },
+    onError: (error) => toast.error(error.response.data.message),
+  });
+
   const {
     id,
     name,
     position,
-    photo_data: {
-      filename,
-      // metadata: { width, height },
-      // photo_id,
-      photo_url,
-    },
+    photo_data: { filename, photo_url },
     phone,
     email,
   } = colleague;
 
-  const { status } = useSelector(selectColleagues);
-  const dispatch = useDispatch();
-
-  const btnDisabled = status === "pending";
-
   const handleDelete = () => {
     confirmationDialog(
-      () => dispatch(removeColleagueThunk(id)),
-      "Are you sure you want to delete?"
+      () => mutateDeleteColleague(id),
+      'Are you sure you want to delete?'
     );
   };
 
@@ -47,13 +48,8 @@ const Colleague = ({ colleague }) => {
 
   return (
     <Card className="h-100 shadow-sm">
-      <CardImg
-        variant="top"
-        src={photo_url}
-        alt={filename}
-        // style={{ minHeight: "50px" }}
-      />
-      <CardBody className="text-center">
+      <CardImg variant="top" src={photo_url} alt={filename} />
+      <CardBody className="text-center d-flex flex-column">
         <CardTitle className="fw-bold">{name}</CardTitle>
         <CardText className="fw-semibold text-muted">{position}</CardText>
         {(email || phone) && (
@@ -75,7 +71,7 @@ const Colleague = ({ colleague }) => {
           </ul>
         )}
         <IsLoggedIn>
-          <ButtonGroup className="mt-3">
+          <ButtonGroup className="pt-3 mt-auto">
             <Link
               className="btn btn-sm btn-primary"
               to={`/colleagues/${id}/edit`}
@@ -87,7 +83,7 @@ const Colleague = ({ colleague }) => {
               size="sm"
               type="button"
               variant="danger"
-              disabled={btnDisabled}
+              disabled={isPending}
               onClick={handleDelete}
             >
               Delete

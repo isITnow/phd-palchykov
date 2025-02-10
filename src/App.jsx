@@ -105,7 +105,7 @@ const App = () => {
           />
           <Route
             path={navTabs.colleagues.editPath()}
-            element={<ColleagueOperationsPage edit />}
+            element={<ColleagueOperationsPage />}
           />
         </Route>
       </Route>
