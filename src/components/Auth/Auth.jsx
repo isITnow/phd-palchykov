@@ -1,13 +1,13 @@
-import { CiLogin, CiLogout } from "react-icons/ci";
+import { CiLogin, CiLogout } from 'react-icons/ci';
 
-import useAuth from "./hooks/useAuth";
-import useIsLoggedIn from "../../hooks/useIsLoggedIn";
+import useAuth from './hooks/useAuth';
+import useIsLoggedIn from '../../hooks/useIsLoggedIn';
 
-import AuthForm from "./AuthForm";
-import AuthModal from "./AuthModal";
+import AuthForm from './AuthForm';
+import AuthModal from './AuthModal';
 
 const Auth = () => {
-  const { modalShow, mutateLogout, setModalShow } = useAuth();
+  const { modalShow, logout, setModalShow } = useAuth();
   const isLoggedIn = useIsLoggedIn();
 
   return (
@@ -15,9 +15,9 @@ const Auth = () => {
       {isLoggedIn ? (
         <CiLogout
           className="text-light"
-          onClick={mutateLogout}
+          onClick={logout}
           size="22"
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           title="Log Out"
         />
       ) : (
@@ -25,7 +25,7 @@ const Auth = () => {
           className="text-light"
           onClick={() => setModalShow(true)}
           size="22"
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           title="Log In"
         />
       )}

@@ -1,20 +1,25 @@
-import { toast } from "react-toastify";
-import { useMutation } from "@tanstack/react-query";
+import { toast } from 'react-toastify';
+import { useMutation } from '@tanstack/react-query';
 
-import { authApi } from "../../../services/authApi";
-import { tokenOperations } from "../../../services/http";
-import useLocalStorage from "../../../hooks/useLocalStorage";
+import { authApi } from '../../../services/authApi';
+import { tokenOperations } from '../../../services/http';
+import { useUser } from '../../../context/UserContext';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 
 const useAuthForm = (closeModal) => {
-  const { setItem } = useLocalStorage("auth");
+  const { updateUser } = useUser();
+  const { setItem } = useLocalStorage('auth');
+
   const { mutateAsync: mutateLogin, isPending } = useMutation({
     mutationFn: authApi.loginUser,
     onSuccess: ({ data, headers }) => {
-      const token = headers.authorization.split(" ")[1];
+      const token = headers.authorization.split(' ')[1];
       const user = data.data;
 
       tokenOperations.set(token);
       setItem({ token, user });
+      updateUser(user);
+
       toast.success(`Welcome back, ${user.username}!`);
       closeModal();
     },
@@ -25,8 +30,8 @@ const useAuthForm = (closeModal) => {
     const { email, password } = values;
 
     const formData = new FormData();
-    formData.append("user[email]", email.trim().toLowerCase());
-    formData.append("user[password]", password.trim());
+    formData.append('user[email]', email.trim().toLowerCase());
+    formData.append('user[password]', password.trim());
 
     try {
       await mutateLogin(formData);

@@ -1,9 +1,9 @@
-import useLocalStorage from "./useLocalStorage";
+import { useUser } from '../context/UserContext';
 
 const useIsLoggedIn = () => {
-  const { getItem } = useLocalStorage("auth");
+  const { user } = useUser();
 
-  return Boolean(getItem());
+  return Boolean(user);
 };
 
 export default useIsLoggedIn;

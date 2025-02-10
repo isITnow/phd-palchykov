@@ -1,35 +1,34 @@
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { addCommentThunk } from "../../redux/comments/operationsComments";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { addCommentThunk } from '../../redux/comments/operationsComments';
 
-import { Form, Formik } from "formik";
-import { Col, FormControl, FormGroup, FormLabel } from "react-bootstrap";
+import { Form, Formik } from 'formik';
+import { Col, FormControl, FormGroup, FormLabel } from 'react-bootstrap';
 
-import CustomInput from "../FormComponents/CustomInput";
-import CustomTextArea from "../FormComponents/CustomTextArea";
-import FormWarning from "../FormComponents/FormWarning";
-import SubmitBtn from "../shared/SubmitBtn";
+import CustomInput from '../FormComponents/CustomInput';
+import CustomTextArea from '../FormComponents/CustomTextArea';
+import FormWarning from '../FormComponents/FormWarning';
+import SubmitBtn from '../shared/SubmitBtn';
 
-import { validation } from "../../assets/utils/validationSchema";
+import { validation } from '../../assets/utils/validationSchema';
+import { useUser } from '../../context/UserContext';
 
 const CommentForm = () => {
+  const { user } = useUser();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { getItem } = useLocalStorage("auth");
 
-  const authData = getItem();
-  const currentUserName = authData?.user.username || null;
+  const currentUserName = user?.username || null;
 
   const handleSubmit = async (values, actions) => {
     const { body, author, commentImage } = values;
 
     const formData = new FormData();
-    formData.append("comment[author]", author.trim());
-    formData.append("comment[body]", body.trim());
+    formData.append('comment[author]', author.trim());
+    formData.append('comment[body]', body.trim());
 
     if (commentImage) {
-      formData.append("comment[comment_image]", commentImage);
+      formData.append('comment[comment_image]', commentImage);
     }
 
     dispatch(addCommentThunk({ post_id: id, comment: formData }));
@@ -39,9 +38,9 @@ const CommentForm = () => {
   return (
     <Formik
       initialValues={{
-        author: currentUserName || "",
-        body: "",
-        commentImage: "",
+        author: currentUserName || '',
+        body: '',
+        commentImage: '',
       }}
       validationSchema={validation.commentSchema}
       onSubmit={handleSubmit}
@@ -64,7 +63,7 @@ const CommentForm = () => {
               <FormControl
                 type="file"
                 onChange={(e) => {
-                  props.setFieldValue("commentImage", e.target.files[0]);
+                  props.setFieldValue('commentImage', e.target.files[0]);
                 }}
               />
               {props.errors.commentImage && (

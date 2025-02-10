@@ -1,12 +1,13 @@
-import React, { StrictMode } from 'react';
-import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
-import { QueryClientProvider } from '@tanstack/react-query';
-
 import { Provider } from 'react-redux';
+import { QueryClientProvider } from '@tanstack/react-query';
+import React, { StrictMode } from 'react';
+import ReactDOM from 'react-dom/client';
+
 import { persister, store } from './redux/store';
 import queryClient from './queryClient.js';
+import UserContextProvider from './context/UserContext.js';
 
 import App from './App';
 import Loader from './components/shared/Loader';
@@ -23,7 +24,9 @@ root.render(
       <BrowserRouter>
         <StrictMode>
           <QueryClientProvider client={queryClient}>
-            <App />
+            <UserContextProvider>
+              <App />
+            </UserContextProvider>
           </QueryClientProvider>
         </StrictMode>
       </BrowserRouter>
