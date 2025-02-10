@@ -1,6 +1,10 @@
-const confirmationDialog = (operation, message = "Are you sure?") => {
+const confirmationDialog = async (callback, message = 'Are you sure?') => {
   if (window.confirm(message) === true) {
-    operation();
+    try {
+      await callback();
+    } catch (error) {
+      console.error('Confirmation callback:', error);
+    }
   }
 };
 
