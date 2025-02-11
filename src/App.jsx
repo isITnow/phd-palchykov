@@ -27,9 +27,11 @@ const NewsOperationsPage = lazy(() =>
 const PostsPage = lazy(() => import('./pages/posts/PostsPage'));
 const PostPage = lazy(() => import('./pages/posts/PostPage'));
 
-const PublicationsPage = lazy(() => import('./pages/PublicationsPage'));
+const PublicationsPage = lazy(() =>
+  import('./pages/publications/PublicationsPage')
+);
 const PublicationOperationsPage = lazy(() =>
-  import('./pages/PublicationOperationsPage')
+  import('./pages/publications/PublicationOperationsPage')
 );
 
 const ResearchPage = lazy(() => import('./pages/ResearchPage'));

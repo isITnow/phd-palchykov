@@ -1,8 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { removePublicationThunk } from "../../redux/publications/operationsPublications";
-import { selectPublications } from "../../redux/publications/selectorPublications";
-
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Button,
   ButtonGroup,
@@ -11,11 +9,13 @@ import {
   CardSubtitle,
   Col,
   Row,
-} from "react-bootstrap";
-import IsLoggedIn from "../shared/IsLoggedIn";
-import PublicationImage from "./PublicationImage";
+} from 'react-bootstrap';
 
-import confirmationDialog from "../../assets/utils/confirmationDialog";
+import IsLoggedIn from '../shared/IsLoggedIn';
+import PublicationImage from './PublicationImage';
+
+import { publicationsApi } from '../../services/publicationsApi';
+import confirmationDialog from '../../assets/utils/confirmationDialog';
 
 const Publication = ({ publication }) => {
   const {
@@ -31,24 +31,30 @@ const Publication = ({ publication }) => {
     year,
   } = publication;
 
-  const { status } = useSelector(selectPublications);
-  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
 
-  const btnDisabled = status === "pending";
-  const isYear = year !== "no data";
+  const { mutateAsync: mutateDeletePublication, isPending } = useMutation({
+    mutationFn: publicationsApi.deletePublication,
+    onSuccess: () => {
+      toast.success('Publication deleted successfully');
+      queryClient.invalidateQueries(['publications', publication_period_id]);
+    },
+    onError: (error) =>
+      toast.error(error.response?.data?.message || 'Error occurred'),
+  });
 
   const handleDelete = () => {
     confirmationDialog(
       () =>
-        dispatch(
-          removePublicationThunk({
-            period_id: publication_period_id,
-            publication_id: id,
-          })
-        ),
-      "Are you sure you want to delete?"
+        mutateDeletePublication({
+          periodId: publication_period_id,
+          publicationId: id,
+        }),
+      'Are you sure you want to delete?'
     );
   };
+
+  const isYear = year !== 'no data';
 
   return (
     <Card className="h-100 shadow-sm">
@@ -71,7 +77,7 @@ const Publication = ({ publication }) => {
               </Col>
               <Col>
                 <CardSubtitle className="mt-2">
-                  {authors.join("; ")}
+                  {authors.join('; ')}
                 </CardSubtitle>
                 <a href={source_url} target="_blank" rel="noreferrer noopener">
                   <p className="fst-italic mt-2">{source}</p>
@@ -80,7 +86,7 @@ const Publication = ({ publication }) => {
             </Row>
           ) : (
             <div>
-              <CardSubtitle className="mt-2">{authors.join("; ")}</CardSubtitle>
+              <CardSubtitle className="mt-2">{authors.join('; ')}</CardSubtitle>
               <a href={source_url} target="_blank" rel="noreferrer noopener">
                 <p className="fst-italic mt-2">{source}</p>
               </a>
@@ -107,7 +113,7 @@ const Publication = ({ publication }) => {
                 Edit
               </Link>
               <Button
-                disabled={btnDisabled}
+                disabled={isPending}
                 size="sm"
                 type="button"
                 variant="danger"

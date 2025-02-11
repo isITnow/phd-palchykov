@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import { useQuery } from '@tanstack/react-query';
 
-import { periodsApi } from '../../services/publicationPeriodsAPI';
+import { periodsApi } from '../../services/publicationPeriodsApi';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
 const useSetPeriods = () => {

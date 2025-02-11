@@ -1,10 +1,3 @@
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import {
-  addPublicationThunk,
-  updatePublicationThunk,
-} from '../../redux/publications/operationsPublications';
-
 import { FieldArray, Form, Formik } from 'formik';
 import {
   Button,
@@ -16,86 +9,29 @@ import {
   Row,
 } from 'react-bootstrap';
 
+import BackBtn from '../shared/BackBtn';
+import Badge from '../shared/Badge';
 import CustomInput from '../FormComponents/CustomInput';
 import CustomSelect from '../FormComponents/CustomSelect';
 import CustomTextArea from '../FormComponents/CustomTextArea';
 import FormWarning from '../FormComponents/FormWarning';
-import BackBtn from '../shared/BackBtn';
-import Badge from '../shared/Badge';
 import RequiredBadge from '../shared/RequiredBadge';
 import SubmitBtn from '../shared/SubmitBtn';
 
-import navTabs from '../../assets/navTabs';
-import getCurrentPeriod from '../../assets/utils/getCurrentEntity';
-import getYearsArray from '../../assets/utils/getYearsArray';
 import { validation } from '../../assets/utils/validationSchema';
-import useSelectPeriods from '../../hooks/useSelectPeriods';
+import navTabs from '../../assets/navTabs';
+import usePublicationForm from './hooks/usePublicationForm';
 
-const PublicationForm = ({ publication, status }) => {
-  const dispatch = useDispatch();
-  const { period_id } = useParams();
-  const periods = useSelectPeriods();
-
-  const currentPeriodId = parseInt(period_id);
-  const currentPeriod = getCurrentPeriod(periods, currentPeriodId);
-  const periodYears = getYearsArray(currentPeriod).length
-    ? getYearsArray(currentPeriod)
-    : ['no data'];
-
+const PublicationForm = ({ publication }) => {
   const isNewItem = !publication;
-
-  const handleSubmit = async (values, actions) => {
-    const {
-      abstract,
-      authors,
-      cover,
-      sequence_number,
-      source_url,
-      source,
-      title,
-      year,
-    } = values;
-
-    const formData = new FormData();
-    formData.append('publication[sequence_number]', sequence_number);
-    formData.append('publication[source_url]', source_url.trim());
-    formData.append('publication[source]', source.trim());
-    formData.append('publication[title]', title.trim());
-    formData.append('publication[title]', title.trim());
-    formData.append('publication[year]', year);
-    if (authors.length) {
-      authors.forEach((item) => {
-        formData.append('publication[authors][]', item.trim());
-      });
-    }
-    if (cover) {
-      formData.append('publication[cover]', cover);
-    }
-    if (abstract) {
-      formData.append('publication[abstract]', abstract);
-    }
-
-    if (isNewItem) {
-      dispatch(addPublicationThunk({ period_id, publication: formData }));
-      actions.resetForm();
-    } else {
-      dispatch(
-        updatePublicationThunk({
-          period_id,
-          publication_id: publication.id,
-          publication: formData,
-        })
-      );
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
+  const publicationId = publication?.id;
+  const { handleSubmit, isPending, periodYears, periodId } = usePublicationForm(
+    publicationId
+  );
 
   return (
     <Formik
+      enableReinitialize
       initialValues={
         isNewItem
           ? {
@@ -114,7 +50,6 @@ const PublicationForm = ({ publication, status }) => {
       onSubmit={handleSubmit}
     >
       {(props) => {
-        const isDisabled = props.isSubmitting || status === 'pending';
         const submitBtnText = isNewItem
           ? 'Create Publication'
           : 'Update Publication';
@@ -265,10 +200,10 @@ const PublicationForm = ({ publication, status }) => {
             </div>
             <div className="d-flex flex-row-reverse mt-3">
               <ButtonGroup>
-                <BackBtn path={navTabs.publications.path(period_id)}>
+                <BackBtn path={navTabs.publications.path(periodId)}>
                   Cancel
                 </BackBtn>
-                <SubmitBtn text={submitBtnText} disabled={isDisabled} />
+                <SubmitBtn text={submitBtnText} disabled={isPending} />
               </ButtonGroup>
             </div>
           </Form>
