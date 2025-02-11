@@ -28,6 +28,7 @@ const NewsForm = ({ newsItem }) => {
 
   return (
     <Formik
+      enableReinitialize
       initialValues={
         isNewItem
           ? {
