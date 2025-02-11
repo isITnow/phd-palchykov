@@ -2,16 +2,17 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { Col } from 'react-bootstrap';
-import FormCard from '../components/FormComponents/FormCard';
-import NewsForm from '../components/News/NewsForm';
-import NoItemToEdit from '../components/shared/NoItemToEdit';
+import FormCard from '../../components/FormComponents/FormCard';
+import Loader from '../../components/shared/Loader';
+import NewsForm from '../../components/News/NewsForm';
+import NoItemToEdit from '../../components/shared/NoItemToEdit';
 
-import { newsApi } from '../services/newsApi';
-import Loader from '../components/shared/Loader';
-import navTabs from '../assets/navTabs';
+import { newsApi } from '../../services/newsApi';
+import navTabs from '../../assets/navTabs';
 
 const NewsOperationsPage = () => {
   const { id } = useParams();
+
   const isEditAction = !!id;
 
   const { data, isLoading } = useQuery({
@@ -21,12 +22,11 @@ const NewsOperationsPage = () => {
   });
 
   const news = data?.data;
+  const title = isEditAction ? 'Edit News Card' : 'Create News Card';
 
   if (isLoading) {
     return <Loader />;
   }
-
-  const title = isEditAction ? 'Edit News Card' : 'Create News Card';
 
   if (isEditAction && !news) {
     return <NoItemToEdit backPath={navTabs.news.path} item="News" />;

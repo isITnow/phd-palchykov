@@ -16,7 +16,8 @@ const useNewsForm = (newsId) => {
       navigate(navTabs.news.path);
       toast.success(successMessage);
     },
-    onError: (error) => toast.error(error.response.data.message),
+    onError: (error) =>
+      toast.error(error.response?.data?.message || 'Error occurred'),
     onSettled: () => {
       window.scrollTo({
         top: 0,
@@ -25,9 +26,13 @@ const useNewsForm = (newsId) => {
     },
   });
 
+  // Add news
+
   const { mutateAsync: mutateAddNews, isPending: isCreating } = useMutation(
     createMutationConfig(newsApi.addNews, 'News has been added successfully')
   );
+
+  // Edit news
 
   const { mutateAsync: mutateEditNews, isPending: isEditing } = useMutation(
     createMutationConfig(newsApi.editNews, 'News has been updated successfully')
@@ -51,12 +56,10 @@ const useNewsForm = (newsId) => {
       formData.append('news[image]', image);
     }
 
-    try {
-      newsId
-        ? await mutateEditNews({ id: newsId, body: formData })
-        : await mutateAddNews(formData);
-      actions.resetForm();
-    } catch (error) {}
+    newsId
+      ? await mutateEditNews({ id: newsId, body: formData })
+      : await mutateAddNews({ body: formData });
+    actions.resetForm();
   };
 
   return { handleSubmit, isPending: isCreating || isEditing };

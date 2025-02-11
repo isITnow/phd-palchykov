@@ -29,14 +29,15 @@ const NewsItem = ({ news }) => {
       toast.success('News has been deleted successfully');
       queryClient.invalidateQueries(['news']);
     },
-    onError: (error) => toast.error(error.response.data.message),
+    onError: (error) =>
+      toast.error(error.response?.data?.message || 'Error occurred'),
   });
 
   const { id, title, body, date, links, image_data } = news;
 
   const handleDelete = () => {
     confirmationDialog(
-      () => mutateDeleteNews(id),
+      () => mutateDeleteNews({ id }),
       'Are you sure you want to delete?'
     );
   };
