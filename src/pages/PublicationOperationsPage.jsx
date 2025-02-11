@@ -1,20 +1,20 @@
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
-import { selectPublications } from "../redux/publications/selectorPublications";
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { selectPublications } from '../redux/publications/selectorPublications';
 
-import { Col } from "react-bootstrap";
-import FormCard from "../components/FormComponents/FormCard";
-import PublicationForm from "../components/Publications/PublicationForm";
-import NoItemToEdit from "../components/shared/NoItemToEdit";
+import { Col } from 'react-bootstrap';
+import FormCard from '../components/FormComponents/FormCard';
+import PublicationForm from '../components/Publications/PublicationForm';
+import NoItemToEdit from '../components/shared/NoItemToEdit';
 
-import navTabs from "../assets/navTabs";
-import getCurrentPeriod from "../assets/utils/getCurrentEntity";
+import navTabs from '../assets/navTabs';
+import getCurrentPeriod from '../assets/utils/getCurrentEntity';
+import useSelectPeriods from '../hooks/useSelectPeriods';
 
 const PublicationOperationsPage = ({ edit }) => {
   const { period_id, publication_id } = useParams();
-  const { periods } = useSelector(selectPeriods);
   const { publications, status } = useSelector(selectPublications);
+  const periods = useSelectPeriods();
 
   const currentPeriodId = parseInt(period_id);
   const currentPublicationId = parseInt(publication_id);

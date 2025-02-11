@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 
-import Layout from './components/shared/Layout';
+import Layout from './layouts/Layout';
 import NotFoundPage from './pages/NotFoundPage';
 import PrivateRoute from './components/shared/PrivateRoute';
 

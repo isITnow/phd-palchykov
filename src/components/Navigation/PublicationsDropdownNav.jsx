@@ -1,15 +1,15 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import useSelectPeriods from '../../hooks/useSelectPeriods';
 
-import { useSelector } from "react-redux";
-import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
-import s from "./navigation.module.css";
+import s from './navigation.module.css';
 
 const PublicationsDropdownNav = ({ menuTitle, path }) => {
-  const { periods } = useSelector(selectPeriods);
+  const periods = useSelectPeriods();
   const { pathname } = useLocation();
-  const publicationsSpanClass = pathname.includes("publications")
-    ? "text-primary"
-    : "";
+
+  const publicationsSpanClass = pathname.includes('publications')
+    ? 'text-primary'
+    : '';
 
   return (
     <li className="nav-item dropdown">

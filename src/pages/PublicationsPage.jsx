@@ -1,21 +1,22 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { selectPeriods } from "../redux/publicationPeriods/selectorPublicationPeriods";
-import { getPublicationsThunk } from "../redux/publications/operationsPublications";
-import { selectPublications } from "../redux/publications/selectorPublications";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { getPublicationsThunk } from '../redux/publications/operationsPublications';
+import { selectPublications } from '../redux/publications/selectorPublications';
 
-import PagesNav from "../components/PagesNav/PagesNav";
-import PublicationsList from "../components/Publications/PublicationsList";
-import IsLoggedIn from "../components/shared/IsLoggedIn";
-import Loader from "../components/shared/Loader";
+import PagesNav from '../components/PagesNav/PagesNav';
+import PublicationsList from '../components/Publications/PublicationsList';
+import IsLoggedIn from '../components/shared/IsLoggedIn';
+import Loader from '../components/shared/Loader';
 
-import navTabs from "../assets/navTabs";
+import navTabs from '../assets/navTabs';
+import useSelectPeriods from '../hooks/useSelectPeriods';
 
 const PublicationsPage = () => {
   const { period_id } = useParams();
-  const { periods } = useSelector(selectPeriods);
   const { publications, status } = useSelector(selectPublications);
+  const periods = useSelectPeriods();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const PublicationsPage = () => {
     dispatch(getPublicationsThunk({ id: period_id, signal }));
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
 
     return () => {
@@ -33,7 +34,7 @@ const PublicationsPage = () => {
     };
   }, [dispatch, period_id]);
 
-  if (status === "loading") {
+  if (status === 'loading') {
     return <Loader />;
   }
 
@@ -41,7 +42,7 @@ const PublicationsPage = () => {
     <>
       <PagesNav
         currentPeriodId={parseInt(period_id)}
-        margin={"mb-3"}
+        margin={'mb-3'}
         periods={periods}
       />
       <PublicationsList publications={publications} />

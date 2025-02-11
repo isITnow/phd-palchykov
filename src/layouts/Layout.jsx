@@ -1,33 +1,24 @@
-import { Suspense, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Outlet, useLocation } from "react-router-dom";
-import { getPeriodsThunk } from "../../redux/publicationPeriods/operationsPublicationPeriods";
-import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
+import { Suspense, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 
-import { Bounce, ToastContainer } from "react-toastify";
-import Footer from "../Footer/Footer";
-import Navigation from "../Navigation/Navigation";
-import Loader from "./Loader";
-import ScrollToTop from "./ScrollToTop";
-import Section from "./Section";
+import { Bounce, ToastContainer } from 'react-toastify';
+import Footer from '../components/Footer/Footer';
+import Navigation from '../components/Navigation/Navigation';
+import Loader from '../components/shared/Loader';
+import ScrollToTop from '../components/shared/ScrollToTop';
+import Section from '../components/shared/Section';
 
-import setPageTitle from "../../assets/utils/setPageTitle";
+import setPageTitle from '../assets/utils/setPageTitle';
+import useSetPeriods from './hooks/useSetPeriods';
 
 const Layout = () => {
-  const dispatch = useDispatch();
-  const { periods } = useSelector(selectPeriods);
   const location = useLocation();
+  useSetPeriods();
 
   useEffect(() => {
     const { pathname } = location;
     setPageTitle(pathname);
   }, [location]);
-
-  useEffect(() => {
-    if (!periods.length) {
-      dispatch(getPeriodsThunk());
-    }
-  }, [dispatch, periods]);
 
   return (
     <>

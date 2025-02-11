@@ -1,12 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { selectPeriods } from "../../redux/publicationPeriods/selectorPublicationPeriods";
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import {
   addPublicationThunk,
   updatePublicationThunk,
-} from "../../redux/publications/operationsPublications";
+} from '../../redux/publications/operationsPublications';
 
-import { FieldArray, Form, Formik } from "formik";
+import { FieldArray, Form, Formik } from 'formik';
 import {
   Button,
   ButtonGroup,
@@ -15,32 +14,33 @@ import {
   FormGroup,
   FormLabel,
   Row,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
-import CustomInput from "../FormComponents/CustomInput";
-import CustomSelect from "../FormComponents/CustomSelect";
-import CustomTextArea from "../FormComponents/CustomTextArea";
-import FormWarning from "../FormComponents/FormWarning";
-import BackBtn from "../shared/BackBtn";
-import Badge from "../shared/Badge";
-import RequiredBadge from "../shared/RequiredBadge";
-import SubmitBtn from "../shared/SubmitBtn";
+import CustomInput from '../FormComponents/CustomInput';
+import CustomSelect from '../FormComponents/CustomSelect';
+import CustomTextArea from '../FormComponents/CustomTextArea';
+import FormWarning from '../FormComponents/FormWarning';
+import BackBtn from '../shared/BackBtn';
+import Badge from '../shared/Badge';
+import RequiredBadge from '../shared/RequiredBadge';
+import SubmitBtn from '../shared/SubmitBtn';
 
-import navTabs from "../../assets/navTabs";
-import getCurrentPeriod from "../../assets/utils/getCurrentEntity";
-import getYearsArray from "../../assets/utils/getYearsArray";
-import { validation } from "../../assets/utils/validationSchema";
+import navTabs from '../../assets/navTabs';
+import getCurrentPeriod from '../../assets/utils/getCurrentEntity';
+import getYearsArray from '../../assets/utils/getYearsArray';
+import { validation } from '../../assets/utils/validationSchema';
+import useSelectPeriods from '../../hooks/useSelectPeriods';
 
 const PublicationForm = ({ publication, status }) => {
   const dispatch = useDispatch();
   const { period_id } = useParams();
-  const { periods } = useSelector(selectPeriods);
+  const periods = useSelectPeriods();
 
   const currentPeriodId = parseInt(period_id);
   const currentPeriod = getCurrentPeriod(periods, currentPeriodId);
   const periodYears = getYearsArray(currentPeriod).length
     ? getYearsArray(currentPeriod)
-    : ["no data"];
+    : ['no data'];
 
   const isNewItem = !publication;
 
@@ -57,22 +57,22 @@ const PublicationForm = ({ publication, status }) => {
     } = values;
 
     const formData = new FormData();
-    formData.append("publication[sequence_number]", sequence_number);
-    formData.append("publication[source_url]", source_url.trim());
-    formData.append("publication[source]", source.trim());
-    formData.append("publication[title]", title.trim());
-    formData.append("publication[title]", title.trim());
-    formData.append("publication[year]", year);
+    formData.append('publication[sequence_number]', sequence_number);
+    formData.append('publication[source_url]', source_url.trim());
+    formData.append('publication[source]', source.trim());
+    formData.append('publication[title]', title.trim());
+    formData.append('publication[title]', title.trim());
+    formData.append('publication[year]', year);
     if (authors.length) {
       authors.forEach((item) => {
-        formData.append("publication[authors][]", item.trim());
+        formData.append('publication[authors][]', item.trim());
       });
     }
     if (cover) {
-      formData.append("publication[cover]", cover);
+      formData.append('publication[cover]', cover);
     }
     if (abstract) {
-      formData.append("publication[abstract]", abstract);
+      formData.append('publication[abstract]', abstract);
     }
 
     if (isNewItem) {
@@ -90,7 +90,7 @@ const PublicationForm = ({ publication, status }) => {
 
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -99,14 +99,14 @@ const PublicationForm = ({ publication, status }) => {
       initialValues={
         isNewItem
           ? {
-              abstract: "",
-              authors: [""],
-              cover: "",
+              abstract: '',
+              authors: [''],
+              cover: '',
               sequence_number: 0,
-              source_url: "",
-              source: "",
-              title: "",
-              year: "",
+              source_url: '',
+              source: '',
+              title: '',
+              year: '',
             }
           : publication
       }
@@ -114,10 +114,10 @@ const PublicationForm = ({ publication, status }) => {
       onSubmit={handleSubmit}
     >
       {(props) => {
-        const isDisabled = props.isSubmitting || status === "pending";
+        const isDisabled = props.isSubmitting || status === 'pending';
         const submitBtnText = isNewItem
-          ? "Create Publication"
-          : "Update Publication";
+          ? 'Create Publication'
+          : 'Update Publication';
         return (
           <Form>
             <div className="row">
@@ -170,7 +170,7 @@ const PublicationForm = ({ publication, status }) => {
                 <FormControl
                   type="file"
                   onChange={(e) => {
-                    props.setFieldValue("cover", e.target.files[0]);
+                    props.setFieldValue('cover', e.target.files[0]);
                   }}
                 />
                 {props.errors.cover && (
@@ -187,7 +187,7 @@ const PublicationForm = ({ publication, status }) => {
                 <FormControl
                   type="file"
                   onChange={(e) => {
-                    props.setFieldValue("abstract", e.target.files[0]);
+                    props.setFieldValue('abstract', e.target.files[0]);
                   }}
                 />
                 {props.errors.abstract && (
@@ -203,17 +203,17 @@ const PublicationForm = ({ publication, status }) => {
                   const { authors } = values;
                   const authorsListClass =
                     authors.length > 1
-                      ? "row-cols-1 row-cols-md-2"
-                      : "row-cols-1";
+                      ? 'row-cols-1 row-cols-md-2'
+                      : 'row-cols-1';
                   return (
                     <>
                       {authors && authors.length > 0 ? (
-                        <Row as={"ul"} className={authorsListClass}>
+                        <Row as={'ul'} className={authorsListClass}>
                           {authors.map((author, index) => (
-                            <Col as={"li"} className="mb-3" key={index}>
+                            <Col as={'li'} className="mb-3" key={index}>
                               <div className="p-2 border border-1 rounded">
                                 {authors.length > 1 && (
-                                  <Badge index={index} text={"author"} />
+                                  <Badge index={index} text={'author'} />
                                 )}
                                 <CustomInput
                                   bsclass="mb-3"
@@ -236,7 +236,7 @@ const PublicationForm = ({ publication, status }) => {
                                       size="sm"
                                       type="button"
                                       variant="outline-primary"
-                                      onClick={() => push("")}
+                                      onClick={() => push('')}
                                     >
                                       Add Author
                                     </Button>
@@ -252,7 +252,7 @@ const PublicationForm = ({ publication, status }) => {
                             size="sm"
                             type="button"
                             variant="outline-primary"
-                            onClick={() => push("")}
+                            onClick={() => push('')}
                           >
                             Add Authors
                           </Button>
