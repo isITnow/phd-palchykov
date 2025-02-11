@@ -20,7 +20,7 @@ const useAuthForm = (closeModal) => {
       setItem({ token, user });
       updateUser(user);
 
-      toast.success(`Welcome back, ${user.username}!`);
+      toast.info(`Welcome back, ${user.username}!`);
       closeModal();
     },
     onError: (error) => toast.error(error.response.data),
