@@ -2,13 +2,13 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { Col } from 'react-bootstrap';
-import ColleagueForm from '../components/Colleagues/ColleagueForm';
-import FormCard from '../components/FormComponents/FormCard';
-import Loader from '../components/shared/Loader';
-import NoItemToEdit from '../components/shared/NoItemToEdit';
+import ColleagueForm from '../../components/Colleagues/ColleagueForm';
+import FormCard from '../../components/FormComponents/FormCard';
+import Loader from '../../components/shared/Loader';
+import NoItemToEdit from '../../components/shared/NoItemToEdit';
 
-import navTabs from '../assets/navTabs';
-import { colleaguesApi } from '../services/colleaguesApi';
+import navTabs from '../../assets/navTabs';
+import { colleaguesApi } from '../../services/colleaguesApi';
 
 const ColleagueOperationsPage = () => {
   const { id } = useParams();

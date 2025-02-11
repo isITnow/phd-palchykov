@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
-import ColleaguesList from '../components/Colleagues/ColleaguesList';
-import IsLoggedIn from '../components/shared/IsLoggedIn.jsx';
-import Loader from '../components/shared/Loader';
+import ColleaguesList from '../../components/Colleagues/ColleaguesList';
+import IsLoggedIn from '../../components/shared/IsLoggedIn.jsx';
+import Loader from '../../components/shared/Loader';
 
-import navTabs from '../assets/navTabs.js';
-import { colleaguesApi } from '../services/colleaguesApi.js';
+import navTabs from '../../assets/navTabs.js';
+import { colleaguesApi } from '../../services/colleaguesApi.js';
 
 const ColleaguesPage = () => {
   const { data: colleagues, isLoading } = useQuery({

@@ -16,7 +16,8 @@ const useColleaguesForm = (colleagueId) => {
       navigate(navTabs.colleagues.path);
       toast.success(successMessage);
     },
-    onError: (error) => toast.error(error.response.data.message),
+    onError: (error) =>
+      toast.error(error.response?.data?.message || 'Error occurred'),
     onSettled: () => {
       window.scrollTo({
         top: 0,
@@ -61,12 +62,10 @@ const useColleaguesForm = (colleagueId) => {
       formData.append('colleague[photo]', photo);
     }
 
-    try {
-      colleagueId
-        ? await mutateEditColleague({ id: colleagueId, body: formData })
-        : await mutateAddColleague(formData);
-      actions.resetForm();
-    } catch (error) {}
+    colleagueId
+      ? await mutateEditColleague({ id: colleagueId, body: formData })
+      : await mutateAddColleague(formData);
+    actions.resetForm();
   };
 
   return { handleSubmit, isPending: isCreating || isEditing };
