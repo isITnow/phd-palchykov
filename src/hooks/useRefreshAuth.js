@@ -1,30 +1,40 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
-import { authApi } from "../services/authApi";
-import { tokenOperations } from "../services/http";
-import isTokenExpired from "../assets/utils/isTokenExpired";
-import useLocalStorage from "./useLocalStorage";
+import { authApi } from '../services/authApi';
+import { tokenOperations } from '../services/http';
+import isTokenExpired from '../assets/utils/isTokenExpired';
+import useLocalStorage from './useLocalStorage';
 
 const useRefreshAuth = () => {
-  const { getItem, removeItem } = useLocalStorage("auth");
+  const { getItem, removeItem } = useLocalStorage('auth');
+
   const { mutateAsync: mutateLogout } = useMutation({
     mutationFn: authApi.logoutUser,
   });
 
-  const authData = getItem();
+  useEffect(() => {
+    const authData = getItem();
 
-  if (!authData?.token) return;
+    if (!authData?.token) return;
 
-  const isExpired = isTokenExpired(authData.token);
+    if (isTokenExpired(authData.token)) {
+      tokenOperations.unset();
+      removeItem();
 
-  if (isExpired) {
-    tokenOperations.unset();
-    removeItem();
-    mutateLogout();
-    return;
-  }
+      (async () => {
+        try {
+          await mutateLogout();
+        } catch (error) {
+          console.error('Failed to logout:', error);
+        }
+      })();
+    } else {
+      tokenOperations.set(authData.token);
+    }
+  }, [getItem, removeItem, mutateLogout]);
 
-  tokenOperations.set(authData.token);
+  return null;
 };
 
 export default useRefreshAuth;
