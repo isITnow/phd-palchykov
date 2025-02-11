@@ -1,7 +1,3 @@
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { addCommentThunk } from '../../redux/comments/operationsComments';
-
 import { Form, Formik } from 'formik';
 import { Col, FormControl, FormGroup, FormLabel } from 'react-bootstrap';
 
@@ -11,34 +7,16 @@ import FormWarning from '../FormComponents/FormWarning';
 import SubmitBtn from '../shared/SubmitBtn';
 
 import { validation } from '../../assets/utils/validationSchema';
-import { useUser } from '../../context/UserContext';
+import useComments from './hooks/useComments';
 
 const CommentForm = () => {
-  const { user } = useUser();
-  const dispatch = useDispatch();
-  const { id } = useParams();
-
-  const currentUserName = user?.username || null;
-
-  const handleSubmit = async (values, actions) => {
-    const { body, author, commentImage } = values;
-
-    const formData = new FormData();
-    formData.append('comment[author]', author.trim());
-    formData.append('comment[body]', body.trim());
-
-    if (commentImage) {
-      formData.append('comment[comment_image]', commentImage);
-    }
-
-    dispatch(addCommentThunk({ post_id: id, comment: formData }));
-    actions.resetForm();
-  };
+  const { handleSubmit, username, isPending } = useComments();
 
   return (
     <Formik
+      enableReinitialize
       initialValues={{
-        author: currentUserName || '',
+        author: username || '',
         body: '',
         commentImage: '',
       }}
@@ -72,7 +50,7 @@ const CommentForm = () => {
             </FormGroup>
           </Col>
           <div className="d-flex flex-row-reverse">
-            <SubmitBtn disabled={props.isSubmitting} text="Add Comment" />
+            <SubmitBtn disabled={isPending} text="Add Comment" />
           </div>
         </Form>
       )}

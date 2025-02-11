@@ -1,29 +1,17 @@
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { removeCommentThunk } from "../../redux/comments/operationsComments";
+import { Button, Col, Row } from 'react-bootstrap';
+import { Gallery, Item } from 'react-photoswipe-gallery';
+import IsLoggedIn from '../shared/IsLoggedIn';
 
-import "photoswipe/dist/photoswipe.css";
-import { Button, Col, Row } from "react-bootstrap";
-import { Gallery, Item } from "react-photoswipe-gallery";
-import IsLoggedIn from "../shared/IsLoggedIn";
+import { formateDate } from '../../assets/utils/dateHelper';
+import useComments from './hooks/useComments';
 
-import confirmationDialog from "../../assets/utils/confirmationDialog";
-import { formateDate } from "../../assets/utils/dateHelper";
+import 'photoswipe/dist/photoswipe.css';
 
 const Comment = ({ comment }) => {
+  const { handleDelete } = useComments();
   const { author, body, id: commentId, comment_image_data } = comment;
   // eslint-disable-next-line no-unused-vars
   const { postedDate, _, __ } = formateDate(comment);
-  const { id } = useParams();
-  const dispatch = useDispatch();
-
-  const handleDelete = () => {
-    confirmationDialog(
-      () =>
-        dispatch(removeCommentThunk({ post_id: id, comment_id: commentId })),
-      "Are you sure you want to delete?"
-    );
-  };
 
   // TODO: implement spinner while image is loading
 
@@ -62,7 +50,7 @@ const Comment = ({ comment }) => {
             size="sm"
             type="button"
             variant="danger"
-            onClick={handleDelete}
+            onClick={() => handleDelete(commentId)}
           >
             Delete
           </Button>

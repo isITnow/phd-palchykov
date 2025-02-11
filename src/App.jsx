@@ -8,9 +8,9 @@ import PrivateRoute from './components/shared/PrivateRoute';
 import navTabs from './assets/navTabs';
 import useRefreshAuth from './hooks/useRefreshAuth';
 
-const ColleaguesPage = lazy(() => import('./pages/ColleaguesPage'));
+const ColleaguesPage = lazy(() => import('./pages/colleagues/ColleaguesPage'));
 const ColleagueOperationsPage = lazy(() =>
-  import('./pages/ColleagueOperationsPage')
+  import('./pages/colleagues/ColleagueOperationsPage')
 );
 
 const GalleryPage = lazy(() => import('./pages/GalleryPage'));
@@ -19,11 +19,13 @@ const PhotoAlbumOperationsPage = lazy(() =>
   import('./pages/PhotoAlbumOperationsPage')
 );
 
-const NewsPage = lazy(() => import('./pages/NewsPage'));
-const NewsOperationsPage = lazy(() => import('./pages/NewsOperationsPage'));
+const NewsPage = lazy(() => import('./pages/news/NewsPage'));
+const NewsOperationsPage = lazy(() =>
+  import('./pages/news/NewsOperationsPage')
+);
 
-const PostsPage = lazy(() => import('./pages/PostsPage'));
-const PostPage = lazy(() => import('./pages/PostPage'));
+const PostsPage = lazy(() => import('./pages/posts/PostsPage'));
+const PostPage = lazy(() => import('./pages/posts/PostPage'));
 
 const PublicationsPage = lazy(() => import('./pages/PublicationsPage'));
 const PublicationOperationsPage = lazy(() =>

@@ -13,7 +13,6 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import galleryReducer from './gallery/sliceGallery';
-import postsReducer from './posts/slicePosts';
 import publicationsReducer from './publications/slicePublications';
 import publicationPeriodsReducer from './publicationPeriods/slicePublicationPeriods';
 import researchesReducer from './researches/sliceResearches';
@@ -27,7 +26,6 @@ const persistConfig = {
 const rootReducer = combineReducers({
   gallery: galleryReducer,
   periods: publicationPeriodsReducer,
-  posts: postsReducer,
   publications: publicationsReducer,
   researches: researchesReducer,
 });

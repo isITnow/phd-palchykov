@@ -1,20 +1,20 @@
-import { privateAPI, publicAPI } from "./http";
+import { privateAPI, publicAPI } from './http';
 
-const postComment = async (post_id, body) => {
-  const data = await publicAPI.post(`/posts/${post_id}/comments`, body);
+const addComment = async ({ postId, body }) => {
+  const data = await publicAPI.post(`/posts/${postId}/comments`, body);
 
   return data;
 };
 
-const deleteComment = async (post_id, comment_id) => {
+const deleteComment = async ({ postId, commentId }) => {
   const data = await privateAPI.delete(
-    `/posts/${post_id}/comments/${comment_id}`
+    `/posts/${postId}/comments/${commentId}`
   );
 
   return data;
 };
 
-export const commentsAPI = {
-  postComment,
+export const commentsApi = {
+  addComment,
   deleteComment,
 };
