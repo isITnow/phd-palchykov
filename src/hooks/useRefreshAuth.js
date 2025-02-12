@@ -1,16 +1,25 @@
 import { useMutation } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
+import { useUser } from '../context/UserContext';
+import useLocalStorage from './useLocalStorage';
+
 import { authApi } from '../services/authApi';
 import { tokenOperations } from '../services/http';
 import isTokenExpired from '../assets/utils/isTokenExpired';
-import useLocalStorage from './useLocalStorage';
 
 const useRefreshAuth = () => {
+  const { updateUser } = useUser();
   const { getItem, removeItem } = useLocalStorage('auth');
 
-  const { mutateAsync: mutateLogout } = useMutation({
+  const { mutate: logoutMutation } = useMutation({
     mutationFn: authApi.logoutUser,
+    onError: (error) => console.error('Failed to logout:', error),
+    onSettled: () => {
+      tokenOperations.unset();
+      removeItem();
+      updateUser(null);
+    },
   });
 
   useEffect(() => {
@@ -19,20 +28,11 @@ const useRefreshAuth = () => {
     if (!authData?.token) return;
 
     if (isTokenExpired(authData.token)) {
-      tokenOperations.unset();
-      removeItem();
-
-      (async () => {
-        try {
-          await mutateLogout();
-        } catch (error) {
-          console.error('Failed to logout:', error);
-        }
-      })();
+      logoutMutation();
     } else {
       tokenOperations.set(authData.token);
     }
-  }, [getItem, removeItem, mutateLogout]);
+  }, [getItem, removeItem, logoutMutation, updateUser]);
 
   return null;
 };

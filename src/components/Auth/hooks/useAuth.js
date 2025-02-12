@@ -4,28 +4,24 @@ import { useUser } from '../../../context/UserContext';
 
 import useLocalStorage from '../../../hooks/useLocalStorage';
 import { authApi } from '../../../services/authApi';
+import { tokenOperations } from '../../../services/http';
 
 const useAuth = () => {
   const { updateUser } = useUser();
   const [modalShow, setModalShow] = useState(false);
   const { removeItem } = useLocalStorage('auth');
 
-  const { mutateAsync } = useMutation({
+  const { mutate: logoutMutation } = useMutation({
     mutationFn: authApi.logoutUser,
-  });
-
-  const logout = async () => {
-    try {
-      await mutateAsync();
-    } catch (error) {
-      console.error('Logout Error: ', error);
-    } finally {
+    onError: (error) => console.error('Failed to logout:', error),
+    onSettled: () => {
+      tokenOperations.unset();
       removeItem();
       updateUser(null);
-    }
-  };
+    },
+  });
 
-  return { modalShow, setModalShow, logout };
+  return { modalShow, setModalShow, logout: logoutMutation };
 };
 
 export default useAuth;

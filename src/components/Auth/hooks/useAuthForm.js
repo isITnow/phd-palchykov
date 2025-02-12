@@ -10,7 +10,7 @@ const useAuthForm = (closeModal) => {
   const { updateUser } = useUser();
   const { setItem } = useLocalStorage('auth');
 
-  const { mutateAsync: mutateLogin, isPending } = useMutation({
+  const { mutate: loginMutation, isPending } = useMutation({
     mutationFn: authApi.loginUser,
     onSuccess: ({ data, headers }) => {
       const token = headers.authorization.split(' ')[1];
@@ -33,10 +33,7 @@ const useAuthForm = (closeModal) => {
     formData.append('user[email]', email.trim().toLowerCase());
     formData.append('user[password]', password.trim());
 
-    try {
-      await mutateLogin(formData);
-      actions.resetForm();
-    } catch (error) {}
+    loginMutation({ body: formData }, { onSuccess: actions.resetForm });
   };
 
   return { handleSubmit, isPending };
