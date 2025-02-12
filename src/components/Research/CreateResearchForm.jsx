@@ -1,7 +1,4 @@
-import { useDispatch } from "react-redux";
-import { addResearchThunk } from "../../redux/researches/operationsResearches";
-
-import { FieldArray, Form, Formik } from "formik";
+import { FieldArray, Form, Formik } from 'formik';
 import {
   Button,
   ButtonGroup,
@@ -12,68 +9,37 @@ import {
   ListGroup,
   ListGroupItem,
   Row,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
-// import FormWarning from "../FormComponents/FormWarning";
-import CustomInput from "../FormComponents/CustomInput";
-import CustomTextArea from "../FormComponents/CustomTextArea";
-import BackBtn from "../shared/BackBtn";
-import Badge from "../shared/Badge";
-import SubmitBtn from "../shared/SubmitBtn";
+import BackBtn from '../shared/BackBtn';
+import Badge from '../shared/Badge';
+import CustomInput from '../FormComponents/CustomInput';
+import CustomTextArea from '../FormComponents/CustomTextArea';
+import RequiredBadge from '../shared/RequiredBadge';
+import SubmitBtn from '../shared/SubmitBtn';
 
-import navTabs from "../../assets/navTabs";
-import { validation } from "../../assets/utils/validationSchema";
-import RequiredBadge from "../shared/RequiredBadge";
+import { validation } from '../../assets/utils/validationSchema';
+import navTabs from '../../assets/navTabs';
+import useCreateResearch from './hooks/useCreateResearch';
 
-const ResearchForm = ({ status }) => {
-  const dispatch = useDispatch();
-
-  const handleSubmit = (values, actions) => {
-    const { title, illustrationList, sourceList } = values;
-
-    let illustrationsData = [];
-    illustrationList.forEach(({ schema, description, sequence_number }) => {
-      const formData = new FormData();
-      formData.append("illustration[description]", description.trim());
-      formData.append("illustration[schema]", schema);
-      formData.append("illustration[sequence_number]", sequence_number);
-      illustrationsData.push(formData);
-    });
-
-    const researchFormData = new FormData();
-    const payload = {
-      sourceList,
-      title,
-    };
-    researchFormData.append("research[payload]", JSON.stringify(payload));
-
-    dispatch(
-      addResearchThunk({ illustrationsData, research: researchFormData })
-    );
-
-    window.scrollTo({
-      behavior: "smooth",
-      top: 0,
-    });
-
-    actions.resetForm();
-  };
+const CreateResearchForm = () => {
+  const { handleSubmit, isPending } = useCreateResearch();
 
   return (
     <Formik
       initialValues={{
-        title: "",
+        title: '',
         illustrationList: [
           {
-            description: "",
-            schema: "",
+            description: '',
+            schema: '',
             sequence_number: 0,
           },
         ],
         sourceList: [
           {
-            source: "",
-            source_url: "",
+            source: '',
+            source_url: '',
           },
         ],
       }}
@@ -81,7 +47,6 @@ const ResearchForm = ({ status }) => {
       onSubmit={handleSubmit}
     >
       {(props) => {
-        const isDisabled = props.isSubmitting || status === "pending";
         return (
           <Form>
             <CustomInput
@@ -106,7 +71,7 @@ const ResearchForm = ({ status }) => {
                               key={index}
                             >
                               {illustrationList.length > 1 && (
-                                <Badge index={index} text={"illustration"} />
+                                <Badge index={index} text={'illustration'} />
                               )}
                               <CustomTextArea
                                 label="Description"
@@ -160,8 +125,8 @@ const ResearchForm = ({ status }) => {
                                     type="button"
                                     onClick={() =>
                                       push({
-                                        description: "",
-                                        schema: "",
+                                        description: '',
+                                        schema: '',
                                         sequence_number: 0,
                                       })
                                     }
@@ -181,8 +146,8 @@ const ResearchForm = ({ status }) => {
                             variant="outline-primary"
                             onClick={() =>
                               push({
-                                description: "",
-                                schema: "",
+                                description: '',
+                                schema: '',
                                 sequence_number: 0,
                               })
                             }
@@ -203,17 +168,17 @@ const ResearchForm = ({ status }) => {
                   const { sourceList } = values;
                   const sourceListClass =
                     sourceList.length > 1
-                      ? "row-cols-1 row-cols-md-2"
-                      : "row-cols-1";
+                      ? 'row-cols-1 row-cols-md-2'
+                      : 'row-cols-1';
                   return (
                     <>
                       {sourceList && sourceList.length > 0 ? (
-                        <Row as={"ul"} className={sourceListClass}>
+                        <Row as={'ul'} className={sourceListClass}>
                           {sourceList.map((item, index) => (
                             <Col className="mb-3" key={index}>
                               <div className="p-2 border border-1 rounded">
                                 {sourceList.length > 1 && (
-                                  <Badge index={index} text={"resource"} />
+                                  <Badge index={index} text={'resource'} />
                                 )}
                                 <CustomInput
                                   bsclass="mb-3"
@@ -245,8 +210,8 @@ const ResearchForm = ({ status }) => {
                                       variant="outline-primary"
                                       onClick={() =>
                                         insert(index, {
-                                          source: "",
-                                          source_url: "",
+                                          source: '',
+                                          source_url: '',
                                         })
                                       }
                                     >
@@ -265,8 +230,8 @@ const ResearchForm = ({ status }) => {
                             variant="outline-primary"
                             onClick={() =>
                               push({
-                                source: "",
-                                source_url: "",
+                                source: '',
+                                source_url: '',
                               })
                             }
                           >
@@ -282,7 +247,7 @@ const ResearchForm = ({ status }) => {
             <div className="d-flex flex-row-reverse mt-3">
               <ButtonGroup>
                 <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
-                <SubmitBtn text="Create Research Card" disabled={isDisabled} />
+                <SubmitBtn text="Create Research Card" disabled={isPending} />
               </ButtonGroup>
             </div>
           </Form>
@@ -292,4 +257,4 @@ const ResearchForm = ({ status }) => {
   );
 };
 
-export default ResearchForm;
+export default CreateResearchForm;

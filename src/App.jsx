@@ -34,10 +34,16 @@ const PublicationOperationsPage = lazy(() =>
   import('./pages/publications/PublicationOperationsPage')
 );
 
-const ResearchPage = lazy(() => import('./pages/ResearchPage'));
-const CreateResearchPage = lazy(() => import('./pages/CreateResearchPage'));
-const EditResearchPage = lazy(() => import('./pages/EditResearchPage'));
-const EditIllustrationPage = lazy(() => import('./pages/EditIllustrationPage'));
+const ResearchPage = lazy(() => import('./pages/research/ResearchPage'));
+const CreateResearchPage = lazy(() =>
+  import('./pages/research/CreateResearchPage')
+);
+const EditResearchPage = lazy(() =>
+  import('./pages/research/EditResearchPage')
+);
+const EditIllustrationPage = lazy(() =>
+  import('./pages/research/EditIllustrationPage')
+);
 
 const ContactsPage = lazy(() => import('./pages/ContactsPage'));
 const HomePage = lazy(() => import('./pages/HomePage'));

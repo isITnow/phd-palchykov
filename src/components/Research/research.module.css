@@ -7,3 +7,11 @@
 .hoverEffect:hover {
   color: #0275d8 !important;
 }
+
+.illustrationDescription {
+  text-indent: 2rem;
+}
+
+.illustrationImageWrapper {
+  min-height: 6.25rem;
+}

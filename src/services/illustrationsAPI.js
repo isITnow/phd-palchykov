@@ -1,17 +1,17 @@
-import { privateAPI } from "./http";
+import { privateAPI } from './http';
 
-const postIllustration = async (research_id, body) => {
+const addIllustration = async ({ researchId, body }) => {
   const data = await privateAPI.post(
-    `/researches/${research_id}/illustrations`,
+    `/researches/${researchId}/illustrations`,
     body
   );
 
   return data;
 };
 
-const editIllustration = async (research_id, id, body) => {
+const editIllustration = async ({ researchId, id, body }) => {
   const data = await privateAPI.patch(
-    `/researches/${research_id}/illustrations/${id}`,
+    `/researches/${researchId}/illustrations/${id}`,
     body
   );
 
@@ -20,17 +20,17 @@ const editIllustration = async (research_id, id, body) => {
 
 //* Remove api doesn't implemented in the app
 
-const deleteIllustration = async (research_id, id) => {
+const deleteIllustration = async ({ researchId, id }) => {
   const data = await privateAPI.delete(
-    `/researches/${research_id}/illustrations/${id}`
+    `/researches/${researchId}/illustrations/${id}`
   );
 
-  console.log("Illustration delete: ", data);
+  console.log('Illustration delete: ', data);
   return data;
 };
 
-export const illustrationsAPI = {
-  postIllustration,
+export const illustrationsApi = {
+  addIllustration,
   editIllustration,
   deleteIllustration,
 };

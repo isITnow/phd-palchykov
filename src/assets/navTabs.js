@@ -46,8 +46,8 @@ const navTabs = {
     path: '/researches',
     createPath: '/researches/new',
     editPath: (id = ':id') => `/researches/${id}/edit`,
-    editIllustrationPath: (research_id = ':research_id', id = ':id') =>
-      `/researches/${research_id}/illustrations/${id}/edit`,
+    editIllustrationPath: (researchId = ':researchId', id = ':id') =>
+      `/researches/${researchId}/illustrations/${id}/edit`,
   },
   root: {
     id: 1,

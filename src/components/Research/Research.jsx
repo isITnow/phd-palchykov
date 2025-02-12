@@ -1,32 +1,40 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { removeResearchThunk } from "../../redux/researches/operationsResearches";
-import { selectResearches } from "../../redux/researches/selectorResearches";
+import { Button, ButtonGroup, CardTitle, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { Button, ButtonGroup, CardTitle, Col } from "react-bootstrap";
-import IsLoggedIn from "../shared/IsLoggedIn";
-import Illustration from "./Illustration";
+import Illustration from './Illustration';
+import IsLoggedIn from '../shared/IsLoggedIn';
 
-import confirmationDialog from "../../assets/utils/confirmationDialog";
+import { researchesApi } from '../../services/researchesApi';
+import confirmationDialog from '../../assets/utils/confirmationDialog';
+import navTabs from '../../assets/navTabs';
 
 const Research = ({ research, index }) => {
-  const { id, title, illustrations, sourceList } = research;
+  const { id, title, illustrations, source_list: sourceList } = research;
+  const queryClient = useQueryClient();
 
-  const { status } = useSelector(selectResearches);
-  const dispatch = useDispatch();
-
-  const btnDisabled = status === "pending";
-  const sourceListClass =
-    sourceList.length > 8
-      ? "row row-cols-1 row-cols-md-2 row-cols-lg-3"
-      : "row row-cols-1";
+  const { mutate: deleteResearchMutation, isPending } = useMutation({
+    mutationFn: researchesApi.deleteResearch,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['researches']);
+      toast.success('Research deleted');
+    },
+    onError: (error) =>
+      toast.error(error.response?.data?.message || 'Error occurred'),
+  });
 
   const handleDelete = () => {
     confirmationDialog(
-      () => dispatch(removeResearchThunk(id)),
-      "Are you sure you want to delete?"
+      () => deleteResearchMutation({ id }),
+      'Are you sure you want to delete?'
     );
   };
+
+  const sourceListClass =
+    sourceList.length > 8
+      ? 'row row-cols-1 row-cols-md-2 row-cols-lg-3'
+      : 'row row-cols-1';
 
   return (
     <div id={index}>
@@ -45,7 +53,7 @@ const Research = ({ research, index }) => {
         <p className="mb-2">Our relevant works:</p>
         <ul className={sourceListClass}>
           {sourceList.map(({ source_url, source }, index) => (
-            <Col as={"li"} key={index}>
+            <Col as={'li'} key={index}>
               <a href={source_url} target="_blank" rel="noreferrer noopener">
                 <span className="fst-italic">{source}</span>
               </a>
@@ -58,12 +66,12 @@ const Research = ({ research, index }) => {
           <ButtonGroup>
             <Link
               className="btn btn-sm btn-primary"
-              to={`/researches/${id}/edit`}
+              to={navTabs.researches.editPath(research.id)}
             >
               Edit Research
             </Link>
             <Button
-              disabled={btnDisabled}
+              disabled={isPending}
               size="sm"
               type="button"
               variant="danger"
