@@ -19,7 +19,7 @@ import confirmationDialog from '../../assets/utils/confirmationDialog';
 const Colleague = ({ colleague }) => {
   const queryClient = useQueryClient();
 
-  const { mutateAsync: mutateDeleteColleague, isPending } = useMutation({
+  const { mutate: deleteColleagueMutation, isPending } = useMutation({
     mutationFn: colleaguesApi.deleteColleague,
     onSuccess: () => {
       toast.success('Colleague card deleted successfully');
@@ -39,7 +39,7 @@ const Colleague = ({ colleague }) => {
 
   const handleDelete = () => {
     confirmationDialog(
-      () => mutateDeleteColleague(id),
+      () => deleteColleagueMutation({ id }),
       'Are you sure you want to delete?'
     );
   };

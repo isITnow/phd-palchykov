@@ -33,7 +33,7 @@ const Publication = ({ publication }) => {
 
   const queryClient = useQueryClient();
 
-  const { mutateAsync: mutateDeletePublication, isPending } = useMutation({
+  const { mutate: deletePublicationMutation, isPending } = useMutation({
     mutationFn: publicationsApi.deletePublication,
     onSuccess: () => {
       toast.success('Publication deleted successfully');
@@ -46,7 +46,7 @@ const Publication = ({ publication }) => {
   const handleDelete = () => {
     confirmationDialog(
       () =>
-        mutateDeletePublication({
+        deletePublicationMutation({
           periodId: publication_period_id,
           publicationId: id,
         }),

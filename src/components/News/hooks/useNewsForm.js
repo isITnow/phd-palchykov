@@ -28,14 +28,14 @@ const useNewsForm = (newsId) => {
 
   // Add news
 
-  const { mutateAsync: mutateAddNews, isPending: isCreating } = useMutation(
-    createMutationConfig(newsApi.addNews, 'News has been added successfully')
+  const { mutate: addNewsMutation, isPending: isCreating } = useMutation(
+    createMutationConfig(newsApi.addNews, 'News added')
   );
 
   // Edit news
 
-  const { mutateAsync: mutateEditNews, isPending: isEditing } = useMutation(
-    createMutationConfig(newsApi.editNews, 'News has been updated successfully')
+  const { mutate: editNewsMutation, isPending: isEditing } = useMutation(
+    createMutationConfig(newsApi.editNews, 'News updated')
   );
 
   const handleSubmit = async (values, actions) => {
@@ -57,9 +57,11 @@ const useNewsForm = (newsId) => {
     }
 
     newsId
-      ? await mutateEditNews({ id: newsId, body: formData })
-      : await mutateAddNews({ body: formData });
-    actions.resetForm();
+      ? editNewsMutation(
+          { id: newsId, body: formData },
+          { onSuccess: actions.resetForm }
+        )
+      : addNewsMutation({ body: formData }, { onSuccess: actions.resetForm });
   };
 
   return { handleSubmit, isPending: isCreating || isEditing };

@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { formateDate } from "../../assets/utils/dateHelper";
+import { formateDate } from '../../assets/utils/dateHelper';
 
-import s from "./post.module.css";
+import s from './post.module.css';
 
 const Post = ({ post, single }) => {
   const { postedDate, editedDate, isEdited } = formateDate(post);
 
   const commentsCount = single ? post?.comments?.length : post?.comments;
-  const cardStyle = single ? "card shadow" : `${s.hoverEffect} card`;
+  const cardStyle = single ? 'card shadow' : `${s.hoverEffect} card`;
 
   return (
     <div className={cardStyle}>
@@ -36,7 +36,7 @@ const Post = ({ post, single }) => {
           <p className="card-text">{post.body}</p>
         </div>
       ) : (
-        <Link to={`/posts/${post.id}`} style={{ color: "inherit" }}>
+        <Link to={`/posts/${post.id}`} style={{ color: 'inherit' }}>
           <div className="card-body">
             <p className="card-text text-truncate">{post.body}</p>
           </div>

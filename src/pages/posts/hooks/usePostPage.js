@@ -25,7 +25,7 @@ const usePostPage = () => {
 
   // Delete Post
 
-  const { mutateAsync: mutateDeletePost, isPending } = useMutation({
+  const { mutate: deletePostMutation, isPending } = useMutation({
     mutationFn: postsApi.deletePost,
     onSuccess: () => {
       toast.success('Post deleted successfully');
@@ -38,7 +38,7 @@ const usePostPage = () => {
 
   const handleDelete = () => {
     confirmationDialog(
-      () => mutateDeletePost({ id }),
+      () => deletePostMutation({ id }),
       'Are you sure you want to delete?'
     );
   };

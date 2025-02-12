@@ -33,26 +33,14 @@ const usePublicationForm = (publicationId) => {
 
   // Add publication
 
-  const {
-    mutateAsync: mutateAddPublication,
-    isPending: isCreating,
-  } = useMutation(
-    createMutationConfig(
-      publicationsApi.addPublication,
-      'Publication has been added successfully'
-    )
+  const { mutate: addPublicationMutation, isPending: isCreating } = useMutation(
+    createMutationConfig(publicationsApi.addPublication, 'Publication added')
   );
 
   // Edit publication
 
-  const {
-    mutateAsync: mutateEditPublication,
-    isPending: isEditing,
-  } = useMutation(
-    createMutationConfig(
-      publicationsApi.editPublication,
-      'Publication has been updated successfully'
-    )
+  const { mutate: editPublicationMutation, isPending: isEditing } = useMutation(
+    createMutationConfig(publicationsApi.editPublication, 'Publication updated')
   );
 
   const currentPeriod = getCurrentPeriod(periods, parseInt(periodId));
@@ -92,9 +80,18 @@ const usePublicationForm = (publicationId) => {
     }
 
     publicationId
-      ? await mutateEditPublication({ periodId, publicationId, body: formData })
-      : await mutateAddPublication({ periodId, body: formData });
-    actions.resetForm();
+      ? editPublicationMutation(
+          {
+            periodId,
+            publicationId,
+            body: formData,
+          },
+          { onSuccess: actions.resetForm }
+        )
+      : addPublicationMutation(
+          { periodId, body: formData },
+          { onSuccess: actions.resetForm }
+        );
   };
 
   return {

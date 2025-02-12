@@ -26,21 +26,12 @@ const useColleaguesForm = (colleagueId) => {
     },
   });
 
-  const {
-    mutateAsync: mutateAddColleague,
-    isPending: isCreating,
-  } = useMutation(
-    createMutationConfig(colleaguesApi.addColleague, 'Card added successfully')
+  const { mutate: addColleagueMutation, isPending: isCreating } = useMutation(
+    createMutationConfig(colleaguesApi.addColleague, 'Card added')
   );
 
-  const {
-    mutateAsync: mutateEditColleague,
-    isPending: isEditing,
-  } = useMutation(
-    createMutationConfig(
-      colleaguesApi.editColleague,
-      'Card has been updated successfully'
-    )
+  const { mutate: editColleagueMutation, isPending: isEditing } = useMutation(
+    createMutationConfig(colleaguesApi.editColleague, 'Card updated')
   );
 
   const handleSubmit = async (values, actions) => {
@@ -63,9 +54,14 @@ const useColleaguesForm = (colleagueId) => {
     }
 
     colleagueId
-      ? await mutateEditColleague({ id: colleagueId, body: formData })
-      : await mutateAddColleague(formData);
-    actions.resetForm();
+      ? editColleagueMutation(
+          { id: colleagueId, body: formData },
+          { onSuccess: actions.resetForm }
+        )
+      : addColleagueMutation(
+          { body: formData },
+          { onSuccess: actions.resetForm }
+        );
   };
 
   return { handleSubmit, isPending: isCreating || isEditing };

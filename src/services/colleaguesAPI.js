@@ -6,7 +6,7 @@ const editColleague = async ({ id, body }) => {
   return data;
 };
 
-const deleteColleague = async (id) => {
+const deleteColleague = async ({ id }) => {
   const data = await privateAPI.delete(`/colleagues/${id}`);
 
   return data;
@@ -24,7 +24,7 @@ const fetchColleagueById = async ({ id }, { signal }) => {
   return data;
 };
 
-const addColleague = async (body) => {
+const addColleague = async ({ body }) => {
   const data = await privateAPI.post('/colleagues', body, {});
 
   return data;

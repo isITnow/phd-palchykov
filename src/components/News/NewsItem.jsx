@@ -23,10 +23,10 @@ const NewsItem = ({ news }) => {
   const queryClient = useQueryClient();
   const { imageIsLoaded, handleImageLoad } = useImageLoading();
 
-  const { mutateAsync: mutateDeleteNews, isPending } = useMutation({
+  const { mutate: deleteNewsMutation, isPending } = useMutation({
     mutationFn: newsApi.deleteNews,
     onSuccess: () => {
-      toast.success('News has been deleted successfully');
+      toast.success('News deleted');
       queryClient.invalidateQueries(['news']);
     },
     onError: (error) =>
@@ -37,7 +37,7 @@ const NewsItem = ({ news }) => {
 
   const handleDelete = () => {
     confirmationDialog(
-      () => mutateDeleteNews({ id }),
+      () => deleteNewsMutation({ id }),
       'Are you sure you want to delete?'
     );
   };

@@ -13,7 +13,7 @@ const useComments = () => {
 
   // Add a comment
 
-  const { mutateAsync: mutateAddComment, isPending } = useMutation({
+  const { mutate: addCommentMutation, isPending } = useMutation({
     mutationFn: commentsApi.addComment,
     onSuccess: () => {
       queryClient.invalidateQueries(['posts']);
@@ -36,13 +36,15 @@ const useComments = () => {
       formData.append('comment[comment_image]', commentImage);
     }
 
-    await mutateAddComment({ postId: id, body: formData });
-    actions.resetForm();
+    addCommentMutation(
+      { postId: id, body: formData },
+      { onSuccess: actions.resetForm }
+    );
   };
 
   // Delete a comment
 
-  const { mutateAsync: mutateDeleteComment } = useMutation({
+  const { mutate: deleteCommentMutation } = useMutation({
     mutationFn: commentsApi.deleteComment,
     onSuccess: () => {
       toast.success('Comment deleted successfully');
@@ -54,7 +56,7 @@ const useComments = () => {
 
   const handleDelete = (commentId) => {
     confirmationDialog(
-      () => mutateDeleteComment({ postId: id, commentId }),
+      () => deleteCommentMutation({ postId: id, commentId }),
       'Are you sure you want to delete?'
     );
   };

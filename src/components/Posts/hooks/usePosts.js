@@ -16,12 +16,12 @@ const usePosts = ({ postId, onCloseForm }) => {
       toast.error(error.response?.data?.message || 'Error occurred'),
   });
 
-  const { mutateAsync: mutateAddPost, isPending: isCreating } = useMutation(
-    createMutationConfig(postsApi.addPost, 'Post added successfully')
+  const { mutate: addPostMutation, isPending: isCreating } = useMutation(
+    createMutationConfig(postsApi.addPost, 'Post added')
   );
 
-  const { mutateAsync: mutateEditPost, isPending: isEditing } = useMutation(
-    createMutationConfig(postsApi.editPost, 'Post updated successfully')
+  const { mutate: editPostMutation, isPending: isEditing } = useMutation(
+    createMutationConfig(postsApi.editPost, 'Post updated')
   );
 
   const handleSubmit = async (values, actions) => {
@@ -31,9 +31,11 @@ const usePosts = ({ postId, onCloseForm }) => {
     formData.append('post[body]', body.trim());
 
     postId
-      ? await mutateEditPost({ id: postId, body: formData })
-      : await mutateAddPost({ body: formData });
-    actions.resetForm();
+      ? editPostMutation(
+          { id: postId, body: formData },
+          { onSuccess: actions.resetForm }
+        )
+      : addPostMutation({ body: formData }, { onSuccess: actions.resetForm });
   };
 
   return { handleSubmit, isPending: isCreating || isEditing };
