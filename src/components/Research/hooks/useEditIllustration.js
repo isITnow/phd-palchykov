@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { illustrationsApi } from '../../../services/illustrationsApi';
+import { queryKeys } from '../../../queryClient';
 import navTabs from '../../../assets/navTabs';
 
 const useEditIllustration = ({ illustration, researchId }) => {
@@ -12,7 +13,7 @@ const useEditIllustration = ({ illustration, researchId }) => {
   const { mutate: editIllustrationMutation, isPending } = useMutation({
     mutationFn: illustrationsApi.editIllustration,
     onSuccess: () => {
-      queryClient.invalidateQueries(['illustrations']);
+      queryClient.invalidateQueries(queryKeys.RESEARCHES);
       navigate(navTabs.researches.path);
       toast.success('Illustration updated');
     },

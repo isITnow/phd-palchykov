@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Illustration from './Illustration';
 import IsLoggedIn from '../shared/IsLoggedIn';
 
+import { queryKeys } from '../../queryClient';
 import { researchesApi } from '../../services/researchesApi';
 import confirmationDialog from '../../assets/utils/confirmationDialog';
 import navTabs from '../../assets/navTabs';
@@ -17,7 +18,7 @@ const Research = ({ research, index }) => {
   const { mutate: deleteResearchMutation, isPending } = useMutation({
     mutationFn: researchesApi.deleteResearch,
     onSuccess: () => {
-      queryClient.invalidateQueries(['researches']);
+      queryClient.invalidateQueries(queryKeys.RESEARCHES);
       toast.success('Research deleted');
     },
     onError: (error) =>

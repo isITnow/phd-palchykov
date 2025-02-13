@@ -1,9 +1,10 @@
+import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
 import { commentsApi } from '../../../services/commentsApi';
+import { queryKeys } from '../../../queryClient';
 import { useUser } from '../../../context/UserContext';
-import { toast } from 'react-toastify';
 import confirmationDialog from '../../../assets/utils/confirmationDialog';
 
 const useComments = () => {
@@ -16,7 +17,7 @@ const useComments = () => {
   const { mutate: addCommentMutation, isPending } = useMutation({
     mutationFn: commentsApi.addComment,
     onSuccess: () => {
-      queryClient.invalidateQueries(['posts']);
+      queryClient.invalidateQueries(queryKeys.POSTS);
       toast.success('Comment published');
     },
     onError: (error) =>
@@ -48,7 +49,7 @@ const useComments = () => {
     mutationFn: commentsApi.deleteComment,
     onSuccess: () => {
       toast.success('Comment deleted successfully');
-      queryClient.invalidateQueries(['post', id]);
+      queryClient.invalidateQueries(queryKeys.POSTS);
     },
     onError: (error) =>
       toast.error(error.response?.data?.message || 'Error occurred'),

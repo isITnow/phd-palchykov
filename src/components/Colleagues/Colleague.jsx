@@ -14,6 +14,7 @@ import {
 import IsLoggedIn from '../shared/IsLoggedIn';
 
 import { colleaguesApi } from '../../services/colleaguesApi';
+import { queryKeys } from '../../queryClient';
 import confirmationDialog from '../../assets/utils/confirmationDialog';
 
 const Colleague = ({ colleague }) => {
@@ -23,7 +24,7 @@ const Colleague = ({ colleague }) => {
     mutationFn: colleaguesApi.deleteColleague,
     onSuccess: () => {
       toast.success('Colleague card deleted successfully');
-      queryClient.invalidateQueries(['colleagues']);
+      queryClient.invalidateQueries(queryKeys.COLLEAGUES);
     },
     onError: (error) => toast.error(error.response.data.message),
   });

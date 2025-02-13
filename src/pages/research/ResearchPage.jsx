@@ -5,12 +5,13 @@ import IsLoggedIn from '../../components/shared/IsLoggedIn';
 import Loader from '../../components/shared/Loader';
 import ResearchList from '../../components/Research/ResearchList';
 
+import { queryKeys } from '../../queryClient';
 import { researchesApi } from '../../services/researchesApi';
 import navTabs from '../../assets/navTabs';
 
 const ResearchPage = () => {
   const { data: researches, isLoading } = useQuery({
-    queryKey: ['researches'],
+    queryKey: queryKeys.RESEARCHES,
     queryFn: (meta) => researchesApi.fetchResearches(meta),
   });
 

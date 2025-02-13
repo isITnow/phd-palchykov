@@ -8,13 +8,14 @@ import PublicationsList from '../../components/Publications/PublicationsList';
 import PublicationsPageNav from './nested/PublicationsPageNav';
 
 import { publicationsApi } from '../../services/publicationsApi';
+import { queryKeys } from '../../queryClient';
 import navTabs from '../../assets/navTabs';
 
 const PublicationsPage = () => {
   const { periodId } = useParams();
 
   const { data: publications, isLoading, isFetched } = useQuery({
-    queryKey: ['publications', periodId],
+    queryKey: queryKeys.PUBLICATIONS(periodId),
     queryFn: (meta) => publicationsApi.fetchPublications({ periodId }, meta),
   });
 

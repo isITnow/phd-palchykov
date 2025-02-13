@@ -5,12 +5,13 @@ import ColleaguesList from '../../components/Colleagues/ColleaguesList';
 import IsLoggedIn from '../../components/shared/IsLoggedIn.jsx';
 import Loader from '../../components/shared/Loader';
 
-import navTabs from '../../assets/navTabs.js';
 import { colleaguesApi } from '../../services/colleaguesApi.js';
+import { queryKeys } from '../../queryClient.js';
+import navTabs from '../../assets/navTabs.js';
 
 const ColleaguesPage = () => {
   const { data: colleagues, isLoading } = useQuery({
-    queryKey: ['colleagues'],
+    queryKey: queryKeys.COLLEAGUES,
     queryFn: (meta) => colleaguesApi.fetchColleagues(meta),
   });
 

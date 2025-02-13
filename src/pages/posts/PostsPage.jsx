@@ -6,13 +6,14 @@ import PostForm from '../../components/Posts/PostForm';
 import PostsList from '../../components/Posts/PostsList';
 
 import { postsApi } from '../../services/postsApi';
+import { queryKeys } from '../../queryClient';
 import useIsLoggedIn from '../../hooks/useIsLoggedIn';
 
 const PostsPage = () => {
   const isLoggedIn = useIsLoggedIn();
 
   const { data: posts, isLoading } = useQuery({
-    queryKey: ['posts'],
+    queryKey: queryKeys.POSTS,
     queryFn: (meta) => postsApi.fetchPosts(meta),
   });
 

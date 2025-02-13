@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { illustrationsApi } from '../../../services/illustrationsApi';
+import { queryKeys } from '../../../queryClient';
 import { researchesApi } from '../../../services/researchesApi';
 import navTabs from '../../../assets/navTabs';
 
@@ -43,7 +44,7 @@ const useCreateResearch = () => {
         );
 
         toast.success('Research created');
-        queryClient.invalidateQueries(['researches']);
+        queryClient.invalidateQueries(queryKeys.RESEARCHES);
         navigate(navTabs.researches.path);
         window.scrollTo({ behavior: 'smooth', top: 0 });
       }

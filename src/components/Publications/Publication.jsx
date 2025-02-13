@@ -16,6 +16,7 @@ import PublicationImage from './PublicationImage';
 
 import { publicationsApi } from '../../services/publicationsApi';
 import confirmationDialog from '../../assets/utils/confirmationDialog';
+import { queryKeys } from '../../queryClient';
 
 const Publication = ({ publication }) => {
   const {
@@ -23,7 +24,7 @@ const Publication = ({ publication }) => {
     authors,
     cover_data,
     id,
-    publication_period_id,
+    publication_period_id: publicationPeriodId,
     sequence_number,
     source_url,
     source,
@@ -37,7 +38,9 @@ const Publication = ({ publication }) => {
     mutationFn: publicationsApi.deletePublication,
     onSuccess: () => {
       toast.success('Publication deleted successfully');
-      queryClient.invalidateQueries(['publications', publication_period_id]);
+      queryClient.invalidateQueries(
+        queryKeys.PUBLICATIONS(publicationPeriodId)
+      );
     },
     onError: (error) =>
       toast.error(error.response?.data?.message || 'Error occurred'),
@@ -47,7 +50,7 @@ const Publication = ({ publication }) => {
     confirmationDialog(
       () =>
         deletePublicationMutation({
-          periodId: publication_period_id,
+          periodId: publicationPeriodId,
           publicationId: id,
         }),
       'Are you sure you want to delete?'
@@ -108,7 +111,7 @@ const Publication = ({ publication }) => {
             <ButtonGroup>
               <Link
                 className="btn btn-sm btn-primary"
-                to={`/periods/${publication_period_id}/publications/${id}/edit`}
+                to={`/periods/${publicationPeriodId}/publications/${id}/edit`}
               >
                 Edit
               </Link>

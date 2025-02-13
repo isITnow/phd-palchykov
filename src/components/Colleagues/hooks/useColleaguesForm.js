@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { colleaguesApi } from '../../../services/colleaguesApi';
+import { queryKeys } from '../../../queryClient';
 import navTabs from '../../../assets/navTabs';
 
 const useColleaguesForm = (colleagueId) => {
@@ -12,7 +13,7 @@ const useColleaguesForm = (colleagueId) => {
   const createMutationConfig = (mutationFn, successMessage) => ({
     mutationFn,
     onSuccess: () => {
-      queryClient.invalidateQueries(['colleagues']);
+      queryClient.invalidateQueries(queryKeys.COLLEAGUES);
       navigate(navTabs.colleagues.path);
       toast.success(successMessage);
     },

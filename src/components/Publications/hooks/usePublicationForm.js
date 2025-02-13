@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { publicationsApi } from '../../../services/publicationsApi';
+import { queryKeys } from '../../../queryClient';
 import getCurrentPeriod from '../../../assets/utils/getCurrentEntity';
 import getYearsArray from '../../../assets/utils/getYearsArray';
 import navTabs from '../../../assets/navTabs';
@@ -17,7 +18,7 @@ const usePublicationForm = (publicationId) => {
   const createMutationConfig = (mutationFn, successMessage) => ({
     mutationFn,
     onSuccess: () => {
-      queryClient.invalidateQueries(['news']);
+      queryClient.invalidateQueries(queryKeys.PUBLICATIONS(periodId));
       navigate(navTabs.publications.path(periodId));
       toast.success(successMessage);
     },

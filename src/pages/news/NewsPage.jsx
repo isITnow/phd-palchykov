@@ -7,10 +7,11 @@ import IsLoggedIn from '../../components/shared/IsLoggedIn';
 import Loader from '../../components/shared/Loader';
 
 import navTabs from '../../assets/navTabs';
+import { queryKeys } from '../../queryClient';
 
 const NewsPage = () => {
   const { data: news, isLoading } = useQuery({
-    queryKey: ['news'],
+    queryKey: queryKeys.NEWS,
     queryFn: (meta) => newsApi.fetchNews(meta),
   });
 

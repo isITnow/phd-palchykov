@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { newsApi } from '../../../services/newsApi';
+import { queryKeys } from '../../../queryClient';
 import navTabs from '../../../assets/navTabs';
 
 const useNewsForm = (newsId) => {
@@ -12,7 +13,7 @@ const useNewsForm = (newsId) => {
   const createMutationConfig = (mutationFn, successMessage) => ({
     mutationFn,
     onSuccess: () => {
-      queryClient.invalidateQueries(['news']);
+      queryClient.invalidateQueries(queryKeys.NEWS);
       navigate(navTabs.news.path);
       toast.success(successMessage);
     },

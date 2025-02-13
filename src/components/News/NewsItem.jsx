@@ -17,6 +17,7 @@ import ImageLoadingSpinner from '../shared/ImageLoadingSpinner';
 import IsLoggedIn from '../shared/IsLoggedIn';
 
 import { newsApi } from '../../services/newsApi';
+import { queryKeys } from '../../queryClient';
 import confirmationDialog from '../../assets/utils/confirmationDialog';
 
 const NewsItem = ({ news }) => {
@@ -27,7 +28,7 @@ const NewsItem = ({ news }) => {
     mutationFn: newsApi.deleteNews,
     onSuccess: () => {
       toast.success('News deleted');
-      queryClient.invalidateQueries(['news']);
+      queryClient.invalidateQueries(queryKeys.NEWS);
     },
     onError: (error) =>
       toast.error(error.response?.data?.message || 'Error occurred'),
