@@ -4,12 +4,13 @@ import { useParams } from 'react-router-dom';
 import EditIllustrationForm from '../../components/Research/EditIllustrationForm';
 import NoItemToEdit from '../../components/shared/NoItemToEdit';
 
-import useCachedResearches from './hooks/useCachedResearches';
+import { queryKeys } from '../../queryClient';
 import navTabs from '../../assets/navTabs';
+import useSelectCachedData from '../../hooks/useSelectCachedData';
 
 const EditIllustrationPage = () => {
   const { researchId, id: illustrationId } = useParams();
-  const cachedResearches = useCachedResearches();
+  const cachedResearches = useSelectCachedData(queryKeys.RESEARCHES);
 
   const research = cachedResearches?.find(
     ({ id }) => id === Number(researchId)

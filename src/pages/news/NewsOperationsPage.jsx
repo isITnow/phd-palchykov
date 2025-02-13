@@ -1,32 +1,21 @@
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-
 import { Col } from 'react-bootstrap';
+
 import FormCard from '../../components/FormComponents/FormCard';
-import Loader from '../../components/shared/Loader';
 import NewsForm from '../../components/News/NewsForm';
 import NoItemToEdit from '../../components/shared/NoItemToEdit';
 
-import { newsApi } from '../../services/newsApi';
+import { queryKeys } from '../../queryClient';
 import navTabs from '../../assets/navTabs';
+import useSelectCachedData from '../../hooks/useSelectCachedData';
 
 const NewsOperationsPage = () => {
-  const { id } = useParams();
+  const { id: newsId } = useParams();
+  const cachedNewsList = useSelectCachedData(queryKeys.NEWS);
 
-  const isEditAction = !!id;
-
-  const { data, isLoading } = useQuery({
-    queryKey: ['single-news', id],
-    queryFn: (meta) => newsApi.fetchNewsById({ id }, meta),
-    enabled: isEditAction,
-  });
-
-  const news = data?.data;
+  const isEditAction = !!newsId;
+  const news = cachedNewsList?.find(({ id }) => id === Number(newsId));
   const title = isEditAction ? 'Edit News Card' : 'Create News Card';
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   if (isEditAction && !news) {
     return <NoItemToEdit backPath={navTabs.news.path} item="News" />;

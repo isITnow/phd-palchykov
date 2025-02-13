@@ -1,34 +1,26 @@
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 
 import { Col } from 'react-bootstrap';
 import ColleagueForm from '../../components/Colleagues/ColleagueForm';
 import FormCard from '../../components/FormComponents/FormCard';
-import Loader from '../../components/shared/Loader';
 import NoItemToEdit from '../../components/shared/NoItemToEdit';
 
+import { queryKeys } from '../../queryClient';
 import navTabs from '../../assets/navTabs';
-import { colleaguesApi } from '../../services/colleaguesApi';
+import useSelectCachedData from '../../hooks/useSelectCachedData';
 
 const ColleagueOperationsPage = () => {
-  const { id } = useParams();
-  const isEditOperation = !!id;
+  const { id: colleagueId } = useParams();
+  const cachedColleagues = useSelectCachedData(queryKeys.COLLEAGUES);
 
-  const { data, isLoading } = useQuery({
-    queryKey: ['colleague', id],
-    queryFn: (meta) => colleaguesApi.fetchColleagueById({ id }, meta),
-    enabled: isEditOperation,
-  });
-
-  const colleague = data?.data;
+  const isEditOperation = !!colleagueId;
+  const colleague = cachedColleagues?.find(
+    ({ id }) => id === Number(colleagueId)
+  );
 
   const title = isEditOperation
     ? 'Edit Colleague Card'
     : 'Create Colleague Card';
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   if (isEditOperation && !colleague) {
     return <NoItemToEdit backPath={navTabs.colleagues.path} item="Colleague" />;

@@ -1,38 +1,33 @@
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+
+import useSelectCachedData from '../../hooks/useSelectCachedData';
+import useSelectPeriods from '../../hooks/useSelectPeriods';
 
 import { Col } from 'react-bootstrap';
 import FormCard from '../../components/FormComponents/FormCard';
-import Loader from '../../components/shared/Loader';
 import NoItemToEdit from '../../components/shared/NoItemToEdit';
 import PublicationForm from '../../components/Publications/PublicationForm';
 
-import { publicationsApi } from '../../services/publicationsApi';
+import { queryKeys } from '../../queryClient';
 import getCurrentPeriod from '../../assets/utils/getCurrentEntity';
 import navTabs from '../../assets/navTabs';
-import useSelectPeriods from '../../hooks/useSelectPeriods';
 
 const PublicationOperationsPage = () => {
   const { periodId, publicationId } = useParams();
   const periods = useSelectPeriods();
+  const cachedPublications = useSelectCachedData(
+    queryKeys.PUBLICATIONS(periodId)
+  );
+
+  const publication = cachedPublications?.find(
+    ({ id }) => id === Number(publicationId)
+  );
 
   const isEditAction = !!publicationId;
-
-  const { data: publication, isLoading } = useQuery({
-    queryKey: ['single-publication', publicationId],
-    queryFn: (meta) =>
-      publicationsApi.fetchPublicationById({ periodId, publicationId }, meta),
-    enabled: isEditAction,
-  });
-
   const currentPeriod = getCurrentPeriod(periods, parseInt(periodId));
   const title = isEditAction
     ? `Edit Publication [period: ${currentPeriod.title}]`
     : `Create Publication [period: ${currentPeriod.title}]`;
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   if (isEditAction && !publication) {
     return (
@@ -48,9 +43,7 @@ const PublicationOperationsPage = () => {
       <FormCard
         title={title}
         body={
-          <PublicationForm
-            publication={isEditAction ? publication.data : null}
-          />
+          <PublicationForm publication={isEditAction ? publication : null} />
         }
       />
     </Col>

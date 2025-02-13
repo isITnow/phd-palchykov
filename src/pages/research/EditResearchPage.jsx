@@ -1,25 +1,20 @@
 import { Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 
 import EditResearchForm from '../../components/Research/EditResearchForm';
-import Loader from '../../components/shared/Loader';
 import NoItemToEdit from '../../components/shared/NoItemToEdit';
 
-import { researchesApi } from '../../services/researchesApi';
+import { queryKeys } from '../../queryClient';
 import navTabs from '../../assets/navTabs';
+import useSelectCachedData from '../../hooks/useSelectCachedData';
 
 const EditResearchPage = () => {
-  const { id } = useParams();
+  const { id: researchId } = useParams();
+  const cachedResearches = useSelectCachedData(queryKeys.RESEARCHES);
 
-  const { data: research, isLoading } = useQuery({
-    queryKey: ['research', id],
-    queryFn: (meta) => researchesApi.fetchResearchById({ id }, meta),
-  });
-
-  if (isLoading) {
-    return <Loader />;
-  }
+  const research = cachedResearches?.find(
+    ({ id }) => id === Number(researchId)
+  );
 
   if (!research) {
     return <NoItemToEdit backPath={navTabs.researches.path} item="Research" />;
@@ -27,7 +22,7 @@ const EditResearchPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <EditResearchForm research={research.data} />
+      <EditResearchForm research={research} />
     </Col>
   );
 };
