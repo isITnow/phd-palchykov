@@ -1,22 +1,39 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 
-const initValue = JSON.parse(localStorage.getItem('auth'))?.user || null;
-
-const UserContext = createContext(initValue);
+const UserContext = createContext(null);
 
 const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState(initValue);
+  const [user, setUser] = useState(() => {
+    try {
+      const storedAuth = JSON.parse(localStorage.getItem('auth'));
+      return storedAuth?.user || null;
+    } catch (error) {
+      console.error('Error parsing auth from localStorage:', error);
+      return null;
+    }
+  });
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('auth'))?.user;
-    if (storedUser) {
-      setUser(storedUser);
-    }
+    const handleStorageChange = (event) => {
+      if (event.key === 'auth') {
+        const newAuth = event.newValue ? JSON.parse(event.newValue) : null;
+        setUser(newAuth?.user || null);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
-  const updateUser = (newUser) => {
+  const updateUser = useCallback((newUser) => {
     setUser(newUser);
-  };
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, updateUser }}>
@@ -27,11 +44,9 @@ const UserContextProvider = ({ children }) => {
 
 export const useUser = () => {
   const context = useContext(UserContext);
-
-  if (context == null) {
-    throw new Error('Make sure to wrap the user inside provider');
+  if (!context) {
+    throw new Error('useUser must be used within a UserContextProvider');
   }
-
   return context;
 };
 
