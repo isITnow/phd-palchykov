@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
-
 import { Button, ButtonGroup, Col } from 'react-bootstrap';
+
 import BackBtn from '../../components/shared/BackBtn';
 import CommentForm from '../../components/Comments/CommentForm';
 import CommentsList from '../../components/Comments/CommentsList';
@@ -13,7 +13,7 @@ import PostForm from '../../components/Posts/PostForm';
 
 import motionOptions from '../../assets/motionOptions';
 import navTabs from '../../assets/navTabs';
-import usePostPage from './hooks/usePostPage';
+import usePost from './hooks/usePost';
 
 const PostPage = () => {
   const {
@@ -25,7 +25,7 @@ const PostPage = () => {
     setShowForm,
     showForm,
     isFetchingError,
-  } = usePostPage();
+  } = usePost();
 
   const anyComments = !!comments?.length;
 

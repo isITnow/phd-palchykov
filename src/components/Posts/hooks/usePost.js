@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postsApi } from '../../../services/postsApi';
 import { toast } from 'react-toastify';
+import { queryKeys } from '../../../queryClient';
 
 const usePosts = ({ postId, onCloseForm }) => {
   const queryClient = useQueryClient();
@@ -8,7 +9,6 @@ const usePosts = ({ postId, onCloseForm }) => {
   const createMutationConfig = (mutationFn, successMessage) => ({
     mutationFn,
     onSuccess: () => {
-      queryClient.invalidateQueries(['posts']);
       toast.success(successMessage);
       onCloseForm && onCloseForm();
     },
@@ -33,9 +33,22 @@ const usePosts = ({ postId, onCloseForm }) => {
     postId
       ? editPostMutation(
           { id: postId, body: formData },
-          { onSuccess: actions.resetForm }
+          {
+            onSuccess: () => {
+              actions.resetForm();
+              queryClient.invalidateQueries(queryKeys.POST(postId));
+            },
+          }
         )
-      : addPostMutation({ body: formData }, { onSuccess: actions.resetForm });
+      : addPostMutation(
+          { body: formData },
+          {
+            onSuccess: () => {
+              actions.resetForm();
+              queryClient.invalidateQueries(queryKeys.POSTS);
+            },
+          }
+        );
   };
 
   return { handleSubmit, isPending: isCreating || isEditing };

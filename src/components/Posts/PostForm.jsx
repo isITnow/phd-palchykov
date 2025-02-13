@@ -4,14 +4,14 @@ import CustomTextArea from '../FormComponents/CustomTextArea';
 import SubmitBtn from '../shared/SubmitBtn';
 
 import { validation } from '../../assets/utils/validationSchema';
-import usePosts from './hooks/usePosts';
+import usePost from './hooks/usePost';
 
 const PostForm = ({ post, onCloseForm }) => {
   const isNewItem = !post;
   const postId = post?.id;
   const submitBtnText = isNewItem ? 'Add Post' : 'Update Post';
 
-  const { handleSubmit, isPending } = usePosts({ postId, onCloseForm });
+  const { handleSubmit, isPending } = usePost({ postId, onCloseForm });
 
   return (
     <Formik

@@ -6,8 +6,9 @@ import { useState } from 'react';
 import { postsApi } from '../../../services/postsApi';
 import confirmationDialog from '../../../assets/utils/confirmationDialog';
 import navTabs from '../../../assets/navTabs';
+import { queryKeys } from '../../../queryClient';
 
-const usePostPage = () => {
+const usePost = () => {
   const { id } = useParams();
 
   const [showForm, setShowForm] = useState(false);
@@ -17,7 +18,7 @@ const usePostPage = () => {
   // Fetch Post by ID
 
   const { data: post, isLoading, isError: isFetchingError } = useQuery({
-    queryKey: ['post', id],
+    queryKey: queryKeys.POST(id),
     queryFn: (meta) => postsApi.fetchOnePost({ id }, meta),
   });
 
@@ -29,7 +30,7 @@ const usePostPage = () => {
     mutationFn: postsApi.deletePost,
     onSuccess: () => {
       toast.success('Post deleted successfully');
-      queryClient.invalidateQueries(['posts']);
+      queryClient.invalidateQueries(queryKeys.POSTS);
       navigate(navTabs.posts.path);
     },
     onError: (error) =>
@@ -55,4 +56,4 @@ const usePostPage = () => {
   };
 };
 
-export default usePostPage;
+export default usePost;
