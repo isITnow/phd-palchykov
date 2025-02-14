@@ -30,11 +30,11 @@ const useComments = () => {
     const { body, author, commentImage } = values;
 
     const formData = new FormData();
-    formData.append('comment[author]', author.trim());
-    formData.append('comment[body]', body.trim());
+    formData.append('author', author.trim());
+    formData.append('body', body.trim());
 
     if (commentImage) {
-      formData.append('comment[comment_image]', commentImage);
+      formData.append('comment_image', commentImage);
     }
 
     addCommentMutation(

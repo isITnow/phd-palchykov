@@ -39,19 +39,19 @@ const useColleaguesForm = (colleagueId) => {
     const { name, position, phone, email, photo } = values;
 
     const formData = new FormData();
-    formData.append('colleague[name]', name.trim());
-    formData.append('colleague[position]', position.trim());
+    formData.append('name', name.trim());
+    formData.append('position', position.trim());
 
     if (phone) {
-      formData.append('colleague[phone]', phone.trim());
+      formData.append('phone', phone.trim());
     }
 
     if (email) {
-      formData.append('colleague[email]', email.trim().toLowerCase());
+      formData.append('email', email.trim().toLowerCase());
     }
 
     if (photo) {
-      formData.append('colleague[photo]', photo);
+      formData.append('photo', photo);
     }
 
     colleagueId

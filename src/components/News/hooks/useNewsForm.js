@@ -43,18 +43,18 @@ const useNewsForm = (newsId) => {
     const { title, body, date, image, links } = values;
 
     const formData = new FormData();
-    formData.append('news[body]', body.trim());
-    formData.append('news[date]', date.trim());
-    formData.append('news[title]', title.trim());
+    formData.append('body', body.trim());
+    formData.append('date', date.trim());
+    formData.append('title', title.trim());
 
     if (links.length) {
       links.forEach((element) => {
-        formData.append('news[links][]', element.trim());
+        formData.append('links[]', element.trim());
       });
     }
 
     if (image) {
-      formData.append('news[image]', image);
+      formData.append('image', image);
     }
 
     newsId

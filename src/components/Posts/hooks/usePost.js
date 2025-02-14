@@ -28,7 +28,7 @@ const usePosts = ({ postId, onCloseForm }) => {
     const { body } = values;
 
     const formData = new FormData();
-    formData.append('post[body]', body.trim());
+    formData.append('body', body.trim());
 
     postId
       ? editPostMutation(

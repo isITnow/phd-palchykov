@@ -62,22 +62,22 @@ const usePublicationForm = (publicationId) => {
     } = values;
 
     const formData = new FormData();
-    formData.append('publication[sequence_number]', sequence_number);
-    formData.append('publication[source_url]', source_url.trim());
-    formData.append('publication[source]', source.trim());
-    formData.append('publication[title]', title.trim());
-    formData.append('publication[title]', title.trim());
-    formData.append('publication[year]', year);
+    formData.append('sequence_number', sequence_number);
+    formData.append('source_url', source_url.trim());
+    formData.append('source', source.trim());
+    formData.append('title', title.trim());
+    formData.append('title', title.trim());
+    formData.append('year', year);
     if (authors.length) {
       authors.forEach((item) => {
-        formData.append('publication[authors][]', item.trim());
+        formData.append('authors[]', item.trim());
       });
     }
     if (cover) {
-      formData.append('publication[cover]', cover);
+      formData.append('cover', cover);
     }
     if (abstract) {
-      formData.append('publication[abstract]', abstract);
+      formData.append('abstract', abstract);
     }
 
     publicationId
