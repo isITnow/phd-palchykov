@@ -6,7 +6,7 @@ import Loader from '../../components/shared/Loader';
 import ResearchList from '../../components/Research/ResearchList';
 
 import { queryKeys } from '../../queryClient';
-import { researchesApi } from '../../services/researchesApi_template';
+import { researchesApi } from '../../services/researchesApi';
 import navTabs from '../../assets/navTabs';
 
 const ResearchPage = () => {
