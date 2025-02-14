@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { toast } from 'react-toastify';
 
 import { useUser } from '../context/UserContext';
 import useLocalStorage from './useLocalStorage';
@@ -16,7 +15,7 @@ const useRefreshAuth = () => {
     if (!authData?.token) return;
 
     if (isTokenExpired(authData.token)) {
-      toast.warn('Token expired. Logging out...');
+      console.warn('Token expired. Logging out...');
       tokenOperations.unset();
       removeItem();
       updateUser(null);
