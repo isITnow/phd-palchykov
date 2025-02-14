@@ -11,6 +11,8 @@ const PublicationsDropdownNav = ({ menuTitle, path }) => {
     ? 'text-primary'
     : '';
 
+  if (!periods) return null;
+
   return (
     <li className="nav-item dropdown">
       <NavLink
