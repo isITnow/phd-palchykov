@@ -1,16 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
-import { removePictureThunk } from "../../redux/gallery/operationsGallery";
-import { selectStatus } from "../../redux/gallery/selectorGallery";
+import { Button } from 'react-bootstrap';
+import { CgClose } from 'react-icons/cg';
+import { Item } from 'react-photoswipe-gallery';
 
-import { Button } from "react-bootstrap";
-import { CgClose } from "react-icons/cg";
-import { Item } from "react-photoswipe-gallery";
-import ImageLoadingSpinner from "../shared/ImageLoadingSpinner";
-import IsLoggedIn from "../shared/IsLoggedIn";
+import ImageLoadingSpinner from '../shared/ImageLoadingSpinner';
+import IsLoggedIn from '../shared/IsLoggedIn';
 
-import useImageLoading from "../../assets/customHooks/useImageLoading";
-import confirmationDialog from "../../assets/utils/confirmationDialog";
-import s from "./gallery.module.css";
+import useImageLoading from '../../assets/customHooks/useImageLoading';
+import useDeletePhoto from './hooks/useDeletePhoto';
+
+import s from './gallery.module.css';
 
 const PhotoAlbumItem = ({
   filename,
@@ -18,18 +16,9 @@ const PhotoAlbumItem = ({
   metadata: { height, width },
   picture_url,
 }) => {
-  const dispatch = useDispatch();
-  const status = useSelector(selectStatus);
+  const { handleDeletePhoto, isPending } = useDeletePhoto();
+
   const { imageIsLoaded, handleImageLoad } = useImageLoading();
-
-  const isDisabled = status === "pending";
-
-  const handleDelete = (id) => {
-    confirmationDialog(
-      () => dispatch(removePictureThunk(id)),
-      "Are you sure you want to delete?"
-    );
-  };
 
   return (
     <Item
@@ -42,7 +31,7 @@ const PhotoAlbumItem = ({
         <div className={`rounded-1 shadow position-relative ${s.imgWrapper}`}>
           <IsLoggedIn>
             <Button
-              disabled={isDisabled}
+              disabled={isPending}
               type="button"
               variant="danger"
               className="
@@ -54,9 +43,9 @@ const PhotoAlbumItem = ({
                         translate-middle
                         top-0 start-100
                         "
-              onClick={() => handleDelete(id)}
+              onClick={() => handleDeletePhoto(id)}
             >
-              <CgClose size={"1rem"} color="white" />
+              <CgClose size={'1rem'} color="white" />
             </Button>
           </IsLoggedIn>
           {!imageIsLoaded && <ImageLoadingSpinner />}

@@ -1,87 +1,51 @@
-import { useDispatch } from "react-redux";
-import {
-  addPhotoAlbumThunk,
-  updatePhotoAlbumThunk,
-} from "../../redux/gallery/operationsGallery";
-
-import { Form, Formik } from "formik";
+import { Form, Formik } from 'formik';
 import {
   ButtonGroup,
   Col,
   FormControl,
   FormGroup,
   FormLabel,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
-import CustomInput from "../FormComponents/CustomInput";
-import FormWarning from "../FormComponents/FormWarning";
-import BackBtn from "../shared/BackBtn";
-import RequiredBadge from "../shared/RequiredBadge";
-import SubmitBtn from "../shared/SubmitBtn";
+import BackBtn from '../shared/BackBtn';
+import CustomInput from '../FormComponents/CustomInput';
+import FormWarning from '../FormComponents/FormWarning';
+import RequiredBadge from '../shared/RequiredBadge';
+import SubmitBtn from '../shared/SubmitBtn';
 
-import navTabs from "../../assets/navTabs";
-import { validation } from "../../assets/utils/validationSchema";
+import { validation } from '../../assets/utils/validationSchema';
+import navTabs from '../../assets/navTabs';
+import usePhotoAlbumForm from './hooks/usePhotoAlbumForm';
 
 //* Creates unique error message from array of error messages
 const getValidationMessage = (errors) => {
   const values = Object.values(errors).filter((value) => value);
-  const validationMessage = Array.from(new Set(values)).join(", ");
+  const validationMessage = Array.from(new Set(values)).join(', ');
   return validationMessage;
 };
 
-const PhotoAlbumForm = ({ photoAlbum, status }) => {
-  const dispatch = useDispatch();
+const PhotoAlbumForm = ({ photoAlbum }) => {
+  const { handleSubmit, isPending } = usePhotoAlbumForm(photoAlbum?.id);
+
   const isNewAlbum = !photoAlbum;
-
-  const handleSubmit = async (values, actions) => {
-    const { title, cover, photos } = values;
-
-    const formData = new FormData();
-    formData.append("photo_album[title]", title.trim());
-
-    if (cover) {
-      formData.append("photo_album[cover_image]", cover);
-    }
-
-    if (photos.length) {
-      photos.forEach((photo) => {
-        formData.append("photo_album[pictures][]", photo);
-      });
-    }
-
-    if (isNewAlbum) {
-      dispatch(addPhotoAlbumThunk(formData));
-      actions.resetForm();
-    } else {
-      dispatch(
-        updatePhotoAlbumThunk({ id: photoAlbum.id, photoAlbum: formData })
-      );
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  const submitBtnText = isNewAlbum
+    ? 'Create Photo Album'
+    : 'Update Photo Album';
+  const backPath = isNewAlbum
+    ? navTabs.gallery.path
+    : navTabs.gallery.photoAlbumPath(photoAlbum.id);
 
   return (
     <Formik
       initialValues={{
-        cover: "",
+        cover: '',
         photos: [],
-        title: isNewAlbum ? "" : photoAlbum.title,
+        title: isNewAlbum ? '' : photoAlbum.title,
       }}
       validationSchema={validation.photoAlbumSchema}
       onSubmit={handleSubmit}
     >
       {(props) => {
-        const isDisabled = props.isSubmitting || status === "pending";
-        const submitBtnText = isNewAlbum
-          ? "Create Photo Album"
-          : "Update Photo Album";
-        const backPath = isNewAlbum
-          ? navTabs.gallery.path
-          : navTabs.gallery.photoAlbumPath(photoAlbum.id);
         return (
           <Form>
             <CustomInput
@@ -100,7 +64,7 @@ const PhotoAlbumForm = ({ photoAlbum, status }) => {
                 <FormControl
                   type="file"
                   onChange={(e) => {
-                    props.setFieldValue("cover", e.target.files[0]);
+                    props.setFieldValue('cover', e.target.files[0]);
                   }}
                 />
                 {props.errors.cover && (
@@ -117,7 +81,7 @@ const PhotoAlbumForm = ({ photoAlbum, status }) => {
                   type="file"
                   multiple
                   onChange={(e) => {
-                    props.setFieldValue("photos", [...e.target.files]);
+                    props.setFieldValue('photos', [...e.target.files]);
                   }}
                 />
                 {props.errors.photos && (
@@ -130,7 +94,7 @@ const PhotoAlbumForm = ({ photoAlbum, status }) => {
             <div className="d-flex flex-row-reverse mt-3">
               <ButtonGroup>
                 <BackBtn path={backPath}>Cancel</BackBtn>
-                <SubmitBtn text={submitBtnText} disabled={isDisabled} />
+                <SubmitBtn text={submitBtnText} disabled={isPending} />
               </ButtonGroup>
             </div>
           </Form>

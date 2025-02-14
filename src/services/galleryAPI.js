@@ -1,46 +1,46 @@
-import { privateAPI, publicAPI } from "./http";
+import { privateAPI, publicAPI } from './http';
 
-const deletePhotoAlbum = async (id) => {
+const deletePhotoAlbum = async ({ id }) => {
   const data = await privateAPI.delete(`/photo_albums/${id}`);
 
   return data;
 };
 
-const deletePicture = async (id) => {
+const deletePhoto = async ({ id }) => {
   const data = await privateAPI.delete(`/attachments/${id}/purge`);
 
   return data;
 };
 
-const editPhotoAlbum = async (id, body) => {
+const editPhotoAlbum = async ({ id, body }) => {
   const data = await privateAPI.patch(`/photo_albums/${id}`, body);
 
   return data;
 };
 
-const fetchOnePhotoAlbum = async (id) => {
-  const data = await publicAPI.get(`/photo_albums/${id}`);
+const fetchPhotoAlbumById = async ({ id }, { signal }) => {
+  const data = await publicAPI.get(`/photo_albums/${id}`, { signal });
 
   return data;
 };
 
-const fetchPhotoAlbums = async (signal) => {
-  const data = await publicAPI.get("/photo_albums", { signal });
+const fetchPhotoAlbums = async ({ signal }) => {
+  const data = await publicAPI.get('/photo_albums', { signal });
 
   return data;
 };
 
-const postPhotoAlbum = async (body) => {
-  const data = await privateAPI.post("/photo_albums", body, {});
+const addPhotoAlbum = async ({ body }) => {
+  const data = await privateAPI.post('/photo_albums', body);
 
   return data;
 };
 
-export const galleryAPI = {
-  deletePicture,
+export const galleryApi = {
+  addPhotoAlbum,
   deletePhotoAlbum,
+  deletePhoto,
   editPhotoAlbum,
-  fetchOnePhotoAlbum,
+  fetchPhotoAlbumById,
   fetchPhotoAlbums,
-  postPhotoAlbum,
 };

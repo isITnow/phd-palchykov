@@ -13,10 +13,10 @@ const ColleagueOperationsPage = lazy(() =>
   import('./pages/colleagues/ColleagueOperationsPage')
 );
 
-const GalleryPage = lazy(() => import('./pages/GalleryPage'));
-const PhotoAlbumPage = lazy(() => import('./pages/PhotoAlbumPage'));
+const GalleryPage = lazy(() => import('./pages/gallery/GalleryPage'));
+const PhotoAlbumPage = lazy(() => import('./pages/gallery/PhotoAlbumPage'));
 const PhotoAlbumOperationsPage = lazy(() =>
-  import('./pages/PhotoAlbumOperationsPage')
+  import('./pages/gallery/PhotoAlbumOperationsPage')
 );
 
 const NewsPage = lazy(() => import('./pages/news/NewsPage'));

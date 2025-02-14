@@ -12,17 +12,13 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import galleryReducer from './gallery/sliceGallery';
-
 const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['periods', 'user'],
 };
 
-const rootReducer = combineReducers({
-  gallery: galleryReducer,
-});
+const rootReducer = combineReducers({});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

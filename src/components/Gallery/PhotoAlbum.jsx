@@ -1,8 +1,9 @@
-import "photoswipe/dist/photoswipe.css";
-import { Col, Row } from "react-bootstrap";
-import { Gallery } from "react-photoswipe-gallery";
-import PhotoAlbumItem from "./PhotoAlbumItem";
+import { Col, Row } from 'react-bootstrap';
+import { Gallery } from 'react-photoswipe-gallery';
 
+import PhotoAlbumItem from './PhotoAlbumItem';
+
+import 'photoswipe/dist/photoswipe.css';
 const PhotoAlbum = ({ photoAlbum }) => {
   const { pictures_list } = photoAlbum;
 
