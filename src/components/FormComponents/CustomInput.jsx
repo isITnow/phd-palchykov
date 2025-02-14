@@ -1,8 +1,8 @@
-import { useField } from "formik";
-import { FormControl, FormGroup, FormLabel } from "react-bootstrap";
+import { useField } from 'formik';
+import { FormControl, FormGroup, FormLabel } from 'react-bootstrap';
 
-import RequiredBadge from "../shared/RequiredBadge";
-import FormWarning from "./FormWarning";
+import RequiredBadge from '@/components/shared/RequiredBadge';
+import FormWarning from '@/components/FormComponents/FormWarning';
 
 const CustomInput = ({ label, required, ...props }) => {
   const [field, meta] = useField(props.name);

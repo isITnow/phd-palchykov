@@ -7,15 +7,15 @@ import {
   FormLabel,
 } from 'react-bootstrap';
 
-import BackBtn from '../shared/BackBtn';
-import CustomInput from '../FormComponents/CustomInput';
-import FormWarning from '../FormComponents/FormWarning';
-import RequiredBadge from '../shared/RequiredBadge';
-import SubmitBtn from '../shared/SubmitBtn';
+import BackBtn from '@/components/shared/BackBtn';
+import CustomInput from '@/components/FormComponents/CustomInput';
+import FormWarning from '@/components/FormComponents/FormWarning';
+import RequiredBadge from '@/components/shared/RequiredBadge';
+import SubmitBtn from '@/components/shared/SubmitBtn';
 
-import { validation } from '../../assets/utils/validationSchema';
-import navTabs from '../../assets/navTabs';
-import usePhotoAlbumForm from './hooks/usePhotoAlbumForm';
+import { validation } from '@/utils/validationSchema';
+import navTabs from '@/utils/navTabs';
+import usePhotoAlbumForm from '@/components/Gallery/hooks/usePhotoAlbumForm';
 
 //* Creates unique error message from array of error messages
 const getValidationMessage = (errors) => {

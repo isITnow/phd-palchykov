@@ -3,10 +3,10 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 
-import { postsApi } from '../../../services/postsApi';
-import confirmationDialog from '../../../assets/utils/confirmationDialog';
-import navTabs from '../../../assets/navTabs';
-import { queryKeys } from '../../../queryClient';
+import { postsApi } from '@/services/postsApi';
+import confirmationDialog from '@/utils/confirmationDialog';
+import navTabs from '@/utils/navTabs';
+import { queryKeys } from '@/app/queryClient';
 
 const usePost = () => {
   const { id } = useParams();
@@ -17,7 +17,11 @@ const usePost = () => {
 
   // Fetch Post by ID
 
-  const { data: post, isLoading, isError: isFetchingError } = useQuery({
+  const {
+    data: post,
+    isLoading,
+    isError: isFetchingError,
+  } = useQuery({
     queryKey: queryKeys.POST(id),
     queryFn: (meta) => postsApi.fetchOnePost({ id }, meta),
   });

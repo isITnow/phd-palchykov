@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
-import PhotoAlbumsList from '../../components/Gallery/PhotoAlbumsList';
-import IsLoggedIn from '../../components/shared/IsLoggedIn';
-import Loader from '../../components/shared/Loader';
+import PhotoAlbumsList from '@/components/Gallery/PhotoAlbumsList';
+import IsLoggedIn from '@/components/shared/IsLoggedIn';
+import Loader from '@/components/shared/Loader';
 
-import navTabs from '../../assets/navTabs';
-import { queryKeys } from '../../queryClient';
-import { galleryApi } from '../../services/galleryApi';
+import navTabs from '@/utils/navTabs';
+import { queryKeys } from '@/app/queryClient';
+import { galleryApi } from '@/services/galleryApi';
 
 const GalleryPage = () => {
   const { data: photoAlbums, isLoading } = useQuery({

@@ -2,10 +2,10 @@ import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { illustrationsApi } from '../../../services/illustrationsApi';
-import { queryKeys } from '../../../queryClient';
-import { researchesApi } from '../../../services/researchesApi';
-import navTabs from '../../../assets/navTabs';
+import { illustrationsApi } from '@/services/illustrationsApi';
+import { queryKeys } from '@/app/queryClient';
+import { researchesApi } from '@/services/researchesApi';
+import navTabs from '@/utils/navTabs';
 
 const useCreateResearch = () => {
   const navigate = useNavigate();

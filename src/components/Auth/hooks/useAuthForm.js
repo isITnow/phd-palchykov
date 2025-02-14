@@ -1,10 +1,10 @@
 import { toast } from 'react-toastify';
 import { useMutation } from '@tanstack/react-query';
 
-import { authApi } from '../../../services/authApi';
-import { tokenOperations } from '../../../services/http';
-import { useUser } from '../../../context/UserContext';
-import useLocalStorage from '../../../hooks/useLocalStorage';
+import { authApi } from '@/services/authApi';
+import { tokenOperations } from '@/services/http';
+import { useUser } from '@/context/UserContext';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 const useAuthForm = (closeModal) => {
   const { updateUser } = useUser();

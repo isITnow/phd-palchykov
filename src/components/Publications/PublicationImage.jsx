@@ -1,14 +1,14 @@
-import useImageLoading from "../../assets/customHooks/useImageLoading";
-import ImageLoadingSpinner from "../shared/ImageLoadingSpinner";
+import useImageLoading from '@/hooks/useImageLoading';
+import ImageLoadingSpinner from '@/components/shared/ImageLoadingSpinner';
 
-import s from "./publication.module.css";
+import s from '@/components/Publications/publication.module.css';
 
 const PublicationImage = ({ url, alt, metadata: { height, width } }) => {
   const { imageIsLoaded, handleImageLoad } = useImageLoading();
   return (
     <div
       className="shadow rounded overflow-hidden"
-      style={{ minHeight: "120px", position: "relative" }}
+      style={{ minHeight: '120px', position: 'relative' }}
     >
       {!imageIsLoaded && <ImageLoadingSpinner />}
       <img

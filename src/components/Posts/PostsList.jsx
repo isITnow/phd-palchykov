@@ -1,5 +1,5 @@
-import Post from "./Post";
-import { motion, AnimatePresence } from "framer-motion";
+import Post from '@/components/Posts/Post';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const listItem = {
   initial: { opacity: 0, y: -10 },
@@ -7,25 +7,23 @@ const listItem = {
   exit: { opacity: 0, y: -10 },
 };
 
-const PostsList = ({ posts }) => {
-  return (
-    <ul>
-      <AnimatePresence>
-        {posts?.map((post) => (
-          <motion.li
-            className="mb-3"
-            key={post.id}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={listItem}
-          >
-            <Post post={post} />
-          </motion.li>
-        ))}
-      </AnimatePresence>
-    </ul>
-  );
-};
+const PostsList = ({ posts }) => (
+  <ul>
+    <AnimatePresence>
+      {posts?.map((post) => (
+        <motion.li
+          className="mb-3"
+          key={post.id}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={listItem}
+        >
+          <Post post={post} />
+        </motion.li>
+      ))}
+    </AnimatePresence>
+  </ul>
+);
 
 export default PostsList;

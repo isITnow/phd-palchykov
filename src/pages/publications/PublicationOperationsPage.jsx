@@ -1,16 +1,16 @@
 import { useParams } from 'react-router-dom';
 
-import useSelectCachedData from '../../hooks/useSelectCachedData';
-import useSelectPeriods from '../../hooks/useSelectPeriods';
+import useSelectCachedData from '@/hooks/useSelectCachedData';
+import useSelectPeriods from '@/hooks/useSelectPeriods';
 
 import { Col } from 'react-bootstrap';
-import FormCard from '../../components/FormComponents/FormCard';
-import NoItemToEdit from '../../components/shared/NoItemToEdit';
-import PublicationForm from '../../components/Publications/PublicationForm';
+import FormCard from '@/components/FormComponents/FormCard';
+import NoItemToEdit from '@/components/shared/NoItemToEdit';
+import PublicationForm from '@/components/Publications/PublicationForm';
 
-import { queryKeys } from '../../queryClient';
-import getCurrentPeriod from '../../assets/utils/getCurrentEntity';
-import navTabs from '../../assets/navTabs';
+import { queryKeys } from '@/app/queryClient';
+import getCurrentPeriod from '@/utils/getCurrentEntity';
+import navTabs from '@/utils/navTabs';
 
 const PublicationOperationsPage = () => {
   const { periodId, publicationId } = useParams();

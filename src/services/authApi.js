@@ -1,4 +1,4 @@
-import { privateAPI, publicAPI } from './http';
+import { privateAPI, publicAPI } from '@/services/http';
 
 const loginUser = async ({ body }) => {
   return await publicAPI.post('/login', body);

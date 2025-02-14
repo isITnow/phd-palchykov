@@ -13,8 +13,8 @@ import FormWarning from '../FormComponents/FormWarning';
 import RequiredBadge from '../shared/RequiredBadge';
 import SubmitBtn from '../shared/SubmitBtn';
 
-import { validation } from '../../assets/utils/validationSchema';
-import navTabs from '../../assets/navTabs';
+import { validation } from '../../utils/validationSchema';
+import navTabs from '../../utils/navTabs';
 import useColleaguesForm from './hooks/useColleaguesForm';
 
 const ColleagueForm = ({ colleague }) => {

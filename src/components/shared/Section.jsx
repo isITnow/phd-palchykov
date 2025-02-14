@@ -1,5 +1,5 @@
-const Section = ({ children }) => {
-  return <section className="py-4">{children}</section>;
-};
+const Section = ({ children }) => (
+  <section className="py-4">{children}</section>
+);
 
 export default Section;

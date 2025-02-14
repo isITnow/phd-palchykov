@@ -1,4 +1,4 @@
-import { privateAPI, publicAPI } from './http';
+import { privateAPI, publicAPI } from '@/services/http';
 
 const editResearch = async ({ id, body }) => {
   const data = await privateAPI.patch(`/researches/${id}`, body);

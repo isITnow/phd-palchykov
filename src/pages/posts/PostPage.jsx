@@ -1,19 +1,19 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button, ButtonGroup, Col } from 'react-bootstrap';
 
-import BackBtn from '../../components/shared/BackBtn';
-import CommentForm from '../../components/Comments/CommentForm';
-import CommentsList from '../../components/Comments/CommentsList';
-import CommentsListTitle from '../../components/Comments/CommentsListTitle';
-import IsLoggedIn from '../../components/shared/IsLoggedIn';
-import Loader from '../../components/shared/Loader';
-import NotFoundPage from '../NotFoundPage';
-import Post from '../../components/Posts/Post';
-import PostForm from '../../components/Posts/PostForm';
+import BackBtn from '@/components/shared/BackBtn';
+import CommentForm from '@/components/Comments/CommentForm';
+import CommentsList from '@/components/Comments/CommentsList';
+import CommentsListTitle from '@/components/Comments/CommentsListTitle';
+import IsLoggedIn from '@/components/shared/IsLoggedIn';
+import Loader from '@/components/shared/Loader';
+import NotFoundPage from '@/pages/NotFoundPage';
+import Post from '@/components/Posts/Post';
+import PostForm from '@/components/Posts/PostForm';
 
-import motionOptions from '../../assets/motionOptions';
-import navTabs from '../../assets/navTabs';
-import usePost from './hooks/usePost';
+import motionOptions from '@/utils/motionOptions';
+import navTabs from '@/utils/navTabs';
+import usePost from '@/pages/posts/hooks/usePost';
 
 const PostPage = () => {
   const {

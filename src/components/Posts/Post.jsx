@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { formateDate } from '../../assets/utils/dateHelper';
+import { formateDate } from '@/utils/dateHelper';
 
-import s from './post.module.css';
+import s from '@/components/Posts/post.module.css';
 
 const Post = ({ post, single }) => {
   const { postedDate, editedDate, isEdited } = formateDate(post);

@@ -2,12 +2,12 @@ import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { publicationsApi } from '../../../services/publicationsApi';
-import { queryKeys } from '../../../queryClient';
-import getCurrentPeriod from '../../../assets/utils/getCurrentEntity';
-import getYearsArray from '../../../assets/utils/getYearsArray';
-import navTabs from '../../../assets/navTabs';
-import useSelectPeriods from '../../../hooks/useSelectPeriods';
+import { publicationsApi } from '@/services/publicationsApi';
+import { queryKeys } from '@/app/queryClient';
+import getCurrentPeriod from '@/utils/getCurrentEntity';
+import getYearsArray from '@/utils/getYearsArray';
+import navTabs from '@/utils/navTabs';
+import useSelectPeriods from '@/hooks/useSelectPeriods';
 
 const usePublicationForm = (publicationId) => {
   const { periodId } = useParams();

@@ -11,16 +11,16 @@ import {
   Row,
 } from 'react-bootstrap';
 
-import BackBtn from '../shared/BackBtn';
-import Badge from '../shared/Badge';
-import CustomInput from '../FormComponents/CustomInput';
-import CustomTextArea from '../FormComponents/CustomTextArea';
-import RequiredBadge from '../shared/RequiredBadge';
-import SubmitBtn from '../shared/SubmitBtn';
+import BackBtn from '@/components/shared/BackBtn';
+import Badge from '@/components/shared/Badge';
+import CustomInput from '@/components/FormComponents/CustomInput';
+import CustomTextArea from '@/components/FormComponents/CustomTextArea';
+import RequiredBadge from '@/components/shared/RequiredBadge';
+import SubmitBtn from '@/components/shared/SubmitBtn';
 
-import { validation } from '../../assets/utils/validationSchema';
-import navTabs from '../../assets/navTabs';
-import useCreateResearch from './hooks/useCreateResearch';
+import { validation } from '@/utils/validationSchema';
+import navTabs from '@/utils/navTabs';
+import useCreateResearch from '@/components/Research/hooks/useCreateResearch';
 
 const CreateResearchForm = () => {
   const { handleSubmit, isPending } = useCreateResearch();

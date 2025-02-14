@@ -1,4 +1,4 @@
-import { privateAPI, publicAPI } from './http';
+import { privateAPI, publicAPI } from '@/services/http';
 
 const deleteNews = async ({ id }) => {
   const data = await privateAPI.delete(`/news/${id}`);

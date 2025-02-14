@@ -13,9 +13,9 @@ import {
 } from 'react-bootstrap';
 import IsLoggedIn from '../shared/IsLoggedIn';
 
-import { colleaguesApi } from '../../services/colleaguesApi';
-import { queryKeys } from '../../queryClient';
-import confirmationDialog from '../../assets/utils/confirmationDialog';
+import { colleaguesApi } from '@/services/colleaguesApi';
+import { queryKeys } from '@/app/queryClient';
+import confirmationDialog from '@/utils/confirmationDialog';
 
 const Colleague = ({ colleague }) => {
   const queryClient = useQueryClient();

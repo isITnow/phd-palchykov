@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
-import { useUser } from '../../../context/UserContext';
+import { useUser } from '@/context/UserContext';
 
-import useLocalStorage from '../../../hooks/useLocalStorage';
-import { authApi } from '../../../services/authApi';
-import { tokenOperations } from '../../../services/http';
+import useLocalStorage from '@/hooks/useLocalStorage';
+import { authApi } from '@/services/authApi';
+import { tokenOperations } from '@/services/http';
 
 const useAuth = () => {
   const { updateUser } = useUser();

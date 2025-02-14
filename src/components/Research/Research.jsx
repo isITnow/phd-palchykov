@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import Illustration from './Illustration';
-import IsLoggedIn from '../shared/IsLoggedIn';
+import Illustration from '@/components/Research/Illustration';
+import IsLoggedIn from '@/components/shared/IsLoggedIn';
 
-import { queryKeys } from '../../queryClient';
-import { researchesApi } from '../../services/researchesApi';
-import confirmationDialog from '../../assets/utils/confirmationDialog';
-import navTabs from '../../assets/navTabs';
+import { queryKeys } from '@/app/queryClient';
+import { researchesApi } from '@/services/researchesApi';
+import confirmationDialog from '@/utils/confirmationDialog';
+import navTabs from '@/utils/navTabs';
 
 const Research = ({ research, index }) => {
   const { id, title, illustrations, source_list: sourceList } = research;

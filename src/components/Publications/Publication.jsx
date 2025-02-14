@@ -11,12 +11,12 @@ import {
   Row,
 } from 'react-bootstrap';
 
-import IsLoggedIn from '../shared/IsLoggedIn';
-import PublicationImage from './PublicationImage';
+import IsLoggedIn from '@/components/shared/IsLoggedIn';
+import PublicationImage from '@/components/Publications/PublicationImage';
 
-import { publicationsApi } from '../../services/publicationsApi';
-import confirmationDialog from '../../assets/utils/confirmationDialog';
-import { queryKeys } from '../../queryClient';
+import { publicationsApi } from '@/services/publicationsApi';
+import confirmationDialog from '@/utils/confirmationDialog';
+import { queryKeys } from '@/app/queryClient';
 
 const Publication = ({ publication }) => {
   const {

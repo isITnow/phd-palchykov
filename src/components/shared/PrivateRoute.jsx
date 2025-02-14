@@ -1,5 +1,5 @@
-import { Navigate, Outlet } from "react-router-dom";
-import useIsLoggedIn from "../../hooks/useIsLoggedIn";
+import { Navigate, Outlet } from 'react-router-dom';
+import useIsLoggedIn from '@/hooks/useIsLoggedIn';
 
 const PrivateRoute = () => {
   const isLoggedIn = useIsLoggedIn();

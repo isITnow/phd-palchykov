@@ -1,4 +1,4 @@
-import { privateAPI } from './http';
+import { privateAPI } from '@/services/http';
 
 const addIllustration = async ({ researchId, body }) => {
   const data = await privateAPI.post(

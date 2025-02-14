@@ -1,13 +1,13 @@
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import BackBtn from '../../components/shared/BackBtn';
-import IsLoggedIn from '../../components/shared/IsLoggedIn';
-import Loader from '../../components/shared/Loader';
-import PhotoAlbum from '../../components/Gallery/PhotoAlbum';
+import BackBtn from '@/components/shared/BackBtn';
+import IsLoggedIn from '@/components/shared/IsLoggedIn';
+import Loader from '@/components/shared/Loader';
+import PhotoAlbum from '@/components/Gallery/PhotoAlbum';
 
-import navTabs from '../../assets/navTabs';
-import usePhotoAlbum from './hooks/usePhotoAlbum';
+import navTabs from '@/utils/navTabs';
+import usePhotoAlbum from '@/pages/gallery/hooks/usePhotoAlbum';
 
 const PhotoAlbumPage = () => {
   const { isLoading, photoAlbum, handleDelete, isPending } = usePhotoAlbum();

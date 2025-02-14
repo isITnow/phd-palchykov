@@ -1,16 +1,20 @@
 import { toast } from 'react-toastify';
 import { useQuery } from '@tanstack/react-query';
 
-import { periodsApi } from '../../services/publicationPeriodsApi';
-import { queryKeys } from '../../queryClient';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import { periodsApi } from '@/services/publicationPeriodsApi';
+import { queryKeys } from '@/app/queryClient';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 const useSetPeriods = () => {
   const { getItem, setItem } = useLocalStorage('periods');
 
   const storedPeriods = getItem();
 
-  const { data: periods, isSuccess, isError } = useQuery({
+  const {
+    data: periods,
+    isSuccess,
+    isError,
+  } = useQuery({
     queryKey: queryKeys.PERIODS,
     queryFn: periodsApi.fetchPeriods,
     enabled: !storedPeriods,

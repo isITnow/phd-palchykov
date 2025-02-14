@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
-import Comment from "./Comment";
+import { motion, AnimatePresence } from 'framer-motion';
+import Comment from '@/components/Comments/Comment';
 
 const listItem = {
   initial: { opacity: 0, y: -10 },

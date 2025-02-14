@@ -1,13 +1,13 @@
 import { Form, Formik } from 'formik';
 import { Col, FormControl, FormGroup, FormLabel } from 'react-bootstrap';
 
-import CustomInput from '../FormComponents/CustomInput';
-import CustomTextArea from '../FormComponents/CustomTextArea';
-import FormWarning from '../FormComponents/FormWarning';
-import SubmitBtn from '../shared/SubmitBtn';
+import CustomInput from '@/components/FormComponents/CustomInput';
+import CustomTextArea from '@/components/FormComponents/CustomTextArea';
+import FormWarning from '@/components/FormComponents/FormWarning';
+import SubmitBtn from '@/components/shared/SubmitBtn';
 
-import { validation } from '../../assets/utils/validationSchema';
-import useComments from './hooks/useComments';
+import { validation } from '@/utils/validationSchema';
+import useComments from '@/components/Comments/hooks/useComments';
 
 const CommentForm = () => {
   const { handleSubmit, username, isPending } = useComments();

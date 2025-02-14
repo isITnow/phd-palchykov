@@ -1,5 +1,5 @@
-import { Card } from "react-bootstrap";
-import FormTitle from "./FormTitle";
+import { Card } from 'react-bootstrap';
+import FormTitle from '@/components/FormComponents/FormTitle';
 
 const FormCard = ({ title, body }) => {
   return (

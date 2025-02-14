@@ -9,25 +9,24 @@ import {
   Row,
 } from 'react-bootstrap';
 
-import BackBtn from '../shared/BackBtn';
-import Badge from '../shared/Badge';
-import CustomInput from '../FormComponents/CustomInput';
-import CustomSelect from '../FormComponents/CustomSelect';
-import CustomTextArea from '../FormComponents/CustomTextArea';
-import FormWarning from '../FormComponents/FormWarning';
-import RequiredBadge from '../shared/RequiredBadge';
-import SubmitBtn from '../shared/SubmitBtn';
+import BackBtn from '@/components/shared/BackBtn';
+import Badge from '@/components/shared/Badge';
+import CustomInput from '@/components/FormComponents/CustomInput';
+import CustomSelect from '@/components/FormComponents/CustomSelect';
+import CustomTextArea from '@/components/FormComponents/CustomTextArea';
+import FormWarning from '@/components/FormComponents/FormWarning';
+import RequiredBadge from '@/components/shared/RequiredBadge';
+import SubmitBtn from '@/components/shared/SubmitBtn';
 
-import { validation } from '../../assets/utils/validationSchema';
-import navTabs from '../../assets/navTabs';
+import { validation } from '@/utils/validationSchema';
+import navTabs from '@/utils/navTabs';
 import usePublicationForm from './hooks/usePublicationForm';
 
 const PublicationForm = ({ publication }) => {
   const isNewItem = !publication;
   const publicationId = publication?.id;
-  const { handleSubmit, isPending, periodYears, periodId } = usePublicationForm(
-    publicationId
-  );
+  const { handleSubmit, isPending, periodYears, periodId } =
+    usePublicationForm(publicationId);
 
   return (
     <Formik

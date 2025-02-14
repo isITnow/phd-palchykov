@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import motionOptions from '../../assets/motionOptions';
-import Publication from './Publication';
+
+import motionOptions from '@/utils/motionOptions';
+import Publication from '@/components/Publications/Publication';
 
 const PublicationsList = ({ publications }) => (
   <ul className="row row-cols-1 row-cols-md-2 g-2 mb-0">

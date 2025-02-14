@@ -2,9 +2,9 @@ import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { newsApi } from '../../../services/newsApi';
-import { queryKeys } from '../../../queryClient';
-import navTabs from '../../../assets/navTabs';
+import { newsApi } from '@/services/newsApi';
+import { queryKeys } from '@/app/queryClient';
+import navTabs from '@/utils/navTabs';
 
 const useNewsForm = (newsId) => {
   const queryClient = useQueryClient();

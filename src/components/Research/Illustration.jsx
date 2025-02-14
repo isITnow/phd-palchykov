@@ -1,12 +1,12 @@
 import { Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import ImageLoadingSpinner from '../shared/ImageLoadingSpinner';
-import IsLoggedIn from '../shared/IsLoggedIn';
+import ImageLoadingSpinner from '@/components/shared/ImageLoadingSpinner';
+import IsLoggedIn from '@/components/shared/IsLoggedIn';
 
-import useImageLoading from '../../assets/customHooks/useImageLoading';
-import navTabs from '../../assets/navTabs';
-import s from './research.module.css';
+import useImageLoading from '@/hooks/useImageLoading';
+import navTabs from '@/utils/navTabs';
+import s from '@/components/Research/research.module.css';
 
 const Illustration = ({
   id,

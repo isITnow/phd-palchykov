@@ -9,17 +9,17 @@ import {
   Row,
 } from 'react-bootstrap';
 
-import CustomInput from '../FormComponents/CustomInput';
-import CustomTextArea from '../FormComponents/CustomTextArea';
-import FormWarning from '../FormComponents/FormWarning';
-import BackBtn from '../shared/BackBtn';
-import Badge from '../shared/Badge';
-import SubmitBtn from '../shared/SubmitBtn';
+import CustomInput from '@/components/FormComponents/CustomInput';
+import CustomTextArea from '@/components/FormComponents/CustomTextArea';
+import FormWarning from '@/components/FormComponents/FormWarning';
+import BackBtn from '@/components/shared/BackBtn';
+import Badge from '@/components/shared/Badge';
+import SubmitBtn from '@/components/shared/SubmitBtn';
 
-import useNewsForm from './hooks/useNewsForm';
-import navTabs from '../../assets/navTabs';
-import { currentDate } from '../../assets/utils/dateHelper';
-import { validation } from '../../assets/utils/validationSchema';
+import useNewsForm from '@/components/News/hooks/useNewsForm';
+import navTabs from '@/utils/navTabs';
+import { currentDate } from '@/utils/dateHelper';
+import { validation } from '@/utils/validationSchema';
 
 const NewsForm = ({ newsItem }) => {
   const isNewItem = !newsItem;

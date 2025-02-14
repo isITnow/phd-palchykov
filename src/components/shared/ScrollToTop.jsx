@@ -1,14 +1,14 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { FaAngleUp } from "react-icons/fa";
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { FaAngleUp } from 'react-icons/fa';
 
-import motionOptions from "../../assets/motionOptions";
+import motionOptions from '@/utils/motionOptions';
 
 const ScrollToTop = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       if (window.scrollY > 400) {
         setShowTopBtn(true);
       } else {
@@ -20,7 +20,7 @@ const ScrollToTop = () => {
   const goToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -35,9 +35,9 @@ const ScrollToTop = () => {
           type="button"
           variants={motionOptions.fadeInOut}
           style={{
-            bottom: "45px",
-            left: "20px",
-            zIndex: "10",
+            bottom: '45px',
+            left: '20px',
+            zIndex: '10',
           }}
           className="bg-dark 
                       bg-gradient 

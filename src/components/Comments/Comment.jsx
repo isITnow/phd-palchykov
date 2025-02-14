@@ -2,8 +2,8 @@ import { Button, Col, Row } from 'react-bootstrap';
 import { Gallery, Item } from 'react-photoswipe-gallery';
 import IsLoggedIn from '../shared/IsLoggedIn';
 
-import { formateDate } from '../../assets/utils/dateHelper';
-import useComments from './hooks/useComments';
+import { formateDate } from '@/utils/dateHelper';
+import useComments from '@/components/Comments/hooks/useComments';
 
 import 'photoswipe/dist/photoswipe.css';
 

@@ -1,10 +1,10 @@
-import { Form, Formik } from "formik";
+import { Form, Formik } from 'formik';
 
-import CustomInput from "../FormComponents/CustomInput";
-import SubmitBtn from "../shared/SubmitBtn";
+import CustomInput from '@/components/FormComponents/CustomInput';
+import SubmitBtn from '@/components/shared/SubmitBtn';
 
-import { validation } from "../../assets/utils/validationSchema";
-import useAuthForm from "./hooks/useAuthForm";
+import { validation } from '@/utils/validationSchema';
+import useAuthForm from '@/components/Auth/hooks/useAuthForm';
 
 const AuthForm = ({ closeModal }) => {
   const { handleSubmit, isPending } = useAuthForm(closeModal);
@@ -12,8 +12,8 @@ const AuthForm = ({ closeModal }) => {
   return (
     <Formik
       initialValues={{
-        email: "",
-        password: "",
+        email: '',
+        password: '',
       }}
       validationSchema={validation.loginSchema}
       onSubmit={handleSubmit}

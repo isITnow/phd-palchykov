@@ -2,10 +2,10 @@ import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
-import { commentsApi } from '../../../services/commentsApi';
-import { queryKeys } from '../../../queryClient';
-import { useUser } from '../../../context/UserContext';
-import confirmationDialog from '../../../assets/utils/confirmationDialog';
+import { commentsApi } from '@/services/commentsApi';
+import { queryKeys } from '@/app/queryClient';
+import { useUser } from '@/context/UserContext';
+import confirmationDialog from '@/utils/confirmationDialog';
 
 const useComments = () => {
   const queryClient = useQueryClient();

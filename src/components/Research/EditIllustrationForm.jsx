@@ -7,15 +7,15 @@ import {
   FormLabel,
 } from 'react-bootstrap';
 
-import BackBtn from '../../components/shared/BackBtn';
-import CustomInput from '../../components/FormComponents/CustomInput';
-import CustomTextArea from '../../components/FormComponents/CustomTextArea';
-import FormCard from '../../components/FormComponents/FormCard';
-import SubmitBtn from '../../components/shared/SubmitBtn';
+import BackBtn from '@/components/shared/BackBtn';
+import CustomInput from '@/components/FormComponents/CustomInput';
+import CustomTextArea from '@/components/FormComponents/CustomTextArea';
+import FormCard from '@/components/FormComponents/FormCard';
+import SubmitBtn from '@/components/shared/SubmitBtn';
 
-import { validation } from '../../assets/utils/validationSchema';
-import navTabs from '../../assets/navTabs';
-import useEditIllustration from './hooks/useEditIllustration';
+import { validation } from '@/utils/validationSchema';
+import navTabs from '@/utils/navTabs';
+import useEditIllustration from '@/components/Research/hooks/useEditIllustration';
 
 const EditIllustrationForm = ({ illustration, researchId }) => {
   const { handleSubmit, isPending } = useEditIllustration({

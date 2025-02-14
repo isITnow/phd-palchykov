@@ -1,15 +1,15 @@
 import { Button, ButtonGroup, Col, Row } from 'react-bootstrap';
 import { FieldArray, Form, Formik } from 'formik';
 
-import BackBtn from '../../components/shared/BackBtn';
-import Badge from '../../components/shared/Badge';
-import CustomInput from '../../components/FormComponents/CustomInput';
-import FormCard from '../../components/FormComponents/FormCard';
-import SubmitBtn from '../../components/shared/SubmitBtn';
+import BackBtn from '@/components/shared/BackBtn';
+import Badge from '@/components/shared/Badge';
+import CustomInput from '@/components/FormComponents/CustomInput';
+import FormCard from '@/components/FormComponents/FormCard';
+import SubmitBtn from '@/components/shared/SubmitBtn';
 
-import { validation } from '../../assets/utils/validationSchema';
-import navTabs from '../../assets/navTabs';
-import useEditResearch from './hooks/useEditResearch';
+import { validation } from '@/utils/validationSchema';
+import navTabs from '@/utils/navTabs';
+import useEditResearch from '@/components/Research/hooks/useEditResearch';
 
 const EditResearchForm = ({ research }) => {
   const { handleSubmit, isPending } = useEditResearch(research);

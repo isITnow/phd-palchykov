@@ -2,11 +2,11 @@ import { Button } from 'react-bootstrap';
 import { CgClose } from 'react-icons/cg';
 import { Item } from 'react-photoswipe-gallery';
 
-import ImageLoadingSpinner from '../shared/ImageLoadingSpinner';
-import IsLoggedIn from '../shared/IsLoggedIn';
+import ImageLoadingSpinner from '@/components/shared/ImageLoadingSpinner';
+import IsLoggedIn from '@/components/shared/IsLoggedIn';
 
-import useImageLoading from '../../assets/customHooks/useImageLoading';
-import useDeletePhoto from './hooks/useDeletePhoto';
+import useImageLoading from '@/hooks/useImageLoading';
+import useDeletePhoto from '@/components/Gallery/hooks/useDeletePhoto';
 
 import s from './gallery.module.css';
 

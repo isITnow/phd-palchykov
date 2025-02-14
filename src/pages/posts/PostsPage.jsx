@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { Col } from 'react-bootstrap';
-import Loader from '../../components/shared/Loader';
-import PostForm from '../../components/Posts/PostForm';
-import PostsList from '../../components/Posts/PostsList';
+import Loader from '@/components/shared/Loader';
+import PostForm from '@/components/Posts/PostForm';
+import PostsList from '@/components/Posts/PostsList';
 
-import { postsApi } from '../../services/postsApi';
-import { queryKeys } from '../../queryClient';
-import useIsLoggedIn from '../../hooks/useIsLoggedIn';
+import { postsApi } from '@/services/postsApi';
+import { queryKeys } from '@/app/queryClient';
+import useIsLoggedIn from '@/hooks/useIsLoggedIn';
 
 const PostsPage = () => {
   const isLoggedIn = useIsLoggedIn();

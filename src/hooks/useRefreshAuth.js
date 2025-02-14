@@ -4,7 +4,7 @@ import { useUser } from '../context/UserContext';
 import useLocalStorage from './useLocalStorage';
 
 import { tokenOperations } from '../services/http';
-import isTokenExpired from '../assets/utils/isTokenExpired';
+import isTokenExpired from '../utils/isTokenExpired';
 
 const useRefreshAuth = () => {
   const { updateUser } = useUser();

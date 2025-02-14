@@ -1,4 +1,4 @@
-import { privateAPI, publicAPI } from './http';
+import { privateAPI, publicAPI } from '@/services/http';
 
 const deletePhotoAlbum = async ({ id }) => {
   const data = await privateAPI.delete(`/photo_albums/${id}`);

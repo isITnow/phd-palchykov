@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
-import IsLoggedIn from '../../components/shared/IsLoggedIn';
-import Loader from '../../components/shared/Loader';
-import ResearchList from '../../components/Research/ResearchList';
+import IsLoggedIn from '@/components/shared/IsLoggedIn';
+import Loader from '@/components/shared/Loader';
+import ResearchList from '@/components/Research/ResearchList';
 
-import { queryKeys } from '../../queryClient';
-import { researchesApi } from '../../services/researchesApi';
-import navTabs from '../../assets/navTabs';
+import { queryKeys } from '@/app/queryClient';
+import { researchesApi } from '@/services/researchesApi';
+import navTabs from '@/utils/navTabs';
 
 const ResearchPage = () => {
   const { data: researches, isLoading } = useQuery({

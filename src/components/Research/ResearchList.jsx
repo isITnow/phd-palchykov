@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 
 import Research from './Research';
 
-import motionOptions from '../../assets/motionOptions';
-import s from './research.module.css';
+import motionOptions from '@/utils/motionOptions';
+import s from '@/components/Research/research.module.css';
 
 const ResearchList = ({ researches }) => {
   const listItemRefs = useRef(researches.map(() => React.createRef()));

@@ -1,12 +1,12 @@
 import { Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
-import EditIllustrationForm from '../../components/Research/EditIllustrationForm';
-import NoItemToEdit from '../../components/shared/NoItemToEdit';
+import EditIllustrationForm from '@/components/Research/EditIllustrationForm';
+import NoItemToEdit from '@/components/shared/NoItemToEdit';
 
-import { queryKeys } from '../../queryClient';
-import navTabs from '../../assets/navTabs';
-import useSelectCachedData from '../../hooks/useSelectCachedData';
+import { queryKeys } from '@/app/queryClient';
+import navTabs from '@/utils/navTabs';
+import useSelectCachedData from '@/hooks/useSelectCachedData';
 
 const EditIllustrationPage = () => {
   const { researchId, id: illustrationId } = useParams();

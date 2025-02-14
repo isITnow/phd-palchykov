@@ -1,8 +1,8 @@
-import { useField } from "formik";
-import { FormGroup, FormLabel, FormSelect } from "react-bootstrap";
+import { useField } from 'formik';
+import { FormGroup, FormLabel, FormSelect } from 'react-bootstrap';
 
-import RequiredBadge from "../shared/RequiredBadge";
-import FormWarning from "./FormWarning";
+import RequiredBadge from '@/components/shared/RequiredBadge';
+import FormWarning from '@/components/FormComponents/FormWarning';
 
 const CustomSelect = ({ label, items, required, ...props }) => {
   const [field, meta] = useField(props.name);
@@ -14,7 +14,7 @@ const CustomSelect = ({ label, items, required, ...props }) => {
         {required && <RequiredBadge />}
       </FormLabel>
       <FormSelect {...field} {...props}>
-        <option defaultValue={"Select"}>Select a value</option>
+        <option defaultValue={'Select'}>Select a value</option>
         {items.map((item, index) => (
           <option key={index} value={item}>
             {item}

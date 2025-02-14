@@ -2,14 +2,14 @@ import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import { Bounce, ToastContainer } from 'react-toastify';
-import Footer from '../components/Footer/Footer';
-import Navigation from '../components/Navigation/Navigation';
-import Loader from '../components/shared/Loader';
-import ScrollToTop from '../components/shared/ScrollToTop';
-import Section from '../components/shared/Section';
+import Footer from '@/components/Footer/Footer';
+import Navigation from '@/components/Navigation/Navigation';
+import Loader from '@/components/shared/Loader';
+import ScrollToTop from '@/components/shared/ScrollToTop';
+import Section from '@/components/shared/Section';
 
-import setPageTitle from '../assets/utils/setPageTitle';
-import useSetPeriods from './hooks/useSetPeriods';
+import setPageTitle from '@/utils/setPageTitle';
+import useSetPeriods from '@/layouts/hooks/useSetPeriods';
 
 const Layout = () => {
   const location = useLocation();

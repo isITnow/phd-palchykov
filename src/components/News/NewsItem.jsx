@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useImageLoading from '../../assets/customHooks/useImageLoading';
+import useImageLoading from '@/hooks/useImageLoading';
 
 import {
   Button,
@@ -13,12 +13,12 @@ import {
   CardText,
   CardTitle,
 } from 'react-bootstrap';
-import ImageLoadingSpinner from '../shared/ImageLoadingSpinner';
-import IsLoggedIn from '../shared/IsLoggedIn';
+import ImageLoadingSpinner from '@/components/shared/ImageLoadingSpinner';
+import IsLoggedIn from '@/components/shared/IsLoggedIn';
 
-import { newsApi } from '../../services/newsApi';
-import { queryKeys } from '../../queryClient';
-import confirmationDialog from '../../assets/utils/confirmationDialog';
+import { newsApi } from '@/services/newsApi';
+import { queryKeys } from '@/app/queryClient';
+import confirmationDialog from '@/utils/confirmationDialog';
 
 const NewsItem = ({ news }) => {
   const queryClient = useQueryClient();

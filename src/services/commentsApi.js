@@ -1,4 +1,4 @@
-import { privateAPI, publicAPI } from './http';
+import { privateAPI, publicAPI } from '@/services/http';
 
 const addComment = async ({ postId, body }) => {
   const data = await publicAPI.post(`/posts/${postId}/comments`, body);

@@ -1,10 +1,10 @@
 import { Form, Formik } from 'formik';
 
-import CustomTextArea from '../FormComponents/CustomTextArea';
-import SubmitBtn from '../shared/SubmitBtn';
+import CustomTextArea from '@/components/FormComponents/CustomTextArea';
+import SubmitBtn from '@/components/shared/SubmitBtn';
 
-import { validation } from '../../assets/utils/validationSchema';
-import usePost from './hooks/usePost';
+import { validation } from '@/utils/validationSchema';
+import usePost from '@/components/Posts/hooks/usePost';
 
 const PostForm = ({ post, onCloseForm }) => {
   const isNewItem = !post;

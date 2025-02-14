@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
-import s from './pagesNav.module.css';
-import useSelectPeriods from '../../../hooks/useSelectPeriods';
+import useSelectPeriods from '@/hooks/useSelectPeriods';
+
+import s from '@/pages/publications/pagesNav.module.css';
 
 const PublicationsPageNav = ({ className }) => {
   const { periodId } = useParams();

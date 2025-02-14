@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom';
 
 import { Col } from 'react-bootstrap';
-import ColleagueForm from '../../components/Colleagues/ColleagueForm';
-import FormCard from '../../components/FormComponents/FormCard';
-import NoItemToEdit from '../../components/shared/NoItemToEdit';
+import ColleagueForm from '@/components/Colleagues/ColleagueForm';
+import FormCard from '@/components/FormComponents/FormCard';
+import NoItemToEdit from '@/components/shared/NoItemToEdit';
 
-import { queryKeys } from '../../queryClient';
-import navTabs from '../../assets/navTabs';
-import useSelectCachedData from '../../hooks/useSelectCachedData';
+import { queryKeys } from '@/app/queryClient';
+import navTabs from '@/utils/navTabs';
+import useSelectCachedData from '@/hooks/useSelectCachedData';
 
 const ColleagueOperationsPage = () => {
   const { id: colleagueId } = useParams();

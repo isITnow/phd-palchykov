@@ -1,4 +1,4 @@
-import { privateAPI, publicAPI } from './http';
+import { privateAPI, publicAPI } from '@/services/http';
 
 const editPublication = async ({ periodId, publicationId, body }) => {
   const data = await privateAPI.patch(

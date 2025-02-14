@@ -2,9 +2,9 @@ import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
-import { galleryApi } from '../../../services/galleryApi';
-import { queryKeys } from '../../../queryClient';
-import confirmationDialog from '../../../assets/utils/confirmationDialog';
+import { galleryApi } from '@/services/galleryApi';
+import { queryKeys } from '@/app/queryClient';
+import confirmationDialog from '@/utils/confirmationDialog';
 
 const usePhotoAlbum = () => {
   const { id: photoAlbumId } = useParams();

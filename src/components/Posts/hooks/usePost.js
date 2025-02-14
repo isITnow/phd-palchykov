@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postsApi } from '../../../services/postsApi';
+import { postsApi } from '@/services/postsApi';
 import { toast } from 'react-toastify';
-import { queryKeys } from '../../../queryClient';
+import { queryKeys } from '@/app/queryClient';
 
 const usePosts = ({ postId, onCloseForm }) => {
   const queryClient = useQueryClient();
@@ -12,8 +12,10 @@ const usePosts = ({ postId, onCloseForm }) => {
       toast.success(successMessage);
       onCloseForm && onCloseForm();
     },
-    onError: (error) =>
-      toast.error(error.response?.data?.message || 'Error occurred'),
+    onError: (error) => {
+      console.log('error: ', error);
+      toast.error(error.response?.data?.message || 'Error occurred');
+    },
   });
 
   const { mutate: addPostMutation, isPending: isCreating } = useMutation(

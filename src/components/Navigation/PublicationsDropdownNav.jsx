@@ -1,7 +1,7 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import useSelectPeriods from '../../hooks/useSelectPeriods';
+import useSelectPeriods from '@/hooks/useSelectPeriods';
 
-import s from './navigation.module.css';
+import s from '@/components/Navigation/navigation.module.css';
 
 const PublicationsDropdownNav = ({ menuTitle, path }) => {
   const periods = useSelectPeriods();

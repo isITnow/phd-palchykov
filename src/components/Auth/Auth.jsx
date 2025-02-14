@@ -1,10 +1,10 @@
 import { CiLogin, CiLogout } from 'react-icons/ci';
 
-import useAuth from './hooks/useAuth';
-import useIsLoggedIn from '../../hooks/useIsLoggedIn';
+import useAuth from '@/components/Auth/hooks/useAuth';
+import useIsLoggedIn from '@/hooks/useIsLoggedIn';
 
-import AuthForm from './AuthForm';
-import AuthModal from './AuthModal';
+import AuthForm from '@/components/Auth/AuthForm';
+import AuthModal from '@/components/Auth/AuthModal';
 
 const Auth = () => {
   const { modalShow, logout, setModalShow } = useAuth();
