@@ -7,7 +7,7 @@ import Illustration from './Illustration';
 import IsLoggedIn from '../shared/IsLoggedIn';
 
 import { queryKeys } from '../../queryClient';
-import { researchesApi } from '../../services/researchesApi';
+import { researchesApi } from '../../services/researchesApi_template';
 import confirmationDialog from '../../assets/utils/confirmationDialog';
 import navTabs from '../../assets/navTabs';
 
