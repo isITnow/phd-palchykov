@@ -10,9 +10,11 @@ import Section from '@/components/shared/Section';
 
 import setPageTitle from '@/utils/setPageTitle';
 import useSetPeriods from '@/layouts/hooks/useSetPeriods';
+import useRefreshAuth from '@/hooks/useRefreshAuth';
 
 const Layout = () => {
   const location = useLocation();
+  useRefreshAuth();
   useSetPeriods();
 
   useEffect(() => {
