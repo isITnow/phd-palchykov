@@ -1,26 +1,21 @@
-import { Suspense, useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-
 import { Bounce, ToastContainer } from 'react-toastify';
+import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+
 import Footer from '@/components/Footer/Footer';
-import Navigation from '@/components/Navigation/Navigation';
 import Loader from '@/components/shared/Loader';
+import Navigation from '@/components/Navigation/Navigation';
 import ScrollToTop from '@/components/shared/ScrollToTop';
 import Section from '@/components/shared/Section';
 
-import setPageTitle from '@/utils/setPageTitle';
-import useSetPeriods from '@/layouts/hooks/useSetPeriods';
+import useDocumentTitle from '@/hooks/useDocumentTitle';
 import useRefreshAuth from '@/hooks/useRefreshAuth';
+import useSetPeriods from '@/layouts/hooks/useSetPeriods';
 
 const Layout = () => {
-  const location = useLocation();
   useRefreshAuth();
   useSetPeriods();
-
-  useEffect(() => {
-    const { pathname } = location;
-    setPageTitle(pathname);
-  }, [location]);
+  useDocumentTitle();
 
   return (
     <>
