@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import useImageLoading from '@/hooks/useImageLoading';
 
 import {
@@ -19,6 +20,7 @@ import IsLoggedIn from '@/components/shared/IsLoggedIn';
 import { newsApi } from '@/services/newsApi';
 import { queryKeys } from '@/app/queryClient';
 import confirmationDialog from '@/utils/confirmationDialog';
+import navTabs from '@/utils/navTabs';
 
 const NewsItem = ({ news }) => {
   const queryClient = useQueryClient();
@@ -86,7 +88,7 @@ const NewsItem = ({ news }) => {
             <ButtonGroup>
               <Link
                 className="btn btn-sm btn-primary"
-                to={`/news/${id}/edit`}
+                to={navTabs.news.editPath(id)}
                 state={news}
               >
                 Edit

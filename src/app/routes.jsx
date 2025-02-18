@@ -80,6 +80,7 @@ export const privateRoutes = [
     element: <EditIllustrationPage />,
   },
   { path: navTabs.news.createPath, element: <NewsOperationsPage /> },
+  { path: navTabs.news.editPath(), element: <NewsOperationsPage /> },
   {
     path: navTabs.collaborators.createPath,
     element: <CollaboratorOperationsPage />,
