@@ -1,10 +1,10 @@
 const navTabs = {
-  colleagues: {
+  collaborators: {
     id: 6,
     title: 'Collaborations',
-    path: '/colleagues',
-    createPath: '/colleagues/new',
-    editPath: (id = ':id') => `/colleagues/${id}/edit`,
+    path: '/collaborators',
+    createPath: '/collaborators/new',
+    editPath: (id = ':id') => `/collaborators/${id}/edit`,
   },
   contacts: {
     id: 8,

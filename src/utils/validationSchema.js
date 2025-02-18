@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { collaboratorsCategories } from '@/pages/collaborators/helpers/constants';
 
 // TODO: validate illustration attachments
 
@@ -17,7 +18,7 @@ function isValidFileType(fileName, fileType) {
   );
 }
 
-const colleagueSchema = yup.object().shape({
+const collaboratorSchema = yup.object().shape({
   name: yup
     .string()
     .min(5, 'Too short. Min 5 characters')
@@ -26,8 +27,11 @@ const colleagueSchema = yup.object().shape({
     .string()
     .min(5, 'Too short. Min 5 characters')
     .required('Position is required'),
-  phone: yup.string().nullable(),
-  email: yup.string(),
+  link: yup.string().nullable(),
+  category: yup
+    .string()
+    .oneOf(Object.values(collaboratorsCategories), 'Invalid category')
+    .required('Category is required'),
   photo: yup
     .mixed()
     .test('is-valid-type', 'Not a valid image type', (value) =>
@@ -142,12 +146,14 @@ const publicationSchema = yup.object().shape({
     .string()
     .min(5, 'Too short. Min 5 characters')
     .required('URL is required'),
-  authors: yup.array().of(
-    yup
-      .string()
-      .min(5, 'Too short. Min 5 characters')
-      .required('Author is required')
-  ),
+  authors: yup
+    .array()
+    .of(
+      yup
+        .string()
+        .min(5, 'Too short. Min 5 characters')
+        .required('Author is required')
+    ),
   cover: yup
     .mixed()
     .test('is-valid-type', 'Not a valid image type', (value) =>
@@ -244,7 +250,7 @@ const editIllustrationSchema = yup.object().shape({
 });
 
 export const validation = {
-  colleagueSchema,
+  collaboratorSchema,
   commentSchema,
   editResearchSchema,
   editIllustrationSchema,

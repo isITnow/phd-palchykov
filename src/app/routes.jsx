@@ -1,9 +1,11 @@
 import { lazy } from 'react';
 import navTabs from '@/utils/navTabs';
 
-const ColleaguesPage = lazy(() => import('@/pages/colleagues/ColleaguesPage'));
-const ColleagueOperationsPage = lazy(() =>
-  import('@/pages/colleagues/ColleagueOperationsPage')
+const CollaboratorsPage = lazy(() =>
+  import('@/pages/collaborators/CollaboratorsPage')
+);
+const CollaboratorOperationsPage = lazy(() =>
+  import('@/pages/collaborators/CollaboratorOperationsPage')
 );
 
 const GalleryPage = lazy(() => import('@/pages/gallery/GalleryPage'));
@@ -43,7 +45,7 @@ const HomePage = lazy(() => import('@/pages/HomePage'));
 
 export const publicRoutes = [
   { path: navTabs.root.path, element: <HomePage /> },
-  { path: navTabs.colleagues.path, element: <ColleaguesPage /> },
+  { path: navTabs.collaborators.path, element: <CollaboratorsPage /> },
   { path: navTabs.contacts.path, element: <ContactsPage /> },
   { path: navTabs.gallery.path, element: <GalleryPage /> },
   { path: navTabs.gallery.photoAlbumPath(), element: <PhotoAlbumPage /> },
@@ -78,6 +80,12 @@ export const privateRoutes = [
     element: <EditIllustrationPage />,
   },
   { path: navTabs.news.createPath, element: <NewsOperationsPage /> },
-  { path: navTabs.colleagues.createPath, element: <ColleagueOperationsPage /> },
-  { path: navTabs.colleagues.editPath(), element: <ColleagueOperationsPage /> },
+  {
+    path: navTabs.collaborators.createPath,
+    element: <CollaboratorOperationsPage />,
+  },
+  {
+    path: navTabs.collaborators.editPath(),
+    element: <CollaboratorOperationsPage />,
+  },
 ];

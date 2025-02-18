@@ -1,7 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
 
 export const queryKeys = {
-  COLLEAGUES: ['colleagues'],
+  COLLABORATORS: ['collaborators'],
   NEWS: ['news'],
   PERIODS: ['periods'],
   POSTS: ['posts'],

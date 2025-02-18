@@ -2,19 +2,19 @@ import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { colleaguesApi } from '@/services/colleaguesApi';
+import { collaboratorsApi } from '@/services/collaboratorsApi';
 import { queryKeys } from '@/app/queryClient';
 import navTabs from '@/utils/navTabs';
 
-const useColleaguesForm = (colleagueId) => {
+const useCollaboratorsForm = (collaboratorId) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const createMutationConfig = (mutationFn, successMessage) => ({
     mutationFn,
     onSuccess: () => {
-      queryClient.invalidateQueries(queryKeys.COLLEAGUES);
-      navigate(navTabs.colleagues.path);
+      queryClient.invalidateQueries(queryKeys.COLLABORATORS);
+      navigate(navTabs.collaborators.path);
       toast.success(successMessage);
     },
     onError: (error) =>
@@ -27,39 +27,38 @@ const useColleaguesForm = (colleagueId) => {
     },
   });
 
-  const { mutate: addColleagueMutation, isPending: isCreating } = useMutation(
-    createMutationConfig(colleaguesApi.addColleague, 'Card added')
-  );
+  const { mutate: addCollaboratorMutation, isPending: isCreating } =
+    useMutation(
+      createMutationConfig(collaboratorsApi.addCollaborator, 'Card added')
+    );
 
-  const { mutate: editColleagueMutation, isPending: isEditing } = useMutation(
-    createMutationConfig(colleaguesApi.editColleague, 'Card updated')
-  );
+  const { mutate: editCollaboratorMutation, isPending: isEditing } =
+    useMutation(
+      createMutationConfig(collaboratorsApi.editCollaborator, 'Card updated')
+    );
 
   const handleSubmit = async (values, actions) => {
-    const { name, position, phone, email, photo } = values;
+    const { name, position, category, photo, link } = values;
 
     const formData = new FormData();
     formData.append('name', name.trim());
     formData.append('position', position.trim());
+    formData.append('category', category);
 
-    if (phone) {
-      formData.append('phone', phone.trim());
-    }
-
-    if (email) {
-      formData.append('email', email.trim().toLowerCase());
+    if (link) {
+      formData.append('link', link.trim());
     }
 
     if (photo) {
       formData.append('photo', photo);
     }
 
-    colleagueId
-      ? editColleagueMutation(
-          { id: colleagueId, body: formData },
+    collaboratorId
+      ? editCollaboratorMutation(
+          { id: collaboratorId, body: formData },
           { onSuccess: actions.resetForm }
         )
-      : addColleagueMutation(
+      : addCollaboratorMutation(
           { body: formData },
           { onSuccess: actions.resetForm }
         );
@@ -68,4 +67,4 @@ const useColleaguesForm = (colleagueId) => {
   return { handleSubmit, isPending: isCreating || isEditing };
 };
 
-export default useColleaguesForm;
+export default useCollaboratorsForm;

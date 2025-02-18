@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import s from '@/components/Collaborators/collaborators.module.css';
+
 import {
   Button,
   ButtonGroup,
@@ -13,70 +15,67 @@ import {
 } from 'react-bootstrap';
 import IsLoggedIn from '../shared/IsLoggedIn';
 
-import { colleaguesApi } from '@/services/colleaguesApi';
+import { collaboratorsApi } from '@/services/collaboratorsApi';
 import { queryKeys } from '@/app/queryClient';
 import confirmationDialog from '@/utils/confirmationDialog';
+import navTabs from '@/utils/navTabs';
 
-const Colleague = ({ colleague }) => {
+const Collaborator = ({ collaborator }) => {
   const queryClient = useQueryClient();
 
-  const { mutate: deleteColleagueMutation, isPending } = useMutation({
-    mutationFn: colleaguesApi.deleteColleague,
+  const { mutate: deleteCollaboratorMutation, isPending } = useMutation({
+    mutationFn: collaboratorsApi.deleteCollaborator,
     onSuccess: () => {
-      toast.success('Colleague card deleted successfully');
-      queryClient.invalidateQueries(queryKeys.COLLEAGUES);
+      toast.success('Collaborator card deleted');
+      queryClient.invalidateQueries(queryKeys.COLLABORATORS);
     },
-    onError: (error) => toast.error(error.response.data.message),
+    onError: (error) => toast.error(error.response?.data?.message),
   });
 
   const {
     id,
+    link,
     name,
-    position,
     photo_data: { filename, photo_url },
-    phone,
-    email,
-  } = colleague;
+    position,
+  } = collaborator;
 
   const handleDelete = () => {
     confirmationDialog(
-      () => deleteColleagueMutation({ id }),
+      () => deleteCollaboratorMutation({ id }),
       'Are you sure you want to delete?'
     );
   };
 
   // TODO: implement spinner while photo is loading
 
+  const getCardProps = (link) =>
+    link
+      ? {
+          as: 'a',
+          href: link,
+          target: '_blank',
+          rel: 'noopener noreferrer',
+          className: `border-0 h-100 pt-3 ${s.hoverEffect}`,
+        }
+      : { as: 'div', className: 'border-0 h-100 pt-3' };
+
   return (
-    <Card className="h-100 shadow-sm">
-      <CardImg variant="top" src={photo_url} alt={filename} />
+    <Card {...getCardProps(link)}>
+      <CardImg
+        src={photo_url}
+        alt={filename}
+        className={`mx-auto w-50 ${s.img}`}
+      />
       <CardBody className="text-center d-flex flex-column">
         <CardTitle className="fw-bold">{name}</CardTitle>
         <CardText className="fw-semibold text-muted">{position}</CardText>
-        {(email || phone) && (
-          <ul className="mt-3">
-            {email && (
-              <li className="mb-2">
-                <a className="py-2" href={`mailto:${email}`}>
-                  {email}
-                </a>
-              </li>
-            )}
-            {phone && (
-              <li>
-                <a className="py-2" href={`tel:${phone}`}>
-                  {phone}
-                </a>
-              </li>
-            )}
-          </ul>
-        )}
         <IsLoggedIn>
           <ButtonGroup className="pt-3 mt-auto">
             <Link
               className="btn btn-sm btn-primary"
-              to={`/colleagues/${id}/edit`}
-              state={colleague}
+              to={navTabs.collaborators.editPath(id)}
+              state={collaborator}
             >
               Edit
             </Link>
@@ -96,4 +95,4 @@ const Colleague = ({ colleague }) => {
   );
 };
 
-export default Colleague;
+export default Collaborator;
