@@ -48,6 +48,10 @@ const usePublicationForm = (publicationId) => {
   const periodYears = getYearsArray(currentPeriod).length
     ? getYearsArray(currentPeriod)
     : ['no data'];
+  const yearsSelectItems = periodYears.map((year) => ({
+    value: year,
+    label: year,
+  }));
 
   const handleSubmit = async (values, actions) => {
     const {
@@ -99,7 +103,7 @@ const usePublicationForm = (publicationId) => {
     handleSubmit,
     isPending: isCreating || isEditing,
     periodId,
-    periodYears,
+    yearsSelectItems,
   };
 };
 

@@ -25,7 +25,8 @@ import usePublicationForm from './hooks/usePublicationForm';
 const PublicationForm = ({ publication }) => {
   const isNewItem = !publication;
   const publicationId = publication?.id;
-  const { handleSubmit, isPending, periodYears, periodId } =
+
+  const { handleSubmit, isPending, yearsSelectItems, periodId } =
     usePublicationForm(publicationId);
 
   return (
@@ -58,7 +59,7 @@ const PublicationForm = ({ publication }) => {
               <div className="col-6 col-md-8">
                 <CustomSelect
                   classnames="mb-3"
-                  items={periodYears}
+                  items={yearsSelectItems}
                   label="Publication Year"
                   name="year"
                   required
