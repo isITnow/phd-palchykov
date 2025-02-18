@@ -31,7 +31,7 @@ const EditResearchForm = ({ research }) => {
             return (
               <Form>
                 <CustomInput
-                  bsclass="mb-3"
+                  classnames="mb-3"
                   label="Research Title"
                   name="title"
                   required
@@ -57,14 +57,14 @@ const EditResearchForm = ({ research }) => {
                                       <Badge index={index} text={'resource'} />
                                     )}
                                     <CustomInput
-                                      bsclass="mb-3"
+                                      classnames="mb-3"
                                       label="Source"
                                       name={`sourceList.${index}.source`}
                                       required
                                       type="text"
                                     />
                                     <CustomInput
-                                      bsclass="mb-3"
+                                      classnames="mb-3"
                                       label="Source URL"
                                       name={`sourceList.${index}.source_url`}
                                       required

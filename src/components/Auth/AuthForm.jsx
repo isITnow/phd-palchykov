@@ -26,7 +26,7 @@ const AuthForm = ({ closeModal }) => {
               label="Email"
               name="email"
               type="email"
-              bsclass="mb-3"
+              classnames="mb-3"
               autoComplete="on"
               autoFocus
             />
@@ -34,7 +34,7 @@ const AuthForm = ({ closeModal }) => {
               label="Password"
               name="password"
               type="password"
-              bsclass="mb-3"
+              classnames="mb-3"
             />
             <div className="d-flex flex-row-reverse">
               <SubmitBtn text="Log In" disabled={isDisabled} />

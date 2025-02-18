@@ -49,7 +49,7 @@ const PhotoAlbumForm = ({ photoAlbum }) => {
         return (
           <Form>
             <CustomInput
-              bsclass="mb-3"
+              classnames="mb-3"
               label="Title"
               name="title"
               required

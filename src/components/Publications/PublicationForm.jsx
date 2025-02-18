@@ -57,6 +57,7 @@ const PublicationForm = ({ publication }) => {
             <div className="row">
               <div className="col-6 col-md-8">
                 <CustomSelect
+                  classnames="mb-3"
                   items={periodYears}
                   label="Publication Year"
                   name="year"
@@ -65,7 +66,7 @@ const PublicationForm = ({ publication }) => {
               </div>
               <div className="col-6 col-md-4">
                 <CustomInput
-                  bsclass="mb-3"
+                  classnames="mb-3"
                   label="Sequence Num"
                   name="sequence_number"
                   required
@@ -74,7 +75,7 @@ const PublicationForm = ({ publication }) => {
               </div>
             </div>
             <CustomTextArea
-              bsclass="mb-3"
+              classnames="mb-3"
               label="Publication Title"
               name="title"
               required
@@ -82,14 +83,14 @@ const PublicationForm = ({ publication }) => {
               type="text"
             />
             <CustomInput
-              bsclass="mb-3"
+              classnames="mb-3"
               label="Source"
               name="source"
               required
               type="text"
             />
             <CustomInput
-              bsclass="mb-3"
+              classnames="mb-3"
               label="Source URL"
               name="source_url"
               required
@@ -150,7 +151,7 @@ const PublicationForm = ({ publication }) => {
                                   <Badge index={index} text={'author'} />
                                 )}
                                 <CustomInput
-                                  bsclass="mb-3"
+                                  classnames="mb-3"
                                   label="Author"
                                   name={`authors.${index}`}
                                   required

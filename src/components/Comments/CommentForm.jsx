@@ -25,7 +25,12 @@ const CommentForm = () => {
     >
       {(props) => (
         <Form>
-          <CustomInput label="Name" name="author" type="text" bsclass="mb-3" />
+          <CustomInput
+            label="Name"
+            name="author"
+            type="text"
+            classnames="mb-3"
+          />
           <CustomTextArea
             label="Comment"
             name="body"

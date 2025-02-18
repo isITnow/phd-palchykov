@@ -49,7 +49,7 @@ const NewsForm = ({ newsItem }) => {
         return (
           <Form>
             <CustomInput
-              bsclass="mb-3"
+              classnames="mb-3"
               label="News Title"
               name="title"
               required
@@ -62,7 +62,7 @@ const NewsForm = ({ newsItem }) => {
               type="text-area"
             />
             <CustomInput
-              bsclass="mb-3"
+              classnames="mb-3"
               label="Date"
               name="date"
               placeholder={currentDate()}
@@ -106,7 +106,7 @@ const NewsForm = ({ newsItem }) => {
                                   <Badge index={index} text={'link'} />
                                 )}
                                 <CustomInput
-                                  bsclass="mb-3"
+                                  classnames="mb-3"
                                   label="Link"
                                   name={`links.${index}`}
                                   type="text"

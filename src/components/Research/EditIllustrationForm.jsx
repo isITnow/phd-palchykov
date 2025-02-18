@@ -41,7 +41,7 @@ const EditIllustrationForm = ({ illustration, researchId }) => {
               <Form>
                 <Col lg="3">
                   <CustomInput
-                    bsclass="mb-3"
+                    classnames="mb-3"
                     label="Sequence Num"
                     name="sequence_number"
                     required

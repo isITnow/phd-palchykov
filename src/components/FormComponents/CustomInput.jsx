@@ -4,11 +4,11 @@ import { FormControl, FormGroup, FormLabel } from 'react-bootstrap';
 import RequiredBadge from '@/components/shared/RequiredBadge';
 import FormWarning from '@/components/FormComponents/FormWarning';
 
-const CustomInput = ({ label, required, ...props }) => {
+const CustomInput = ({ label, classnames = '', required, ...props }) => {
   const [field, meta] = useField(props.name);
 
   return (
-    <FormGroup className={props.bsclass} controlId={label}>
+    <FormGroup className={classnames} controlId={label}>
       <FormLabel className="px-3 text-secondary fw-bold">
         {label}
         {required && <RequiredBadge />}
