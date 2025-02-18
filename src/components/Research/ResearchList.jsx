@@ -30,7 +30,7 @@ const ResearchList = ({ researches }) => {
       <ul>
         {researches.map((research, index) => (
           <motion.li
-            className="mb-5 border-2 border-bottom border-secondary pb-3"
+            className="mb-5 border-bottom pb-4"
             key={research.id}
             ref={listItemRefs.current[index]}
             animate="animate"
