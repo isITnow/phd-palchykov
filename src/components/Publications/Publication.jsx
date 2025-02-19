@@ -60,7 +60,7 @@ const Publication = ({ publication }) => {
   const isYear = year !== 'no data';
 
   return (
-    <Card className="h-100 shadow-sm">
+    <Card className="h-100 shadow-sm border-0">
       <CardBody className="d-flex flex-column justify-content-between">
         <div>
           <div className="d-flex">
