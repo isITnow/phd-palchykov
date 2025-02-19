@@ -8,6 +8,7 @@
 } */
 
 #root {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -18,7 +19,17 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* background-color: rgba(52, 58, 64, 0.05); */
+  background-image: url('/src/assets/images/background.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+
+  border-image: linear-gradient(to right,
+    rgba(255, 255, 255, 0.7) 10%,
+    rgb(255, 255, 255) 20%,
+    rgb(255, 255, 255) 80%,
+    rgba(255, 255, 255, 0.8) 90%) fill 1;
 }
 
 code {
