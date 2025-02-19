@@ -5,6 +5,7 @@ import {
   FormControl,
   FormGroup,
   FormLabel,
+  Row,
 } from 'react-bootstrap';
 
 import BackBtn from '@/components/shared/BackBtn';
@@ -74,24 +75,33 @@ const CollaboratorForm = ({ collaborator }) => {
             name="category"
             required
           />
-          <CustomInput classnames="mb-3" label="Link" name="link" type="text" />
-          <Col md="6" className="mb-3">
-            <FormGroup controlId="photo">
-              <FormLabel className="px-3 text-secondary fw-bold">
-                Photo
-                {isNewItem && <RequiredBadge />}
-              </FormLabel>
-              <FormControl
-                type="file"
-                onChange={(e) => {
-                  props.setFieldValue('photo', e.target.files[0]);
-                }}
+          <Row>
+            <Col md="6">
+              <CustomInput
+                classnames="mb-3"
+                label="Link (refers to collaborator's profile)"
+                name="link"
+                type="text"
               />
-              {props.errors.photo && (
-                <FormWarning>{props.errors.photo}</FormWarning>
-              )}
-            </FormGroup>
-          </Col>
+            </Col>
+            <Col md="6">
+              <FormGroup controlId="photo">
+                <FormLabel className="px-3 text-secondary fw-bold">
+                  Photo
+                  {isNewItem && <RequiredBadge />}
+                </FormLabel>
+                <FormControl
+                  type="file"
+                  onChange={(e) => {
+                    props.setFieldValue('photo', e.target.files[0]);
+                  }}
+                />
+                {props.errors.photo && (
+                  <FormWarning>{props.errors.photo}</FormWarning>
+                )}
+              </FormGroup>
+            </Col>
+          </Row>
           <div className="d-flex flex-row-reverse mt-3">
             <ButtonGroup>
               <BackBtn path={navTabs.collaborators.path}>Cancel</BackBtn>
