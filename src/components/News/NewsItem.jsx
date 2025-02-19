@@ -46,7 +46,7 @@ const NewsItem = ({ news }) => {
   };
 
   return (
-    <Card className="text-center">
+    <Card className="border-0 shadow-sm text-center">
       <CardHeader>
         <CardTitle className="text-danger mb-0">{title}</CardTitle>
       </CardHeader>
