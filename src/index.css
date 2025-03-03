@@ -20,16 +20,17 @@
   -moz-osx-font-smoothing: grayscale;
 
   background-image: url('/src/assets/images/background.webp');
+  background-color: #fafbfe;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
 
   border-image: linear-gradient(to right,
-    rgba(255, 255, 255, 0.7) 10%,
-    rgb(255, 255, 255) 20%,
-    rgb(255, 255, 255) 80%,
-    rgba(255, 255, 255, 0.8) 90%) fill 1;
+    rgba(250, 251, 254, 0.7) 10%,
+    rgb(250, 251, 254) 20%,
+    rgb(250, 251, 254) 80%,
+    rgba(250, 251, 254, 0.7) 90%) fill 1;
 }
 
 code {
