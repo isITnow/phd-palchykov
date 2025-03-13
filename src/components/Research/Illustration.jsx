@@ -29,7 +29,7 @@ const Illustration = ({
       >
         {!imageIsLoaded && <ImageLoadingSpinner />}
         <img
-          className="img-fluid"
+          className="img-fluid rounded-1"
           src={schema_url}
           alt={filename}
           onLoad={handleImageLoad}
