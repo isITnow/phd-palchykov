@@ -17,8 +17,8 @@ const Illustration = ({
   const { imageIsLoaded, handleImageLoad } = useImageLoading();
 
   return (
-    <div className="mb-2">
-      <p className={`mb-1 text-justify ${s.illustrationDescription}`}>
+    <div className="mb-3">
+      <p className={`mb-3 text-justify ${s.illustrationDescription}`}>
         {description}
       </p>
       <Col
