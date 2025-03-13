@@ -16,7 +16,9 @@ const PhotoAlbumsList = ({ photoAlbums }) => (
         variants={motionOptions.listItemMotion}
       >
         <Link to={`/gallery/photo_albums/${id}`}>
-          <div className={`card overflow-hidden ${s.hoverEffect}`}>
+          <div
+            className={`border-0 card shadow-sm overflow-hidden ${s.hoverEffect}`}
+          >
             <div className={s.imgWrapper}>
               <img src={cover_image_url} className={s.img} alt={title} />
             </div>
