@@ -24,12 +24,9 @@ const PhotoAlbumOperationsPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <FormCard
-        title={title}
-        body={
-          <PhotoAlbumForm photoAlbum={isEditAction ? cachedPhotoAlbum : null} />
-        }
-      />
+      <FormCard title={title}>
+        <PhotoAlbumForm photoAlbum={isEditAction ? cachedPhotoAlbum : null} />
+      </FormCard>
     </Col>
   );
 };

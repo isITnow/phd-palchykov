@@ -30,14 +30,11 @@ const CollaboratorOperationsPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <FormCard
-        title={title}
-        body={
-          <CollaboratorForm
-            collaborator={isEditOperation ? collaborator : null}
-          />
-        }
-      />
+      <FormCard title={title}>
+        <CollaboratorForm
+          collaborator={isEditOperation ? collaborator : null}
+        />
+      </FormCard>
     </Col>
   );
 };

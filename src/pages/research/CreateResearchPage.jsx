@@ -5,7 +5,9 @@ import FormCard from '@/components/FormComponents/FormCard';
 
 const CreateResearchPage = () => (
   <Col lg="8" className="mx-auto">
-    <FormCard title="Create Research" body={<CreateResearchForm />} />
+    <FormCard title="Create Research">
+      <CreateResearchForm />
+    </FormCard>
   </Col>
 );
 

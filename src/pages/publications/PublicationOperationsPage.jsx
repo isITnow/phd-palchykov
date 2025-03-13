@@ -40,12 +40,9 @@ const PublicationOperationsPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <FormCard
-        title={title}
-        body={
-          <PublicationForm publication={isEditAction ? publication : null} />
-        }
-      />
+      <FormCard title={title}>
+        <PublicationForm publication={isEditAction ? publication : null} />
+      </FormCard>
     </Col>
   );
 };

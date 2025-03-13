@@ -23,10 +23,9 @@ const NewsOperationsPage = () => {
 
   return (
     <Col lg="8" className="mx-auto">
-      <FormCard
-        title={title}
-        body={<NewsForm newsItem={isEditAction ? news : null} />}
-      />
+      <FormCard title={title}>
+        <NewsForm newsItem={isEditAction ? news : null} />
+      </FormCard>
     </Col>
   );
 };

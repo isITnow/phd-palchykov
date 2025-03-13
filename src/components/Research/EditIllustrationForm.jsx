@@ -23,62 +23,59 @@ const EditIllustrationForm = ({ illustration, researchId }) => {
     researchId,
   });
   return (
-    <FormCard
-      title="Edit Illustration"
-      body={
-        <Formik
-          initialValues={{
-            description: illustration.description,
-            schema: '',
-            sequence_number: illustration.sequence_number,
-          }}
-          validationSchema={validation.editIllustrationSchema}
-          onSubmit={handleSubmit}
-        >
-          {(props) => {
-            const submitBtnText = 'Update Illustration';
-            return (
-              <Form>
-                <Col lg="3">
-                  <CustomInput
-                    classnames="mb-3"
-                    label="Sequence Num"
-                    name="sequence_number"
-                    required
-                    type="number"
-                  />
-                </Col>
-                <CustomTextArea
-                  label="Description"
-                  name="description"
+    <FormCard title="Edit Illustration">
+      <Formik
+        initialValues={{
+          description: illustration.description,
+          schema: '',
+          sequence_number: illustration.sequence_number,
+        }}
+        validationSchema={validation.editIllustrationSchema}
+        onSubmit={handleSubmit}
+      >
+        {(props) => {
+          const submitBtnText = 'Update Illustration';
+          return (
+            <Form>
+              <Col lg="3">
+                <CustomInput
+                  classnames="mb-3"
+                  label="Sequence Num"
+                  name="sequence_number"
                   required
-                  rows="5"
-                  type="text-area"
+                  type="number"
                 />
-                <FormGroup controlId="illustrationImage">
-                  <FormLabel className="px-3 text-secondary fw-bold">
-                    Illustration Image
-                  </FormLabel>
-                  <FormControl
-                    className="mb-3"
-                    type="file"
-                    onChange={(e) => {
-                      props.setFieldValue('schema', e.target.files[0]);
-                    }}
-                  />
-                </FormGroup>
-                <div className="d-flex flex-row-reverse mt-3">
-                  <ButtonGroup>
-                    <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
-                    <SubmitBtn text={submitBtnText} disabled={isPending} />
-                  </ButtonGroup>
-                </div>
-              </Form>
-            );
-          }}
-        </Formik>
-      }
-    />
+              </Col>
+              <CustomTextArea
+                label="Description"
+                name="description"
+                required
+                rows="5"
+                type="text-area"
+              />
+              <FormGroup controlId="illustrationImage">
+                <FormLabel className="px-3 text-secondary fw-bold">
+                  Illustration Image
+                </FormLabel>
+                <FormControl
+                  className="mb-3"
+                  type="file"
+                  onChange={(e) => {
+                    props.setFieldValue('schema', e.target.files[0]);
+                  }}
+                />
+              </FormGroup>
+              <div className="d-flex flex-row-reverse mt-3">
+                <ButtonGroup>
+                  <BackBtn path={navTabs.researches.path}>Cancel</BackBtn>
+                  <SubmitBtn text={submitBtnText} disabled={isPending} />
+                </ButtonGroup>
+              </div>
+            </Form>
+          );
+        }}
+      </Formik>
+    </FormCard>
   );
 };
 
