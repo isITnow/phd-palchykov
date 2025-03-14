@@ -1,4 +1,10 @@
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Layout from '@/layouts/Layout';
+import Loader from '@/components/shared/Loader';
+import NotFoundPage from '@/pages/NotFoundPage';
+
 import navTabs from '@/utils/navTabs';
 
 const CollaboratorsPage = lazy(() =>
@@ -90,3 +96,28 @@ export const privateRoutes = [
     element: <CollaboratorOperationsPage />,
   },
 ];
+
+const AppRouter = () => {
+  return (
+    <Router>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path={navTabs.root.path} element={<Layout />}>
+            {/* PUBLIC ROUTES */}
+            {publicRoutes.map(({ path, element }) => (
+              <Route key={path} path={path} element={element} />
+            ))}
+
+            {/* PRIVATE ROUTES */}
+            {privateRoutes.map(({ element, path }) => (
+              <Route element={element} key={path} path={path} />
+            ))}
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </Router>
+  );
+};
+
+export default AppRouter;
