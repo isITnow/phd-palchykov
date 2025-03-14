@@ -1,4 +1,4 @@
-import { object, string, number, array, mixed } from 'yup';
+import * as yup from 'yup';
 import { collaboratorsCategories } from '@/pages/collaborators/helpers/constants';
 
 // TODO: validate illustration attachments
@@ -18,18 +18,22 @@ function isValidFileType(fileName, fileType) {
   );
 }
 
-const collaboratorSchema = object().shape({
-  name: string()
+const collaboratorSchema = yup.object().shape({
+  name: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .required('Name is required'),
-  position: string()
+  position: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .required('Position is required'),
-  link: string().nullable(),
-  category: string()
+  link: yup.string().nullable(),
+  category: yup
+    .string()
     .oneOf(Object.values(collaboratorsCategories), 'Invalid category')
     .required('Category is required'),
-  photo: mixed()
+  photo: yup
+    .mixed()
     .test('is-valid-type', 'Not a valid image type', (value) =>
       value ? isValidFileType(value.name.toLowerCase(), 'image') : true
     )
@@ -38,15 +42,18 @@ const collaboratorSchema = object().shape({
     ),
 });
 
-const commentSchema = object().shape({
-  author: string()
+const commentSchema = yup.object().shape({
+  author: yup
+    .string()
     .min(4, 'Too short. Min 4 characters')
     .max(25, 'Max 25 characters'),
-  body: string()
+  body: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .max(700, 'Max 700 characters')
     .required('Text is required'),
-  commentImage: mixed()
+  commentImage: yup
+    .mixed()
     .test('is-valid-type', 'Not a valid image type', (value) =>
       value ? isValidFileType(value.name.toLowerCase(), 'image') : true
     )
@@ -55,24 +62,27 @@ const commentSchema = object().shape({
     ),
 });
 
-const loginSchema = object().shape({
-  email: string().required('Email is required'),
-  password: string().required('Password is required'),
+const loginSchema = yup.object().shape({
+  email: yup.string().required('Email is required'),
+  password: yup.string().required('Password is required'),
 });
 
-const newsSchema = object().shape({
-  title: string()
+const newsSchema = yup.object().shape({
+  title: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .required('Title is required'),
-  body: string().min(10, 'Too short. Min 10 characters'),
-  date: string()
+  body: yup.string().min(10, 'Too short. Min 10 characters'),
+  date: yup
+    .string()
     .required('Date is required')
     .matches(
       /^(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2},\s\d{4}$/,
       'Invalid date format. Format should be Month Day, Year'
     ),
-  links: array().of(string().min(5, 'Too short. Min 5 characters')),
-  image: mixed()
+  links: yup.array().of(yup.string().min(5, 'Too short. Min 5 characters')),
+  image: yup
+    .mixed()
     .test('is-valid-type', 'Not a valid image type', (value) =>
       value ? isValidFileType(value.name.toLowerCase(), 'image') : true
     )
@@ -81,20 +91,23 @@ const newsSchema = object().shape({
     ),
 });
 
-const photoAlbumSchema = object().shape({
-  title: string()
+const photoAlbumSchema = yup.object().shape({
+  title: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .max(80, 'Max 80 characters')
     .required('Title is required'),
-  cover: mixed()
+  cover: yup
+    .mixed()
     .test('is-valid-type', 'Not a valid image type', (value) =>
       value ? isValidFileType(value.name.toLowerCase(), 'image') : true
     )
     .test('is-valid-size', 'Max allowed size is 1MB', (value) =>
       value ? value.size <= MAX_IMAGE_SIZE : true
     ),
-  photos: array().of(
-    mixed()
+  photos: yup.array().of(
+    yup
+      .mixed()
       .test('is-valid-type', 'Not a valid image type', (value) =>
         value ? isValidFileType(value.name.toLowerCase(), 'image') : true
       )
@@ -104,43 +117,53 @@ const photoAlbumSchema = object().shape({
   ),
 });
 
-const postSchema = object().shape({
-  body: string()
+const postSchema = yup.object().shape({
+  body: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .required('Text is required'),
 });
 
-const publicationSchema = object().shape({
-  title: string()
+const publicationSchema = yup.object().shape({
+  title: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .required('Title is required'),
-  year: string().required('Year is required'),
-  sequence_number: number()
+  year: yup.string().required('Year is required'),
+  sequence_number: yup
+    .number()
     .required('Sequence number is required')
     .test(
       'Is positive?',
       'Number must be greater than 0',
       (value) => value > 0
     ),
-  source: string()
+  source: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .required('Source is required'),
-  source_url: string()
+  source_url: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .required('URL is required'),
-  authors: array().of(
-    string()
-      .min(5, 'Too short. Min 5 characters')
-      .required('Author is required')
-  ),
-  cover: mixed()
+  authors: yup
+    .array()
+    .of(
+      yup
+        .string()
+        .min(5, 'Too short. Min 5 characters')
+        .required('Author is required')
+    ),
+  cover: yup
+    .mixed()
     .test('is-valid-type', 'Not a valid image type', (value) =>
       value ? isValidFileType(value.name.toLowerCase(), 'image') : true
     )
     .test('is-valid-size', 'Max allowed size is 1MB', (value) =>
       value ? value.size <= MAX_IMAGE_SIZE : true
     ),
-  abstract: mixed()
+  abstract: yup
+    .mixed()
     .test('is-valid-type', 'Not a valid image type', (value) =>
       value ? isValidFileType(value.name.toLowerCase(), 'image') : true
     )
@@ -149,33 +172,39 @@ const publicationSchema = object().shape({
     ),
 });
 
-const researchSchema = object().shape({
-  title: string()
+const researchSchema = yup.object().shape({
+  title: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .required('Title is required'),
-  sourceList: array().of(
-    object().shape({
-      source: string()
+  sourceList: yup.array().of(
+    yup.object().shape({
+      source: yup
+        .string()
         .min(5, 'Too short. Min 5 characters')
         .required('Source is required'),
-      source_url: string()
+      source_url: yup
+        .string()
         .min(5, 'Too short. Min 5 characters')
         .required('URL is required'),
     })
   ),
-  illustrationList: array().of(
-    object().shape({
-      description: string()
+  illustrationList: yup.array().of(
+    yup.object().shape({
+      description: yup
+        .string()
         .min(5, 'Too short. Min 5 characters')
         .required('Description is required'),
-      sequence_number: number()
+      sequence_number: yup
+        .number()
         .required('Sequence number is required')
         .test(
           'Is positive?',
           'Number must be greater than 0',
           (value) => value > 0
         ),
-      //     schema: mixed()
+      //     schema: yup
+      //       .mixed()
       //       .test("is-valid-type", "Not a valid image type", (value) =>
       //         value ? isValidFileType(value.name.toLowerCase(), "image") : true
       //       )
@@ -186,27 +215,32 @@ const researchSchema = object().shape({
   ),
 });
 
-const editResearchSchema = object().shape({
-  title: string()
+const editResearchSchema = yup.object().shape({
+  title: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .required('Title is required'),
-  sourceList: array().of(
-    object().shape({
-      source: string()
+  sourceList: yup.array().of(
+    yup.object().shape({
+      source: yup
+        .string()
         .min(5, 'Too short. Min 5 characters')
         .required('Source is required'),
-      source_url: string()
+      source_url: yup
+        .string()
         .min(5, 'Too short. Min 5 characters')
         .required('URL is required'),
     })
   ),
 });
 
-const editIllustrationSchema = object().shape({
-  description: string()
+const editIllustrationSchema = yup.object().shape({
+  description: yup
+    .string()
     .min(5, 'Too short. Min 5 characters')
     .required('Description is required'),
-  sequence_number: number()
+  sequence_number: yup
+    .number()
     .required('Sequence number is required')
     .test(
       'Is positive?',
