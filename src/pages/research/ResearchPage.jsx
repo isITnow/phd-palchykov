@@ -5,7 +5,7 @@ import IsLoggedIn from '@/components/shared/IsLoggedIn';
 import Loader from '@/components/shared/Loader';
 import ResearchList from '@/components/Research/ResearchList';
 
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import { researchesApi } from '@/services/researchesApi';
 import navTabs from '@/utils/navTabs';
 

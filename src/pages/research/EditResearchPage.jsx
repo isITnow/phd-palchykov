@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import EditResearchForm from '@/components/Research/EditResearchForm';
 import NoItemToEdit from '@/components/shared/NoItemToEdit';
 
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import navTabs from '@/utils/navTabs';
 import useSelectCachedData from '@/hooks/useSelectCachedData';
 

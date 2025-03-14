@@ -16,7 +16,7 @@ import PublicationImage from '@/components/Publications/PublicationImage';
 
 import { publicationsApi } from '@/services/publicationsApi';
 import confirmationDialog from '@/utils/confirmationDialog';
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 
 const Publication = ({ publication }) => {
   const {

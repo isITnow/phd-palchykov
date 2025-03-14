@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { publicationsApi } from '@/services/publicationsApi';
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import getCurrentPeriod from '@/utils/getCurrentEntity';
 import getYearsArray from '@/utils/getYearsArray';
 import navTabs from '@/utils/navTabs';

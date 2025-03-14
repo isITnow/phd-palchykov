@@ -8,7 +8,7 @@ import PublicationsList from '@/components/Publications/PublicationsList';
 import PublicationsPageNav from './nested/PublicationsPageNav';
 
 import { publicationsApi } from '@/services/publicationsApi';
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import navTabs from '@/utils/navTabs';
 
 const PublicationsPage = () => {

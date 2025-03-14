@@ -7,7 +7,7 @@ import IsLoggedIn from '@/components/shared/IsLoggedIn';
 import Loader from '@/components/shared/Loader';
 
 import navTabs from '@/utils/navTabs';
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 
 const NewsPage = () => {
   const { data: news, isLoading } = useQuery({

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postsApi } from '@/services/postsApi';
 import { toast } from 'react-toastify';
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 
 const usePosts = ({ postId, onCloseForm }) => {
   const queryClient = useQueryClient();

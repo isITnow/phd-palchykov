@@ -18,7 +18,7 @@ import ImageLoadingSpinner from '@/components/shared/ImageLoadingSpinner';
 import IsLoggedIn from '@/components/shared/IsLoggedIn';
 
 import { newsApi } from '@/services/newsApi';
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import confirmationDialog from '@/utils/confirmationDialog';
 import navTabs from '@/utils/navTabs';
 

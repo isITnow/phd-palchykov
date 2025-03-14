@@ -16,7 +16,7 @@ import {
 import IsLoggedIn from '../shared/IsLoggedIn';
 
 import { collaboratorsApi } from '@/services/collaboratorsApi';
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import confirmationDialog from '@/utils/confirmationDialog';
 import navTabs from '@/utils/navTabs';
 

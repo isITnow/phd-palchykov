@@ -8,7 +8,7 @@ import FormCard from '@/components/FormComponents/FormCard';
 import NoItemToEdit from '@/components/shared/NoItemToEdit';
 import PublicationForm from '@/components/Publications/PublicationForm';
 
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import getCurrentPeriod from '@/utils/getCurrentEntity';
 import navTabs from '@/utils/navTabs';
 

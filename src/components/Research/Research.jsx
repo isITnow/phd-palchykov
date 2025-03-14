@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Illustration from '@/components/Research/Illustration';
 import IsLoggedIn from '@/components/shared/IsLoggedIn';
 
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import { researchesApi } from '@/services/researchesApi';
 import confirmationDialog from '@/utils/confirmationDialog';
 import navTabs from '@/utils/navTabs';

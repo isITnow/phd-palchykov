@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { postsApi } from '@/services/postsApi';
 import confirmationDialog from '@/utils/confirmationDialog';
 import navTabs from '@/utils/navTabs';
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 
 const usePost = () => {
   const { id } = useParams();

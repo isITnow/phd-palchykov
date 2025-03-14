@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { galleryApi } from '@/services/galleryApi';
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import navTabs from '@/utils/navTabs';
 
 const usePhotoAlbumForm = (photoAlbumId) => {

@@ -5,7 +5,7 @@ import FormCard from '@/components/FormComponents/FormCard';
 import NoItemToEdit from '@/components/shared/NoItemToEdit';
 import PhotoAlbumForm from '@/components/Gallery/PhotoAlbumForm';
 
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import navTabs from '@/utils/navTabs';
 import useSelectCachedData from '@/hooks/useSelectCachedData';
 

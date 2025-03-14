@@ -7,7 +7,7 @@ import IsLoggedIn from '@/components/shared/IsLoggedIn.jsx';
 import Loader from '@/components/shared/Loader';
 
 import { collaboratorsApi } from '@/services/collaboratorsApi.js';
-import { queryKeys } from '@/app/queryClient.js';
+import { queryKeys } from '@/utils/queryClient.js';
 import getCollaboratorsByCategory from '@/pages/collaborators/helpers/getCollaboratorsByCategory';
 import navTabs from '@/utils/navTabs.js';
 

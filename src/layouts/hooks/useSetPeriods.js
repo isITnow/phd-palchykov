@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { useQuery } from '@tanstack/react-query';
 
 import { periodsApi } from '@/services/publicationPeriodsApi';
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import useLocalStorage from '@/hooks/useLocalStorage';
 
 const useSetPeriods = () => {

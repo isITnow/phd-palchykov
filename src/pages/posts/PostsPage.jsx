@@ -6,7 +6,7 @@ import PostForm from '@/components/Posts/PostForm';
 import PostsList from '@/components/Posts/PostsList';
 
 import { postsApi } from '@/services/postsApi';
-import { queryKeys } from '@/app/queryClient';
+import { queryKeys } from '@/utils/queryClient';
 import useIsLoggedIn from '@/hooks/useIsLoggedIn';
 
 const PostsPage = () => {
