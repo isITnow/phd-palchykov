@@ -20,7 +20,7 @@
     "react-photoswipe-gallery": "^2.2.7",
     "react-router-dom": "^6.9.0",
     "react-toastify": "^10.0.4",
-    "yup": "^1.2.0"
+    "yup": "^1.6.1"
   },
   "scripts": {
     "dev": "vite",
