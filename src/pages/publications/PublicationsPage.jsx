@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { Suspense, useEffect } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import IsLoggedIn from '@/components/shared/IsLoggedIn';
 import Loader from '@/components/shared/Loader';
@@ -14,11 +14,7 @@ import navTabs from '@/utils/navTabs';
 const PublicationsPage = () => {
   const { periodId } = useParams();
 
-  const {
-    data: publications,
-    isLoading,
-    isFetched,
-  } = useQuery({
+  const { data: publications, isFetched } = useSuspenseQuery({
     queryKey: queryKeys.PUBLICATIONS(periodId),
     queryFn: (meta) => publicationsApi.fetchPublications({ periodId }, meta),
   });
@@ -32,12 +28,8 @@ const PublicationsPage = () => {
     }
   }, [isFetched]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <PublicationsPageNav className="mb-3" />
       <PublicationsList publications={publications.data} />
       <div className="d-flex justify-content-between mt-3">
@@ -51,7 +43,7 @@ const PublicationsPage = () => {
         </IsLoggedIn>
       </div>
       {publications.length > 4 && <PublicationsPageNav />}
-    </>
+    </Suspense>
   );
 };
 

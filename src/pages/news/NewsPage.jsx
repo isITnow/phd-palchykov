@@ -1,26 +1,23 @@
+import { Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { newsApi } from '@/services/newsApi';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
-import NewsList from '@/components/News/NewsList';
 import IsLoggedIn from '@/components/shared/IsLoggedIn';
 import Loader from '@/components/shared/Loader';
+import NewsList from '@/components/News/NewsList';
 
-import navTabs from '@/utils/navTabs';
+import { newsApi } from '@/services/newsApi';
 import { queryKeys } from '@/utils/queryClient';
+import navTabs from '@/utils/navTabs';
 
 const NewsPage = () => {
-  const { data: news, isLoading } = useQuery({
+  const { data: news } = useSuspenseQuery({
     queryKey: queryKeys.NEWS,
     queryFn: (meta) => newsApi.fetchNews(meta),
   });
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <NewsList news={news.data} />
       <IsLoggedIn>
         <div className="d-flex flex-row-reverse mt-3">
@@ -29,7 +26,7 @@ const NewsPage = () => {
           </Link>
         </div>
       </IsLoggedIn>
-    </>
+    </Suspense>
   );
 };
 

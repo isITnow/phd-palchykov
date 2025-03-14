@@ -1,26 +1,23 @@
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { Suspense } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
-import PhotoAlbumsList from '@/components/Gallery/PhotoAlbumsList';
 import IsLoggedIn from '@/components/shared/IsLoggedIn';
 import Loader from '@/components/shared/Loader';
+import PhotoAlbumsList from '@/components/Gallery/PhotoAlbumsList';
 
-import navTabs from '@/utils/navTabs';
-import { queryKeys } from '@/utils/queryClient';
 import { galleryApi } from '@/services/galleryApi';
+import { queryKeys } from '@/utils/queryClient';
+import navTabs from '@/utils/navTabs';
 
 const GalleryPage = () => {
-  const { data: photoAlbums, isLoading } = useQuery({
+  const { data: photoAlbums } = useSuspenseQuery({
     queryKey: queryKeys.PHOTO_ALBUMS,
     queryFn: (meta) => galleryApi.fetchPhotoAlbums(meta),
   });
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <PhotoAlbumsList photoAlbums={photoAlbums.data} />
       <IsLoggedIn>
         <div className="d-flex flex-row-reverse mt-3">
@@ -32,7 +29,7 @@ const GalleryPage = () => {
           </Link>
         </div>
       </IsLoggedIn>
-    </>
+    </Suspense>
   );
 };
 

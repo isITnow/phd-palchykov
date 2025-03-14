@@ -1,5 +1,9 @@
 import { toast } from 'react-toastify';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -17,11 +21,7 @@ const usePost = () => {
 
   // Fetch Post by ID
 
-  const {
-    data: post,
-    isLoading,
-    isError: isFetchingError,
-  } = useQuery({
+  const { data: post, isError: isFetchingError } = useSuspenseQuery({
     queryKey: queryKeys.POST(id),
     queryFn: (meta) => postsApi.fetchOnePost({ id }, meta),
   });
@@ -51,7 +51,6 @@ const usePost = () => {
   return {
     comments,
     handleDelete,
-    isLoading,
     isPending,
     post,
     setShowForm,
