@@ -8,6 +8,9 @@ export default defineConfig({
       external: ["yup"],
     }
   },
+  optimizeDeps: {
+    include: ["yup"],
+  },
   plugins: [react()],
   resolve: {
     alias: {
