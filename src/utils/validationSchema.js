@@ -3,9 +3,9 @@ import { collaboratorsCategories } from '@/pages/collaborators/helpers/constants
 
 // TODO: validate illustration attachments
 
-const MAX_IMAGE_SIZE = 1048576; //1MB
-const MAX_SMALL_IMAGE_SIZE = 512000; //500KB
-const MAX_PHOTO_SIZE = 5242880; //5MB
+const MAX_IMAGE_SIZE = 1048576; //*1MB
+const MAX_SMALL_IMAGE_SIZE = 512000; //*500KB
+const MAX_PHOTO_SIZE = 5242880; //*5MB
 
 const validFileExtensions = {
   image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'],
